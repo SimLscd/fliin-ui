@@ -7,16 +7,57 @@ on:
 permissions:
   contents: read
 
+# One run per branch: a new push cancels the one in progress.
+concurrency:
+  group: ci-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+# Each job only calls tool/ci.sh, one lane each. cli and flutter are split into shards by test file
+# (tool/ci_shard.dart, timings in tool/ci_weights.tsv): FLIIN_SHARD_TOTAL must equal the length of the matrix.
 jobs:
-  ci:
-    name: tool/ci.sh
+  checks:
+    name: checks
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: subosito/flutter-action@v2
-        with:
+        with: &flutter
           flutter-version: 3.47.7
           channel: stable
           cache: true
+          pub-cache: true
+          pub-cache-key: "flutter-pub-:os:-:version:-${{ hashFiles('**/pubspec.yaml') }}"
       # tool/env.sh looks for the SDK under .tooling/; here it comes from the action.
-      - run: FLIIN_FLUTTER_ROOT="$(dirname "$(dirname "$(command -v flutter)")")" tool/ci.sh
+      - run: FLIIN_FLUTTER_ROOT="$(dirname "$(dirname "$(command -v flutter)")")" tool/ci.sh checks
+
+  cli:
+    name: cli ${{ matrix.shard }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2]
+    env:
+      FLIIN_SHARD_INDEX: ${{ matrix.shard }}
+      FLIIN_SHARD_TOTAL: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with: *flutter
+      - run: FLIIN_FLUTTER_ROOT="$(dirname "$(dirname "$(command -v flutter)")")" tool/ci.sh cli
+
+  flutter:
+    name: flutter ${{ matrix.shard }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1]
+    env:
+      FLIIN_SHARD_INDEX: ${{ matrix.shard }}
+      FLIIN_SHARD_TOTAL: 2
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with: *flutter
+      - run: FLIIN_FLUTTER_ROOT="$(dirname "$(dirname "$(command -v flutter)")")" tool/ci.sh flutter

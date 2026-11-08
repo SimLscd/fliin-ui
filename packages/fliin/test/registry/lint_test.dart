@@ -93,7 +93,9 @@ enum Mode {
     expect(missing, isEmpty);
   });
 
-  group('fliin registry build', () {
+  // Chaque build analyse tout le registre : 8 s seul sur un M5 Max, plus de
+  // 30 s sur un runner GitHub à quatre cœurs, à côté des autres fichiers.
+  group('fliin registry build', tags: 'slow', () {
     late String key;
 
     setUpAll(() async {

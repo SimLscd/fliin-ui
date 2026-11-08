@@ -516,7 +516,7 @@ void main() {
       expect(chosen, unorderedEquals(['core', 'separator', 'text', 'surface']));
     });
 
-    test('devrait faire échouer sous --strict le seul élément qui s’écarte de sa référence quand deux éléments sont vérifiés', () async {
+    test('devrait faire échouer sous --strict le seul élément qui s’écarte de sa référence quand deux éléments sont vérifiés', skip: Platform.isMacOS ? false : 'références de verify rendues sous macOS seulement (ADR 0005) : ailleurs, aucune n’est comparable', () async {
       final args = ['verify', 'surface', 'text', '--json', ..._one];
       final lenient = await _cli(app, args, environment);
       expect(lenient.exitCode, 0, reason: '${lenient.stderr}');

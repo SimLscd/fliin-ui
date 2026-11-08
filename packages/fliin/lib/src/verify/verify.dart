@@ -236,7 +236,9 @@ String _testPath(ItemRef ref) =>
 /// compile pas, `flutter test` signale aussi en échec le chargement d'un
 /// fichier compilé en même temps (constaté sous Flutter 3.47.7), et un seul
 /// `flutter_tester` tient la mémoire de la machine où verify enchaînait déjà
-/// les éléments un par un.
+/// les éléments un par un. Le reporter est nommé : sous GitHub Actions,
+/// `flutter test` prend sinon le reporter `github`, dont [consoleBlocks] ne
+/// sait pas découper la console.
 Future<Map<String, TestRun>> _flutterTest(
   Project project,
   List<String> paths,
@@ -244,6 +246,8 @@ Future<Map<String, TestRun>> _flutterTest(
   if (paths case [final path]) {
     final result = await Process.run(project.sdk.flutter, [
       'test',
+      '--reporter',
+      'expanded',
       path,
     ], workingDirectory: project.dir.path);
     return {
@@ -260,6 +264,8 @@ Future<Map<String, TestRun>> _flutterTest(
     final result = await Process.run(project.sdk.flutter, [
       'test',
       '--concurrency=1',
+      '--reporter',
+      'expanded',
       '--file-reporter',
       'json:${reporter.path}',
       ...paths,

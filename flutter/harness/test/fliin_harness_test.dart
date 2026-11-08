@@ -454,6 +454,61 @@ void main() {
     });
   });
 
+  group('texte fin près d’un aplat plus étendu que son encre', () {
+    const page = Color(0xFFFFFFFF);
+    const pill = Color(0xFFBBBBBB);
+
+    /// Une lettre de 10 dans une ligne de 40, sous une pastille qui couvre le
+    /// haut de sa boîte : la pastille a plus de pixels que l'encre, comme une
+    /// police fine rendue par FreeType près d'un onglet choisi.
+    Future<void> scene(WidgetTester tester, {required Color ink}) async {
+      tester.view.physicalSize = const Size(100, 100);
+      tester.view.devicePixelRatio = 1;
+      addTearDown(tester.view.reset);
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: ColoredBox(
+            color: page,
+            child: Center(
+              child: Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  const PositionedDirectional(
+                    start: -4,
+                    end: -4,
+                    top: -4,
+                    height: 14,
+                    child: ColoredBox(color: pill),
+                  ),
+                  Text('a', style: TextStyle(color: ink, fontSize: 10, height: 4)),
+                ],
+              ),
+            ),
+          ),
+        ),
+      );
+    }
+
+    testWidgets('devrait passer le texte sur sa couleur déclarée, que flutter_test mesurait sur la pastille', (tester) async {
+      final semantics = tester.ensureSemantics();
+      await scene(tester, ink: _ink);
+      expect((await textContrastGuideline.evaluate(tester)).passed, isFalse, reason: 'le défaut de mesure corrigé');
+      final evaluation = await flTextContrastGuideline.evaluate(tester);
+      expect(evaluation.passed, isTrue, reason: evaluation.reason);
+      semantics.dispose();
+    });
+
+    testWidgets('devrait refuser encore un texte dont la couleur déclarée manque son contraste sur la pastille', (tester) async {
+      final semantics = tester.ensureSemantics();
+      await scene(tester, ink: const Color(0xFF8A8A8A));
+      final evaluation = await flTextContrastGuideline.evaluate(tester);
+      expect(evaluation.passed, isFalse);
+      expect(evaluation.reason, contains('Expected contrast ratio of at least 4.5'));
+      semantics.dispose();
+    });
+  });
+
   group('texte coupé : couleur déclarée, et ce qui la recouvre (relecture D23)', () {
     const white = Color(0xFFFFFFFF);
     const black = Color(0xFF000000);

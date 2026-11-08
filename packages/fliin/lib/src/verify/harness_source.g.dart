@@ -487,10 +487,25 @@ Future<_Fonts> _loadFonts() => _fonts ??= () async {
   return _Fonts(
     sf: hasSf,
     roboto: await _loadFamily(_Fonts.androidFamily, roboto, fingerprints),
-    arabic: await _loadFamily(_Fonts.arabicFamily, [File('/System/Library/Fonts/SFArabic.ttf')], fingerprints),
+    arabic: await _loadFamily(_Fonts.arabicFamily, _firstPresent(_arabicFonts), fingerprints),
     fingerprints: Map.fromEntries(fingerprints.entries.toList()..sort((a, b) => a.key.compareTo(b.key))),
   );
 }();
+
+/// SF Arabic under macOS. Elsewhere, the first Arabic font of the system:
+/// without one, `flutter test` draws a box per letter, whose thin outline
+/// fails the contrast guideline.
+const List<String> _arabicFonts = [
+  '/System/Library/Fonts/SFArabic.ttf',
+  '/usr/share/fonts/truetype/noto/NotoNaskhArabic-Regular.ttf',
+  '/usr/share/fonts/truetype/noto/NotoSansArabic-Regular.ttf',
+  '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf',
+];
+
+List<File> _firstPresent(List<String> paths) => [
+  for (final path in paths)
+    if (File(path).existsSync()) File(path),
+].take(1).toList();
 
 Future<bool> _loadFamily(String family, List<File> candidates, Map<String, String> fingerprints) async {
   final present = candidates.where((file) => file.existsSync()).toList();
@@ -546,7 +561,11 @@ String? _flutterVersion() {
 /// is the one it declares, and its background is still measured: the top of
 /// cut letters does not have enough ink for a pixel to give the text color
 /// (WCAG 1.4.3: text color against background, without antialiasing). The
-/// rest is flutter_test 3.47's rule as is (`MinimumTextContrastGuideline`,
+/// pixels are the device's, at its pixel ratio, where flutter_test takes
+/// one per logical pixel: there, the stems of a 14 text are about one pixel
+/// wide, and a rasterizer that does not snap them to the grid (FreeType,
+/// under Linux) leaves too few pixels in the text color for the histogram
+/// to find it. The rest is flutter_test 3.47's rule as is (`MinimumTextContrastGuideline`,
 /// BSD license of The Flutter Authors): thresholds, tolerance, histogram,
 /// colors.
 const AccessibilityGuideline flTextContrastGuideline = FlVisibleTextContrastGuideline();
@@ -587,7 +606,7 @@ class FlVisibleTextContrastGuideline extends AccessibilityGuideline {
       final root = renderView.owner!.semanticsOwner!.rootSemanticsNode!;
       late ui.Image image;
       final byteData = await tester.binding.runAsync<ByteData?>(() async {
-        image = await layer.toImage(renderView.paintBounds, pixelRatio: 1 / renderView.flutterView.devicePixelRatio);
+        image = await layer.toImage(renderView.paintBounds);
         final data = await image.toByteData();
         image.dispose();
         return data;
@@ -681,7 +700,8 @@ class FlVisibleTextContrastGuideline extends AccessibilityGuideline {
       _ => throw StateError('Unexpected widget type: ${widget.runtimeType}'),
     };
     if (isNodeOffScreen(measured, view.flutterView)) return const Evaluation.pass();
-    final histogram = _colorsWithin(bytes, measured, image.width, image.height);
+    final scale = view.flutterView.devicePixelRatio;
+    final histogram = _colorsWithin(bytes, measured, image.width, image.height, scale: scale);
     if (histogram.isEmpty) return const Evaluation.pass();
     var (light, dark) = _lightAndDark(histogram);
     // Second difference: of a cut text, sometimes only antialiased pixels
@@ -693,11 +713,11 @@ class FlVisibleTextContrastGuideline extends AccessibilityGuideline {
     // badge, a band the margin does not show). When something is painted over
     // its visible part, the measurement stays that of the pixels.
     final inks = cut && !await _paintedOver(tester, box, visible) ? _declaredInk(box) : null;
-    final ring = inks == null ? null : _colorsWithin(bytes, measured, image.width, image.height, except: visible);
+    final ring = inks == null ? null : _colorsWithin(bytes, measured, image.width, image.height, scale: scale, except: visible);
     if (inks != null && ring != null && ring.isNotEmpty) {
       final around = _mostFrequent(ring);
       final shownAround = {for (final ink in inks) Color.alphaBlend(ink, around).toARGB32()};
-      final under = _colorsWithin(bytes, visible, image.width, image.height);
+      final under = _colorsWithin(bytes, visible, image.width, image.height, scale: scale);
       final total = under.values.fold(0, (a, b) => a + b);
       under.removeWhere((color, _) => shownAround.contains(color.toARGB32()));
       final behind = under.isEmpty ? null : under.entries.reduce((a, b) => b.value > a.value ? b : a);
@@ -716,6 +736,14 @@ class FlVisibleTextContrastGuideline extends AccessibilityGuideline {
     final ratio = (light.computeLuminance() + 0.05) / (dark.computeLuminance() + 0.05);
     final target = targetContrastRatio(size, bold: bold);
     if (ratio - target >= -0.01) return const Evaluation.pass();
+    // Third difference: a thin font (a script, a regular weight standing in
+    // for a missing bold) covers fewer pixels than a nearby flat color, a
+    // selection pill or the fill of a badge, which the histogram then takes
+    // for the text. How many depends on the rasterizer: CoreText thickens
+    // glyphs, FreeType does not. When each color the text declares, opaque,
+    // is on the pixels as is, the text passes if each passes against every
+    // other color that covers at least a quarter of the measured box.
+    if (await _passesOnDeclaredInk(tester, box, visible, histogram, target)) return const Evaluation.pass();
     return Evaluation.fail(
       '$node:\n'
       'Expected contrast ratio of at least $target '
@@ -727,6 +755,31 @@ class FlVisibleTextContrastGuideline extends AccessibilityGuideline {
       'https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html',
     );
   }
+}
+
+/// The third difference of [FlVisibleTextContrastGuideline]: true when the
+/// text of [box] declares opaque colors that are all in [histogram], and each
+/// reaches [target] against each other color covering at least a quarter of
+/// it. False when something is painted over [visible], its visible part.
+Future<bool> _passesOnDeclaredInk(
+  WidgetTester tester,
+  RenderBox box,
+  Rect visible,
+  Map<Color, int> histogram,
+  double target,
+) async {
+  final inks = _declaredInk(box);
+  if (inks == null || inks.any((ink) => ink.a < 1)) return false;
+  final counts = {for (final MapEntry(:key, :value) in histogram.entries) key.toARGB32(): value};
+  if (inks.any((ink) => !counts.containsKey(ink.toARGB32()))) return false;
+  final own = {for (final ink in inks) ink.toARGB32()};
+  final total = counts.values.fold(0, (a, b) => a + b);
+  final grounds = [
+    for (final MapEntry(:key, :value) in counts.entries)
+      if (!own.contains(key) && value * 4 >= total) Color(key),
+  ];
+  if (grounds.isEmpty || await _paintedOver(tester, box, visible)) return false;
+  return grounds.every((ground) => inks.every((ink) => _contrast(ink, ground) - target >= -0.01));
 }
 
 Color _mostFrequent(Map<Color, int> histogram) => histogram.entries.reduce((a, b) => b.value > a.value ? b : a).key;
@@ -939,9 +992,12 @@ List<Color>? _declaredInk(RenderBox box) {
 
 /// The histogram of the pixels of [bounds] in the RGBA image [data]
 /// (flutter_test's `_colorsWithinRect`, each pixel judged at its center),
-/// without those of [except].
-Map<Color, int> _colorsWithin(ByteData data, Rect bounds, int width, int height, {Rect? except}) {
-  final rect = bounds.intersect(Rect.fromLTWH(0, 0, width.toDouble(), height.toDouble()));
+/// without those of [except]. [bounds] and [except] are logical, the image
+/// has [scale] pixels per logical pixel.
+Map<Color, int> _colorsWithin(ByteData data, Rect bounds, int width, int height, {required double scale, Rect? except}) {
+  Rect pixels(Rect r) => Rect.fromLTRB(r.left * scale, r.top * scale, r.right * scale, r.bottom * scale);
+  except = except == null ? null : pixels(except);
+  final rect = pixels(bounds).intersect(Rect.fromLTWH(0, 0, width.toDouble(), height.toDouble()));
   final counts = <int, int>{};
   // A pixel counts when its center is in [bounds]: an edge at 737.5 (a clip
   // on a half pixel) leaves out row 737, the rest of which is outside the

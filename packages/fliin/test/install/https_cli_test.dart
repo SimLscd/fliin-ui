@@ -162,9 +162,14 @@ void main() {
       'ios.light.1.0.ltr',
     ]);
     expect(themed.exitCode, 0, reason: '${themed.stderr}');
+    // Hors macOS, l'hôte écarte déjà la référence, avant le thème.
     expect(
       '${themed.stdout}',
-      contains('reference not compared: fliin.tokens.json differs'),
+      contains(
+        Platform.isMacOS
+            ? 'reference not compared: fliin.tokens.json differs'
+            : 'reference not compared: the reference was rendered differently',
+      ),
     );
     final strict = await run([
       'verify',
