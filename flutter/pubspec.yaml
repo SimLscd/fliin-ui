@@ -1,0 +1,8 @@
+name: fliin_flutter_workspace
+description: Workspace B, Flutter 3.47.7. The source of the published items and the rendering harness.
+publish_to: none
+environment:
+  sdk: ^3.13.0
+workspace:
+  - registry
+  - harness

@@ -1,0 +1,87 @@
+{
+  "name": "kbd",
+  "type": "registry:component",
+  "version": "0.1.1",
+  "title": "Keyboard key",
+  "description": "Shows a key or a shortcut to type on a keyboard, such as ⌘ K: Apple symbols on iOS and macOS, Ctrl or Alt elsewhere, on a key cap or bare.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/kbd/fl_kbd.dart",
+      "type": "registry:component",
+      "target": "@components/kbd/fl_kbd.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: SingleChildScrollView(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, spacing: {prefix}Scope.of(context).space.sm, children: [Wrap(spacing: {prefix}Scope.of(context).space.sm, runSpacing: {prefix}Scope.of(context).space.sm, crossAxisAlignment: WrapCrossAlignment.center, children: [{prefix}Kbd(keys: const [{prefix}KbdKey.command], text: 'K', semanticLabel: (variant.dir == TextDirection.rtl ? 'أمر K' : 'Command K')), {prefix}Kbd(keys: const [{prefix}KbdKey.command, {prefix}KbdKey.shift], text: 'Z'), {prefix}Kbd(keys: const [{prefix}KbdKey.option, {prefix}KbdKey.control], text: 'F'), {prefix}Kbd(keys: const [{prefix}KbdKey.enter]), {prefix}Kbd(keys: const [{prefix}KbdKey.escape]), {prefix}Kbd(keys: const [{prefix}KbdKey.tab])]), Wrap(spacing: {prefix}Scope.of(context).space.sm, runSpacing: {prefix}Scope.of(context).space.sm, crossAxisAlignment: WrapCrossAlignment.center, children: [{prefix}Kbd(keys: const [{prefix}KbdKey.up]), {prefix}Kbd(keys: const [{prefix}KbdKey.down]), {prefix}Kbd(keys: const [{prefix}KbdKey.left]), {prefix}Kbd(keys: const [{prefix}KbdKey.right]), {prefix}Kbd(keys: const [{prefix}KbdKey.space]), {prefix}Kbd(keys: const [{prefix}KbdKey.delete])]), Wrap(spacing: {prefix}Scope.of(context).space.sm, runSpacing: {prefix}Scope.of(context).space.sm, crossAxisAlignment: WrapCrossAlignment.center, children: [Text((variant.dir == TextDirection.rtl ? 'نسخ' : 'Copy'), style: {prefix}Scope.of(context).typography.resolve({prefix}TextRole.textSm).copyWith(color: {prefix}Scope.of(context).colors.onSurface)), {prefix}Kbd(keys: const [{prefix}KbdKey.command], text: 'C', variant: {prefix}KbdVariant.light), Text((variant.dir == TextDirection.rtl ? 'لصق' : 'Paste'), style: {prefix}Scope.of(context).typography.resolve({prefix}TextRole.textSm).copyWith(color: {prefix}Scope.of(context).colors.onSurface)), {prefix}Kbd(keys: const [{prefix}KbdKey.command], text: 'V', variant: {prefix}KbdVariant.light)])])))",
+    "imports": [
+      "@components/kbd/fl_kbd.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "shortcut",
+      "keys",
+      "inline"
+    ],
+    "canvas": {
+      "width": 390,
+      "height": 260
+    }
+  },
+  "categories": [
+    "data-display"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "shortcut",
+      "keys",
+      "inline"
+    ],
+    "semanticsRoles": [],
+    "intents": {
+      "fr": [
+        "afficher un raccourci clavier à côté d'une commande",
+        "indiquer la touche Échap pour fermer",
+        "montrer Commande K ou Ctrl K dans une aide",
+        "présenter les flèches du clavier pour naviguer",
+        "donner les combinaisons de touches d'un iPad avec clavier"
+      ],
+      "en": [
+        "show a keyboard shortcut next to a command",
+        "explain that Escape closes the panel",
+        "present Cmd K or Ctrl K in a help text",
+        "use arrow key caps in keyboard navigation hints",
+        "give the hotkeys of an iPad with a hardware keyboard"
+      ]
+    },
+    "notFor": [
+      "a status or category label: use a chip (chip)",
+      "a counter on an icon: use a badge (badge)"
+    ],
+    "fr": {
+      "title": "Touche de clavier",
+      "description": "Indique une touche ou un raccourci à taper au clavier, comme ⌘ K : symboles d'Apple sur iOS et macOS, Ctrl ou Alt ailleurs, sur un fond de touche ou sans fond.",
+      "notFor": [
+        "une étiquette de statut ou de catégorie : utiliser une puce (chip)",
+        "un compteur sur une icône : utiliser un badge (badge)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "`color` and `foregroundColor` repaint the key and its symbols with the app's colors; five more stories (variants side by side, navigation keys, special keys in a sentence, a list of shortcuts, colors)."
+}

@@ -1,0 +1,12 @@
+{
+  "abi": "macos-arm64",
+  "flutter": "3.47.7",
+  "fonts": {
+    "Menlo.ttc": "04a5a3bd3567bfeb",
+    "Roboto-Bold.ttf": "bede8327e3114901",
+    "Roboto-Medium.ttf": "bbdcf9557610a476",
+    "Roboto-Regular.ttf": "a7dac8d2b46311d9",
+    "SFArabic.ttf": "b325625422f84e3d",
+    "SFNS.ttf": "2f7e3871468bf56b"
+  }
+}

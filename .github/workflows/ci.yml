@@ -1,0 +1,22 @@
+name: ci
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  ci:
+    name: tool/ci.sh
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 3.47.7
+          channel: stable
+          cache: true
+      # tool/env.sh looks for the SDK under .tooling/; here it comes from the action.
+      - run: FLIIN_FLUTTER_ROOT="$(dirname "$(dirname "$(command -v flutter)")")" tool/ci.sh

@@ -1,0 +1,98 @@
+{
+  "name": "search-field",
+  "type": "registry:component",
+  "version": "0.2.3",
+  "changelog": "`icon` replaces the magnifier, and `trailing` sits at the end of the field while it is empty (the key of the shortcut that focuses it) then gives way to the clear button. Optional parameters: default rendering unchanged.",
+  "title": "Search field",
+  "description": "Searches or filters a list: a field with a magnifier, the search key of the keyboard and a button that clears the query.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0",
+    "icons@^0.2.0",
+    "text-field@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/search_field/fl_search_field.dart",
+      "type": "registry:component",
+      "target": "@components/search_field/fl_search_field.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "Localizations(locale: const Locale('en'), delegates: const [DefaultWidgetsLocalizations.delegate], child: Directionality(textDirection: variant.dir, child: Overlay(initialEntries: [OverlayEntry(builder: (context) => ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: Padding(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, spacing: {prefix}Scope.of(context).space.lg, children: [{prefix}SearchField(label: (variant.dir == TextDirection.rtl ? 'بحث' : 'Search'), clearLabel: (variant.dir == TextDirection.rtl ? 'مسح البحث' : 'Clear search'), placeholder: (variant.dir == TextDirection.rtl ? 'ابحث…' : 'Search…')), {prefix}SearchField(label: (variant.dir == TextDirection.rtl ? 'بحث' : 'Search'), clearLabel: (variant.dir == TextDirection.rtl ? 'مسح البحث' : 'Clear search'), controller: TextEditingController(text: (variant.dir == TextDirection.rtl ? 'تفاح' : 'Apple'))), {prefix}SearchField(label: (variant.dir == TextDirection.rtl ? 'بحث' : 'Search'), clearLabel: (variant.dir == TextDirection.rtl ? 'مسح البحث' : 'Clear search'), controller: TextEditingController(text: (variant.dir == TextDirection.rtl ? 'تفاح' : 'Apple')), variant: {prefix}InputVariant.secondary, searchIcon: false), {prefix}SearchField(label: (variant.dir == TextDirection.rtl ? 'بحث' : 'Search'), clearLabel: (variant.dir == TextDirection.rtl ? 'مسح البحث' : 'Clear search'), controller: TextEditingController(text: (variant.dir == TextDirection.rtl ? 'تفاح' : 'Apple')), invalid: true), {prefix}SearchField(label: (variant.dir == TextDirection.rtl ? 'بحث' : 'Search'), clearLabel: (variant.dir == TextDirection.rtl ? 'مسح البحث' : 'Clear search'), controller: TextEditingController(text: (variant.dir == TextDirection.rtl ? 'تفاح' : 'Apple')), disabled: true)]))))])))",
+    "imports": [
+      "@components/search_field/fl_search_field.dart",
+      "@components/text_field/fl_text_field.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "enabled",
+      "filled",
+      "error",
+      "disabled"
+    ],
+    "canvas": {
+      "width": 390,
+      "height": 600
+    },
+    "settleMs": 300
+  },
+  "categories": [
+    "forms"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "enabled",
+      "filled",
+      "error",
+      "disabled"
+    ],
+    "semanticsRoles": [
+      "textField",
+      "button"
+    ],
+    "intents": {
+      "fr": [
+        "rechercher dans une liste",
+        "rechercher un contact ou un produit par son nom",
+        "filtrer des résultats à chaque lettre",
+        "supprimer la recherche d'un toucher",
+        "poser une recherche au-dessus d'une liste",
+        "lancer la recherche depuis la touche du clavier"
+      ],
+      "en": [
+        "use a query to narrow the items of a list",
+        "reach a contact or a product by name",
+        "show filtered results while typing",
+        "remove the search text with one tap",
+        "add a search box above a list",
+        "submit the search from the keyboard key"
+      ]
+    },
+    "notFor": [
+      "entering text that is not a search: use a text field (text-field)",
+      "picking a value among suggestions under the field: use a combo box (combo-box)"
+    ],
+    "fr": {
+      "title": "Champ de recherche",
+      "description": "Permet de chercher ou de filtrer une liste : un champ à loupe, la touche rechercher du clavier et un bouton qui efface la saisie.",
+      "notFor": [
+        "saisir un texte qui n'est pas une recherche : utiliser un champ de texte (text-field)",
+        "choisir une valeur parmi des suggestions sous le champ : utiliser un champ à suggestions (combo-box)"
+      ]
+    },
+    "goldens": null
+  }
+}

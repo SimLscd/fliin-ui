@@ -1,0 +1,95 @@
+{
+  "name": "color-field",
+  "type": "registry:component",
+  "version": "0.1.0",
+  "title": "Color field",
+  "description": "Types a color as a hex code, with its swatch at the start of the field; a code that is not a color gives the previous one back on leaving.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0",
+    "color-swatch@^0.1.0",
+    "text-field@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/color_field/fl_color_field.dart",
+      "type": "registry:component",
+      "target": "@components/color_field/fl_color_field.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "Builder(builder: (context) { final rtl = variant.dir == TextDirection.rtl; final theme = {prefix}Scope.of(context); String tr(String fr, String ar) => rtl ? ar : fr; return ColoredBox( color: theme.colors.surface, child: SingleChildScrollView( padding: EdgeInsetsDirectional.all(theme.space.lg), child: Column( crossAxisAlignment: CrossAxisAlignment.stretch, spacing: theme.space.lg, children: [ {prefix}ColorField(label: tr('Color', 'اللون'), value: HSVColor.fromAHSV(1, 208, 0.98, 0.97).toColor(), onChanged: (_) {}), {prefix}ColorField(label: tr('Background color', 'لون الخلفية'), value: null, placeholder: '#FF5733', helper: tr('Six hexadecimal digits', 'ستة أرقام سداسية عشرية'), onChanged: (_) {}), {prefix}ColorField(label: tr('Brand color', 'لون العلامة'), value: HSVColor.fromAHSV(1, 0, 0, 0).toColor(), required: true, error: tr('Choose a lighter color', 'اختر لونًا أفتح'), onChanged: (_) {}), {prefix}ColorField(label: tr('Overlay', 'الطبقة'), value: HSVColor.fromAHSV(0.5, 217, 0.76, 0.96).toColor(), alpha: true, onChanged: (_) {}), {prefix}ColorField(label: tr('Theme color', 'لون السمة'), value: HSVColor.fromAHSV(1, 160, 0.9, 0.73).toColor(), enabled: false, onChanged: (_) {}), ], ), ), ); })",
+    "imports": [
+      "@components/color_field/fl_color_field.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "filled",
+      "empty",
+      "invalid",
+      "disabled"
+    ],
+    "canvas": {
+      "width": 390,
+      "height": 700
+    }
+  },
+  "categories": [
+    "forms"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "filled",
+      "empty",
+      "invalid",
+      "disabled"
+    ],
+    "semanticsRoles": [
+      "textField"
+    ],
+    "intents": {
+      "fr": [
+        "entrer une couleur en hexadécimal",
+        "modifier une couleur de marque au format #RRGGBB",
+        "montrer l'échantillon de la couleur tapée dans le champ",
+        "signaler une couleur hexadécimale refusée sous le champ",
+        "accepter une couleur et son opacité en huit chiffres hexadécimaux"
+      ],
+      "en": [
+        "edit a colour as a hex code",
+        "change a brand colour written as #RRGGBB",
+        "show a swatch of the typed colour in the field",
+        "show an error under an invalid hex colour",
+        "accept a colour with its opacity as eight hex digits"
+      ]
+    },
+    "notFor": [
+      "free text: use a text field (text-field)",
+      "picking a color by eye: use a color picker (color-picker)",
+      "a number with minus and plus: use a number field (number-field)"
+    ],
+    "fr": {
+      "title": "Champ de couleur",
+      "description": "Permet d'entrer une couleur en hexadécimal, avec son échantillon au début du champ ; un texte qui n'est pas une couleur rend la précédente en quittant le champ.",
+      "notFor": [
+        "un texte libre : utiliser le champ de texte (text-field)",
+        "choisir une couleur à l'œil : utiliser le sélecteur de couleur (color-picker)",
+        "un nombre avec plus et moins : utiliser le champ de nombre (number-field)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "First version."
+}

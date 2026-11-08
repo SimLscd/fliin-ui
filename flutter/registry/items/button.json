@@ -1,0 +1,98 @@
+{
+  "name": "button",
+  "type": "registry:component",
+  "version": "0.2.5",
+  "title": "Button",
+  "description": "Triggers the main action of a screen or form. Primary, secondary or ghost, with loading, leading icon, visible keyboard focus and the platform tap target.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0",
+    "spinner@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/button/fl_button.dart",
+      "type": "registry:component",
+      "target": "@components/button/fl_button.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: Padding(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: Column(crossAxisAlignment: CrossAxisAlignment.start, spacing: {prefix}Scope.of(context).space.sm, children: [{prefix}Button(label: variant.dir == TextDirection.rtl ? 'حفظ التغييرات' : 'Save', onPressed: () {}), {prefix}Button(label: variant.dir == TextDirection.rtl ? 'متابعة' : 'Continue', variant: {prefix}ButtonVariant.secondary, onPressed: () {}), {prefix}Button(label: variant.dir == TextDirection.rtl ? 'إلغاء' : 'Cancel', variant: {prefix}ButtonVariant.tertiary, onPressed: () {}), {prefix}Button(label: variant.dir == TextDirection.rtl ? 'تعديل' : 'Edit', variant: {prefix}ButtonVariant.outline, onPressed: () {}), {prefix}Button(label: variant.dir == TextDirection.rtl ? 'معرفة المزيد' : 'Learn more', variant: {prefix}ButtonVariant.ghost, onPressed: () {}), {prefix}Button(label: variant.dir == TextDirection.rtl ? 'حذف' : 'Delete', variant: {prefix}ButtonVariant.danger, onPressed: () {}), {prefix}Button(label: variant.dir == TextDirection.rtl ? 'إزالة' : 'Remove', variant: {prefix}ButtonVariant.dangerSoft, onPressed: () {}), {prefix}Button(label: variant.dir == TextDirection.rtl ? 'متابعة' : 'Continue', variant: {prefix}ButtonVariant.secondary, statesController: WidgetStatesController({WidgetState.pressed}), onPressed: () {}), {prefix}Button(label: variant.dir == TextDirection.rtl ? 'إزالة' : 'Remove', variant: {prefix}ButtonVariant.dangerSoft, statesController: WidgetStatesController({WidgetState.pressed}), onPressed: () {}), {prefix}Button(label: variant.dir == TextDirection.rtl ? 'جارٍ الإرسال' : 'Sending', loading: true, onPressed: () {}), {prefix}Button(label: variant.dir == TextDirection.rtl ? 'غير متاح' : 'Unavailable', onPressed: null)])))",
+    "imports": [
+      "@components/button/fl_button.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "enabled",
+      "disabled",
+      "loading"
+    ],
+    "canvas": {
+      "width": 390,
+      "height": 1200
+    },
+    "settleMs": 400
+  },
+  "categories": [
+    "actions"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "enabled",
+      "disabled",
+      "loading"
+    ],
+    "semanticsRoles": [
+      "button"
+    ],
+    "intents": {
+      "fr": [
+        "valider un formulaire",
+        "afficher un bouton d'action principal",
+        "lancer l'action principale d'un écran",
+        "ajouter un bouton",
+        "proposer un bouton secondaire ou annuler",
+        "montrer un chargement pendant l'envoi",
+        "poser un bouton discret dans une barre",
+        "proposer une action destructrice comme supprimer",
+        "basculer un favori avec un bouton cœur",
+        "faire un bouton à bascule pour le gras"
+      ],
+      "en": [
+        "submit a form",
+        "add a primary action button",
+        "add a call to action",
+        "offer a secondary or cancel button",
+        "show a spinner in the button while sending",
+        "add a subtle ghost button to a toolbar",
+        "add a destructive delete button",
+        "make a toggle button for bold text",
+        "toggle a favourite with a heart button"
+      ]
+    },
+    "notFor": [
+      "an on/off toggle: use a switch (switch)"
+    ],
+    "fr": {
+      "title": "Bouton",
+      "description": "Déclenche l'action principale d'un écran ou d'un formulaire. Bouton principal, secondaire, neutre, contour, discret ou destructif, en trois tailles, avec icône, chargement et focus clavier.",
+      "notFor": [
+        "bascule marche/arrêt : utiliser un interrupteur (switch)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "`fullWidth` stretches the button across the width it receives, content centered; under an unbounded width, it keeps its own width. Default rendering unchanged."
+}

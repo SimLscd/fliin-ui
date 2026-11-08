@@ -1,0 +1,102 @@
+{
+  "name": "chart",
+  "type": "registry:component",
+  "version": "0.2.4",
+  "title": "Chart",
+  "description": "Plots one or two series over time as bars or a line, shows the value of a point on touch, drag or arrow keys, reads a summary and every point to screen readers, and offers the same data as a table.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/chart/fl_chart.dart",
+      "type": "registry:component",
+      "target": "@components/chart/fl_chart.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "Builder(builder: (context) { final days = [{prefix}ChartPoint((variant.dir == TextDirection.rtl ? 'ن' : 'M'), semanticLabel: (variant.dir == TextDirection.rtl ? 'الاثنين' : 'Monday')), {prefix}ChartPoint((variant.dir == TextDirection.rtl ? 'ث' : 'T'), semanticLabel: (variant.dir == TextDirection.rtl ? 'الثلاثاء' : 'Tuesday')), {prefix}ChartPoint((variant.dir == TextDirection.rtl ? 'ر' : 'W'), semanticLabel: (variant.dir == TextDirection.rtl ? 'الأربعاء' : 'Wednesday')), {prefix}ChartPoint((variant.dir == TextDirection.rtl ? 'خ' : 'T'), semanticLabel: (variant.dir == TextDirection.rtl ? 'الخميس' : 'Thursday')), {prefix}ChartPoint((variant.dir == TextDirection.rtl ? 'ج' : 'F'), semanticLabel: (variant.dir == TextDirection.rtl ? 'الجمعة' : 'Friday')), {prefix}ChartPoint((variant.dir == TextDirection.rtl ? 'س' : 'S'), semanticLabel: (variant.dir == TextDirection.rtl ? 'السبت' : 'Saturday')), {prefix}ChartPoint((variant.dir == TextDirection.rtl ? 'ح' : 'S'), semanticLabel: (variant.dir == TextDirection.rtl ? 'الأحد' : 'Sunday'))]; final spent = {prefix}ChartSeries(label: (variant.dir == TextDirection.rtl ? 'المصاريف' : 'Spending'), values: const [32, 18, 45, 84, 27, 61, 12]); final before = {prefix}ChartSeries(label: (variant.dir == TextDirection.rtl ? 'الأسبوع السابق' : 'Previous week'), values: const [20, 40, 30, 52, 35, 48, 25]); return ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: SingleChildScrollView(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, spacing: {prefix}Scope.of(context).space.xl, children: [{prefix}Chart.bar(points: days, series: [spent], formatValue: (double value) => (variant.dir == TextDirection.rtl ? '\\u2066${value.round()} €\\u2069' : '€${value.round()}'), semanticLabel: (variant.dir == TextDirection.rtl ? 'مصاريف الأسبوع' : 'This week’s spending'), plotHeight: 120, initialSelection: 3), {prefix}Chart.bar(points: days, series: [spent, before], formatValue: (double value) => (variant.dir == TextDirection.rtl ? '\\u2066${value.round()} €\\u2069' : '€${value.round()}'), semanticLabel: (variant.dir == TextDirection.rtl ? 'المصاريف اليومية' : 'Spending per day'), plotHeight: 100), {prefix}Chart.line(points: [{prefix}ChartPoint((variant.dir == TextDirection.rtl ? 'يناير' : 'Jan')), {prefix}ChartPoint((variant.dir == TextDirection.rtl ? 'فبراير' : 'Feb')), {prefix}ChartPoint((variant.dir == TextDirection.rtl ? 'مارس' : 'Mar')), {prefix}ChartPoint((variant.dir == TextDirection.rtl ? 'أبريل' : 'Apr')), {prefix}ChartPoint((variant.dir == TextDirection.rtl ? 'مايو' : 'May')), {prefix}ChartPoint((variant.dir == TextDirection.rtl ? 'يونيو' : 'Jun'))], series: [{prefix}ChartSeries(label: (variant.dir == TextDirection.rtl ? 'الرصيد' : 'Balance'), values: const [1200, 1450, 1380, 1720, 1650, 1980]), {prefix}ChartSeries(label: (variant.dir == TextDirection.rtl ? 'الهدف' : 'Goal'), values: const [1300, 1400, 1500, 1600, 1700, 1800])], formatValue: (double value) => (variant.dir == TextDirection.rtl ? '\\u2066${value.round()} €\\u2069' : '€${value.round()}'), semanticLabel: (variant.dir == TextDirection.rtl ? 'تطور الرصيد' : 'Balance over time'), plotHeight: 100, initialSelection: 4), {prefix}ChartTable(points: days.take(3).toList(), series: [spent], formatValue: (double value) => (variant.dir == TextDirection.rtl ? '\\u2066${value.round()} €\\u2069' : '€${value.round()}'), pointsLabel: (variant.dir == TextDirection.rtl ? 'اليوم' : 'Day'))]))); })",
+    "imports": [
+      "@components/chart/fl_chart.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "bar",
+      "selected",
+      "compare",
+      "line",
+      "table"
+    ],
+    "settleMs": 400,
+    "canvas": {
+      "width": 390,
+      "height": 1040
+    }
+  },
+  "categories": [
+    "data-display",
+    "dashboard"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "bar",
+      "selected",
+      "compare",
+      "line",
+      "table"
+    ],
+    "semanticsRoles": [
+      "table",
+      "row",
+      "columnHeader",
+      "cell"
+    ],
+    "intents": {
+      "fr": [
+        "montrer les dépenses de chaque jour de la semaine en barres",
+        "présenter l'évolution d'un solde en courbe",
+        "montrer le montant d'une barre sous le doigt",
+        "proposer deux séries côte à côte, comme ce mois et le précédent",
+        "lire un résumé du tracé au lecteur d'écran",
+        "donner les mêmes chiffres sous forme de tableau"
+      ],
+      "en": [
+        "show spending per day of the week as bars",
+        "present how a balance moves over time as a line",
+        "show the amount of a bar under the finger",
+        "offer two series side by side, like this month and the last",
+        "give a spoken summary of the plot to screen readers",
+        "give the same numbers as a table"
+      ]
+    },
+    "notFor": [
+      "progress of a task toward a goal: use a progress indicator (progress)",
+      "a single key figure with its change: use a stat card (stat-card)",
+      "picking a day in a date grid: use a calendar (calendar)"
+    ],
+    "fr": {
+      "title": "Graphique",
+      "description": "Indique l'évolution d'une ou deux séries dans le temps, en barres ou en ligne, avec la valeur d'un point au toucher, au glisser ou au clavier, un résumé lu et une version en tableau.",
+      "notFor": [
+        "avancement d'une tâche vers un but : utiliser un indicateur de progression (progress)",
+        "un chiffre clé seul avec sa variation : utiliser une carte de chiffre (stat-card)",
+        "choisir un jour dans une grille de dates : utiliser un calendrier (calendar)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "New optional settings: `FlChartSeries.color` paints a series in an app color (category, brand), legend and muted bars included; `FlChart.line(area: true)` fills under the first line with a gradient; `FlChart.line(zeroBased: false)` fits the scale to the values instead of starting at zero (a balance moving between $1,500 and $1,700); `showTimeAxis: false` and `tooltip: false` give a compact curve without labels or tooltip, to place in a card. Default rendering unchanged."
+}

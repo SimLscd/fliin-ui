@@ -1,0 +1,83 @@
+{
+  "name": "avatar",
+  "type": "registry:component",
+  "version": "0.2.5",
+  "title": "Avatar",
+  "description": "Shows a person by their round photo, which fades in once loaded, or else by their initials or a silhouette.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0",
+    "icons@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/avatar/fl_avatar.dart",
+      "type": "registry:component",
+      "target": "@components/avatar/fl_avatar.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: Padding(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: Column(crossAxisAlignment: CrossAxisAlignment.start, spacing: {prefix}Scope.of(context).space.md, children: [for (final v in {prefix}AvatarVariant.values) Wrap(spacing: {prefix}Scope.of(context).space.sm, runSpacing: {prefix}Scope.of(context).space.sm, children: [for (final c in {prefix}AvatarColor.values) {prefix}Avatar(initials: (variant.dir == TextDirection.rtl ? 'ج د' : 'JD'), semanticLabel: (variant.dir == TextDirection.rtl ? 'جين دو' : 'Jane Doe'), variant: v, color: c)]), Wrap(spacing: {prefix}Scope.of(context).space.sm, crossAxisAlignment: WrapCrossAlignment.center, children: [for (final s in {prefix}AvatarSize.values) {prefix}Avatar(size: s, semanticLabel: (variant.dir == TextDirection.rtl ? 'ضيف' : 'Guest'))])])))",
+    "imports": [
+      "@components/avatar/fl_avatar.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [],
+    "canvas": {
+      "width": 390,
+      "height": 600
+    },
+    "settleMs": 400
+  },
+  "categories": [
+    "data-display",
+    "account"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [],
+    "semanticsRoles": [
+      "image"
+    ],
+    "intents": {
+      "fr": [
+        "afficher la photo de profil d'un utilisateur",
+        "montrer les initiales quand la photo manque",
+        "présenter l'auteur d'un message",
+        "indiquer le compte connecté en haut de l'écran",
+        "lister les participants d'une conversation"
+      ],
+      "en": [
+        "show a user's profile picture",
+        "show initials when the photo is missing",
+        "present the author of a message",
+        "show the signed-in account at the top of the screen",
+        "show who takes part in a conversation",
+        "show a user photo in a circle"
+      ]
+    },
+    "notFor": [
+      "a status or category in text: use a chip (chip)"
+    ],
+    "fr": {
+      "title": "Avatar",
+      "description": "Indique une personne par sa photo ronde, qui apparaît en fondu une fois chargée, ou à défaut par ses initiales ou une silhouette.",
+      "notFor": [
+        "statut ou catégorie en texte : utiliser une puce (chip)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "The avatar takes a `dimension` (a side instead of the size's, which keeps its text and icon: 24 under a card, 56 for a logo), a `radius` (a rounded square with `radiusXl`), and `backgroundColor` and `foregroundColor` instead of those of the variant and color. The default rendering does not change."
+}

@@ -1,0 +1,187 @@
+{
+  "name": "core",
+  "type": "registry:core",
+  "version": "0.2.5",
+  "title": "Core",
+  "description": "Gives every component its tokens, light and dark themes, density, platform typography, reduced motion and an accessible pressable surface. No Material, no Cupertino.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "LICENSE",
+      "type": "registry:file",
+      "target": "@root/LICENSE"
+    },
+    {
+      "path": "core/fliin.dart",
+      "type": "registry:core",
+      "target": "@core/fliin.dart"
+    },
+    {
+      "path": "core/tokens/fliin.tokens.json",
+      "type": "registry:core",
+      "target": "@core/tokens/fliin.tokens.json"
+    },
+    {
+      "path": "core/tokens/tokens.g.dart",
+      "type": "registry:core",
+      "target": "@core/tokens/tokens.g.dart"
+    },
+    {
+      "path": "core/theme/fl_density.dart",
+      "type": "registry:core",
+      "target": "@core/theme/fl_density.dart"
+    },
+    {
+      "path": "core/theme/fl_scope.dart",
+      "type": "registry:core",
+      "target": "@core/theme/fl_scope.dart"
+    },
+    {
+      "path": "core/theme/fl_typography.dart",
+      "type": "registry:core",
+      "target": "@core/theme/fl_typography.dart"
+    },
+    {
+      "path": "core/motion/fl_motion_scope.dart",
+      "type": "registry:core",
+      "target": "@core/motion/fl_motion_scope.dart"
+    },
+    {
+      "path": "core/motion/fl_pop.dart",
+      "type": "registry:core",
+      "target": "@core/motion/fl_pop.dart"
+    },
+    {
+      "path": "core/motion/fl_rolling_text.dart",
+      "type": "registry:core",
+      "target": "@core/motion/fl_rolling_text.dart"
+    },
+    {
+      "path": "core/motion/fl_shake.dart",
+      "type": "registry:core",
+      "target": "@core/motion/fl_shake.dart"
+    },
+    {
+      "path": "core/layout/fl_pixel_snap.dart",
+      "type": "registry:core",
+      "target": "@core/layout/fl_pixel_snap.dart"
+    },
+    {
+      "path": "core/shape/fl_continuous_border.dart",
+      "type": "registry:core",
+      "target": "@core/shape/fl_continuous_border.dart"
+    },
+    {
+      "path": "core/shape/fl_shadow.dart",
+      "type": "registry:core",
+      "target": "@core/shape/fl_shadow.dart"
+    },
+    {
+      "path": "core/icon/fl_close_icon.dart",
+      "type": "registry:core",
+      "target": "@core/icon/fl_close_icon.dart"
+    },
+    {
+      "path": "core/icon/fl_icon.dart",
+      "type": "registry:core",
+      "target": "@core/icon/fl_icon.dart"
+    },
+    {
+      "path": "core/form/fl_field_scope.dart",
+      "type": "registry:core",
+      "target": "@core/form/fl_field_scope.dart"
+    },
+    {
+      "path": "core/interaction/fl_pressable.dart",
+      "type": "registry:core",
+      "target": "@core/interaction/fl_pressable.dart"
+    },
+    {
+      "path": "core/interaction/fl_focus_ring.dart",
+      "type": "registry:core",
+      "target": "@core/interaction/fl_focus_ring.dart"
+    },
+    {
+      "path": "core/interaction/fl_hit_target.dart",
+      "type": "registry:core",
+      "target": "@core/interaction/fl_hit_target.dart"
+    },
+    {
+      "path": "core/overlay/fl_anchor.dart",
+      "type": "registry:core",
+      "target": "@core/overlay/fl_anchor.dart"
+    },
+    {
+      "path": "core/overlay/fl_popup.dart",
+      "type": "registry:core",
+      "target": "@core/overlay/fl_popup.dart"
+    },
+    {
+      "path": "core/overlay/fl_tap_group.dart",
+      "type": "registry:core",
+      "target": "@core/overlay/fl_tap_group.dart"
+    },
+    {
+      "path": "core/text/fl_selection_controls.dart",
+      "type": "registry:core",
+      "target": "@core/text/fl_selection_controls.dart"
+    },
+    {
+      "path": "core/text/fl_text_context_menu.dart",
+      "type": "registry:core",
+      "target": "@core/text/fl_text_context_menu.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: Center(child: {prefix}Pressable(onPressed: () {}, label: 'Press', borderRadius: {prefix}Scope.of(context).shape.buttonRadius, builder: (context, states) => Padding(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.md), child: Text(variant.dir == TextDirection.rtl ? 'اضغط' : 'Press', style: TextStyle(color: {prefix}Scope.of(context).colors.onSurface))))))",
+    "imports": [
+      "@core/fliin.dart"
+    ]
+  },
+  "categories": [
+    "foundation"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [],
+    "semanticsRoles": [],
+    "intents": {
+      "fr": [
+        "appliquer des jetons de design",
+        "passer du thème clair au thème sombre",
+        "adapter la typographie à la plateforme",
+        "respecter le mouvement réduit",
+        "garantir la cible tactile et le focus clavier",
+        "régler la densité compacte, confortable ou spacieuse"
+      ],
+      "en": [
+        "share design tokens across components",
+        "use light and dark themes",
+        "use platform typography",
+        "respect reduced motion",
+        "ensure tap targets and keyboard focus",
+        "choose compact, comfortable or spacious density"
+      ]
+    },
+    "notFor": [],
+    "fr": {
+      "title": "Noyau",
+      "description": "Fournit à chaque composant jetons, thème clair et sombre, densité, typographie par plateforme, mouvement réduit et surface pressable accessible. Sans material ni cupertino.",
+      "notFor": []
+    },
+    "goldens": null
+  },
+  "changelog": "Installs `LICENSE` at the root of the items (`lib/ui/fliin/LICENSE`): Fliin's MIT license, the notices of the third parties the copied files derive from, and the full text of their licenses. Rendering unchanged. Includes 0.2.4: Buttons wider than tall: `size.buttonPaddingSm`, `buttonPaddingMd` and `buttonPaddingLg` go from 14, 16 and 20 to 20, 24 and 28 (the button, the button group, the post actions), about 1.7 times the vertical padding. Includes 0.2.3: three springs: `pop` (an entrance that overshoots by about 20%: badge, heart, toast icon), `roll` (the wheel of a digit, about 450 ms) and `shake` (the shake of a refusal, three oscillations). `FlPop` makes a child appear with a bounce (delay, starting scale, `replay` to bounce without disappearing) and keeps it on exit; `FlShake` shakes it once sideways, towards the start of the line; `FlRollingText` rolls the digits of a written number, up when it grows, down when it shrinks. All three reduce to a fade or to nothing under reduced motion, and render the child intact at rest. Rendering unchanged. Includes 0.2.2: light `overlay` shadow: three layers (0 2 8 at 6%, 0 −6 12 at 3%, 0 14 28 at 8% black) instead of 0 8 24 at 12%. `flOverlayOutline`: the outline of a floating panel, `border` in dark mode, transparent in light mode. `FlPopupContent`: the popover grows from 0.92 to 1 from the anchor side (its `side` gives the origin) and exits towards 0.96; the dialog settles from 1.04 to 1 and exits towards 0.96. Accent selection: `selected` and `onSelected` switch to the accent and white; white shadowed `field` (`shadow.field`, the three layers of `--field-shadow`), white `segment` on the `control` track. New `link` role: text written in accent on a surface (back and bar actions, link), the focus ring strokes, `#1D4ED8` in light mode and `#7AA7FF` in dark mode, where `selected` (`#3B63F6`) only has 3.93:1 on the page; three text contrast pairs (`surface`, `surfaceRaised`, `surfaceOverlay`). Includes 0.2.1: adds `size.hoverBrightness` (0.92): the brightness of a filled button on hover, the canvas `filter: brightness(.92)`. Disabled at 50% (`size.disabledOpacity`), like every disabled state of the Izydesk canvas, instead of 40%. `FlFocusRing` takes an optional `gap`: a field's ring follows its outline, like Izydesk's `0 0 0 2px`. `thumb` shadow (0 1 3 at 18% and 0 0 1 at 20% black), which lifts the switch and slider thumb off its track, like the canvas. The dark scrim (`color.dark.scrim`) is Izydesk's black at 55%, instead of the page background at 55%, which dimmed nothing on the dark page. Includes 0.2.0: new Izydesk look: tokens from the Izydesk design system, blue accent: warm grays, `selected` and `onSelected` roles for every checked or chosen state, `glow` and `dangerGlow` halos, no shadow on what does not float, radii 8, 12, 20 and pill, pill button, compact control at 44, disabled at 40%, typography without weight 700. The shipped theme passes AA without exception. The `scrim` carries its opacity; selection handles switch to `selected`. Presets move to version `b`. Also includes 0.1.3: size.surfaceBorder: the stroke of a surface (0 by default), which the “flat cards” preset sets to the size.border thickness. Version b presets also own size.border, size.surfaceBorder, the size and line height of each typography.scale role (not the weight or the tracking), motion.duration and the stiffness of springs: a hand edit under these paths is overwritten and reported. Rendering unchanged under the shipped theme. Light `surface` shadow: three layers (0 2 4 at 4%, 0 1 2 at 6%, 0 0 1 at 6%); still nothing in dark mode. FlRollingText only rolls digits that change: a value coming out of a mask without digits, or the same digits dressed differently (isolated for Arabic), shows at once."
+}

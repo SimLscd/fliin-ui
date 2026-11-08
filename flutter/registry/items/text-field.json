@@ -1,0 +1,110 @@
+{
+  "name": "text-field",
+  "type": "registry:component",
+  "version": "0.2.5",
+  "title": "Text field",
+  "description": "Takes a line or a paragraph of text: label, helper and announced error, required field, prefix, suffix, obscured input, text area and a cut, copy, paste toolbar.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.3",
+    "field@^0.2.0",
+    "button@^0.2.0",
+    "link-button@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/text_field/fl_input.dart",
+      "type": "registry:component",
+      "target": "@components/text_field/fl_input.dart"
+    },
+    {
+      "path": "components/text_field/fl_text_field.dart",
+      "type": "registry:component",
+      "target": "@components/text_field/fl_text_field.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "Localizations(locale: const Locale('en'), delegates: const [DefaultWidgetsLocalizations.delegate], child: Directionality(textDirection: variant.dir, child: Overlay(initialEntries: [OverlayEntry(builder: (context) => ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: Padding(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, spacing: {prefix}Scope.of(context).space.md, children: [Builder(builder: (context) { WidgetsBinding.instance.addPostFrameCallback((_) => WidgetsBinding.instance.addPostFrameCallback((_) { final field = FocusManager.instance.primaryFocus?.context?.findAncestorStateOfType<EditableTextState>(); if (field == null || field.textEditingValue.text.isNotEmpty) return; final (text, word) = variant.dir == TextDirection.rtl ? ('موعدنا غدا عند الظهر', 'غدا') : ('Appointment tomorrow at noon', 'tomorrow'); final start = text.indexOf(word); field..userUpdateTextEditingValue(TextEditingValue(text: text, selection: TextSelection(baseOffset: start, extentOffset: start + word.length)), SelectionChangedCause.longPress)..showToolbar(); })); return {prefix}TextField(label: variant.dir == TextDirection.rtl ? 'الموعد' : 'Appointment', autofocus: true); }), const SizedBox(height: 140), {prefix}TextField(label: variant.dir == TextDirection.rtl ? 'البريد الإلكتروني' : 'Email', controller: TextEditingController(text: 'name@'), error: variant.dir == TextDirection.rtl ? 'عنوان غير صالح' : 'Invalid address'), {prefix}TextField(label: variant.dir == TextDirection.rtl ? 'المعرّف' : 'Username', controller: TextEditingController(text: 'demo'), enabled: false), {prefix}TextField(label: variant.dir == TextDirection.rtl ? 'كلمة المرور' : 'Password', controller: TextEditingController(text: 'secret'), obscureText: true)]))))])))",
+    "imports": [
+      "@components/text_field/fl_text_field.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "enabled",
+      "focused",
+      "selected",
+      "error",
+      "disabled",
+      "obscured"
+    ],
+    "canvas": {
+      "width": 390,
+      "height": 800
+    },
+    "settleMs": 300
+  },
+  "categories": [
+    "forms"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "enabled",
+      "focused",
+      "selected",
+      "error",
+      "disabled",
+      "obscured"
+    ],
+    "semanticsRoles": [
+      "textField"
+    ],
+    "intents": {
+      "fr": [
+        "saisir du texte dans un champ",
+        "saisir un e-mail dans un formulaire",
+        "masquer un mot de passe pendant la saisie",
+        "afficher une erreur de validation sous un champ",
+        "ajouter une icône ou une unité avant ou après le champ",
+        "afficher un texte d'aide sous un champ",
+        "sélectionner et copier du texte dans un champ",
+        "saisir un message sur plusieurs lignes",
+        "saisir un numéro de téléphone avec le clavier adapté"
+      ],
+      "en": [
+        "enter text in an input field",
+        "enter an email in a form",
+        "hide a password while typing",
+        "show a validation error under a field",
+        "add a leading or trailing icon or unit",
+        "show helper text under a field",
+        "select and copy text in a field",
+        "enter a multi-line message",
+        "enter a phone number with the matching keyboard"
+      ]
+    },
+    "notFor": [
+      "offering suggestions under the field while typing: use a combo box (combo-box)"
+    ],
+    "fr": {
+      "title": "Champ de texte",
+      "description": "Permet de saisir une ligne ou un paragraphe de texte : libellé, aide, erreur annoncée, champ requis, préfixe, suffixe, saisie masquée, zone de texte, barre couper, copier, coller.",
+      "notFor": [
+        "proposer des suggestions sous le champ pendant la saisie : utiliser un champ à suggestions (combo-box)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "A text area takes its height in lines (`rows`); `inputFormatters`, `maxLength` and `textCapitalization` pass to the field and the input, as on a Flutter `TextField`. `FlInputAffix.tight` puts an affix button `space.xs` from the edge, and `flInputAffixExtent` gives its height. Optional parameters: without them, rendering and API unchanged."
+}

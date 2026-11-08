@@ -1,0 +1,7 @@
+# Items published in Fliin Pro, outside this repository, that a notFor of a
+# free item points to. fliin registry build accepts them as notFor targets.
+auth-form
+cart-line
+settings-section
+stat-card
+tracking-steps

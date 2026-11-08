@@ -1,0 +1,92 @@
+{
+  "name": "meter",
+  "type": "registry:component",
+  "version": "0.1.1",
+  "title": "Meter",
+  "description": "Shows a quantity within a known range, such as storage used or battery: label, value and a filled track, in three sizes and five colors.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/meter/fl_meter.dart",
+      "type": "registry:component",
+      "target": "@components/meter/fl_meter.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: SingleChildScrollView(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, spacing: {prefix}Scope.of(context).space.sm, children: [{prefix}Meter(label: (variant.dir == TextDirection.rtl ? 'التخزين' : 'Storage'), value: 64, valueLabel: (_) => (variant.dir == TextDirection.rtl ? '٦٫٤ من ١٠ غ.ب' : '6.4 GB of 10')), {prefix}Meter(label: (variant.dir == TextDirection.rtl ? 'البطارية' : 'Battery'), value: 82, size: {prefix}MeterSize.sm, color: {prefix}MeterColor.success), {prefix}Meter(label: (variant.dir == TextDirection.rtl ? 'الباقة' : 'Data plan'), value: 88, size: {prefix}MeterSize.md, color: {prefix}MeterColor.warning), {prefix}Meter(label: (variant.dir == TextDirection.rtl ? 'القرص' : 'Disk'), value: 97, size: {prefix}MeterSize.lg, color: {prefix}MeterColor.danger), {prefix}Meter(label: (variant.dir == TextDirection.rtl ? 'كلمات مرور قوية' : 'Strong passwords'), value: 3, max: 4, color: {prefix}MeterColor.neutral), {prefix}Meter(label: (variant.dir == TextDirection.rtl ? 'الذاكرة' : 'Memory'), value: 40, showLabel: false)])))",
+    "imports": [
+      "@components/meter/fl_meter.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "value",
+      "colors",
+      "without-label"
+    ],
+    "canvas": {
+      "width": 390,
+      "height": 400
+    }
+  },
+  "categories": [
+    "data-display",
+    "dashboard"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "value",
+      "colors",
+      "without-label"
+    ],
+    "semanticsRoles": [],
+    "intents": {
+      "fr": [
+        "montrer l'espace de stockage utilisé sur le total",
+        "afficher le niveau de batterie d'un appareil",
+        "indiquer la force d'un mot de passe",
+        "suivre la consommation d'un forfait mobile ou d'un quota",
+        "présenter un score sur une échelle de 0 à 100",
+        "signaler en rouge un disque presque plein"
+      ],
+      "en": [
+        "show how much storage is used out of the total",
+        "present a device battery level",
+        "make password strength visible",
+        "keep track of data plan usage against its quota",
+        "use a 0 to 100 scale for a score",
+        "turn red when a disk is nearly full"
+      ]
+    },
+    "notFor": [
+      "a task under way, an upload: use the progress indicator (progress)",
+      "a value the user sets: use the slider (slider)",
+      "a key figure with its trend: use the stat card (stat-card)"
+    ],
+    "fr": {
+      "title": "Jauge",
+      "description": "Indique une quantité dans une plage connue, comme le stockage utilisé ou la batterie : libellé, valeur et barre remplie, en trois tailles et cinq couleurs.",
+      "notFor": [
+        "une tâche en cours, un téléversement : utiliser l'indicateur de progression (progress)",
+        "une valeur que l'utilisateur règle : utiliser le curseur (slider)",
+        "un chiffre clé avec sa tendance : utiliser la carte de statistique (stat-card)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "`fillColor` and `trackColor` take the app's colors, `pill` fully rounds the track and the fill; stories for sizes, a value in its unit and a custom style; the colors example finally says that `accent` is the default color."
+}

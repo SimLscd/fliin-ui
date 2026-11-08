@@ -1,0 +1,90 @@
+{
+  "name": "radio",
+  "type": "registry:component",
+  "version": "0.2.3",
+  "title": "Radio button",
+  "description": "Lets people choose exactly one option among several. A group and options, labels included, on the Flutter RadioGroup: one Tab stop, arrows change the option.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0",
+    "field@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/radio/fl_radio.dart",
+      "type": "registry:component",
+      "target": "@components/radio/fl_radio.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "Localizations(locale: Locale(variant.dir == TextDirection.rtl ? 'ar' : 'en'), delegates: const [DefaultWidgetsLocalizations.delegate], child: Directionality(textDirection: variant.dir, child: ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: Padding(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: {prefix}RadioGroup<int>(groupValue: 2, onChanged: (_) {}, children: [for (final (fr, ar, on, enabled) in [('Standard', 'عادي', 1, true), ('Express', 'سريع', 2, true), ('Parcel locker (unavailable)', 'خزانة (غير متاحة)', 3, false)]) {prefix}RadioGroupItem<int>(value: on, label: variant.dir == TextDirection.rtl ? ar : fr, disabled: enabled ? null : true)])))))",
+    "imports": [
+      "@components/radio/fl_radio.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "enabled",
+      "selected",
+      "unselected",
+      "disabled"
+    ]
+  },
+  "categories": [
+    "forms"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "enabled",
+      "selected",
+      "unselected",
+      "disabled"
+    ],
+    "semanticsRoles": [
+      "radioGroup",
+      "radio"
+    ],
+    "intents": {
+      "fr": [
+        "choisir une seule option parmi plusieurs",
+        "choisir un mode de livraison",
+        "sélectionner une réponse exclusive dans un formulaire",
+        "ajouter des boutons radio",
+        "proposer des options mutuellement exclusives"
+      ],
+      "en": [
+        "pick one option among several",
+        "choose a delivery method",
+        "select a single answer in a form",
+        "add radio buttons",
+        "offer mutually exclusive options",
+        "make a single choice among a few visible options"
+      ]
+    },
+    "notFor": [
+      "several choices allowed: use checkboxes (checkbox)",
+      "an on/off setting that takes effect immediately: use a switch (switch)"
+    ],
+    "fr": {
+      "title": "Bouton radio",
+      "description": "Permet de choisir une seule option parmi plusieurs. Groupe et options, libellé compris, sur le RadioGroup de Flutter : un arrêt de Tab, les flèches changent d'option.",
+      "notFor": [
+        "plusieurs choix possibles : utiliser des cases à cocher (checkbox)",
+        "réglage marche/arrêt qui prend effet tout de suite : utiliser un interrupteur (switch)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "`FlRadioGroupItem.description` adds a line under the label (`textSm`, `onSurfaceMuted`), read as a hint; `FlRadioGroup.direction` lays the options side by side, at their width, on a line that wraps. Optional: default rendering unchanged."
+}

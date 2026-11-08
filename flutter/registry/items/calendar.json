@@ -1,0 +1,212 @@
+{
+  "name": "calendar",
+  "type": "registry:component",
+  "version": "0.2.5",
+  "changelog": "`indicatorOf` puts a dot under the number of days that have something planned: in `onSurfaceMuted`, in `onSelected` on the chosen day, and the screen reader reads the rendered text after the date (“2 events”). Shared by `FlCalendarView`, so also by `range-calendar`. Without it, the rendering does not change.",
+  "title": "Calendar",
+  "description": "Picks one day from a month grid, for an appointment or a delivery: previous and next month, a quick year picker, unavailable and out-of-range days, each day read out in full.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.2",
+    "icons@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/calendar/fl_calendar.dart",
+      "type": "registry:component",
+      "target": "@components/calendar/fl_calendar.dart"
+    },
+    {
+      "path": "components/calendar/fl_calendar_view.dart",
+      "type": "registry:component",
+      "target": "@components/calendar/fl_calendar_view.dart"
+    },
+    {
+      "path": "components/calendar/fl_calendar_strings.dart",
+      "type": "registry:component",
+      "target": "@components/calendar/fl_calendar_strings.dart"
+    }
+  ],
+  "l10n": {
+    "calendarMonths": {
+      "en": "January,February,March,April,May,June,July,August,September,October,November,December",
+      "fr": "janvier,février,mars,avril,mai,juin,juillet,août,septembre,octobre,novembre,décembre",
+      "ar": "يناير,فبراير,مارس,أبريل,مايو,يونيو,يوليو,أغسطس,سبتمبر,أكتوبر,نوفمبر,ديسمبر"
+    },
+    "calendarWeekdays": {
+      "en": "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday",
+      "fr": "lundi,mardi,mercredi,jeudi,vendredi,samedi,dimanche",
+      "ar": "الاثنين,الثلاثاء,الأربعاء,الخميس,الجمعة,السبت,الأحد"
+    },
+    "calendarWeekdaysShort": {
+      "en": "Mon,Tue,Wed,Thu,Fri,Sat,Sun",
+      "fr": "lun.,mar.,mer.,jeu.,ven.,sam.,dim.",
+      "ar": "الاثنين,الثلاثاء,الأربعاء,الخميس,الجمعة,السبت,الأحد"
+    },
+    "calendarWeekdaysNarrow": {
+      "en": "M,T,W,T,F,S,S",
+      "fr": "L,M,M,J,V,S,D",
+      "ar": "ن,ث,ر,خ,ج,س,ح"
+    },
+    "calendarFirstDay": {
+      "en": "7",
+      "fr": "1",
+      "ar": "6"
+    },
+    "calendarDigits": {
+      "en": "0123456789",
+      "fr": "0123456789",
+      "ar": "٠١٢٣٤٥٦٧٨٩"
+    },
+    "calendarMonthYear": {
+      "en": "{month} {year}",
+      "fr": "{month} {year}",
+      "ar": "{month} {year}"
+    },
+    "calendarDate": {
+      "en": "{weekday}, {month} {day}, {year}",
+      "fr": "{weekday} {day} {month} {year}",
+      "ar": "{weekday}، {day} {month} {year}"
+    },
+    "calendarSeparator": {
+      "en": ", ",
+      "fr": ", ",
+      "ar": "، "
+    },
+    "calendarToday": {
+      "en": "today",
+      "fr": "aujourd’hui",
+      "ar": "اليوم"
+    },
+    "calendarPendingStart": {
+      "en": "start picked, choose the end",
+      "fr": "début posé, choisissez la fin",
+      "ar": "تم تحديد البداية، اختر النهاية"
+    },
+    "calendarUnavailable": {
+      "en": "unavailable",
+      "fr": "indisponible",
+      "ar": "غير متاح"
+    },
+    "calendarDepartureOnly": {
+      "en": "check-out only",
+      "fr": "départ seulement",
+      "ar": "المغادرة فقط"
+    },
+    "calendarRangeStart": {
+      "en": "start of range",
+      "fr": "début de la période",
+      "ar": "بداية الفترة"
+    },
+    "calendarRangeEnd": {
+      "en": "end of range",
+      "fr": "fin de la période",
+      "ar": "نهاية الفترة"
+    },
+    "calendarPreviousMonth": {
+      "en": "Previous month",
+      "fr": "Mois précédent",
+      "ar": "الشهر السابق"
+    },
+    "calendarNextMonth": {
+      "en": "Next month",
+      "fr": "Mois suivant",
+      "ar": "الشهر التالي"
+    },
+    "calendarChooseYear": {
+      "en": "Choose a year",
+      "fr": "Choisir l’année",
+      "ar": "اختيار السنة"
+    },
+    "calendarYears": {
+      "en": "Years",
+      "fr": "Années",
+      "ar": "السنوات"
+    }
+  },
+  "snippets": {},
+  "verify": {
+    "entry": "ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: Padding(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: Wrap(spacing: {prefix}Scope.of(context).space.lg, runSpacing: {prefix}Scope.of(context).space.lg, children: [SizedBox(width: 320, child: {prefix}Calendar(value: DateTime(2026, 10, 14), onChanged: (_) {}, today: DateTime(2026, 10, 24), strings: {prefix}CalendarStrings.language(variant.dir == TextDirection.rtl ? 'ar' : 'en'), semanticLabel: (variant.dir == TextDirection.rtl ? 'تاريخ الموعد' : 'Appointment date'))), SizedBox(width: 320, child: {prefix}Calendar(value: null, onChanged: (_) {}, today: DateTime(2026, 10, 24), focusedDate: DateTime(2026, 10, 24), minDate: DateTime(2026, 10, 8), maxDate: DateTime(2026, 10, 28), isUnavailable: (day) => day.weekday == DateTime.saturday || day.weekday == DateTime.sunday, strings: {prefix}CalendarStrings.language(variant.dir == TextDirection.rtl ? 'ar' : 'en'), semanticLabel: (variant.dir == TextDirection.rtl ? 'تاريخ التسليم' : 'Delivery date'))), SizedBox(width: 320, child: {prefix}Calendar(value: DateTime(2026, 10, 14), onChanged: (_) {}, today: DateTime(2026, 10, 24), defaultYearPickerOpen: true, strings: {prefix}CalendarStrings.language(variant.dir == TextDirection.rtl ? 'ar' : 'en'), semanticLabel: (variant.dir == TextDirection.rtl ? 'تاريخ الميلاد' : 'Date of birth'))), SizedBox(width: 320, child: {prefix}Calendar(value: DateTime(2026, 10, 14), onChanged: (_) {}, today: DateTime(2026, 10, 24), enabled: false, strings: {prefix}CalendarStrings.language(variant.dir == TextDirection.rtl ? 'ar' : 'en'), semanticLabel: (variant.dir == TextDirection.rtl ? 'التاريخ' : 'Date')))])))",
+    "imports": [
+      "@components/calendar/fl_calendar.dart",
+      "@components/calendar/fl_calendar_strings.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "selected",
+      "today",
+      "unavailable",
+      "out-of-range",
+      "years",
+      "disabled"
+    ],
+    "canvas": {
+      "width": 760,
+      "height": 1300
+    }
+  },
+  "categories": [
+    "forms"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "selected",
+      "today",
+      "unavailable",
+      "out-of-range",
+      "years",
+      "disabled"
+    ],
+    "semanticsRoles": [
+      "button"
+    ],
+    "intents": {
+      "fr": [
+        "choisir le jour d'un rendez-vous dans un calendrier",
+        "sélectionner une date de livraison dans un calendrier",
+        "afficher un calendrier avec le jour courant marqué",
+        "marquer les jours complets comme indisponibles",
+        "naviguer d'une page de calendrier à la suivante",
+        "choisir une date de naissance lointaine dans un calendrier"
+      ],
+      "en": [
+        "pick the day of an appointment or a booking from a month grid",
+        "choose a delivery date in a calendar",
+        "show the current month with today highlighted",
+        "make fully booked days unavailable",
+        "switch to the next month or jump to another year",
+        "select a birth date by jumping between years",
+        "show a grid of days in a month to select a single date"
+      ]
+    },
+    "notFor": [
+      "a period with a start and an end: use a range calendar (range-calendar)",
+      "a choice between day, week or month above a chart: use a segmented control (segmented)",
+      "a value from a short list, such as a single month: use a select (select)",
+      "a form field that opens the grid on tap: use a date picker (date-picker)",
+      "a known date typed on the keyboard, such as a birth date: use a date field (date-field)"
+    ],
+    "fr": {
+      "title": "Calendrier",
+      "description": "Permet de choisir un jour dans la grille d'un mois : rendez-vous, livraison, date de naissance. Mois voisins, choix rapide de l'année, jours indisponibles pâlis.",
+      "notFor": [
+        "une période avec un début et une fin : utiliser un calendrier de période (range-calendar)",
+        "choix entre jour, semaine ou mois au-dessus d'un graphique : utiliser un contrôle segmenté (segmented)",
+        "choix d'une valeur dans une courte liste, comme un mois seul : utiliser une liste déroulante (select)",
+        "un champ de formulaire qui ouvre la grille au toucher : utiliser un sélecteur de date (date-picker)",
+        "une date connue tapée au clavier, comme une naissance : utiliser un champ de date (date-field)"
+      ]
+    },
+    "goldens": null
+  }
+}

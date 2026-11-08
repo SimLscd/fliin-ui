@@ -1,0 +1,91 @@
+{
+  "name": "chip",
+  "type": "registry:component",
+  "version": "0.2.3",
+  "title": "Chip",
+  "description": "Shows a status, a category or a filter as a short label in a colored capsule, pressable when needed.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/chip/fl_chip.dart",
+      "type": "registry:component",
+      "target": "@components/chip/fl_chip.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: Padding(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, spacing: {prefix}Scope.of(context).space.md, children: [for (final v in {prefix}ChipVariant.values) Wrap(spacing: {prefix}Scope.of(context).space.sm, runSpacing: {prefix}Scope.of(context).space.sm, children: [for (final c in {prefix}ChipColor.values) {prefix}Chip(label: (variant.dir == TextDirection.rtl ? const ['جديد', 'مسودة', 'مدفوع', 'قيد الانتظار', 'مرفوض'] : const ['New', 'Draft', 'Paid', 'Pending', 'Declined'])[c.index], variant: v, color: c, size: {prefix}ChipSize.lg)]), Wrap(spacing: {prefix}Scope.of(context).space.sm, runSpacing: {prefix}Scope.of(context).space.sm, crossAxisAlignment: WrapCrossAlignment.center, children: [for (final s in {prefix}ChipSize.values) {prefix}Chip(label: (variant.dir == TextDirection.rtl ? const ['جديد', 'مسودة', 'مدفوع', 'قيد الانتظار', 'مرفوض'] : const ['New', 'Draft', 'Paid', 'Pending', 'Declined'])[1], variant: {prefix}ChipVariant.secondary, color: {prefix}ChipColor.neutral, size: s, onPressed: () {})])])))",
+    "imports": [
+      "@components/chip/fl_chip.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "primary",
+      "secondary",
+      "tertiary",
+      "soft"
+    ],
+    "canvas": {
+      "width": 390,
+      "height": 1000
+    }
+  },
+  "categories": [
+    "data-display"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "primary",
+      "secondary",
+      "tertiary",
+      "soft"
+    ],
+    "semanticsRoles": [
+      "button"
+    ],
+    "intents": {
+      "fr": [
+        "indiquer le statut d'une commande par une pastille colorée",
+        "marquer un élément comme nouveau",
+        "montrer le thème d'un article",
+        "afficher un compteur de notifications en fin de ligne",
+        "choisir un filtre actif parmi des étiquettes"
+      ],
+      "en": [
+        "show an order status as a colored tag",
+        "let people see that an item is new",
+        "show the topic of an article as a tag",
+        "show a notification count at the end of a row",
+        "pick an active filter among tags"
+      ]
+    },
+    "notFor": [
+      "a main action: use a button (button)",
+      "a message about the page's state: use an inline alert (alert)"
+    ],
+    "fr": {
+      "title": "Puce",
+      "description": "Indique un statut, une catégorie ou un filtre par un libellé court dans une capsule colorée, pressable si besoin.",
+      "notFor": [
+        "action principale : utiliser un bouton (button)",
+        "message sur l'état de la page : utiliser une alerte en ligne (alert)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "`dot` puts a 6 dot in the label color before it, for a status chip (“Active”, “Pending”). Default rendering unchanged."
+}

@@ -1,0 +1,93 @@
+{
+  "name": "badge",
+  "type": "registry:component",
+  "version": "0.2.4",
+  "title": "Badge",
+  "description": "Flags an unread count, a short word or a status dot on the corner of an icon, an avatar or a tab, capped at 99+ and read out with what it marks.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.3"
+  ],
+  "files": [
+    {
+      "path": "components/badge/fl_badge.dart",
+      "type": "registry:component",
+      "target": "@components/badge/fl_badge.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: Padding(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, spacing: {prefix}Scope.of(context).space.sm, children: [for (final v in {prefix}BadgeVariant.values) Padding(padding: EdgeInsetsDirectional.symmetric(vertical: {prefix}Scope.of(context).space.sm), child: Wrap(spacing: {prefix}Scope.of(context).space.lg, runSpacing: {prefix}Scope.of(context).space.lg, children: [for (final c in {prefix}BadgeColor.values) {prefix}Badge.count(count: 5, semanticLabel: (variant.dir == TextDirection.rtl ? '5 غير مقروءة' : '5 unread'), variant: v, color: c, size: {prefix}BadgeSize.sm, child: Semantics(label: (variant.dir == TextDirection.rtl ? 'الرسائل' : 'Messages'), child: SizedBox.square(dimension: {prefix}Scope.of(context).space.xs * 10, child: DecoratedBox(decoration: ShapeDecoration(color: {prefix}Scope.of(context).colors.control, shape: {prefix}ContinuousBorder(radius: {prefix}Scope.of(context).shape.radiusXl))))))])), Padding(padding: EdgeInsetsDirectional.symmetric(vertical: {prefix}Scope.of(context).space.sm), child: Wrap(spacing: {prefix}Scope.of(context).space.lg, runSpacing: {prefix}Scope.of(context).space.lg, children: [for (final s in {prefix}BadgeSize.values) {prefix}Badge.count(count: 120, color: {prefix}BadgeColor.danger, size: s, child: Semantics(label: (variant.dir == TextDirection.rtl ? 'الرسائل' : 'Messages'), child: SizedBox.square(dimension: {prefix}Scope.of(context).space.xs * 10, child: DecoratedBox(decoration: ShapeDecoration(color: {prefix}Scope.of(context).colors.control, shape: {prefix}ContinuousBorder(radius: {prefix}Scope.of(context).shape.radiusXl))))))])), Padding(padding: EdgeInsetsDirectional.symmetric(vertical: {prefix}Scope.of(context).space.sm), child: Wrap(spacing: {prefix}Scope.of(context).space.lg, runSpacing: {prefix}Scope.of(context).space.lg, children: [{prefix}Badge.text(text: (variant.dir == TextDirection.rtl ? 'جديد' : 'New'), color: {prefix}BadgeColor.accent, size: {prefix}BadgeSize.sm, child: Semantics(label: (variant.dir == TextDirection.rtl ? 'الجديد' : 'What’s new'), child: SizedBox.square(dimension: {prefix}Scope.of(context).space.xs * 10, child: DecoratedBox(decoration: ShapeDecoration(color: {prefix}Scope.of(context).colors.control, shape: {prefix}ContinuousBorder(radius: {prefix}Scope.of(context).shape.radiusXl)))))), for (final p in {prefix}BadgePlacement.values) {prefix}Badge.dot(semanticLabel: (variant.dir == TextDirection.rtl ? 'متصل' : 'online'), color: {prefix}BadgeColor.success, placement: p, child: Semantics(label: (variant.dir == TextDirection.rtl ? 'جين' : 'Jane'), child: SizedBox.square(dimension: {prefix}Scope.of(context).space.xs * 10, child: DecoratedBox(decoration: ShapeDecoration(color: {prefix}Scope.of(context).colors.control, shape: {prefix}ContinuousBorder(radius: {prefix}Scope.of(context).shape.radiusXl))))))]))])))",
+    "imports": [
+      "@components/badge/fl_badge.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "count",
+      "overflow",
+      "text",
+      "dot"
+    ],
+    "canvas": {
+      "width": 390,
+      "height": 420
+    }
+  },
+  "categories": [
+    "data-display",
+    "feedback"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "count",
+      "overflow",
+      "text",
+      "dot"
+    ],
+    "semanticsRoles": [],
+    "intents": {
+      "fr": [
+        "afficher le nombre de messages non lus de la boîte de réception",
+        "signaler des notifications en attente sur un onglet",
+        "indiquer qu'un contact est en ligne sur son avatar",
+        "marquer une nouveauté d'un petit mot",
+        "montrer 99+ quand un compteur dépasse la centaine"
+      ],
+      "en": [
+        "show the unread message count of the inbox",
+        "show pending notifications on a tab",
+        "show that a contact is online with a dot on their avatar",
+        "add a short new label to a menu entry",
+        "show 99+ once a counter passes a hundred",
+        "add a count over the cart icon"
+      ]
+    },
+    "notFor": [
+      "a status or category in text only: use a chip (chip)",
+      "short help shown on hover or long press: use a tooltip (tooltip)",
+      "the progress of a task: use a progress indicator (progress)"
+    ],
+    "fr": {
+      "title": "Pastille",
+      "description": "Signale sur un onglet, un avatar ou un bouton un compte non lu, un mot court ou un point d'état, plafonné à 99+ et annoncé avec ce qu'il marque.",
+      "notFor": [
+        "statut ou catégorie en texte seul : utiliser une puce (chip)",
+        "aide courte qui apparaît au survol ou à l'appui long : utiliser une infobulle (tooltip)",
+        "avancement d'une tâche : utiliser un indicateur de progression (progress)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "A changing count rolls its digits; with `hideZero`, the badge pops in when the count leaves zero and shrinks away with its last count when it returns to it. Fade only under reduced motion. Resting rendering unchanged, the API does not change."
+}

@@ -1,0 +1,91 @@
+{
+  "name": "tooltip",
+  "type": "registry:component",
+  "version": "0.2.2",
+  "changelog": "`arrow` draws a tip (12 × 6) towards the anchor and moves the bubble `space.xs` away; `content` lays out the bubble (a name above an address) while `message` stays what the screen reader reads; `offset` sets the gap. New optional parameters, nothing breaks.",
+  "title": "Tooltip",
+  "description": "Explains an icon or a control on hover, long press or keyboard focus, and closes on Escape. An anchored bubble, read by screen readers.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/tooltip/fl_tooltip.dart",
+      "type": "registry:component",
+      "target": "@components/tooltip/fl_tooltip.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "Overlay(initialEntries: [OverlayEntry(builder: (context) => ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: Center(child: Builder(builder: (context) { final controller = {prefix}TooltipController(); WidgetsBinding.instance.addPostFrameCallback((_) => controller.show()); return {prefix}Tooltip(message: (variant.dir == TextDirection.rtl ? 'حفظ المسودة' : 'Save draft'), controller: controller, child: {prefix}Pressable(onPressed: () {}, label: (variant.dir == TextDirection.rtl ? 'حفظ' : 'Save'), borderRadius: {prefix}Scope.of(context).shape.buttonRadius, builder: (context, states) => Padding(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.md), child: Text((variant.dir == TextDirection.rtl ? 'حفظ' : 'Save'), style: TextStyle(color: {prefix}Scope.of(context).colors.onSurface))))); }))))])",
+    "imports": [
+      "@components/tooltip/fl_tooltip.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "visible"
+    ],
+    "canvas": {
+      "width": 390,
+      "height": 300
+    },
+    "settleMs": 400
+  },
+  "categories": [
+    "overlays",
+    "feedback"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "visible"
+    ],
+    "semanticsRoles": [
+      "tooltip"
+    ],
+    "intents": {
+      "fr": [
+        "expliquer une icône par une aide courte au survol",
+        "afficher une infobulle sur une commande",
+        "nommer une action à l'appui long",
+        "donner un indice au focus clavier",
+        "ajouter un tooltip accessible",
+        "décrire un raccourci sans encombrer l'écran"
+      ],
+      "en": [
+        "explain an icon on hover",
+        "show a tooltip on a button",
+        "describe an action on long press",
+        "give a hint on keyboard focus",
+        "add an accessible tooltip",
+        "show a short hint about an icon"
+      ]
+    },
+    "notFor": [
+      "rich or interactive anchored content: use a popover (popover)",
+      "a list of actions: use a menu (menu)",
+      "a label always visible under a field: use a text field (text-field)"
+    ],
+    "fr": {
+      "title": "Infobulle",
+      "description": "Explique une icône ou une commande au survol, à l'appui long ou au focus clavier, et se ferme par Échap. Bulle ancrée, lue par les lecteurs d'écran.",
+      "notFor": [
+        "un contenu riche ou interactif ancré : utiliser un popover (popover)",
+        "une liste d'actions : utiliser un menu (menu)",
+        "un libellé toujours visible sous un champ : utiliser un champ de texte (text-field)"
+      ]
+    },
+    "goldens": null
+  }
+}

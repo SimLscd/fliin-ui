@@ -1,0 +1,4248 @@
+{
+  "$schema": "https://www.designtokens.org/schemas/2025.10/format.json",
+  "$description": "Thème de torture B (DESIGN.md §2.1), jamais livré : rayons à 0 et bouton carré ; la densité compacte est demandée à FlScope. Dérivé des jetons du registre par le solveur de fliin theme (--button square --radius 0, ombres à plat comme le préréglage shadow none : le halo du bouton principal déborde de 4 px et touche le texte voisin dans une mise en page aussi serrée, ADR 0019 §6.1), card et sheet mis à 0 à la main (ADR 0005).",
+  "color": {
+    "$type": "color",
+    "$description": "Couleurs du design system Izydesk (handoff du 2026-10-31), accent bleu (ADR 0019). Le thème livré passe l’AA sans exception ; `fliin theme` le décline pour une marque.",
+    "$extensions": {
+      "dev.fliin.contrast": [
+        {
+          "foreground": "onSurface",
+          "background": "surface",
+          "kind": "text"
+        },
+        {
+          "foreground": "onSurface",
+          "background": "surfaceRaised",
+          "kind": "text"
+        },
+        {
+          "foreground": "onSurface",
+          "background": "surfaceOverlay",
+          "kind": "text"
+        },
+        {
+          "foreground": "onSurface",
+          "background": "surfacePressed",
+          "kind": "text"
+        },
+        {
+          "foreground": "onSurfaceMuted",
+          "background": "surface",
+          "kind": "text"
+        },
+        {
+          "foreground": "onSurfaceMuted",
+          "background": "surfaceRaised",
+          "kind": "text"
+        },
+        {
+          "foreground": "onSurfaceMuted",
+          "background": "surfaceOverlay",
+          "kind": "text"
+        },
+        {
+          "foreground": "onAccent",
+          "background": "accent",
+          "kind": "text"
+        },
+        {
+          "foreground": "onAccent",
+          "background": "accentPressed",
+          "kind": "text"
+        },
+        {
+          "foreground": "accent",
+          "background": "surface",
+          "kind": "ui"
+        },
+        {
+          "foreground": "accent",
+          "background": "surfaceRaised",
+          "kind": "ui"
+        },
+        {
+          "foreground": "onDisabled",
+          "background": "disabled",
+          "kind": "text"
+        },
+        {
+          "foreground": "onDisabled",
+          "background": "surface",
+          "kind": "text"
+        },
+        {
+          "foreground": "focusRing",
+          "background": "surface",
+          "kind": "ui"
+        },
+        {
+          "foreground": "focusRing",
+          "background": "surfaceRaised",
+          "kind": "ui"
+        },
+        {
+          "foreground": "danger",
+          "background": "surface",
+          "kind": "text"
+        },
+        {
+          "foreground": "onSurface",
+          "background": "selection",
+          "kind": "text"
+        },
+        {
+          "foreground": "onSurfaceMuted",
+          "background": "surfacePressed",
+          "kind": "text"
+        },
+        {
+          "foreground": "focusRing",
+          "background": "surfaceOverlay",
+          "kind": "ui"
+        },
+        {
+          "foreground": "accent",
+          "background": "surfaceOverlay",
+          "kind": "ui"
+        },
+        {
+          "foreground": "onDisabled",
+          "background": "surfaceOverlay",
+          "kind": "text"
+        },
+        {
+          "foreground": "danger",
+          "background": "surfaceOverlay",
+          "kind": "text"
+        },
+        {
+          "foreground": "danger",
+          "background": "surfacePressed",
+          "kind": "text"
+        },
+        {
+          "foreground": "onControl",
+          "background": "control",
+          "kind": "text"
+        },
+        {
+          "foreground": "onAccentSoft",
+          "background": "control",
+          "kind": "text"
+        },
+        {
+          "foreground": "onAccentSoft",
+          "background": "surface",
+          "kind": "text"
+        },
+        {
+          "foreground": "onAccentSoft",
+          "background": "surfaceRaised",
+          "kind": "text"
+        },
+        {
+          "foreground": "onAccentSoft",
+          "background": "surfaceOverlay",
+          "kind": "text"
+        },
+        {
+          "foreground": "onAccentSoft",
+          "background": "surfacePressed",
+          "kind": "text"
+        },
+        {
+          "foreground": "onDanger",
+          "background": "dangerFill",
+          "kind": "text"
+        },
+        {
+          "foreground": "onDanger",
+          "background": "dangerPressed",
+          "kind": "text"
+        },
+        {
+          "foreground": "onControl",
+          "background": "controlPressed",
+          "kind": "text"
+        },
+        {
+          "foreground": "onAccentSoft",
+          "background": "controlPressed",
+          "kind": "text"
+        },
+        {
+          "foreground": "onDangerSoft",
+          "background": "dangerSoft",
+          "over": [
+            "surface"
+          ],
+          "kind": "text"
+        },
+        {
+          "foreground": "onDangerSoft",
+          "background": "dangerSoft",
+          "over": [
+            "surfaceRaised"
+          ],
+          "kind": "text"
+        },
+        {
+          "foreground": "onDangerSoft",
+          "background": "dangerSoftPressed",
+          "over": [
+            "dangerSoft",
+            "surface"
+          ],
+          "kind": "text"
+        },
+        {
+          "foreground": "accent",
+          "background": "surfacePressed",
+          "kind": "ui"
+        },
+        {
+          "foreground": "onSurface",
+          "background": "surfaceSecondary",
+          "kind": "text"
+        },
+        {
+          "foreground": "onSurface",
+          "background": "surfaceTertiary",
+          "kind": "text"
+        },
+        {
+          "foreground": "onSurfaceMuted",
+          "background": "surfaceSecondary",
+          "kind": "text"
+        },
+        {
+          "foreground": "onSurfaceMuted",
+          "background": "surfaceTertiary",
+          "kind": "text"
+        },
+        {
+          "foreground": "danger",
+          "background": "surfaceRaised",
+          "kind": "text"
+        },
+        {
+          "foreground": "onField",
+          "background": "field",
+          "kind": "text"
+        },
+        {
+          "foreground": "fieldPlaceholder",
+          "background": "field",
+          "kind": "text"
+        },
+        {
+          "foreground": "onSegment",
+          "background": "segment",
+          "kind": "text"
+        },
+        {
+          "foreground": "onSuccess",
+          "background": "success",
+          "kind": "text"
+        },
+        {
+          "foreground": "onWarning",
+          "background": "warning",
+          "kind": "text"
+        },
+        {
+          "foreground": "onAccentSoft",
+          "background": "accentSoft",
+          "over": [
+            "surface"
+          ],
+          "kind": "text"
+        },
+        {
+          "foreground": "onAccentSoft",
+          "background": "accentSoft",
+          "over": [
+            "surfaceRaised"
+          ],
+          "kind": "text"
+        },
+        {
+          "foreground": "onSuccessSoft",
+          "background": "successSoft",
+          "over": [
+            "surface"
+          ],
+          "kind": "text"
+        },
+        {
+          "foreground": "onSuccessSoft",
+          "background": "successSoft",
+          "over": [
+            "surfaceRaised"
+          ],
+          "kind": "text"
+        },
+        {
+          "foreground": "onWarningSoft",
+          "background": "warningSoft",
+          "over": [
+            "surface"
+          ],
+          "kind": "text"
+        },
+        {
+          "foreground": "onWarningSoft",
+          "background": "warningSoft",
+          "over": [
+            "surfaceRaised"
+          ],
+          "kind": "text"
+        },
+        {
+          "foreground": "onStatusAction",
+          "background": "success",
+          "kind": "text"
+        },
+        {
+          "foreground": "onStatusAction",
+          "background": "warning",
+          "kind": "text"
+        },
+        {
+          "foreground": "onSuccessSoft",
+          "background": "control",
+          "kind": "text"
+        },
+        {
+          "foreground": "onWarningSoft",
+          "background": "control",
+          "kind": "text"
+        },
+        {
+          "foreground": "onDangerSoft",
+          "background": "control",
+          "kind": "text"
+        },
+        {
+          "foreground": "onSuccessSoft",
+          "background": "surface",
+          "kind": "text"
+        },
+        {
+          "foreground": "onWarningSoft",
+          "background": "surface",
+          "kind": "text"
+        },
+        {
+          "foreground": "onDangerSoft",
+          "background": "surface",
+          "kind": "text"
+        },
+        {
+          "foreground": "onSuccessSoft",
+          "background": "surfaceRaised",
+          "kind": "text"
+        },
+        {
+          "foreground": "onWarningSoft",
+          "background": "surfaceRaised",
+          "kind": "text"
+        },
+        {
+          "foreground": "onDangerSoft",
+          "background": "surfaceRaised",
+          "kind": "text"
+        },
+        {
+          "foreground": "onSelected",
+          "background": "selected",
+          "kind": "text"
+        },
+        {
+          "foreground": "selected",
+          "background": "surface",
+          "kind": "ui"
+        },
+        {
+          "foreground": "selected",
+          "background": "surfaceRaised",
+          "kind": "ui"
+        },
+        {
+          "foreground": "selected",
+          "background": "surfaceOverlay",
+          "kind": "ui"
+        },
+        {
+          "foreground": "fieldBorder",
+          "background": "surface",
+          "kind": "ui"
+        },
+        {
+          "foreground": "fieldBorder",
+          "background": "surfaceRaised",
+          "kind": "ui"
+        },
+        {
+          "foreground": "borderSecondary",
+          "background": "surface",
+          "kind": "ui"
+        },
+        {
+          "foreground": "borderSecondary",
+          "background": "surfaceRaised",
+          "kind": "ui"
+        },
+        {
+          "foreground": "fieldBorder",
+          "background": "surfaceOverlay",
+          "kind": "ui"
+        }
+      ],
+      "dev.fliin.contrastExceptions": []
+    },
+    "neutral": {
+      "0": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "hex": "#FFFFFF"
+        }
+      },
+      "31": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9608,
+            0.9608,
+            0.9412
+          ],
+          "hex": "#F5F5F0"
+        }
+      },
+      "36": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9569,
+            0.9529,
+            0.9373
+          ],
+          "hex": "#F4F3EF"
+        }
+      },
+      "70": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9137,
+            0.9098,
+            0.8863
+          ],
+          "hex": "#E9E8E2"
+        }
+      },
+      "88": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.8902,
+            0.8863,
+            0.8627
+          ],
+          "hex": "#E3E2DC"
+        }
+      },
+      "189": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.7608,
+            0.7608,
+            0.7216
+          ],
+          "hex": "#C2C2B8"
+        }
+      },
+      "317": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.6039,
+            0.6039,
+            0.5608
+          ],
+          "hex": "#9A9A8F"
+        }
+      },
+      "365": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.549,
+            0.5451,
+            0.5098
+          ],
+          "hex": "#8C8B82"
+        }
+      },
+      "475": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.4196,
+            0.4196,
+            0.3882
+          ],
+          "hex": "#6B6B63"
+        }
+      },
+      "593": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.2902,
+            0.2902,
+            0.2667
+          ],
+          "hex": "#4A4A44"
+        }
+      },
+      "701": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.1804,
+            0.1804,
+            0.1608
+          ],
+          "hex": "#2E2E29"
+        }
+      },
+      "734": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.149,
+            0.149,
+            0.1216
+          ],
+          "hex": "#26261F"
+        }
+      },
+      "783": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.102,
+            0.102,
+            0.0902
+          ],
+          "hex": "#1A1A17"
+        }
+      },
+      "832": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.0588,
+            0.0588,
+            0.051
+          ],
+          "hex": "#0F0F0D"
+        }
+      }
+    },
+    "accent": {
+      "100": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.4784,
+            0.6549,
+            1.0
+          ],
+          "hex": "#7AA7FF"
+        }
+      },
+      "200": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.1137,
+            0.3059,
+            0.8471
+          ],
+          "hex": "#1D4ED8"
+        }
+      },
+      "300": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.2314,
+            0.3882,
+            0.9647
+          ],
+          "hex": "#3B63F6"
+        }
+      },
+      "500": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.1451,
+            0.3882,
+            0.9216
+          ],
+          "hex": "#2563EB"
+        }
+      },
+      "600": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.1137,
+            0.3059,
+            0.8471
+          ],
+          "hex": "#1D4ED8"
+        }
+      }
+    },
+    "light": {
+      "surface": {
+        "$value": "{color.neutral.0}",
+        "$description": "Fond de l'écran, `page` d'Izydesk."
+      },
+      "surfaceRaised": {
+        "$value": "{color.neutral.36}",
+        "$description": "Carte, groupe de liste, `surface` d'Izydesk."
+      },
+      "surfaceOverlay": {
+        "$value": "{color.neutral.0}",
+        "$description": "Popover, menu, dialogue, feuille : `page` en clair, `surface` en sombre."
+      },
+      "surfacePressed": {
+        "$value": "{color.neutral.70}",
+        "$description": "Une surface survolée ou pressée, `surface-2`."
+      },
+      "surfaceSecondary": {
+        "$value": "{color.neutral.70}",
+        "$description": "`surface-2` d'Izydesk."
+      },
+      "surfaceTertiary": {
+        "$value": "{color.neutral.70}",
+        "$description": "`surface-2` d'Izydesk."
+      },
+      "onSurface": {
+        "$value": "{color.neutral.832}",
+        "$description": "Texte courant, titres et montants, `fg`."
+      },
+      "onSurfaceMuted": {
+        "$value": "{color.neutral.593}",
+        "$description": "Sous-titres et aides, `fg-2`."
+      },
+      "border": {
+        "$value": "{color.neutral.88}",
+        "$description": "Filet décoratif, `line`."
+      },
+      "borderSecondary": {
+        "$value": "{color.neutral.365}",
+        "$description": "Limite d'un contrôle, `line-strong`."
+      },
+      "borderTertiary": {
+        "$value": "{color.neutral.365}",
+        "$description": "Limite d'un contrôle, `line-strong`."
+      },
+      "separator": {
+        "$value": "{color.neutral.88}",
+        "$description": "Séparateur, `line`."
+      },
+      "separatorSecondary": {
+        "$value": "{color.neutral.88}",
+        "$description": "Séparateur, `line`."
+      },
+      "separatorTertiary": {
+        "$value": "{color.neutral.88}",
+        "$description": "Séparateur, `line`."
+      },
+      "accent": {
+        "$value": "{color.accent.500}",
+        "$description": "L'action principale, le focus et ce qui est mis en avant, rien d'autre. En sombre, `#3B76F6` d'Izydesk passe à `#3B63F6` : le blanc y atteint 4,5:1, même mesuré sur le texte rendu."
+      },
+      "accentPressed": {
+        "$value": "{color.accent.600}",
+        "$description": "Le bouton principal pressé, `focus` d'Izydesk en clair ; en sombre aussi, sous un texte blanc."
+      },
+      "onAccent": {
+        "$value": "{color.neutral.0}",
+        "$description": "Texte sur l'accent, `on-accent`."
+      },
+      "accentSoft": {
+        "$value": "{color.neutral.70}",
+        "$description": "Fond doux d'un élément mis en avant, `surface-2`."
+      },
+      "accentSoftPressed": {
+        "$value": "{color.neutral.88}",
+        "$description": "Le fond doux pressé, un cran sous `surface-2`."
+      },
+      "onAccentSoft": {
+        "$value": "{color.neutral.832}",
+        "$description": "Texte sur un fond doux : le noir du texte, plus de bleu."
+      },
+      "control": {
+        "$value": "{color.neutral.36}",
+        "$description": "Fond d'un contrôle, `surface`."
+      },
+      "controlPressed": {
+        "$value": "{color.neutral.70}",
+        "$description": "Contrôle survolé ou pressé, `surface-2`."
+      },
+      "onControl": {
+        "$value": "{color.neutral.832}",
+        "$description": "Texte d'un contrôle, `fg`."
+      },
+      "disabled": {
+        "$value": "{color.neutral.36}",
+        "$description": "Fond désactivé, `surface`."
+      },
+      "onDisabled": {
+        "$value": "{color.neutral.475}",
+        "$description": "Texte désactivé, `fg-3`."
+      },
+      "focusRing": {
+        "$value": "{color.accent.600}",
+        "$description": "Anneau de focus clavier, `focus` d'Izydesk."
+      },
+      "switchThumb": {
+        "$value": "{color.neutral.0}",
+        "$description": "Pouce de l'interrupteur."
+      },
+      "switchTrack": {
+        "$value": "{color.neutral.70}",
+        "$description": "Piste de l'interrupteur éteint, `surface-2`."
+      },
+      "danger": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.7608,
+            0.1961,
+            0.1216
+          ],
+          "hex": "#C2321F"
+        },
+        "$description": "Erreur et action destructive, `danger`."
+      },
+      "dangerFill": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.7608,
+            0.1961,
+            0.1216
+          ],
+          "hex": "#C2321F"
+        },
+        "$description": "Fond d'un bouton destructif, `danger`."
+      },
+      "dangerPressed": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.7608,
+            0.1961,
+            0.1216
+          ],
+          "hex": "#C2321F"
+        },
+        "$description": "Bouton destructif pressé, `danger`."
+      },
+      "onDanger": {
+        "$value": "{color.neutral.0}",
+        "$description": "Texte sur le danger, `on-danger`."
+      },
+      "dangerSoft": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": {
+            "$ref": "#/color/light/danger/$value/components"
+          },
+          "alpha": 0.12
+        },
+        "$description": "`danger` à 12 %."
+      },
+      "dangerSoftPressed": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": {
+            "$ref": "#/color/light/danger/$value/components"
+          },
+          "alpha": 0.16
+        },
+        "$description": "`danger` à 16 %."
+      },
+      "onDangerSoft": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.6471,
+            0.1569,
+            0.0902
+          ],
+          "hex": "#A52817"
+        },
+        "$description": "Texte de danger sur un fond doux : `danger` en sombre ; en clair, assombri jusqu'à 4,5:1 sur `dangerSoftPressed`."
+      },
+      "dangerFaint": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": {
+            "$ref": "#/color/light/danger/$value/components"
+          },
+          "alpha": 0.08
+        },
+        "$description": "`danger` à 8 %."
+      },
+      "success": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.0902,
+            0.5804,
+            0.3059
+          ],
+          "hex": "#17944E"
+        },
+        "$description": "Succès, hors Izydesk : la teinte sourde du canvas."
+      },
+      "onSuccess": {
+        "$value": "{color.neutral.832}",
+        "$description": "Texte sur `success` : le noir d'Izydesk."
+      },
+      "successPressed": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.0902,
+            0.5804,
+            0.3059
+          ],
+          "hex": "#17944E"
+        },
+        "$description": "`success` pressé."
+      },
+      "successSoft": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": {
+            "$ref": "#/color/light/success/$value/components"
+          },
+          "alpha": 0.12
+        },
+        "$description": "`success` à 12 ou 14 %."
+      },
+      "onSuccessSoft": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.0745,
+            0.4588,
+            0.2431
+          ],
+          "hex": "#13753E"
+        },
+        "$description": "Texte de succès, la teinte du canvas."
+      },
+      "warning": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.7882,
+            0.5412,
+            0.1098
+          ],
+          "hex": "#C98A1C"
+        },
+        "$description": "Alerte, hors Izydesk : la teinte sourde du canvas."
+      },
+      "onWarning": {
+        "$value": "{color.neutral.832}",
+        "$description": "Texte sur `warning` : le noir d'Izydesk."
+      },
+      "onStatusAction": {
+        "$value": "{color.neutral.832}",
+        "$description": "L'action d'un toast de succès ou d'alerte, sur son fond : le noir d'Izydesk."
+      },
+      "warningPressed": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.7882,
+            0.5412,
+            0.1098
+          ],
+          "hex": "#C98A1C"
+        },
+        "$description": "`warning` pressé."
+      },
+      "warningSoft": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": {
+            "$ref": "#/color/light/warning/$value/components"
+          },
+          "alpha": 0.12
+        },
+        "$description": "`warning` à 12 ou 14 %."
+      },
+      "onWarningSoft": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.5412,
+            0.3647,
+            0.0627
+          ],
+          "hex": "#8A5D10"
+        },
+        "$description": "Texte d'alerte, la teinte du canvas."
+      },
+      "field": {
+        "$value": "{color.neutral.36}",
+        "$description": "Fond d'un champ, `surface`."
+      },
+      "onField": {
+        "$value": "{color.neutral.832}",
+        "$description": "Saisie d'un champ, `fg`."
+      },
+      "fieldPlaceholder": {
+        "$value": "{color.neutral.475}",
+        "$description": "Indication d'un champ, `fg-3`."
+      },
+      "fieldBorder": {
+        "$value": "{color.neutral.365}",
+        "$description": "Contour d'un champ, `line-strong`."
+      },
+      "segment": {
+        "$value": "{color.neutral.832}",
+        "$description": "Segment choisi, comme `selected`."
+      },
+      "onSegment": {
+        "$value": "{color.neutral.0}",
+        "$description": "Texte du segment choisi, comme `onSelected`."
+      },
+      "pressHighlight": {
+        "$value": "{color.neutral.832}",
+        "$description": "Voile d'appui, posé à `size.pressHighlightOpacity`."
+      },
+      "skeleton": {
+        "$value": "{color.neutral.70}",
+        "$description": "Os d'un squelette, `surface-2`."
+      },
+      "skeletonShimmer": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": {
+            "$ref": "#/color/neutral/0/$value/components"
+          },
+          "alpha": 0.75
+        },
+        "$description": "Reflet qui balaie le squelette."
+      },
+      "selection": {
+        "$value": "{color.neutral.70}",
+        "$description": "Texte sélectionné, `surface-2`."
+      },
+      "scrim": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": {
+            "$ref": "#/color/neutral/832/$value/components"
+          },
+          "alpha": 0.35
+        },
+        "$description": "Voile sous un dialogue ou une feuille, son opacité comprise ; `size.scrimOpacity` la module."
+      },
+      "selected": {
+        "$value": "{color.neutral.832}",
+        "$description": "Tout ce qui est coché, actif ou choisi : rempli en `fg`, jamais en accent."
+      },
+      "link": {
+        "$value": "{color.neutral.832}"
+      },
+      "onSelected": {
+        "$value": "{color.neutral.0}",
+        "$description": "Texte et coche sur `selected`, `page`."
+      }
+    },
+    "dark": {
+      "surface": {
+        "$value": "{color.neutral.832}"
+      },
+      "surfaceRaised": {
+        "$value": "{color.neutral.783}"
+      },
+      "surfaceOverlay": {
+        "$value": "{color.neutral.783}"
+      },
+      "surfacePressed": {
+        "$value": "{color.neutral.734}"
+      },
+      "surfaceSecondary": {
+        "$value": "{color.neutral.734}"
+      },
+      "surfaceTertiary": {
+        "$value": "{color.neutral.734}"
+      },
+      "onSurface": {
+        "$value": "{color.neutral.31}"
+      },
+      "onSurfaceMuted": {
+        "$value": "{color.neutral.189}"
+      },
+      "border": {
+        "$value": "{color.neutral.701}"
+      },
+      "borderSecondary": {
+        "$value": "{color.neutral.475}"
+      },
+      "borderTertiary": {
+        "$value": "{color.neutral.475}"
+      },
+      "separator": {
+        "$value": "{color.neutral.701}"
+      },
+      "separatorSecondary": {
+        "$value": "{color.neutral.701}"
+      },
+      "separatorTertiary": {
+        "$value": "{color.neutral.701}"
+      },
+      "accent": {
+        "$value": "{color.accent.300}"
+      },
+      "accentPressed": {
+        "$value": "{color.accent.200}"
+      },
+      "onAccent": {
+        "$value": "{color.neutral.0}"
+      },
+      "accentSoft": {
+        "$value": "{color.neutral.734}"
+      },
+      "accentSoftPressed": {
+        "$value": "{color.neutral.701}"
+      },
+      "onAccentSoft": {
+        "$value": "{color.neutral.31}"
+      },
+      "control": {
+        "$value": "{color.neutral.783}"
+      },
+      "controlPressed": {
+        "$value": "{color.neutral.734}"
+      },
+      "onControl": {
+        "$value": "{color.neutral.31}"
+      },
+      "disabled": {
+        "$value": "{color.neutral.783}"
+      },
+      "onDisabled": {
+        "$value": "{color.neutral.317}"
+      },
+      "focusRing": {
+        "$value": "{color.accent.100}"
+      },
+      "switchThumb": {
+        "$value": "{color.neutral.0}"
+      },
+      "switchTrack": {
+        "$value": "{color.neutral.734}"
+      },
+      "danger": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1.0,
+            0.4196,
+            0.3412
+          ],
+          "hex": "#FF6B57"
+        }
+      },
+      "dangerFill": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1.0,
+            0.4196,
+            0.3412
+          ],
+          "hex": "#FF6B57"
+        }
+      },
+      "dangerPressed": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1.0,
+            0.4196,
+            0.3412
+          ],
+          "hex": "#FF6B57"
+        }
+      },
+      "onDanger": {
+        "$value": "{color.neutral.832}"
+      },
+      "dangerSoft": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": {
+            "$ref": "#/color/dark/danger/$value/components"
+          },
+          "alpha": 0.12
+        }
+      },
+      "dangerSoftPressed": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": {
+            "$ref": "#/color/dark/danger/$value/components"
+          },
+          "alpha": 0.16
+        }
+      },
+      "onDangerSoft": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1.0,
+            0.4196,
+            0.3412
+          ],
+          "hex": "#FF6B57"
+        }
+      },
+      "dangerFaint": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": {
+            "$ref": "#/color/dark/danger/$value/components"
+          },
+          "alpha": 0.08
+        }
+      },
+      "success": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.2471,
+            0.749,
+            0.4667
+          ],
+          "hex": "#3FBF77"
+        }
+      },
+      "onSuccess": {
+        "$value": "{color.neutral.832}"
+      },
+      "successPressed": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.2471,
+            0.749,
+            0.4667
+          ],
+          "hex": "#3FBF77"
+        }
+      },
+      "successSoft": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": {
+            "$ref": "#/color/dark/success/$value/components"
+          },
+          "alpha": 0.14
+        }
+      },
+      "onSuccessSoft": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.4353,
+            0.8392,
+            0.6078
+          ],
+          "hex": "#6FD69B"
+        }
+      },
+      "warning": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.8902,
+            0.651,
+            0.2314
+          ],
+          "hex": "#E3A63B"
+        }
+      },
+      "onWarning": {
+        "$value": "{color.neutral.832}"
+      },
+      "onStatusAction": {
+        "$value": "{color.neutral.832}"
+      },
+      "warningPressed": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.8902,
+            0.651,
+            0.2314
+          ],
+          "hex": "#E3A63B"
+        }
+      },
+      "warningSoft": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": {
+            "$ref": "#/color/dark/warning/$value/components"
+          },
+          "alpha": 0.14
+        }
+      },
+      "onWarningSoft": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9412,
+            0.7686,
+            0.4392
+          ],
+          "hex": "#F0C470"
+        }
+      },
+      "field": {
+        "$value": "{color.neutral.783}"
+      },
+      "onField": {
+        "$value": "{color.neutral.31}"
+      },
+      "fieldPlaceholder": {
+        "$value": "{color.neutral.317}"
+      },
+      "fieldBorder": {
+        "$value": "{color.neutral.475}"
+      },
+      "segment": {
+        "$value": "{color.neutral.31}"
+      },
+      "onSegment": {
+        "$value": "{color.neutral.832}"
+      },
+      "pressHighlight": {
+        "$value": "{color.neutral.31}"
+      },
+      "skeleton": {
+        "$value": "{color.neutral.734}"
+      },
+      "skeletonShimmer": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": {
+            "$ref": "#/color/neutral/31/$value/components"
+          },
+          "alpha": 0.06
+        }
+      },
+      "selection": {
+        "$value": "{color.neutral.734}"
+      },
+      "scrim": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": {
+            "$ref": "#/color/neutral/832/$value/components"
+          },
+          "alpha": 0.55
+        }
+      },
+      "selected": {
+        "$value": "{color.neutral.31}"
+      },
+      "link": {
+        "$value": "{color.neutral.31}"
+      },
+      "onSelected": {
+        "$value": "{color.neutral.832}"
+      }
+    }
+  },
+  "shape": {
+    "button": {
+      "$description": "Forme du bouton. Aucun type DTCG ne porte une énumération : la valeur vit dans $extensions.",
+      "$extensions": {
+        "dev.fliin.buttonShape": {
+          "value": "square",
+          "allowed": [
+            "square",
+            "rounded",
+            "pill"
+          ]
+        }
+      }
+    },
+    "radius": {
+      "$type": "dimension",
+      "control": {
+        "$value": {
+          "value": 0,
+          "unit": "px"
+        }
+      },
+      "card": {
+        "$value": {
+          "value": 0,
+          "unit": "px"
+        }
+      },
+      "sheet": {
+        "$value": {
+          "value": 0,
+          "unit": "px"
+        }
+      },
+      "button": {
+        "$value": {
+          "value": 0,
+          "unit": "px"
+        }
+      },
+      "buttonLarge": {
+        "$value": {
+          "value": 0,
+          "unit": "px"
+        }
+      },
+      "xs": {
+        "$value": {
+          "value": 2,
+          "unit": "px"
+        },
+        "$description": "radius-xs de HeroUI."
+      },
+      "sm": {
+        "$value": {
+          "value": 4,
+          "unit": "px"
+        },
+        "$description": "radius-sm de HeroUI."
+      },
+      "md": {
+        "$value": {
+          "value": 6,
+          "unit": "px"
+        },
+        "$description": "radius-md : le code de HeroUI."
+      },
+      "lg": {
+        "$value": {
+          "value": 8,
+          "unit": "px"
+        },
+        "$description": "radius-lg de HeroUI."
+      },
+      "xl": {
+        "$value": {
+          "value": 12,
+          "unit": "px"
+        },
+        "$description": "radius-xl de HeroUI."
+      },
+      "xxl": {
+        "$value": {
+          "value": 16,
+          "unit": "px"
+        },
+        "$description": "radius-2xl de HeroUI."
+      }
+    }
+  },
+  "space": {
+    "$type": "dimension",
+    "xs": {
+      "$value": {
+        "value": 2,
+        "unit": "px"
+      }
+    },
+    "sm": {
+      "$value": {
+        "value": 4,
+        "unit": "px"
+      }
+    },
+    "md": {
+      "$value": {
+        "value": 6,
+        "unit": "px"
+      }
+    },
+    "lg": {
+      "$value": {
+        "value": 10,
+        "unit": "px"
+      }
+    },
+    "xl": {
+      "$value": {
+        "value": 16,
+        "unit": "px"
+      }
+    },
+    "xxl": {
+      "$value": {
+        "value": 24,
+        "unit": "px"
+      }
+    }
+  },
+  "size": {
+    "$type": "dimension",
+    "$description": "Hauteurs de contrôle et paddings de liste par densité (DESIGN.md §2.5) ; cibles tactiles et limite d'échelle des icônes : des invariants (DESIGN.md §2.1, §2.7), pas des réglages de marque.",
+    "controlCompact": {
+      "$value": {
+        "value": 36,
+        "unit": "px"
+      }
+    },
+    "controlComfortable": {
+      "$value": {
+        "value": 44,
+        "unit": "px"
+      }
+    },
+    "controlSpacious": {
+      "$value": {
+        "value": 52,
+        "unit": "px"
+      }
+    },
+    "listPaddingCompact": {
+      "$value": {
+        "value": 8,
+        "unit": "px"
+      }
+    },
+    "listPaddingComfortable": {
+      "$value": {
+        "value": 12,
+        "unit": "px"
+      }
+    },
+    "listPaddingSpacious": {
+      "$value": {
+        "value": 16,
+        "unit": "px"
+      }
+    },
+    "hitTargetIos": {
+      "$value": {
+        "value": 44,
+        "unit": "px"
+      }
+    },
+    "hitTargetAndroid": {
+      "$value": {
+        "value": 48,
+        "unit": "px"
+      }
+    },
+    "hitTargetDesktop": {
+      "$value": {
+        "value": 24,
+        "unit": "px"
+      }
+    },
+    "border": {
+      "$value": {
+        "value": 1,
+        "unit": "px"
+      }
+    },
+    "focusRing": {
+      "$value": {
+        "value": 2,
+        "unit": "px"
+      }
+    },
+    "focusRingGap": {
+      "$value": {
+        "value": 2,
+        "unit": "px"
+      }
+    },
+    "indicatorStroke": {
+      "$value": {
+        "value": 2,
+        "unit": "px"
+      }
+    },
+    "iconMaxScale": {
+      "$type": "number",
+      "$value": 1.5
+    },
+    "switchWidth": {
+      "$value": {
+        "value": 48,
+        "unit": "px"
+      },
+      "$description": "Piste de l'interrupteur (switch), `w-12` de HeroUI."
+    },
+    "switchHeight": {
+      "$value": {
+        "value": 24,
+        "unit": "px"
+      },
+      "$description": "Piste de l'interrupteur (switch), `h-6` de HeroUI."
+    },
+    "switchThumbWidth": {
+      "$value": {
+        "value": 28,
+        "unit": "px"
+      },
+      "$description": "Pouce de l'interrupteur (switch), `w-7` de HeroUI."
+    },
+    "switchThumbHeight": {
+      "$value": {
+        "value": 20,
+        "unit": "px"
+      },
+      "$description": "Pouce de l'interrupteur (switch), `h-5` de HeroUI."
+    },
+    "switchThumbInset": {
+      "$value": {
+        "value": 2,
+        "unit": "px"
+      },
+      "$description": "Écart du pouce au bord de la piste de l'interrupteur (switch), `left` de 2 chez HeroUI."
+    },
+    "toggle": {
+      "$value": {
+        "value": 24,
+        "unit": "px"
+      },
+      "$description": "Côté de la case (checkbox) et du rond (radio), `size-6` de HeroUI."
+    },
+    "radioDot": {
+      "$value": {
+        "value": 10,
+        "unit": "px"
+      },
+      "$description": "Pastille du radio choisi, `size-2.5` de HeroUI."
+    },
+    "controlPressedScale": {
+      "$type": "number",
+      "$value": 0.96,
+      "$description": "Échelle de l'interrupteur et de la case pressés, `scale` de leur animation chez HeroUI."
+    },
+    "indicatorIcon": {
+      "$value": {
+        "value": 16,
+        "unit": "px"
+      },
+      "$description": "Petite icône d'indication : chevrons (accordion, list-row, menu, select), coche du menu, loupe de search-field."
+    },
+    "indicatorBox": {
+      "$value": {
+        "value": 20,
+        "unit": "px"
+      },
+      "$description": "Boîte de l'indicateur d'une option (menu, select), `size-5` de HeroUI."
+    },
+    "snugLineHeight": {
+      "$type": "number",
+      "$value": 1.375,
+      "$description": "Interligne `leading-snug` des textes secondaires (popover, menu, select)."
+    },
+    "otpSlotWidth": {
+      "$value": {
+        "value": 44,
+        "unit": "px"
+      },
+      "$description": "Case d'input-otp, `w-11` de HeroUI."
+    },
+    "otpSlotHeight": {
+      "$value": {
+        "value": 48,
+        "unit": "px"
+      },
+      "$description": "Case d'input-otp, `h-12` de HeroUI."
+    },
+    "cursorWidth": {
+      "$value": {
+        "value": 2,
+        "unit": "px"
+      }
+    },
+    "selectionHandleAndroid": {
+      "$description": "Côté de la poignée de sélection en goutte (Android et bureau au toucher).",
+      "$value": {
+        "value": 18,
+        "unit": "px"
+      }
+    },
+    "selectionKnobIos": {
+      "$description": "Diamètre de la pastille des poignées iOS ; leur tige a la largeur du curseur.",
+      "$value": {
+        "value": 10,
+        "unit": "px"
+      }
+    },
+    "scrimOpacity": {
+      "$type": "number",
+      "$value": 0.32
+    },
+    "menuMinWidth": {
+      "$value": {
+        "value": 180,
+        "unit": "px"
+      }
+    },
+    "menuMaxWidth": {
+      "$value": {
+        "value": 280,
+        "unit": "px"
+      }
+    },
+    "tooltipMaxWidth": {
+      "$value": {
+        "value": 320,
+        "unit": "px"
+      },
+      "$description": "Largeur maximale de l'infobulle, `max-w-xs` de HeroUI React v3."
+    },
+    "dialogMaxWidth": {
+      "$value": {
+        "value": 400,
+        "unit": "px"
+      }
+    },
+    "buttonPaddingSm": {
+      "$value": {
+        "value": 14,
+        "unit": "px"
+      }
+    },
+    "buttonPaddingMd": {
+      "$value": {
+        "value": 16,
+        "unit": "px"
+      }
+    },
+    "buttonPaddingLg": {
+      "$value": {
+        "value": 20,
+        "unit": "px"
+      }
+    },
+    "buttonGapSm": {
+      "$value": {
+        "value": 6,
+        "unit": "px"
+      }
+    },
+    "buttonGapMd": {
+      "$value": {
+        "value": 8,
+        "unit": "px"
+      }
+    },
+    "buttonGapLg": {
+      "$value": {
+        "value": 10,
+        "unit": "px"
+      }
+    },
+    "buttonIconSm": {
+      "$value": {
+        "value": 16,
+        "unit": "px"
+      }
+    },
+    "buttonIconMd": {
+      "$value": {
+        "value": 18,
+        "unit": "px"
+      }
+    },
+    "buttonIconLg": {
+      "$value": {
+        "value": 20,
+        "unit": "px"
+      }
+    },
+    "pressScaleReference": {
+      "$value": {
+        "value": 300,
+        "unit": "px"
+      },
+      "$description": "Largeur de référence de l'échelle d'appui : un contrôle de largeur w rétrécit de (1 − pressedScale) × pressScaleReference / w, comme PressableFeedback de HeroUI."
+    },
+    "disabledOpacity": {
+      "$type": "number",
+      "$value": 0.5,
+      "$description": "Opacité d'un contrôle désactivé, --opacity-disabled de HeroUI."
+    },
+    "hoverBrightness": {
+      "$type": "number",
+      "$value": 0.92,
+      "$description": "Luminosité d'un bouton plein (primary, danger, inverse) au survol : le filter: brightness(.92) du canvas Izydesk."
+    },
+    "pressedOverlayOpacity": {
+      "$type": "number",
+      "$value": 0.3,
+      "$description": "Opacité du voile d'appui d'un contrôle sans fond (outline, ghost) chez HeroUI."
+    },
+    "rippleDiagonal": {
+      "$value": {
+        "value": 450,
+        "unit": "px"
+      },
+      "$description": "La diagonale de référence de l'ondulation d'appui (pressable-feedback)."
+    },
+    "pressHighlightOpacity": {
+      "$type": "number",
+      "$value": 0.1,
+      "$description": "Opacité du voile et de l'ondulation par défaut de PressableFeedback."
+    },
+    "separatorThick": {
+      "$value": {
+        "value": 6,
+        "unit": "px"
+      },
+      "$description": "Épaisseur d'un séparateur `thick`."
+    },
+    "spinnerSm": {
+      "$value": {
+        "value": 16,
+        "unit": "px"
+      },
+      "$description": "Spinner sm."
+    },
+    "spinnerMd": {
+      "$value": {
+        "value": 24,
+        "unit": "px"
+      },
+      "$description": "Spinner md."
+    },
+    "spinnerLg": {
+      "$value": {
+        "value": 32,
+        "unit": "px"
+      },
+      "$description": "Spinner lg."
+    },
+    "closeButton": {
+      "$value": {
+        "value": 32,
+        "unit": "px"
+      },
+      "$description": "Côté du bouton de fermeture (close-button, h-8)."
+    },
+    "closeIcon": {
+      "$value": {
+        "value": 18,
+        "unit": "px"
+      },
+      "$description": "Icône du bouton de fermeture."
+    },
+    "fieldInset": {
+      "$value": {
+        "value": 6,
+        "unit": "px"
+      },
+      "$description": "Retrait du libellé, de la description et de l'erreur dans un champ (px-1.5)."
+    },
+    "codePaddingX": {
+      "$value": {
+        "value": 6,
+        "unit": "px"
+      },
+      "$description": "Marge horizontale du code (px-1.5)."
+    },
+    "codePaddingY": {
+      "$value": {
+        "value": 2,
+        "unit": "px"
+      },
+      "$description": "Marge verticale du code (py-0.5)."
+    },
+    "surfacePadding": {
+      "$value": {
+        "value": 16,
+        "unit": "px"
+      },
+      "$description": "Marge intérieure d'une surface (p-4)."
+    },
+    "surfaceBorder": {
+      "$value": {
+        "value": 0,
+        "unit": "px"
+      },
+      "$description": "Trait autour d'une surface (FlSurface) : 0, posée par son ombre ; le préréglage « cartes à plat » lui donne l'épaisseur de size.border (ADR 0016 §3.11)."
+    },
+    "popoverTravel": {
+      "$value": {
+        "value": 12,
+        "unit": "px"
+      },
+      "$description": "Glissement maximal d'un popover qui entre depuis son ancre (MAX_TRANSLATE_DISTANCE de HeroUI)."
+    },
+    "popoverOffset": {
+      "$value": {
+        "value": 9,
+        "unit": "px"
+      },
+      "$description": "Écart du popover et du menu à leur ancre, `DEFAULT_OFFSET` de HeroUI."
+    },
+    "selectOffset": {
+      "$value": {
+        "value": 8,
+        "unit": "px"
+      },
+      "$description": "Écart de la liste du select à son déclencheur, son `offset` chez HeroUI."
+    },
+    "tooltipOffset": {
+      "$value": {
+        "value": 3,
+        "unit": "px"
+      },
+      "$description": "Écart de l'infobulle à son ancre, l'`offset` sans flèche de HeroUI React v3."
+    },
+    "overlayInset": {
+      "$value": {
+        "value": 12,
+        "unit": "px"
+      },
+      "$description": "Marge d'un overlay ancré aux bords de l'écran (popover, menu, tooltip), `DEFAULT_INSETS` de HeroUI."
+    }
+  },
+  "motion": {
+    "spring": {
+      "$type": "number",
+      "$description": "SpringDescription.withDampingRatio, masse 1 : trois jetons number par ressort, marqués dev.fliin.spring.",
+      "press": {
+        "$extensions": {
+          "dev.fliin.spring": true
+        },
+        "stiffness": {
+          "$value": 1400
+        },
+        "dampingRatio": {
+          "$value": 0.9
+        },
+        "mass": {
+          "$value": 1
+        }
+      },
+      "spatial": {
+        "$extensions": {
+          "dev.fliin.spring": true
+        },
+        "stiffness": {
+          "$value": 700
+        },
+        "dampingRatio": {
+          "$value": 0.9
+        },
+        "mass": {
+          "$value": 1
+        }
+      },
+      "spatialSlow": {
+        "$extensions": {
+          "dev.fliin.spring": true
+        },
+        "stiffness": {
+          "$value": 300
+        },
+        "dampingRatio": {
+          "$value": 0.9
+        },
+        "mass": {
+          "$value": 1
+        }
+      },
+      "release": {
+        "$extensions": {
+          "dev.fliin.spring": true
+        },
+        "stiffness": {
+          "$value": 157.9
+        },
+        "dampingRatio": {
+          "$value": 0.85
+        },
+        "mass": {
+          "$value": 1
+        }
+      },
+      "effects": {
+        "$extensions": {
+          "dev.fliin.spring": true
+        },
+        "stiffness": {
+          "$value": 1600
+        },
+        "dampingRatio": {
+          "$value": 1.0
+        },
+        "mass": {
+          "$value": 1
+        }
+      },
+      "effectsFast": {
+        "$extensions": {
+          "dev.fliin.spring": true
+        },
+        "stiffness": {
+          "$value": 3800
+        },
+        "dampingRatio": {
+          "$value": 1.0
+        },
+        "mass": {
+          "$value": 1
+        }
+      },
+      "gentle": {
+        "$extensions": {
+          "dev.fliin.spring": true
+        },
+        "$description": "withSpring par défaut de Reanimated 4 (masse 4, amortissement 120, raideur 900) : dialogue relâché, pile de toasts, menu.",
+        "stiffness": {
+          "$value": 900
+        },
+        "dampingRatio": {
+          "$value": 1.0
+        },
+        "mass": {
+          "$value": 4
+        }
+      },
+      "indicator": {
+        "$extensions": {
+          "dev.fliin.spring": true
+        },
+        "$description": "Rotation d'un chevron (accordion, select, sub-menu) : masse 4, amortissement 140, raideur 1000.",
+        "stiffness": {
+          "$value": 1000
+        },
+        "dampingRatio": {
+          "$value": 1.106797
+        },
+        "mass": {
+          "$value": 4
+        }
+      },
+      "layout": {
+        "$extensions": {
+          "dev.fliin.spring": true
+        },
+        "$description": "Hauteur d'un accordéon qui s'ouvre ou se ferme (LinearTransition de l'accordion) : masse 4, amortissement 140, raideur 1600.",
+        "stiffness": {
+          "$value": 1600
+        },
+        "dampingRatio": {
+          "$value": 0.875
+        },
+        "mass": {
+          "$value": 4
+        }
+      },
+      "segment": {
+        "$extensions": {
+          "dev.fliin.spring": true
+        },
+        "$description": "Indicateur des onglets (tabs) : masse 4, amortissement 120, raideur 1200.",
+        "stiffness": {
+          "$value": 1200
+        },
+        "dampingRatio": {
+          "$value": 0.866025
+        },
+        "mass": {
+          "$value": 4
+        }
+      },
+      "thumb": {
+        "$extensions": {
+          "dev.fliin.spring": true
+        },
+        "$description": "Pouce de l'interrupteur (switch) : masse 2, amortissement 120, raideur 1600.",
+        "stiffness": {
+          "$value": 1600
+        },
+        "dampingRatio": {
+          "$value": 1.06066
+        },
+        "mass": {
+          "$value": 2
+        }
+      },
+      "expand": {
+        "$extensions": {
+          "dev.fliin.spring": true
+        },
+        "$description": "Dépliage d'un sous-menu : masse 3, amortissement 100, raideur 950.",
+        "stiffness": {
+          "$value": 950
+        },
+        "dampingRatio": {
+          "$value": 0.936586
+        },
+        "mass": {
+          "$value": 3
+        }
+      },
+      "stack": {
+        "$extensions": {
+          "dev.fliin.spring": true
+        },
+        "$description": "Hauteur de la pile de toasts : masse 3, amortissement 100, raideur 1200.",
+        "stiffness": {
+          "$value": 1200
+        },
+        "dampingRatio": {
+          "$value": 0.833333
+        },
+        "mass": {
+          "$value": 3
+        }
+      },
+      "toastEnter": {
+        "$extensions": {
+          "dev.fliin.spring": true
+        },
+        "$description": "Entrée d'un toast (`FadeInUp.springify().mass(3)`) : le withSpring par défaut de Reanimated 4 à masse 3, amortissement 120, raideur 900.",
+        "stiffness": {
+          "$value": 900
+        },
+        "dampingRatio": {
+          "$value": 1.154701
+        },
+        "mass": {
+          "$value": 3
+        }
+      },
+      "sliderThumb": {
+        "$extensions": {
+          "dev.fliin.spring": true
+        },
+        "$description": "Pouce du curseur (slider) : masse 0,5, amortissement 15, raideur 200.",
+        "stiffness": {
+          "$value": 200
+        },
+        "dampingRatio": {
+          "$value": 0.75
+        },
+        "mass": {
+          "$value": 0.5
+        }
+      },
+      "pop": {
+        "$extensions": {
+          "dev.fliin.spring": true
+        },
+        "$description": "Apparition qui rebondit : la pastille d'un compteur, le cœur aimé, l'icône d'un toast qui se pose (dépassement d'environ 20 %).",
+        "stiffness": {
+          "$value": 600
+        },
+        "dampingRatio": {
+          "$value": 0.45
+        },
+        "mass": {
+          "$value": 1
+        }
+      },
+      "roll": {
+        "$extensions": {
+          "dev.fliin.spring": true
+        },
+        "$description": "Roue d'un chiffre qui défile (compteur, montant d'une carte de statistique) : environ 450 ms, un léger dépassement.",
+        "stiffness": {
+          "$value": 300
+        },
+        "dampingRatio": {
+          "$value": 0.8
+        },
+        "mass": {
+          "$value": 1
+        }
+      },
+      "shake": {
+        "$extensions": {
+          "dev.fliin.spring": true
+        },
+        "$description": "Secousse d'un code ou d'un champ refusé : lancé depuis le repos, il oscille trois fois autour de zéro.",
+        "stiffness": {
+          "$value": 900
+        },
+        "dampingRatio": {
+          "$value": 0.2
+        },
+        "mass": {
+          "$value": 1
+        }
+      }
+    },
+    "curve": {
+      "$type": "cubicBezier",
+      "standard": {
+        "$value": [
+          0.2,
+          0,
+          0,
+          1
+        ]
+      },
+      "easeOut": {
+        "$value": [
+          0,
+          0,
+          0.58,
+          1
+        ],
+        "$description": "Easing.out(Easing.ease) de Reanimated : l'échelle d'appui de HeroUI."
+      },
+      "easeInOutQuad": {
+        "$value": [
+          0.455,
+          0.03,
+          0.515,
+          0.955
+        ],
+        "$description": "La courbe par défaut de withTiming dans Reanimated : le voile d'appui de HeroUI."
+      },
+      "easeIn": {
+        "$value": [
+          0.42,
+          0,
+          1,
+          1
+        ],
+        "$description": "Easing.in(Easing.ease) de Reanimated : sorties (dialogue, popover)."
+      },
+      "easeInOut": {
+        "$value": [
+          0.42,
+          0,
+          0.58,
+          1
+        ],
+        "$description": "Easing.inOut(Easing.ease) de Reanimated : pulsation du squelette."
+      },
+      "ease": {
+        "$value": [
+          0.25,
+          0.1,
+          0.25,
+          1
+        ],
+        "$description": "ease de CSS : couleur de l'interrupteur."
+      },
+      "accelerate": {
+        "$value": [
+          0.4,
+          0,
+          1,
+          1
+        ],
+        "$description": "Sortie d'un toast."
+      },
+      "otpEnter": {
+        "$value": [
+          0,
+          0.75,
+          0.5,
+          0.9
+        ],
+        "$description": "Entrée d'un chiffre d'input-otp."
+      },
+      "otpExit": {
+        "$value": [
+          0.6,
+          0.1,
+          0.4,
+          0.8
+        ],
+        "$description": "Sortie d'un chiffre d'input-otp."
+      },
+      "decelerate": {
+        "$value": [
+          0,
+          0,
+          0.2,
+          1
+        ],
+        "$description": "`--ease-out` de Tailwind : le remplissage de progress."
+      },
+      "easeInOutCubic": {
+        "$value": [
+          0.65,
+          0,
+          0.35,
+          1
+        ],
+        "$description": "Balayage de la barre indéterminée de progress (`progress-bar.css`)."
+      }
+    },
+    "duration": {
+      "$type": "duration",
+      "short2": {
+        "$value": {
+          "value": 100,
+          "unit": "ms"
+        }
+      },
+      "short3": {
+        "$value": {
+          "value": 150,
+          "unit": "ms"
+        }
+      },
+      "short4": {
+        "$value": {
+          "value": 200,
+          "unit": "ms"
+        }
+      },
+      "medium2": {
+        "$value": {
+          "value": 300,
+          "unit": "ms"
+        }
+      },
+      "indicatorTurn": {
+        "$value": {
+          "value": 1000,
+          "unit": "ms"
+        }
+      },
+      "progressSweep": {
+        "$value": {
+          "value": 1500,
+          "unit": "ms"
+        },
+        "$description": "Un balayage de la barre indéterminée de progress (`progress-bar.css`)."
+      },
+      "short1": {
+        "$value": {
+          "value": 50,
+          "unit": "ms"
+        },
+        "$description": "Coche de la case (checkbox)."
+      },
+      "toggle": {
+        "$value": {
+          "value": 175,
+          "unit": "ms"
+        },
+        "$description": "Couleur de l'interrupteur (switch)."
+      },
+      "medium1": {
+        "$value": {
+          "value": 250,
+          "unit": "ms"
+        },
+        "$description": "Chiffre d'input-otp."
+      },
+      "long2": {
+        "$value": {
+          "value": 500,
+          "unit": "ms"
+        },
+        "$description": "Curseur d'input-otp."
+      },
+      "rippleMin": {
+        "$value": {
+          "value": 750,
+          "unit": "ms"
+        },
+        "$description": "Durée minimale de l'ondulation d'appui (pressable-feedback)."
+      },
+      "ripple": {
+        "$value": {
+          "value": 1000,
+          "unit": "ms"
+        },
+        "$description": "Ondulation d'appui sur une diagonale de 450 pt, proportionnelle à la diagonale, entre rippleMin et deux fois ripple."
+      },
+      "pulse": {
+        "$value": {
+          "value": 1000,
+          "unit": "ms"
+        },
+        "$description": "Pulsation du squelette."
+      },
+      "shimmer": {
+        "$value": {
+          "value": 1500,
+          "unit": "ms"
+        },
+        "$description": "Reflet du squelette."
+      }
+    },
+    "pressedScale": {
+      "$type": "number",
+      "$value": 0.97
+    }
+  },
+  "typography": {
+    "family": {
+      "$type": "fontFamily",
+      "ios": {
+        "$value": [
+          "system-ui",
+          "sans-serif"
+        ],
+        "$extensions": {
+          "dev.fliin.fontFamily": {
+            "source": "platform-default"
+          }
+        }
+      },
+      "android": {
+        "$value": [
+          "system-ui",
+          "sans-serif"
+        ],
+        "$extensions": {
+          "dev.fliin.fontFamily": {
+            "source": "platform-default"
+          }
+        }
+      }
+    },
+    "scale": {
+      "ios": {
+        "display": {
+          "$extensions": {
+            "dev.fliin.typeStyle": true
+          },
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 34,
+              "unit": "px"
+            }
+          },
+          "lineHeight": {
+            "$type": "dimension",
+            "$value": {
+              "value": 41,
+              "unit": "px"
+            }
+          },
+          "weight": {
+            "$type": "fontWeight",
+            "$value": 700
+          }
+        },
+        "title1": {
+          "$extensions": {
+            "dev.fliin.typeStyle": true
+          },
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 28,
+              "unit": "px"
+            }
+          },
+          "lineHeight": {
+            "$type": "dimension",
+            "$value": {
+              "value": 34,
+              "unit": "px"
+            }
+          },
+          "weight": {
+            "$type": "fontWeight",
+            "$value": 700
+          }
+        },
+        "title2": {
+          "$extensions": {
+            "dev.fliin.typeStyle": true
+          },
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 22,
+              "unit": "px"
+            }
+          },
+          "lineHeight": {
+            "$type": "dimension",
+            "$value": {
+              "value": 28,
+              "unit": "px"
+            }
+          },
+          "weight": {
+            "$type": "fontWeight",
+            "$value": 700
+          }
+        },
+        "title3": {
+          "$extensions": {
+            "dev.fliin.typeStyle": true
+          },
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 20,
+              "unit": "px"
+            }
+          },
+          "lineHeight": {
+            "$type": "dimension",
+            "$value": {
+              "value": 25,
+              "unit": "px"
+            }
+          },
+          "weight": {
+            "$type": "fontWeight",
+            "$value": 600
+          }
+        },
+        "headline": {
+          "$extensions": {
+            "dev.fliin.typeStyle": true
+          },
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 17,
+              "unit": "px"
+            }
+          },
+          "lineHeight": {
+            "$type": "dimension",
+            "$value": {
+              "value": 22,
+              "unit": "px"
+            }
+          },
+          "weight": {
+            "$type": "fontWeight",
+            "$value": 600
+          }
+        },
+        "body": {
+          "$extensions": {
+            "dev.fliin.typeStyle": true
+          },
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 17,
+              "unit": "px"
+            }
+          },
+          "lineHeight": {
+            "$type": "dimension",
+            "$value": {
+              "value": 22,
+              "unit": "px"
+            }
+          },
+          "weight": {
+            "$type": "fontWeight",
+            "$value": 400
+          }
+        },
+        "callout": {
+          "$extensions": {
+            "dev.fliin.typeStyle": true
+          },
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 16,
+              "unit": "px"
+            }
+          },
+          "lineHeight": {
+            "$type": "dimension",
+            "$value": {
+              "value": 21,
+              "unit": "px"
+            }
+          },
+          "weight": {
+            "$type": "fontWeight",
+            "$value": 400
+          }
+        },
+        "label": {
+          "$extensions": {
+            "dev.fliin.typeStyle": true
+          },
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 15,
+              "unit": "px"
+            }
+          },
+          "lineHeight": {
+            "$type": "dimension",
+            "$value": {
+              "value": 20,
+              "unit": "px"
+            }
+          },
+          "weight": {
+            "$type": "fontWeight",
+            "$value": 500
+          }
+        },
+        "footnote": {
+          "$extensions": {
+            "dev.fliin.typeStyle": true
+          },
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 13,
+              "unit": "px"
+            }
+          },
+          "lineHeight": {
+            "$type": "dimension",
+            "$value": {
+              "value": 18,
+              "unit": "px"
+            }
+          },
+          "weight": {
+            "$type": "fontWeight",
+            "$value": 400
+          }
+        },
+        "caption": {
+          "$extensions": {
+            "dev.fliin.typeStyle": true
+          },
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 12,
+              "unit": "px"
+            }
+          },
+          "lineHeight": {
+            "$type": "dimension",
+            "$value": {
+              "value": 16,
+              "unit": "px"
+            }
+          },
+          "weight": {
+            "$type": "fontWeight",
+            "$value": 400
+          }
+        },
+        "controlSm": {
+          "$extensions": {
+            "dev.fliin.typeStyle": true
+          },
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 14,
+              "unit": "px"
+            }
+          },
+          "lineHeight": {
+            "$type": "dimension",
+            "$value": {
+              "value": 20,
+              "unit": "px"
+            }
+          },
+          "weight": {
+            "$type": "fontWeight",
+            "$value": 500
+          },
+          "tracking": {
+            "$type": "dimension",
+            "$value": {
+              "value": -0.1504,
+              "unit": "px"
+            }
+          },
+          "$description": "Libellé d'un contrôle de taille sm (text-sm, font-medium de HeroUI) ; tracking : la table trak de SF à 14 pt."
+        },
+        "controlMd": {
+          "$extensions": {
+            "dev.fliin.typeStyle": true
+          },
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 16,
+              "unit": "px"
+            }
+          },
+          "lineHeight": {
+            "$type": "dimension",
+            "$value": {
+              "value": 24,
+              "unit": "px"
+            }
+          },
+          "weight": {
+            "$type": "fontWeight",
+            "$value": 500
+          },
+          "tracking": {
+            "$type": "dimension",
+            "$value": {
+              "value": -0.3125,
+              "unit": "px"
+            }
+          }
+        },
+        "controlLg": {
+          "$extensions": {
+            "dev.fliin.typeStyle": true
+          },
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 18,
+              "unit": "px"
+            }
+          },
+          "lineHeight": {
+            "$type": "dimension",
+            "$value": {
+              "value": 28,
+              "unit": "px"
+            }
+          },
+          "weight": {
+            "$type": "fontWeight",
+            "$value": 500
+          },
+          "tracking": {
+            "$type": "dimension",
+            "$value": {
+              "value": -0.4395,
+              "unit": "px"
+            }
+          }
+        },
+        "heading1": {
+          "$extensions": {
+            "dev.fliin.typeStyle": true
+          },
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 36,
+              "unit": "px"
+            }
+          },
+          "lineHeight": {
+            "$type": "dimension",
+            "$value": {
+              "value": 40,
+              "unit": "px"
+            }
+          },
+          "weight": {
+            "$type": "fontWeight",
+            "$value": 600
+          },
+          "tracking": {
+            "$type": "dimension",
+            "$value": {
+              "value": -0.5309,
+              "unit": "px"
+            }
+          },
+          "$description": "Titre h1 de `Typography` (text-4xl, semibold, tracking-tight)."
+        },
+        "heading2": {
+          "$extensions": {
+            "dev.fliin.typeStyle": true
+          },
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 30,
+              "unit": "px"
+            }
+          },
+          "lineHeight": {
+            "$type": "dimension",
+            "$value": {
+              "value": 36,
+              "unit": "px"
+            }
+          },
+          "weight": {
+            "$type": "fontWeight",
+            "$value": 600
+          },
+          "tracking": {
+            "$type": "dimension",
+            "$value": {
+              "value": -0.3545,
+              "unit": "px"
+            }
+          },
+          "$description": "Titre h2 (text-3xl)."
+        },
+        "heading3": {
+          "$extensions": {
+            "dev.fliin.typeStyle": true
+          },
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 24,
+              "unit": "px"
+            }
+          },
+          "lineHeight": {
+            "$type": "dimension",
+            "$value": {
+              "value": 32,
+              "unit": "px"
+            }
+          },
+          "weight": {
+            "$type": "fontWeight",
+            "$value": 600
+          },
+          "tracking": {
+            "$type": "dimension",
+            "$value": {
+              "value": -0.5297,
+              "unit": "px"
+            }
+          },
+          "$description": "Titre h3 (text-2xl)."
+        },
+        "heading4": {
+          "$extensions": {
+            "dev.fliin.typeStyle": true
+          },
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 20,
+              "unit": "px"
+            }
+          },
+          "lineHeight": {
+            "$type": "dimension",
+            "$value": {
+              "value": 28,
+              "unit": "px"
+            }
+          },
+          "weight": {
+            "$type": "fontWeight",
+            "$value": 600
+          },
+          "tracking": {
+            "$type": "dimension",
+            "$value": {
+              "value": -0.9492,
+              "unit": "px"
+            }
+          },
+          "$description": "Titre h4 (text-xl)."
+        },
+        "heading5": {
+          "$extensions": {
+            "dev.fliin.typeStyle": true
+          },
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 18,
+              "unit": "px"
+            }
+          },
+          "lineHeight": {
+            "$type": "dimension",
+            "$value": {
+              "value": 28,
+              "unit": "px"
+            }
+          },
+          "weight": {
+            "$type": "fontWeight",
+            "$value": 600
+          },
+          "tracking": {
+            "$type": "dimension",
+            "$value": {
+              "value": -0.8895,
+              "unit": "px"
+            }
+          },
+          "$description": "Titre h5 (text-lg)."
+        },
+        "heading6": {
+          "$extensions": {
+            "dev.fliin.typeStyle": true
+          },
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 16,
+              "unit": "px"
+            }
+          },
+          "lineHeight": {
+            "$type": "dimension",
+            "$value": {
+              "value": 24,
+              "unit": "px"
+            }
+          },
+          "weight": {
+            "$type": "fontWeight",
+            "$value": 600
+          },
+          "tracking": {
+            "$type": "dimension",
+            "$value": {
+              "value": -0.7125,
+              "unit": "px"
+            }
+          },
+          "$description": "Titre h6 (text-base)."
+        },
+        "paragraph": {
+          "$extensions": {
+            "dev.fliin.typeStyle": true
+          },
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 16,
+              "unit": "px"
+            }
+          },
+          "lineHeight": {
+            "$type": "dimension",
+            "$value": {
+              "value": 28,
+              "unit": "px"
+            }
+          },
+          "weight": {
+            "$type": "fontWeight",
+            "$value": 400
+          },
+          "tracking": {
+            "$type": "dimension",
+            "$value": {
+              "value": -0.3125,
+              "unit": "px"
+            }
+          },
+          "$description": "Paragraphe `body` de `Typography` (text-base, leading-7)."
+        },
+        "paragraphSm": {
+          "$extensions": {
+            "dev.fliin.typeStyle": true
+          },
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 14,
+              "unit": "px"
+            }
+          },
+          "lineHeight": {
+            "$type": "dimension",
+            "$value": {
+              "value": 24,
+              "unit": "px"
+            }
+          },
+          "weight": {
+            "$type": "fontWeight",
+            "$value": 400
+          },
+          "tracking": {
+            "$type": "dimension",
+            "$value": {
+              "value": -0.1504,
+              "unit": "px"
+            }
+          },
+          "$description": "Paragraphe `body-sm` (text-sm, leading-6)."
+        },
+        "paragraphXs": {
+          "$extensions": {
+            "dev.fliin.typeStyle": true
+          },
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 12,
+              "unit": "px"
+            }
+          },
+          "lineHeight": {
+            "$type": "dimension",
+            "$value": {
+              "value": 20,
+              "unit": "px"
+            }
+          },
+          "weight": {
+            "$type": "fontWeight",
+            "$value": 400
+          },
+          "$description": "Paragraphe `body-xs` (text-xs, leading-5)."
+        },
+        "code": {
+          "$extensions": {
+            "dev.fliin.typeStyle": true
+          },
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 14,
+              "unit": "px"
+            }
+          },
+          "lineHeight": {
+            "$type": "dimension",
+            "$value": {
+              "value": 20,
+              "unit": "px"
+            }
+          },
+          "weight": {
+            "$type": "fontWeight",
+            "$value": 400
+          },
+          "$description": "Code de `Typography` (text-sm), police `typography.monospace`, sans approche."
+        },
+        "textXs": {
+          "$extensions": {
+            "dev.fliin.typeStyle": true
+          },
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 12,
+              "unit": "px"
+            }
+          },
+          "lineHeight": {
+            "$type": "dimension",
+            "$value": {
+              "value": 16,
+              "unit": "px"
+            }
+          },
+          "weight": {
+            "$type": "fontWeight",
+            "$value": 400
+          },
+          "$description": "text-xs de HeroUI, 12/16."
+        },
+        "textSm": {
+          "$extensions": {
+            "dev.fliin.typeStyle": true
+          },
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 14,
+              "unit": "px"
+            }
+          },
+          "lineHeight": {
+            "$type": "dimension",
+            "$value": {
+              "value": 20,
+              "unit": "px"
+            }
+          },
+          "weight": {
+            "$type": "fontWeight",
+            "$value": 400
+          },
+          "tracking": {
+            "$type": "dimension",
+            "$value": {
+              "value": -0.1504,
+              "unit": "px"
+            }
+          },
+          "$description": "text-sm de HeroUI, 14/20 : description, erreur de champ."
+        },
+        "textBase": {
+          "$extensions": {
+            "dev.fliin.typeStyle": true
+          },
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 16,
+              "unit": "px"
+            }
+          },
+          "lineHeight": {
+            "$type": "dimension",
+            "$value": {
+              "value": 24,
+              "unit": "px"
+            }
+          },
+          "weight": {
+            "$type": "fontWeight",
+            "$value": 400
+          },
+          "tracking": {
+            "$type": "dimension",
+            "$value": {
+              "value": -0.3125,
+              "unit": "px"
+            }
+          },
+          "$description": "text-base de HeroUI, 16/24 : libellé de champ (en medium)."
+        },
+        "textLg": {
+          "$extensions": {
+            "dev.fliin.typeStyle": true
+          },
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 18,
+              "unit": "px"
+            }
+          },
+          "lineHeight": {
+            "$type": "dimension",
+            "$value": {
+              "value": 28,
+              "unit": "px"
+            }
+          },
+          "weight": {
+            "$type": "fontWeight",
+            "$value": 400
+          },
+          "tracking": {
+            "$type": "dimension",
+            "$value": {
+              "value": -0.4395,
+              "unit": "px"
+            }
+          },
+          "$description": "text-lg de HeroUI, 18/28."
+        }
+      },
+      "android": {
+        "display": {
+          "$extensions": {
+            "dev.fliin.typeStyle": true
+          },
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 34,
+              "unit": "px"
+            }
+          },
+          "lineHeight": {
+            "$type": "dimension",
+            "$value": {
+              "value": 40,
+              "unit": "px"
+            }
+          },
+          "weight": {
+            "$type": "fontWeight",
+            "$value": 700
+          }
+        },
+        "title1": {
+          "$extensions": {
+            "dev.fliin.typeStyle": true
+          },
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 28,
+              "unit": "px"
+            }
+          },
+          "lineHeight": {
+            "$type": "dimension",
+            "$value": {
+              "value": 36,
+              "unit": "px"
+            }
+          },
+          "weight": {
+            "$type": "fontWeight",
+            "$value": 600
+          }
+        },
+        "title2": {
+          "$extensions": {
+            "dev.fliin.typeStyle": true
+          },
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 22,
+              "unit": "px"
+            }
+          },
+          "lineHeight": {
+            "$type": "dimension",
+            "$value": {
+              "value": 28,
+              "unit": "px"
+            }
+          },
+          "weight": {
+            "$type": "fontWeight",
+            "$value": 600
+          }
+        },
+        "title3": {
+          "$extensions": {
+            "dev.fliin.typeStyle": true
+          },
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 18,
+              "unit": "px"
+            }
+          },
+          "lineHeight": {
+            "$type": "dimension",
+            "$value": {
+              "value": 24,
+              "unit": "px"
+            }
+          },
+          "weight": {
+            "$type": "fontWeight",
+            "$value": 600
+          }
+        },
+        "headline": {
+          "$extensions": {
+            "dev.fliin.typeStyle": true
+          },
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 16,
+              "unit": "px"
+            }
+          },
+          "lineHeight": {
+            "$type": "dimension",
+            "$value": {
+              "value": 24,
+              "unit": "px"
+            }
+          },
+          "weight": {
+            "$type": "fontWeight",
+            "$value": 600
+          }
+        },
+        "body": {
+          "$extensions": {
+            "dev.fliin.typeStyle": true
+          },
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 16,
+              "unit": "px"
+            }
+          },
+          "lineHeight": {
+            "$type": "dimension",
+            "$value": {
+              "value": 24,
+              "unit": "px"
+            }
+          },
+          "weight": {
+            "$type": "fontWeight",
+            "$value": 400
+          }
+        },
+        "callout": {
+          "$extensions": {
+            "dev.fliin.typeStyle": true
+          },
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 15,
+              "unit": "px"
+            }
+          },
+          "lineHeight": {
+            "$type": "dimension",
+            "$value": {
+              "value": 20,
+              "unit": "px"
+            }
+          },
+          "weight": {
+            "$type": "fontWeight",
+            "$value": 400
+          }
+        },
+        "label": {
+          "$extensions": {
+            "dev.fliin.typeStyle": true
+          },
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 14,
+              "unit": "px"
+            }
+          },
+          "lineHeight": {
+            "$type": "dimension",
+            "$value": {
+              "value": 20,
+              "unit": "px"
+            }
+          },
+          "weight": {
+            "$type": "fontWeight",
+            "$value": 500
+          }
+        },
+        "footnote": {
+          "$extensions": {
+            "dev.fliin.typeStyle": true
+          },
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 13,
+              "unit": "px"
+            }
+          },
+          "lineHeight": {
+            "$type": "dimension",
+            "$value": {
+              "value": 18,
+              "unit": "px"
+            }
+          },
+          "weight": {
+            "$type": "fontWeight",
+            "$value": 400
+          }
+        },
+        "caption": {
+          "$extensions": {
+            "dev.fliin.typeStyle": true
+          },
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 12,
+              "unit": "px"
+            }
+          },
+          "lineHeight": {
+            "$type": "dimension",
+            "$value": {
+              "value": 16,
+              "unit": "px"
+            }
+          },
+          "weight": {
+            "$type": "fontWeight",
+            "$value": 400
+          }
+        },
+        "controlSm": {
+          "$extensions": {
+            "dev.fliin.typeStyle": true
+          },
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 14,
+              "unit": "px"
+            }
+          },
+          "lineHeight": {
+            "$type": "dimension",
+            "$value": {
+              "value": 20,
+              "unit": "px"
+            }
+          },
+          "weight": {
+            "$type": "fontWeight",
+            "$value": 500
+          }
+        },
+        "controlMd": {
+          "$extensions": {
+            "dev.fliin.typeStyle": true
+          },
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 16,
+              "unit": "px"
+            }
+          },
+          "lineHeight": {
+            "$type": "dimension",
+            "$value": {
+              "value": 24,
+              "unit": "px"
+            }
+          },
+          "weight": {
+            "$type": "fontWeight",
+            "$value": 500
+          }
+        },
+        "controlLg": {
+          "$extensions": {
+            "dev.fliin.typeStyle": true
+          },
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 18,
+              "unit": "px"
+            }
+          },
+          "lineHeight": {
+            "$type": "dimension",
+            "$value": {
+              "value": 28,
+              "unit": "px"
+            }
+          },
+          "weight": {
+            "$type": "fontWeight",
+            "$value": 500
+          }
+        },
+        "heading1": {
+          "$extensions": {
+            "dev.fliin.typeStyle": true
+          },
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 36,
+              "unit": "px"
+            }
+          },
+          "lineHeight": {
+            "$type": "dimension",
+            "$value": {
+              "value": 40,
+              "unit": "px"
+            }
+          },
+          "weight": {
+            "$type": "fontWeight",
+            "$value": 600
+          },
+          "tracking": {
+            "$type": "dimension",
+            "$value": {
+              "value": -0.9,
+              "unit": "px"
+            }
+          },
+          "$description": "Titre h1 de `Typography` (text-4xl, semibold, tracking-tight)."
+        },
+        "heading2": {
+          "$extensions": {
+            "dev.fliin.typeStyle": true
+          },
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 30,
+              "unit": "px"
+            }
+          },
+          "lineHeight": {
+            "$type": "dimension",
+            "$value": {
+              "value": 36,
+              "unit": "px"
+            }
+          },
+          "weight": {
+            "$type": "fontWeight",
+            "$value": 600
+          },
+          "tracking": {
+            "$type": "dimension",
+            "$value": {
+              "value": -0.75,
+              "unit": "px"
+            }
+          },
+          "$description": "Titre h2 (text-3xl)."
+        },
+        "heading3": {
+          "$extensions": {
+            "dev.fliin.typeStyle": true
+          },
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 24,
+              "unit": "px"
+            }
+          },
+          "lineHeight": {
+            "$type": "dimension",
+            "$value": {
+              "value": 32,
+              "unit": "px"
+            }
+          },
+          "weight": {
+            "$type": "fontWeight",
+            "$value": 600
+          },
+          "tracking": {
+            "$type": "dimension",
+            "$value": {
+              "value": -0.6,
+              "unit": "px"
+            }
+          },
+          "$description": "Titre h3 (text-2xl)."
+        },
+        "heading4": {
+          "$extensions": {
+            "dev.fliin.typeStyle": true
+          },
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 20,
+              "unit": "px"
+            }
+          },
+          "lineHeight": {
+            "$type": "dimension",
+            "$value": {
+              "value": 28,
+              "unit": "px"
+            }
+          },
+          "weight": {
+            "$type": "fontWeight",
+            "$value": 600
+          },
+          "tracking": {
+            "$type": "dimension",
+            "$value": {
+              "value": -0.5,
+              "unit": "px"
+            }
+          },
+          "$description": "Titre h4 (text-xl)."
+        },
+        "heading5": {
+          "$extensions": {
+            "dev.fliin.typeStyle": true
+          },
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 18,
+              "unit": "px"
+            }
+          },
+          "lineHeight": {
+            "$type": "dimension",
+            "$value": {
+              "value": 28,
+              "unit": "px"
+            }
+          },
+          "weight": {
+            "$type": "fontWeight",
+            "$value": 600
+          },
+          "tracking": {
+            "$type": "dimension",
+            "$value": {
+              "value": -0.45,
+              "unit": "px"
+            }
+          },
+          "$description": "Titre h5 (text-lg)."
+        },
+        "heading6": {
+          "$extensions": {
+            "dev.fliin.typeStyle": true
+          },
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 16,
+              "unit": "px"
+            }
+          },
+          "lineHeight": {
+            "$type": "dimension",
+            "$value": {
+              "value": 24,
+              "unit": "px"
+            }
+          },
+          "weight": {
+            "$type": "fontWeight",
+            "$value": 600
+          },
+          "tracking": {
+            "$type": "dimension",
+            "$value": {
+              "value": -0.4,
+              "unit": "px"
+            }
+          },
+          "$description": "Titre h6 (text-base)."
+        },
+        "paragraph": {
+          "$extensions": {
+            "dev.fliin.typeStyle": true
+          },
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 16,
+              "unit": "px"
+            }
+          },
+          "lineHeight": {
+            "$type": "dimension",
+            "$value": {
+              "value": 28,
+              "unit": "px"
+            }
+          },
+          "weight": {
+            "$type": "fontWeight",
+            "$value": 400
+          },
+          "$description": "Paragraphe `body` de `Typography` (text-base, leading-7)."
+        },
+        "paragraphSm": {
+          "$extensions": {
+            "dev.fliin.typeStyle": true
+          },
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 14,
+              "unit": "px"
+            }
+          },
+          "lineHeight": {
+            "$type": "dimension",
+            "$value": {
+              "value": 24,
+              "unit": "px"
+            }
+          },
+          "weight": {
+            "$type": "fontWeight",
+            "$value": 400
+          },
+          "$description": "Paragraphe `body-sm` (text-sm, leading-6)."
+        },
+        "paragraphXs": {
+          "$extensions": {
+            "dev.fliin.typeStyle": true
+          },
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 12,
+              "unit": "px"
+            }
+          },
+          "lineHeight": {
+            "$type": "dimension",
+            "$value": {
+              "value": 20,
+              "unit": "px"
+            }
+          },
+          "weight": {
+            "$type": "fontWeight",
+            "$value": 400
+          },
+          "$description": "Paragraphe `body-xs` (text-xs, leading-5)."
+        },
+        "code": {
+          "$extensions": {
+            "dev.fliin.typeStyle": true
+          },
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 14,
+              "unit": "px"
+            }
+          },
+          "lineHeight": {
+            "$type": "dimension",
+            "$value": {
+              "value": 20,
+              "unit": "px"
+            }
+          },
+          "weight": {
+            "$type": "fontWeight",
+            "$value": 400
+          },
+          "$description": "Code de `Typography` (text-sm), police `typography.monospace`, sans approche."
+        },
+        "textXs": {
+          "$extensions": {
+            "dev.fliin.typeStyle": true
+          },
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 12,
+              "unit": "px"
+            }
+          },
+          "lineHeight": {
+            "$type": "dimension",
+            "$value": {
+              "value": 16,
+              "unit": "px"
+            }
+          },
+          "weight": {
+            "$type": "fontWeight",
+            "$value": 400
+          },
+          "$description": "text-xs de HeroUI, 12/16."
+        },
+        "textSm": {
+          "$extensions": {
+            "dev.fliin.typeStyle": true
+          },
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 14,
+              "unit": "px"
+            }
+          },
+          "lineHeight": {
+            "$type": "dimension",
+            "$value": {
+              "value": 20,
+              "unit": "px"
+            }
+          },
+          "weight": {
+            "$type": "fontWeight",
+            "$value": 400
+          },
+          "$description": "text-sm de HeroUI, 14/20 : description, erreur de champ."
+        },
+        "textBase": {
+          "$extensions": {
+            "dev.fliin.typeStyle": true
+          },
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 16,
+              "unit": "px"
+            }
+          },
+          "lineHeight": {
+            "$type": "dimension",
+            "$value": {
+              "value": 24,
+              "unit": "px"
+            }
+          },
+          "weight": {
+            "$type": "fontWeight",
+            "$value": 400
+          },
+          "$description": "text-base de HeroUI, 16/24 : libellé de champ (en medium)."
+        },
+        "textLg": {
+          "$extensions": {
+            "dev.fliin.typeStyle": true
+          },
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 18,
+              "unit": "px"
+            }
+          },
+          "lineHeight": {
+            "$type": "dimension",
+            "$value": {
+              "value": 28,
+              "unit": "px"
+            }
+          },
+          "weight": {
+            "$type": "fontWeight",
+            "$value": 400
+          },
+          "$description": "text-lg de HeroUI, 18/28."
+        }
+      }
+    },
+    "weight": {
+      "$type": "fontWeight",
+      "$description": "Graisses nommées de HeroUI (font-normal, font-medium, font-semibold, font-bold).",
+      "normal": {
+        "$value": 400
+      },
+      "medium": {
+        "$value": 500
+      },
+      "semibold": {
+        "$value": 600
+      },
+      "bold": {
+        "$value": 700
+      }
+    },
+    "monospace": {
+      "$type": "fontFamily",
+      "$description": "Police du code de `Typography` : Menlo sur iOS, monospace ailleurs (text.styles.ts de HeroUI).",
+      "ios": {
+        "$value": [
+          "Menlo",
+          "monospace"
+        ],
+        "$extensions": {
+          "dev.fliin.fontFamily": {
+            "source": "named"
+          }
+        }
+      },
+      "android": {
+        "$value": [
+          "monospace"
+        ],
+        "$extensions": {
+          "dev.fliin.fontFamily": {
+            "source": "named"
+          }
+        }
+      }
+    }
+  },
+  "shadow": {
+    "$type": "shadow",
+    "$description": "Ombres d’Izydesk (ADR 0019) : seul ce qui flotte (`overlay`) a une ombre ; `glow` et `dangerGlow` sont le halo du bouton principal et du bouton destructif, à la couleur de l’accent et du danger.",
+    "light": {
+      "surface": {
+        "$value": [
+          {
+            "color": {
+              "colorSpace": "srgb",
+              "components": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "alpha": 0.0,
+              "hex": "#000000"
+            },
+            "offsetX": {
+              "value": 0.0,
+              "unit": "px"
+            },
+            "offsetY": {
+              "value": 0.0,
+              "unit": "px"
+            },
+            "blur": {
+              "value": 0.0,
+              "unit": "px"
+            },
+            "spread": {
+              "value": 0.0,
+              "unit": "px"
+            }
+          }
+        ]
+      },
+      "overlay": {
+        "$value": [
+          {
+            "color": {
+              "colorSpace": "srgb",
+              "components": [
+                0,
+                0,
+                0
+              ],
+              "alpha": 0,
+              "hex": "#000000"
+            },
+            "offsetX": {
+              "value": 0,
+              "unit": "px"
+            },
+            "offsetY": {
+              "value": 0,
+              "unit": "px"
+            },
+            "blur": {
+              "value": 0,
+              "unit": "px"
+            },
+            "spread": {
+              "value": 0,
+              "unit": "px"
+            }
+          }
+        ]
+      },
+      "field": {
+        "$value": [
+          {
+            "color": {
+              "colorSpace": "srgb",
+              "components": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "alpha": 0.0,
+              "hex": "#000000"
+            },
+            "offsetX": {
+              "value": 0.0,
+              "unit": "px"
+            },
+            "offsetY": {
+              "value": 0.0,
+              "unit": "px"
+            },
+            "blur": {
+              "value": 0.0,
+              "unit": "px"
+            },
+            "spread": {
+              "value": 0.0,
+              "unit": "px"
+            }
+          }
+        ]
+      },
+      "glow": {
+        "$value": [
+          {
+            "color": {
+              "colorSpace": "srgb",
+              "components": [
+                0,
+                0,
+                0
+              ],
+              "alpha": 0,
+              "hex": "#000000"
+            },
+            "offsetX": {
+              "value": 0,
+              "unit": "px"
+            },
+            "offsetY": {
+              "value": 0,
+              "unit": "px"
+            },
+            "blur": {
+              "value": 0,
+              "unit": "px"
+            },
+            "spread": {
+              "value": 0,
+              "unit": "px"
+            }
+          }
+        ]
+      },
+      "dangerGlow": {
+        "$value": [
+          {
+            "color": {
+              "colorSpace": "srgb",
+              "components": [
+                0,
+                0,
+                0
+              ],
+              "alpha": 0,
+              "hex": "#000000"
+            },
+            "offsetX": {
+              "value": 0,
+              "unit": "px"
+            },
+            "offsetY": {
+              "value": 0,
+              "unit": "px"
+            },
+            "blur": {
+              "value": 0,
+              "unit": "px"
+            },
+            "spread": {
+              "value": 0,
+              "unit": "px"
+            }
+          }
+        ]
+      },
+      "thumb": {
+        "$value": [
+          {
+            "color": {
+              "colorSpace": "srgb",
+              "components": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "alpha": 0.18,
+              "hex": "#000000"
+            },
+            "offsetX": {
+              "value": 0.0,
+              "unit": "px"
+            },
+            "offsetY": {
+              "value": 1.0,
+              "unit": "px"
+            },
+            "blur": {
+              "value": 3.0,
+              "unit": "px"
+            },
+            "spread": {
+              "value": 0.0,
+              "unit": "px"
+            }
+          },
+          {
+            "color": {
+              "colorSpace": "srgb",
+              "components": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "alpha": 0.2,
+              "hex": "#000000"
+            },
+            "offsetX": {
+              "value": 0.0,
+              "unit": "px"
+            },
+            "offsetY": {
+              "value": 0.0,
+              "unit": "px"
+            },
+            "blur": {
+              "value": 1.0,
+              "unit": "px"
+            },
+            "spread": {
+              "value": 0.0,
+              "unit": "px"
+            }
+          }
+        ]
+      }
+    },
+    "dark": {
+      "surface": {
+        "$value": [
+          {
+            "color": {
+              "colorSpace": "srgb",
+              "components": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "alpha": 0.0,
+              "hex": "#000000"
+            },
+            "offsetX": {
+              "value": 0.0,
+              "unit": "px"
+            },
+            "offsetY": {
+              "value": 0.0,
+              "unit": "px"
+            },
+            "blur": {
+              "value": 0.0,
+              "unit": "px"
+            },
+            "spread": {
+              "value": 0.0,
+              "unit": "px"
+            }
+          }
+        ]
+      },
+      "overlay": {
+        "$value": [
+          {
+            "color": {
+              "colorSpace": "srgb",
+              "components": [
+                0,
+                0,
+                0
+              ],
+              "alpha": 0,
+              "hex": "#000000"
+            },
+            "offsetX": {
+              "value": 0,
+              "unit": "px"
+            },
+            "offsetY": {
+              "value": 0,
+              "unit": "px"
+            },
+            "blur": {
+              "value": 0,
+              "unit": "px"
+            },
+            "spread": {
+              "value": 0,
+              "unit": "px"
+            }
+          }
+        ]
+      },
+      "field": {
+        "$value": [
+          {
+            "color": {
+              "colorSpace": "srgb",
+              "components": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "alpha": 0.0,
+              "hex": "#000000"
+            },
+            "offsetX": {
+              "value": 0.0,
+              "unit": "px"
+            },
+            "offsetY": {
+              "value": 0.0,
+              "unit": "px"
+            },
+            "blur": {
+              "value": 0.0,
+              "unit": "px"
+            },
+            "spread": {
+              "value": 0.0,
+              "unit": "px"
+            }
+          }
+        ]
+      },
+      "glow": {
+        "$value": [
+          {
+            "color": {
+              "colorSpace": "srgb",
+              "components": [
+                0,
+                0,
+                0
+              ],
+              "alpha": 0,
+              "hex": "#000000"
+            },
+            "offsetX": {
+              "value": 0,
+              "unit": "px"
+            },
+            "offsetY": {
+              "value": 0,
+              "unit": "px"
+            },
+            "blur": {
+              "value": 0,
+              "unit": "px"
+            },
+            "spread": {
+              "value": 0,
+              "unit": "px"
+            }
+          }
+        ]
+      },
+      "dangerGlow": {
+        "$value": [
+          {
+            "color": {
+              "colorSpace": "srgb",
+              "components": [
+                0,
+                0,
+                0
+              ],
+              "alpha": 0,
+              "hex": "#000000"
+            },
+            "offsetX": {
+              "value": 0,
+              "unit": "px"
+            },
+            "offsetY": {
+              "value": 0,
+              "unit": "px"
+            },
+            "blur": {
+              "value": 0,
+              "unit": "px"
+            },
+            "spread": {
+              "value": 0,
+              "unit": "px"
+            }
+          }
+        ]
+      },
+      "thumb": {
+        "$value": [
+          {
+            "color": {
+              "colorSpace": "srgb",
+              "components": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "alpha": 0.18,
+              "hex": "#000000"
+            },
+            "offsetX": {
+              "value": 0.0,
+              "unit": "px"
+            },
+            "offsetY": {
+              "value": 1.0,
+              "unit": "px"
+            },
+            "blur": {
+              "value": 3.0,
+              "unit": "px"
+            },
+            "spread": {
+              "value": 0.0,
+              "unit": "px"
+            }
+          },
+          {
+            "color": {
+              "colorSpace": "srgb",
+              "components": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "alpha": 0.2,
+              "hex": "#000000"
+            },
+            "offsetX": {
+              "value": 0.0,
+              "unit": "px"
+            },
+            "offsetY": {
+              "value": 0.0,
+              "unit": "px"
+            },
+            "blur": {
+              "value": 1.0,
+              "unit": "px"
+            },
+            "spread": {
+              "value": 0.0,
+              "unit": "px"
+            }
+          }
+        ]
+      }
+    }
+  }
+}

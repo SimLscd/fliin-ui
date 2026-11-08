@@ -1,0 +1,15 @@
+.tooling/
+.dart_tool/
+build/
+pubspec.lock
+*.iml
+.idea/
+.DS_Store
+.worktrees/
+
+# Written by the dart tool during some CLI tests
+packages/fliin/tool_state
+
+# Never commit a signing key nor the local state of a project
+*.key
+.fliin/local.json

@@ -1,0 +1,91 @@
+{
+  "name": "page",
+  "type": "registry:component",
+  "version": "0.2.3",
+  "title": "Page",
+  "description": "Frames a whole mobile screen: safe areas, an app bar tied to scrolling, scrolling content, a tab bar, the keyboard and pull to refresh with each platform gesture.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0",
+    "app-bar@^0.3.0",
+    "scroll-shadow@^0.2.0",
+    "separator@^0.2.0",
+    "spinner@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/page/fl_page.dart",
+      "type": "registry:component",
+      "target": "@components/page/fl_page.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "Row(crossAxisAlignment: CrossAxisAlignment.start, children: [SizedBox(width: MediaQuery.sizeOf(context).width / 2, height: MediaQuery.sizeOf(context).height, child: MediaQuery(data: MediaQuery.of(context).copyWith(size: Size(MediaQuery.sizeOf(context).width / 2, MediaQuery.sizeOf(context).height)), child: Builder(builder: (context) => MediaQuery(data: MediaQuery.of(context).copyWith(padding: const EdgeInsets.only(top: 47, bottom: 34)), child: {prefix}Page(appBar: {prefix}AppBar(title: (variant.dir == TextDirection.rtl ? 'الإعدادات' : 'Settings'), titleSize: {prefix}AppBarTitleSize.large), refresh: {prefix}PageRefresh(label: (variant.dir == TextDirection.rtl ? 'تحديث' : 'Refresh'), onRefresh: () async {}), slivers: [SliverPadding(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), sliver: SliverList.list(children: [for (var i = 0; i < 14; i++) Padding(padding: EdgeInsetsDirectional.only(bottom: {prefix}Scope.of(context).space.sm), child: SizedBox(height: 56, child: DecoratedBox(decoration: ShapeDecoration(color: {prefix}Scope.of(context).colors.surfaceRaised, shape: {prefix}ContinuousBorder(radius: {prefix}Scope.of(context).shape.radiusCard)))))]))]))))), SizedBox(width: MediaQuery.sizeOf(context).width / 2, height: MediaQuery.sizeOf(context).height, child: MediaQuery(data: MediaQuery.of(context).copyWith(size: Size(MediaQuery.sizeOf(context).width / 2, MediaQuery.sizeOf(context).height)), child: Builder(builder: (context) => MediaQuery(data: MediaQuery.of(context).copyWith(padding: const EdgeInsets.only(top: 47, bottom: 34)), child: {prefix}Page(appBar: {prefix}AppBar(title: (variant.dir == TextDirection.rtl ? 'السلة' : 'Cart')), tabBar: {prefix}PageBar(info: [Text((variant.dir == TextDirection.rtl ? 'تم رفض الدفع. لم يُخصم أي مبلغ.' : 'Payment declined. You weren’t charged.'), style: {prefix}Scope.of(context).typography.resolve({prefix}TextRole.textSm).copyWith(color: {prefix}Scope.of(context).colors.danger))], action: SizedBox(height: 48, child: DecoratedBox(decoration: ShapeDecoration(color: {prefix}Scope.of(context).colors.accent, shape: {prefix}ContinuousBorder(radius: {prefix}Scope.of(context).shape.radiusButton))))), slivers: [SliverPadding(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), sliver: SliverList.list(children: [for (var i = 0; i < 8; i++) Padding(padding: EdgeInsetsDirectional.only(bottom: {prefix}Scope.of(context).space.sm), child: SizedBox(height: 56, child: DecoratedBox(decoration: ShapeDecoration(color: {prefix}Scope.of(context).colors.surfaceRaised, shape: {prefix}ContinuousBorder(radius: {prefix}Scope.of(context).shape.radiusCard)))))]))])))))])",
+    "imports": [
+      "@components/app_bar/fl_app_bar.dart",
+      "@components/page/fl_page.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "default",
+      "bar"
+    ],
+    "canvas": {
+      "width": 780,
+      "height": 844
+    }
+  },
+  "categories": [
+    "navigation",
+    "foundation"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "default",
+      "bar"
+    ],
+    "semanticsRoles": [],
+    "intents": {
+      "fr": [
+        "créer un écran complet avec une liste qui défile",
+        "proposer de recharger une liste en la tirant vers le bas",
+        "montrer le champ saisi au-dessus du clavier",
+        "respecter l'encoche et l'indicateur d'accueil",
+        "poser les onglets sous le contenu",
+        "poser l'action d'un paiement sous la liste, toujours à portée"
+      ],
+      "en": [
+        "create a full screen with a scrolling list",
+        "let users reload a list by pulling it down",
+        "keep a text field visible above the keyboard",
+        "respect the notch and the home indicator",
+        "keep the tabs under the content",
+        "keep a pay action within reach under a long list"
+      ]
+    },
+    "notFor": [
+      "a window laid over the screen: use a bottom sheet (sheet)"
+    ],
+    "fr": {
+      "title": "Cadre d'écran",
+      "description": "Fournit le cadre d'un écran mobile : encoche et bas de l'appareil respectés, en-tête relié au défilement, contenu qui défile, navigation du bas, clavier et tirer pour rafraîchir.",
+      "notFor": [
+        "fenêtre posée sur l'écran : utiliser une feuille (sheet)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "Follows `app-bar` 0.3.0: the back button is a lone chevron in a circle, written actions are pills, and the raised bar a translucent background with a shadow. The API does not change."
+}

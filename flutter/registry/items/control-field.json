@@ -1,0 +1,101 @@
+{
+  "name": "control-field",
+  "type": "registry:component",
+  "version": "0.2.3",
+  "title": "Labeled control",
+  "description": "Lets people tap the whole label of a switch, checkbox or radio: label, helper text and error message around the control.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0",
+    "field@^0.2.0",
+    "switch@^0.2.0",
+    "checkbox@^0.2.0",
+    "radio@^0.2.0",
+    "surface@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/control_field/fl_control_field.dart",
+      "type": "registry:component",
+      "target": "@components/control_field/fl_control_field.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "Localizations(locale: Locale(variant.dir == TextDirection.rtl ? 'ar' : 'en'), delegates: const [DefaultWidgetsLocalizations.delegate], child: Directionality(textDirection: variant.dir, child: ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: Padding(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, spacing: {prefix}Scope.of(context).space.md, children: [{prefix}ControlField(value: true, onChanged: (_) {}, label: variant.dir == TextDirection.rtl ? 'الإشعارات' : 'Notifications', description: variant.dir == TextDirection.rtl ? 'الأصوات والتنبيهات' : 'Sounds and banners'), {prefix}ControlField(value: false, onChanged: (_) {}, indicator: {prefix}ControlFieldIndicator.checkbox, invalid: true, required: true, label: variant.dir == TextDirection.rtl ? 'قبول الشروط' : 'Terms accepted', error: variant.dir == TextDirection.rtl ? 'مطلوب' : 'Required'), {prefix}ControlField(value: true, onChanged: null, indicator: {prefix}ControlFieldIndicator.radio, label: variant.dir == TextDirection.rtl ? 'وضع الطيران' : 'Airplane mode', description: variant.dir == TextDirection.rtl ? 'غير متاح' : 'Unavailable')])))))",
+    "imports": [
+      "@components/control_field/fl_control_field.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "enabled",
+      "selected",
+      "unselected",
+      "disabled",
+      "invalid"
+    ],
+    "canvas": {
+      "width": 390,
+      "height": 900
+    }
+  },
+  "categories": [
+    "forms",
+    "settings"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "enabled",
+      "selected",
+      "unselected",
+      "disabled",
+      "invalid"
+    ],
+    "semanticsRoles": [
+      "toggled",
+      "checkbox",
+      "radio"
+    ],
+    "intents": {
+      "fr": [
+        "cocher une case en touchant son libellé",
+        "expliquer un contrôle par un texte d'aide sous son libellé",
+        "signaler l'erreur d'une case obligatoire",
+        "nommer un interrupteur avec un libellé et une description",
+        "ajouter un libellé qu'on touche à un radio"
+      ],
+      "en": [
+        "make the caption beside a checkbox respond to a tap",
+        "explain a control with helper text under its label",
+        "show the error of a required checkbox",
+        "describe a switch with a label and a hint",
+        "add a pressable label to a radio"
+      ]
+    },
+    "notFor": [
+      "a control alone, without a visible label: use a switch (switch), a checkbox (checkbox) or a radio button (radio)",
+      "several exclusive options of the same choice: use a radio group (radio)"
+    ],
+    "fr": {
+      "title": "Contrôle avec libellé",
+      "description": "Permet de toucher tout le libellé d'un interrupteur, d'une case ou d'un radio : libellé, texte d'aide et message d'erreur autour du contrôle.",
+      "notFor": [
+        "contrôle seul, sans libellé visible : utiliser un interrupteur (switch), une case (checkbox) ou un radio (radio)",
+        "plusieurs options exclusives d'un même choix : utiliser un groupe de radios (radio)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "`indicatorSide` puts the control at the start or the end of the line, whatever it is. `outlineSelected` outlines the checked card in `selected`, like a delivery option card. Without it, the switch stays at the end and the checkbox or radio button at the start."
+}

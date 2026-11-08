@@ -1,0 +1,95 @@
+{
+  "name": "toolbar",
+  "type": "registry:component",
+  "version": "0.1.1",
+  "title": "Toolbar",
+  "description": "Gathers the commands that act on the same content in one bar, floating or not, such as text formatting: the arrow keys move from one button to the next.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0",
+    "separator@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/toolbar/fl_toolbar.dart",
+      "type": "registry:component",
+      "target": "@components/toolbar/fl_toolbar.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: SingleChildScrollView(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, spacing: {prefix}Scope.of(context).space.sm, children: [Align(alignment: AlignmentDirectional.centerStart, child: {prefix}Toolbar(semanticLabel: (variant.dir == TextDirection.rtl ? 'إجراءات' : 'Actions'), children: [{prefix}ToggleButton.icon(label: (variant.dir == TextDirection.rtl ? 'مفضلة' : 'Favorite'), selected: true, variant: {prefix}ToggleButtonVariant.ghost, icon: {prefix}Icon({prefix}Icons.heartFill), onChanged: (_) {}), {prefix}ToggleButton.icon(label: (variant.dir == TextDirection.rtl ? 'حفظ' : 'Save'), selected: false, variant: {prefix}ToggleButtonVariant.ghost, icon: {prefix}Icon({prefix}Icons.bookmark), onChanged: (_) {}), const {prefix}Separator(), {prefix}Button.icon(label: (variant.dir == TextDirection.rtl ? 'تعديل' : 'Edit'), variant: {prefix}ButtonVariant.ghost, icon: {prefix}Icon({prefix}Icons.pencil), onPressed: () {}), {prefix}Button.icon(label: (variant.dir == TextDirection.rtl ? 'مشاركة' : 'Share'), variant: {prefix}ButtonVariant.ghost, icon: {prefix}Icon({prefix}Icons.arrowUpFromSquare), onPressed: () {})])), Padding(padding: EdgeInsetsDirectional.symmetric(vertical: {prefix}Scope.of(context).space.md), child: Center(child: {prefix}Toolbar(variant: {prefix}ToolbarVariant.attached, children: [{prefix}ButtonGroup(items: [{prefix}ButtonGroupItem.icon(label: (variant.dir == TextDirection.rtl ? 'تعديل' : 'Edit'), icon: {prefix}Icon({prefix}Icons.pencil), onPressed: () {}), {prefix}ButtonGroupItem.icon(label: (variant.dir == TextDirection.rtl ? 'مشاركة' : 'Share'), icon: {prefix}Icon({prefix}Icons.arrowUpFromSquare), onPressed: () {})]), const {prefix}Separator(), {prefix}ToggleButton.icon(label: (variant.dir == TextDirection.rtl ? 'مفضلة' : 'Favorite'), selected: true, icon: {prefix}Icon({prefix}Icons.starFill), onChanged: (_) {}), {prefix}Button.icon(label: (variant.dir == TextDirection.rtl ? 'حذف' : 'Delete'), variant: {prefix}ButtonVariant.tertiary, icon: {prefix}Icon({prefix}Icons.trashBin), onPressed: () {})]))), Align(alignment: AlignmentDirectional.centerStart, child: {prefix}Toolbar(axis: Axis.vertical, children: [{prefix}ToggleButton.icon(label: (variant.dir == TextDirection.rtl ? 'مفضلة' : 'Favorite'), selected: false, variant: {prefix}ToggleButtonVariant.ghost, icon: {prefix}Icon({prefix}Icons.heart), onChanged: (_) {}), {prefix}ToggleButton.icon(label: (variant.dir == TextDirection.rtl ? 'حفظ' : 'Save'), selected: false, variant: {prefix}ToggleButtonVariant.ghost, icon: {prefix}Icon({prefix}Icons.bookmark), onChanged: (_) {}), const {prefix}Separator(), {prefix}Button.icon(label: (variant.dir == TextDirection.rtl ? 'تعديل' : 'Edit'), variant: {prefix}ButtonVariant.ghost, icon: {prefix}Icon({prefix}Icons.pencil), onPressed: () {}), {prefix}Button.icon(label: (variant.dir == TextDirection.rtl ? 'مشاركة' : 'Share'), variant: {prefix}ButtonVariant.ghost, icon: {prefix}Icon({prefix}Icons.arrowUpFromSquare), onPressed: () {})]))])))",
+    "imports": [
+      "@components/button/fl_button.dart",
+      "@components/button_group/fl_button_group.dart",
+      "@components/separator/fl_separator.dart",
+      "@components/toggle_button/fl_toggle_button.dart",
+      "@components/toolbar/fl_toolbar.dart",
+      "@core/fliin.dart",
+      "@icons/fl_icons.dart"
+    ],
+    "states": [
+      "plain",
+      "attached",
+      "vertical"
+    ],
+    "canvas": {
+      "width": 390,
+      "height": 560
+    }
+  },
+  "categories": [
+    "actions"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "plain",
+      "attached",
+      "vertical"
+    ],
+    "semanticsRoles": [],
+    "intents": {
+      "fr": [
+        "poser une barre de mise en forme au-dessus d'un éditeur de texte",
+        "poser modifier, partager et supprimer au-dessus d'une photo",
+        "faire flotter des outils au-dessus d'un document",
+        "naviguer d'une commande à l'autre aux flèches du clavier",
+        "séparer deux familles d'outils par un filet"
+      ],
+      "en": [
+        "add a formatting toolbar above a text editor",
+        "keep edit, share and delete together above a photo",
+        "make a toolbar float over a document",
+        "move between toolbar buttons with the arrow keys",
+        "split two groups of tools with a divider"
+      ]
+    },
+    "notFor": [
+      "the main navigation between screens: use the tab bar (tab-bar)",
+      "a screen's title and actions: use the app bar (app-bar)",
+      "attached actions without a bar: use the button group (button-group)"
+    ],
+    "fr": {
+      "title": "Barre d'outils",
+      "description": "Regroupe les commandes qui agissent sur un même contenu en une barre, flottante ou non, comme la mise en forme d'un texte : flèches du clavier d'une commande à l'autre.",
+      "notFor": [
+        "la navigation principale entre écrans : utiliser la barre d'onglets (tab-bar)",
+        "l'en-tête et les actions d'un écran : utiliser la barre d'application (app-bar)",
+        "des actions accolées sans barre : utiliser les boutons accolés (button-group)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "`spacing` sets the gap between controls, `color` the background of the `attached` bar; stories for a bar of button groups (toggles then actions) and a custom style."
+}

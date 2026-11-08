@@ -1,0 +1,95 @@
+{
+  "name": "color-slider",
+  "type": "registry:component",
+  "version": "0.1.0",
+  "title": "Color slider",
+  "description": "Sets one channel of a color, hue, saturation, brightness, lightness or opacity, on a track painted with the colors it goes through.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0",
+    "color-swatch@^0.1.0"
+  ],
+  "files": [
+    {
+      "path": "components/color_slider/fl_color_slider.dart",
+      "type": "registry:component",
+      "target": "@components/color_slider/fl_color_slider.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "Builder(builder: (context) { final rtl = variant.dir == TextDirection.rtl; final theme = {prefix}Scope.of(context); String tr(String fr, String ar) => rtl ? ar : fr; const red = HSVColor.fromAHSV(1, 0, 1, 1); const blue = HSVColor.fromAHSV(0.5, 217, 0.76, 0.96); return ColoredBox( color: theme.colors.surface, child: SingleChildScrollView( padding: EdgeInsetsDirectional.all(theme.space.lg), child: Column( crossAxisAlignment: CrossAxisAlignment.stretch, spacing: theme.space.lg, children: [ {prefix}ColorSlider(value: red, channel: {prefix}ColorChannel.hue, label: tr('Hue', 'الصبغة'), onChanged: (_) {}), {prefix}ColorSlider(value: red, channel: {prefix}ColorChannel.saturation, space: {prefix}ColorSpace.hsl, label: tr('Saturation', 'التشبع'), onChanged: (_) {}), {prefix}ColorSlider(value: red, channel: {prefix}ColorChannel.lightness, space: {prefix}ColorSpace.hsl, label: tr('Lightness', 'الإضاءة'), onChanged: (_) {}), {prefix}ColorSlider(value: blue, channel: {prefix}ColorChannel.alpha, label: tr('Opacity', 'العتامة'), onChanged: (_) {}), {prefix}ColorSlider(value: blue, channel: {prefix}ColorChannel.brightness, label: tr('Brightness', 'السطوع'), onChanged: null), SizedBox( height: 160, child: Row( spacing: theme.space.xl, children: [ {prefix}ColorSlider(value: blue, channel: {prefix}ColorChannel.hue, axis: Axis.vertical, showLabel: false, label: tr('Hue', 'الصبغة'), onChanged: (_) {}), {prefix}ColorSlider(value: blue, channel: {prefix}ColorChannel.alpha, axis: Axis.vertical, label: tr('Opacity', 'العتامة'), onChanged: (_) {}), ], ), ), ], ), ), ); })",
+    "imports": [
+      "@components/color_slider/fl_color_slider.dart",
+      "@components/color_swatch/fl_color_swatch.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "hue",
+      "saturation",
+      "alpha",
+      "disabled"
+    ],
+    "canvas": {
+      "width": 390,
+      "height": 700
+    }
+  },
+  "categories": [
+    "forms"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "hue",
+      "saturation",
+      "alpha",
+      "disabled"
+    ],
+    "semanticsRoles": [
+      "slider"
+    ],
+    "intents": {
+      "fr": [
+        "régler la teinte d'une couleur sur un arc-en-ciel",
+        "ajuster la saturation ou la clarté d'une couleur",
+        "changer l'opacité d'une couleur sur un damier",
+        "afficher la valeur du canal en degrés ou en pour cent",
+        "poser un curseur de couleur vertical"
+      ],
+      "en": [
+        "adjust the hue of a colour along a rainbow track",
+        "change how saturated or light a colour is",
+        "change the opacity of a colour over a checkerboard",
+        "show the colour channel value in degrees or percent",
+        "use a vertical colour slider"
+      ]
+    },
+    "notFor": [
+      "a value that is not a color, such as a volume: use a slider (slider)",
+      "saturation and brightness together: use a color area (color-area)",
+      "a full choice with the area and the code: use a color picker (color-picker)"
+    ],
+    "fr": {
+      "title": "Curseur de couleur",
+      "description": "Permet de régler un canal d'une couleur, teinte, saturation, luminosité, clarté ou opacité, sur une piste peinte des couleurs qu'il traverse.",
+      "notFor": [
+        "une valeur qui n'est pas une couleur, comme un volume : utiliser le curseur (slider)",
+        "la saturation et la luminosité ensemble : utiliser la zone de couleur (color-area)",
+        "un choix complet avec la zone et le code : utiliser le sélecteur de couleur (color-picker)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "First version."
+}

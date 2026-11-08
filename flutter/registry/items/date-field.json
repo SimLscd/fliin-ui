@@ -1,0 +1,156 @@
+{
+  "name": "date-field",
+  "type": "registry:component",
+  "version": "0.2.4",
+  "changelog": "`leading` puts an icon or a word before the segments, `showIcon: false` removes the calendar from the end, and `variant: FlInputVariant.secondary` fills the field placed on a card. `FlSegmentedField` carries them too, and re-exports `FlInputVariant`. Without them, the rendering does not change.",
+  "title": "Date field",
+  "description": "Types a known date on the keyboard, day, month and year in the order of the language, each segment read out by name and value and adjustable by swipe.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.3",
+    "icons@^0.2.0",
+    "field@^0.2.0",
+    "text-field@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/date_field/fl_date_field.dart",
+      "type": "registry:component",
+      "target": "@components/date_field/fl_date_field.dart"
+    },
+    {
+      "path": "components/date_field/fl_segmented_field.dart",
+      "type": "registry:component",
+      "target": "@components/date_field/fl_segmented_field.dart"
+    },
+    {
+      "path": "components/date_field/fl_date_field_strings.dart",
+      "type": "registry:component",
+      "target": "@components/date_field/fl_date_field_strings.dart"
+    }
+  ],
+  "l10n": {
+    "dateFieldOrder": {
+      "en": "mdy",
+      "fr": "dmy",
+      "ar": "dmy"
+    },
+    "dateFieldSeparator": {
+      "en": "/",
+      "fr": "/",
+      "ar": "/"
+    },
+    "dateFieldPlaceholders": {
+      "en": "dd,mm,yyyy",
+      "fr": "jj,mm,aaaa",
+      "ar": "يوم,شهر,سنة"
+    },
+    "dateFieldNames": {
+      "en": "day,month,year,hour,minute,AM/PM",
+      "fr": "jour,mois,année,heure,minute,AM/PM",
+      "ar": "اليوم,الشهر,السنة,الساعة,الدقيقة,ص/م"
+    },
+    "dateFieldEmpty": {
+      "en": "empty",
+      "fr": "vide",
+      "ar": "فارغ"
+    },
+    "dateFieldMonths": {
+      "en": "January,February,March,April,May,June,July,August,September,October,November,December",
+      "fr": "janvier,février,mars,avril,mai,juin,juillet,août,septembre,octobre,novembre,décembre",
+      "ar": "يناير,فبراير,مارس,أبريل,مايو,يونيو,يوليو,أغسطس,سبتمبر,أكتوبر,نوفمبر,ديسمبر"
+    },
+    "dateFieldDigits": {
+      "en": "0123456789",
+      "fr": "0123456789",
+      "ar": "٠١٢٣٤٥٦٧٨٩"
+    },
+    "timeFieldHourCycle": {
+      "en": "12",
+      "fr": "24",
+      "ar": "12"
+    },
+    "timeFieldDayPeriods": {
+      "en": "AM,PM",
+      "fr": "AM,PM",
+      "ar": "ص,م"
+    },
+    "timeFieldSeparator": {
+      "en": ":",
+      "fr": ":",
+      "ar": ":"
+    }
+  },
+  "snippets": {},
+  "verify": {
+    "entry": "ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: SingleChildScrollView(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, spacing: {prefix}Scope.of(context).space.sm, children: [{prefix}DateField(label: (variant.dir == TextDirection.rtl ? 'تاريخ الميلاد' : 'Date of birth'), value: null, onChanged: (_) {}, autofocus: true, strings: {prefix}DateFieldStrings.language(variant.dir == TextDirection.rtl ? 'ar' : 'en')), {prefix}DateField(label: (variant.dir == TextDirection.rtl ? 'تاريخ الانتهاء' : 'Expiry date'), value: DateTime(2031, 3, 9), onChanged: (_) {}, strings: {prefix}DateFieldStrings.language(variant.dir == TextDirection.rtl ? 'ar' : 'en')), {prefix}DateField(label: (variant.dir == TextDirection.rtl ? 'تاريخ الوصول' : 'Arrival date'), description: (variant.dir == TextDirection.rtl ? 'كما هو مدوّن على التذكرة' : 'As shown on the ticket'), required: true, value: null, onChanged: (_) {}, strings: {prefix}DateFieldStrings.language(variant.dir == TextDirection.rtl ? 'ar' : 'en')), {prefix}DateField(label: (variant.dir == TextDirection.rtl ? 'تاريخ التسليم' : 'Delivery date'), error: (variant.dir == TextDirection.rtl ? 'هذا التاريخ مضى' : 'This date has passed'), value: DateTime(2026, 10, 2), onChanged: (_) {}, strings: {prefix}DateFieldStrings.language(variant.dir == TextDirection.rtl ? 'ar' : 'en')), {prefix}DateField(label: (variant.dir == TextDirection.rtl ? 'تاريخ الإرسال' : 'Send date'), value: DateTime(2026, 10, 14), onChanged: null, strings: {prefix}DateFieldStrings.language(variant.dir == TextDirection.rtl ? 'ar' : 'en'))])))",
+    "imports": [
+      "@components/date_field/fl_date_field.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "focused",
+      "filled",
+      "placeholder",
+      "invalid",
+      "disabled"
+    ],
+    "canvas": {
+      "width": 390,
+      "height": 640
+    }
+  },
+  "categories": [
+    "forms"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "focused",
+      "filled",
+      "placeholder",
+      "invalid",
+      "disabled"
+    ],
+    "semanticsRoles": [],
+    "intents": {
+      "fr": [
+        "indiquer une date de naissance au clavier",
+        "remplir une date segment par segment",
+        "demander la date d'expiration d'une carte",
+        "proposer une date connue sans calendrier",
+        "régler chaque partie d'une date par les flèches",
+        "modifier une date au clavier, chaque partie dans son propre segment"
+      ],
+      "en": [
+        "ask for a birth date with the keyboard",
+        "make a date input split into segments",
+        "ask for the expiry date of a card",
+        "collect a known date without a calendar",
+        "adjust each part of a date with arrow keys"
+      ]
+    },
+    "notFor": [
+      "a date picked by browsing months: use a date picker (date-picker)",
+      "a time of day: use a time field (time-field)"
+    ],
+    "fr": {
+      "title": "Champ de date",
+      "description": "Permet d'écrire une date connue au clavier, par segments dans l'ordre de la langue : naissance, expiration d'une carte ou d'un document.",
+      "notFor": [
+        "une date choisie en parcourant les mois : utiliser un sélecteur de date (date-picker)",
+        "une heure de la journée : utiliser un champ d'heure (time-field)"
+      ]
+    },
+    "goldens": null
+  }
+}

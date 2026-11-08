@@ -1,0 +1,95 @@
+{
+  "name": "avatar-group",
+  "type": "registry:component",
+  "version": "0.2.5",
+  "changelog": "`grid` lays the avatars side by side without overlap, `space.md` apart, and wraps; `max` and the counter stay. Default rendering unchanged.",
+  "title": "Avatar group",
+  "description": "Groups the people of a conversation or a project into a row of overlapping avatars, with a +N counter past a maximum.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0",
+    "avatar@^0.2.2"
+  ],
+  "files": [
+    {
+      "path": "components/avatar_group/fl_avatar_group.dart",
+      "type": "registry:component",
+      "target": "@components/avatar_group/fl_avatar_group.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: Padding(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, spacing: {prefix}Scope.of(context).space.sm, children: [for (final s in {prefix}AvatarSize.values.where((s) => s != {prefix}AvatarSize.xl)) Align(alignment: AlignmentDirectional.centerStart, child: {prefix}AvatarGroup(avatars: [{prefix}Avatar(initials: (variant.dir == TextDirection.rtl ? 'ج د' : 'JD'), semanticLabel: (variant.dir == TextDirection.rtl ? 'جين دو' : 'Jane Doe')), {prefix}Avatar(initials: (variant.dir == TextDirection.rtl ? 'ك و' : 'KW'), semanticLabel: (variant.dir == TextDirection.rtl ? 'كيت ويلسون' : 'Kate Wilson'), color: {prefix}AvatarColor.success), {prefix}Avatar(initials: (variant.dir == TextDirection.rtl ? 'إ ت' : 'EC'), semanticLabel: (variant.dir == TextDirection.rtl ? 'إميلي تشن' : 'Emily Chen'), color: {prefix}AvatarColor.warning), {prefix}Avatar(semanticLabel: (variant.dir == TextDirection.rtl ? 'ضيف' : 'Guest'), variant: {prefix}AvatarVariant.soft, color: {prefix}AvatarColor.danger)], max: 2, total: 8, size: s, countLabel: (n) => (variant.dir == TextDirection.rtl ? 'و$n آخرين' : 'and $n more'))), Align(alignment: AlignmentDirectional.centerStart, child: {prefix}AvatarGroup(avatars: [{prefix}Avatar(initials: (variant.dir == TextDirection.rtl ? 'ج د' : 'JD'), semanticLabel: (variant.dir == TextDirection.rtl ? 'جين دو' : 'Jane Doe')), {prefix}Avatar(initials: (variant.dir == TextDirection.rtl ? 'ك و' : 'KW'), semanticLabel: (variant.dir == TextDirection.rtl ? 'كيت ويلسون' : 'Kate Wilson'), color: {prefix}AvatarColor.success), {prefix}Avatar(initials: (variant.dir == TextDirection.rtl ? 'إ ت' : 'EC'), semanticLabel: (variant.dir == TextDirection.rtl ? 'إميلي تشن' : 'Emily Chen'), color: {prefix}AvatarColor.warning), {prefix}Avatar(semanticLabel: (variant.dir == TextDirection.rtl ? 'ضيف' : 'Guest'), variant: {prefix}AvatarVariant.soft, color: {prefix}AvatarColor.danger)], max: 3, overlap: {prefix}AvatarGroupOverlap.ring, countLabel: (n) => (variant.dir == TextDirection.rtl ? 'و$n آخرين' : 'and $n more'))), Align(alignment: AlignmentDirectional.centerStart, child: {prefix}AvatarGroup(avatars: [{prefix}Avatar(initials: (variant.dir == TextDirection.rtl ? 'ج د' : 'JD'), semanticLabel: (variant.dir == TextDirection.rtl ? 'جين دو' : 'Jane Doe')), {prefix}Avatar(initials: (variant.dir == TextDirection.rtl ? 'ك و' : 'KW'), semanticLabel: (variant.dir == TextDirection.rtl ? 'كيت ويلسون' : 'Kate Wilson'), color: {prefix}AvatarColor.success), {prefix}Avatar(initials: (variant.dir == TextDirection.rtl ? 'إ ت' : 'EC'), semanticLabel: (variant.dir == TextDirection.rtl ? 'إميلي تشن' : 'Emily Chen'), color: {prefix}AvatarColor.warning), {prefix}Avatar(semanticLabel: (variant.dir == TextDirection.rtl ? 'ضيف' : 'Guest'), variant: {prefix}AvatarVariant.soft, color: {prefix}AvatarColor.danger)], size: {prefix}AvatarSize.sm))])))",
+    "imports": [
+      "@components/avatar_group/fl_avatar_group.dart",
+      "@components/avatar/fl_avatar.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "stacked",
+      "overflow",
+      "ring"
+    ],
+    "canvas": {
+      "width": 390,
+      "height": 440
+    },
+    "settleMs": 400
+  },
+  "categories": [
+    "data-display",
+    "messaging"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "stacked",
+      "overflow",
+      "ring"
+    ],
+    "semanticsRoles": [
+      "image"
+    ],
+    "intents": {
+      "fr": [
+        "montrer les membres d'un projet en avatars superposés",
+        "afficher qui participe à une discussion de groupe",
+        "indiquer combien d'autres personnes suivent une conversation",
+        "présenter les invités d'un événement en une ligne compacte",
+        "lister les collaborateurs d'une tâche sur une carte",
+        "afficher les photos de profil des membres en pile, avec un compte des autres"
+      ],
+      "en": [
+        "show project members as overlapping avatars",
+        "show who is in a group chat",
+        "show how many more people follow a thread",
+        "present event guests in a compact row",
+        "show the people assigned to a task on a card",
+        "show stacked profile pictures of members with a count of the others"
+      ]
+    },
+    "notFor": [
+      "a single person: use an avatar (avatar)",
+      "an unread count on an icon: use a badge (badge)"
+    ],
+    "fr": {
+      "title": "Groupe d'avatars",
+      "description": "Regroupe en une rangée d'avatars qui se chevauchent les participants d'une conversation ou d'un projet, avec un compteur +N au-delà d'un maximum.",
+      "notFor": [
+        "une seule personne : utiliser un avatar (avatar)",
+        "compte non lu sur une icône : utiliser une pastille (badge)"
+      ]
+    },
+    "goldens": null
+  }
+}

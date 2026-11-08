@@ -1,0 +1,97 @@
+{
+  "name": "segmented",
+  "type": "registry:component",
+  "version": "0.3.4",
+  "title": "Segmented control",
+  "description": "Picks one of two to five short options shown side by side, such as day, week or month, with a sliding selection and radio group semantics.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/segmented/fl_segmented.dart",
+      "type": "registry:component",
+      "target": "@components/segmented/fl_segmented.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: Padding(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, spacing: {prefix}Scope.of(context).space.sm, children: [{prefix}Segmented<String>(semanticLabel: (variant.dir == TextDirection.rtl ? 'الفترة' : 'Period'), value: 'Week', onChanged: (_) {}, segments: [for (final (fr, ar) in const [('Day', 'يوم'), ('Week', 'أسبوع'), ('Month', 'شهر')]) {prefix}Segment(value: fr, label: variant.dir == TextDirection.rtl ? ar : fr)]), {prefix}Segmented<String>(semanticLabel: (variant.dir == TextDirection.rtl ? 'الفوترة' : 'Billing'), value: 'Yearly', size: {prefix}SegmentedSize.sm, onChanged: (_) {}, segments: [for (final (fr, ar) in const [('Monthly', 'شهري'), ('Yearly', 'سنوي')]) {prefix}Segment(value: fr, label: variant.dir == TextDirection.rtl ? ar : fr)]), {prefix}Segmented<String>(semanticLabel: (variant.dir == TextDirection.rtl ? 'العرض' : 'View'), value: 'Grid', size: {prefix}SegmentedSize.lg, onChanged: (_) {}, segments: [for (final (fr, ar) in const [('List', 'قائمة'), ('Grid', 'شبكة'), ('Map', 'خريطة')]) {prefix}Segment(value: fr, label: variant.dir == TextDirection.rtl ? ar : fr, icon: Builder(builder: (context) => Center(child: SizedBox.square(dimension: IconTheme.of(context).size! / 2, child: DecoratedBox(decoration: ShapeDecoration(color: IconTheme.of(context).color, shape: const CircleBorder()))))))]), {prefix}Segmented<String>(semanticLabel: (variant.dir == TextDirection.rtl ? 'المدة' : 'Duration'), value: '30 d', onChanged: (_) {}, segments: [for (final (i, (fr, ar)) in const [('7 d', '٧ أيام'), ('30 d', '٣٠ يومًا'), ('90 d', '٩٠ يومًا'), ('6 mo', '٦ أشهر'), ('1 year', 'سنة')].indexed) {prefix}Segment(value: fr, label: variant.dir == TextDirection.rtl ? ar : fr, disabled: i == 3)]), {prefix}Segmented<String>(semanticLabel: (variant.dir == TextDirection.rtl ? 'السمة' : 'Theme'), value: 'Light', enabled: false, onChanged: (_) {}, segments: [for (final (fr, ar) in const [('Light', 'فاتح'), ('Dark', 'داكن')]) {prefix}Segment(value: fr, label: variant.dir == TextDirection.rtl ? ar : fr)])])))",
+    "imports": [
+      "@components/segmented/fl_segmented.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "selected",
+      "icons",
+      "disabled"
+    ],
+    "canvas": {
+      "width": 390,
+      "height": 640
+    }
+  },
+  "categories": [
+    "forms",
+    "navigation"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "selected",
+      "icons",
+      "disabled"
+    ],
+    "semanticsRoles": [
+      "radioGroup"
+    ],
+    "intents": {
+      "fr": [
+        "choisir entre jour, semaine et mois au-dessus d'un graphique",
+        "passer de la facturation mensuelle à annuelle",
+        "passer d'une vue en liste à une vue en grille",
+        "proposer deux ou trois options courtes côte à côte",
+        "filtrer une période par segments accolés",
+        "proposer quelques choix accolés dont un seul reste actif"
+      ],
+      "en": [
+        "pick day, week or month above a chart",
+        "switch between monthly and yearly billing",
+        "switch the results from a list to a grid",
+        "offer a few short options as joined buttons",
+        "choose a time range from buttons side by side",
+        "make a group of toggle buttons where one stays pressed",
+        "use a segmented control to filter what a chart shows"
+      ]
+    },
+    "notFor": [
+      "sections or categories that change the whole view: use tabs (tabs)",
+      "long options, or more than five: use radio buttons (radio)",
+      "a long list of choices in a form: use a select (select)",
+      "a continuous value between a minimum and a maximum: use a slider (slider)"
+    ],
+    "fr": {
+      "title": "Contrôle segmenté",
+      "description": "Permet de choisir une option parmi deux à cinq choix toujours visibles, posés dans une capsule : jour, semaine ou mois, mensuel ou annuel. Le pouce blanc du choix glisse de l'un à l'autre.",
+      "notFor": [
+        "sections ou catégories qui changent toute la vue : utiliser des onglets (tabs)",
+        "options longues ou plus de cinq : utiliser des boutons radio (radio)",
+        "longue liste de choix dans un formulaire : utiliser une liste déroulante (select)",
+        "valeur continue entre un minimum et un maximum : utiliser un curseur (slider)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "Icon-only segments (`FlSegment(iconOnly: true)`, the label is still read by the screen reader); `expand: false` leaves each segment at its own width and puts the group at the start of its space."
+}

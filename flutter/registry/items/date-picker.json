@@ -1,0 +1,107 @@
+{
+  "name": "date-picker",
+  "type": "registry:component",
+  "version": "0.2.3",
+  "title": "Date picker",
+  "description": "Picks a date from a form field that opens the calendar, as a bottom sheet on phones and a popover on tablets, with the chosen date written out in full and a button to clear it.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0",
+    "icons@^0.2.0",
+    "field@^0.2.0",
+    "text-field@^0.2.0",
+    "button@^0.2.0",
+    "popover@^0.2.0",
+    "sheet@^0.2.0",
+    "calendar@^0.2.5"
+  ],
+  "files": [
+    {
+      "path": "components/date_picker/fl_date_picker.dart",
+      "type": "registry:component",
+      "target": "@components/date_picker/fl_date_picker.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "Overlay(initialEntries: [OverlayEntry(builder: (context) => ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: Padding(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: SingleChildScrollView(child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, spacing: {prefix}Scope.of(context).space.lg, children: [{prefix}DatePicker(label: (variant.dir == TextDirection.rtl ? 'تاريخ الموعد' : 'Appointment date'), placeholder: (variant.dir == TextDirection.rtl ? 'اختر تاريخًا' : 'Choose a date'), clearLabel: (variant.dir == TextDirection.rtl ? 'مسح التاريخ' : 'Clear the date'), value: DateTime(2026, 10, 14), onChanged: (_) {}, presentation: {prefix}DatePickerPresentation.popover, defaultOpen: true, today: DateTime(2026, 10, 24), strings: {prefix}CalendarStrings.language(variant.dir == TextDirection.rtl ? 'ar' : 'en')), const SizedBox(height: 360), {prefix}DatePicker(label: (variant.dir == TextDirection.rtl ? 'تاريخ التسليم' : 'Delivery date'), placeholder: (variant.dir == TextDirection.rtl ? 'اختر تاريخًا' : 'Choose a date'), description: (variant.dir == TextDirection.rtl ? 'من الاثنين إلى الجمعة' : 'Monday to Friday'), required: true, value: null, onChanged: (_) {}, presentation: {prefix}DatePickerPresentation.popover, today: DateTime(2026, 10, 24), strings: {prefix}CalendarStrings.language(variant.dir == TextDirection.rtl ? 'ar' : 'en')), {prefix}DatePicker(label: (variant.dir == TextDirection.rtl ? 'تاريخ العودة' : 'Return date'), placeholder: (variant.dir == TextDirection.rtl ? 'اختر تاريخًا' : 'Choose a date'), error: (variant.dir == TextDirection.rtl ? 'هذا التاريخ مضى' : 'This date has passed'), value: DateTime(2026, 10, 2), onChanged: (_) {}, presentation: {prefix}DatePickerPresentation.popover, today: DateTime(2026, 10, 24), strings: {prefix}CalendarStrings.language(variant.dir == TextDirection.rtl ? 'ar' : 'en')), {prefix}DatePicker(label: (variant.dir == TextDirection.rtl ? 'تاريخ الإرسال' : 'Send date'), placeholder: (variant.dir == TextDirection.rtl ? 'اختر تاريخًا' : 'Choose a date'), value: DateTime(2026, 10, 14), onChanged: null, presentation: {prefix}DatePickerPresentation.popover, today: DateTime(2026, 10, 24), strings: {prefix}CalendarStrings.language(variant.dir == TextDirection.rtl ? 'ar' : 'en'))])))))])",
+    "imports": [
+      "@components/date_picker/fl_date_picker.dart",
+      "@components/calendar/fl_calendar_strings.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "open",
+      "selected",
+      "placeholder",
+      "invalid",
+      "disabled"
+    ],
+    "canvas": {
+      "width": 390,
+      "height": 900
+    },
+    "settleMs": 400
+  },
+  "categories": [
+    "forms",
+    "overlays"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "open",
+      "selected",
+      "placeholder",
+      "invalid",
+      "disabled"
+    ],
+    "semanticsRoles": [
+      "button",
+      "dialog"
+    ],
+    "intents": {
+      "fr": [
+        "choisir une date d'échéance dans un champ de formulaire",
+        "ouvrir le calendrier au toucher d'un champ de date",
+        "afficher en toutes lettres la date retenue",
+        "supprimer la date retenue d'un champ",
+        "proposer un calendrier flottant sous un champ sur tablette"
+      ],
+      "en": [
+        "pick a due date from a form field",
+        "open the calendar when a date input is tapped",
+        "show the chosen date spelled out in the field",
+        "let people clear the date they chose",
+        "offer a floating calendar under a date input on tablets",
+        "use a date input with a calendar popover to select a date"
+      ]
+    },
+    "notFor": [
+      "a month grid always visible on the screen: use a calendar (calendar)",
+      "a period with a start and an end: use a date range picker (date-range-picker)",
+      "a known date typed on the keyboard: use a date field (date-field)"
+    ],
+    "fr": {
+      "title": "Sélecteur de date",
+      "description": "Permet de choisir une date dans un formulaire : un champ qui ouvre le calendrier, en feuille sur mobile et en popover sur tablette. Échéance, inscription.",
+      "notFor": [
+        "une grille de mois toujours visible dans l'écran : utiliser un calendrier (calendar)",
+        "une période avec un début et une fin : utiliser un sélecteur de période (date-range-picker)",
+        "une date connue tapée au clavier : utiliser un champ de date (date-field)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "`format` writes the date the app's way (in full by default), `variant: FlInputVariant.secondary` fills the field on a card (`FlDatePickerField` carries it too), and `indicatorOf` passes its dots for planned days to the open calendar. `FlInputVariant` is re-exported. Requires `calendar` 0.2.5. Without them, the rendering does not change."
+}

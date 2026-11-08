@@ -1,0 +1,85 @@
+{
+  "name": "field",
+  "type": "registry:component",
+  "version": "0.2.3",
+  "title": "Field label, description and error",
+  "description": "Says what a field asks for, explains it and reports its error: label with a required asterisk, description, announced error message.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/field/fl_field.dart",
+      "type": "registry:component",
+      "target": "@components/field/fl_field.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: Padding(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, spacing: {prefix}Scope.of(context).space.sm, children: [{prefix}FieldScope(invalid: false, disabled: false, required: true, child: Column(crossAxisAlignment: CrossAxisAlignment.start, spacing: {prefix}Scope.of(context).space.xs, children: [{prefix}Label((variant.dir == TextDirection.rtl ? 'البريد الإلكتروني' : 'Email address')), {prefix}Description((variant.dir == TextDirection.rtl ? 'للإيصالات فقط.' : 'For receipts only.'), hideOnInvalid: true), {prefix}FieldError((variant.dir == TextDirection.rtl ? 'عنوان غير صالح.' : 'Invalid address.'))])), {prefix}FieldScope(invalid: true, disabled: false, required: true, child: Column(crossAxisAlignment: CrossAxisAlignment.start, spacing: {prefix}Scope.of(context).space.xs, children: [{prefix}Label((variant.dir == TextDirection.rtl ? 'البريد الإلكتروني' : 'Email address')), {prefix}Description((variant.dir == TextDirection.rtl ? 'للإيصالات فقط.' : 'For receipts only.'), hideOnInvalid: true), {prefix}FieldError((variant.dir == TextDirection.rtl ? 'عنوان غير صالح.' : 'Invalid address.'))])), {prefix}FieldScope(invalid: false, disabled: true, required: true, child: Column(crossAxisAlignment: CrossAxisAlignment.start, spacing: {prefix}Scope.of(context).space.xs, children: [{prefix}Label((variant.dir == TextDirection.rtl ? 'البريد الإلكتروني' : 'Email address')), {prefix}Description((variant.dir == TextDirection.rtl ? 'للإيصالات فقط.' : 'For receipts only.'), hideOnInvalid: true), {prefix}FieldError((variant.dir == TextDirection.rtl ? 'عنوان غير صالح.' : 'Invalid address.'))]))])))",
+    "imports": [
+      "@components/field/fl_field.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "enabled",
+      "invalid",
+      "disabled"
+    ],
+    "canvas": {
+      "width": 390,
+      "height": 830
+    }
+  },
+  "categories": [
+    "forms"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "enabled",
+      "invalid",
+      "disabled"
+    ],
+    "semanticsRoles": [],
+    "intents": {
+      "fr": [
+        "nommer un champ de formulaire",
+        "marquer un champ obligatoire d'un astérisque",
+        "expliquer ce qu'un champ attend",
+        "signaler une erreur de saisie",
+        "afficher le message d'un champ invalide"
+      ],
+      "en": [
+        "add a label to a form field",
+        "show an asterisk on a required field",
+        "explain what a field expects",
+        "show an input error",
+        "show the message of an invalid field"
+      ]
+    },
+    "notFor": [
+      "text input: use a text field (text-field)"
+    ],
+    "fr": {
+      "title": "Libellé, description et erreur de champ",
+      "description": "Indique ce qu'un champ demande, l'explique et signale son erreur : libellé avec astérisque, description, message d'erreur annoncé.",
+      "notFor": [
+        "saisie de texte : utiliser un champ (text-field)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "`FlField` takes an optional `labelTrailing`, placed at the end of the label line: a “Forgot password?” link, a counter, an “Optional” note. Without it, rendering unchanged."
+}

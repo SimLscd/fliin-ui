@@ -1,0 +1,94 @@
+{
+  "name": "color-swatch",
+  "type": "registry:component",
+  "version": "0.1.0",
+  "title": "Color swatch",
+  "description": "Shows a color the app picked in a round or square swatch, over a checkerboard that shows through a translucent tint. Screen readers read its name.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/color_swatch/fl_color_swatch.dart",
+      "type": "registry:component",
+      "target": "@components/color_swatch/fl_color_swatch.dart"
+    },
+    {
+      "path": "components/color_swatch/fl_color_channel.dart",
+      "type": "registry:component",
+      "target": "@components/color_swatch/fl_color_channel.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "Builder(builder: (context) { final rtl = variant.dir == TextDirection.rtl; final theme = {prefix}Scope.of(context); String tr(String fr, String ar) => rtl ? ar : fr; final tints = [ (tr('Blue', 'أزرق'), const HSVColor.fromAHSV(1, 217, 0.76, 0.96)), (tr('Pink', 'وردي'), const HSVColor.fromAHSV(1, 350, 0.74, 0.96)), (tr('Emerald', 'زمردي'), const HSVColor.fromAHSV(1, 160, 0.9, 0.73)), (tr('White', 'أبيض'), const HSVColor.fromAHSV(1, 0, 0, 0.98)), ]; return ColoredBox( color: theme.colors.surface, child: SingleChildScrollView( padding: EdgeInsetsDirectional.all(theme.space.lg), child: Column( crossAxisAlignment: CrossAxisAlignment.start, spacing: theme.space.xl, children: [ for (final shape in {prefix}ColorSwatchShape.values) Wrap( spacing: theme.space.md, runSpacing: theme.space.md, crossAxisAlignment: WrapCrossAlignment.center, children: [ for (final size in {prefix}ColorSwatchSize.values) {prefix}ColorSwatch(color: tints.first.$2.toColor(), label: tints.first.$1, size: size, shape: shape), ], ), Wrap( spacing: theme.space.md, runSpacing: theme.space.md, children: [ for (final (name, tint) in tints) Column( mainAxisSize: MainAxisSize.min, spacing: theme.space.xs, children: [ {prefix}ColorSwatch(color: tint.toColor(), label: name, size: {prefix}ColorSwatchSize.xl), ExcludeSemantics( child: Text( flColorHex(tint.toColor()), textDirection: TextDirection.ltr, style: theme.typography.resolve({prefix}TextRole.textXs).copyWith(color: theme.colors.onSurfaceMuted), ), ), ], ), for (final (name, tint) in tints.take(3)) {prefix}ColorSwatch( color: tint.withAlpha(0.4).toColor(), label: tr('$name at 40%', '$name ٤٠٪'), size: {prefix}ColorSwatchSize.xl, shape: {prefix}ColorSwatchShape.square, ), ], ), ], ), ), ); })",
+    "imports": [
+      "@components/color_swatch/fl_color_swatch.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "opaque",
+      "translucent"
+    ],
+    "canvas": {
+      "width": 390,
+      "height": 440
+    }
+  },
+  "categories": [
+    "data-display"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "opaque",
+      "translucent"
+    ],
+    "semanticsRoles": [
+      "image"
+    ],
+    "intents": {
+      "fr": [
+        "montrer la couleur d'un produit dans un échantillon",
+        "afficher la teinte d'un agenda à côté de son nom",
+        "présenter une couleur translucide sur un damier",
+        "nommer une couleur pour le lecteur d'écran",
+        "poser un échantillon de couleur en cercle ou en carré, de cinq tailles"
+      ],
+      "en": [
+        "show a product colour as a swatch",
+        "show a calendar colour next to its name",
+        "present a translucent colour over a checkerboard",
+        "give a colour a name for screen readers",
+        "use a round or square colour swatch in five sizes"
+      ]
+    },
+    "notFor": [
+      "picking a shade from a palette: use a color swatch picker (color-swatch-picker)",
+      "setting any color freely: use a color picker (color-picker)",
+      "a status dot next to an avatar: use a badge (badge)"
+    ],
+    "fr": {
+      "title": "Échantillon de couleur",
+      "description": "Indique une couleur choisie par l'app dans un échantillon en cercle ou en carré, sur un damier qui transparaît sous une teinte translucide. Le lecteur d'écran lit son nom.",
+      "notFor": [
+        "choisir une teinte dans une palette : utiliser le choix de teinte (color-swatch-picker)",
+        "régler une couleur librement : utiliser le sélecteur de couleur (color-picker)",
+        "une pastille de statut à côté d'un avatar : utiliser le badge (badge)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "First version."
+}

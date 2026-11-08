@@ -1,0 +1,92 @@
+{
+  "name": "progress",
+  "type": "registry:component",
+  "version": "0.2.5",
+  "title": "Progress indicator",
+  "description": "Shows how far a task has gone, or that it is running. A bar and a ring in three sizes and five colors, with label and percentage; the running bar stands still when motion is reduced.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/progress/fl_progress.dart",
+      "type": "registry:component",
+      "target": "@components/progress/fl_progress.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: Padding(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, spacing: {prefix}Scope.of(context).space.md, children: [{prefix}Progress.linear(value: 0.4, label: (variant.dir == TextDirection.rtl ? 'الرفع' : 'Uploading'), showLabel: true), for (final s in {prefix}ProgressSize.values) {prefix}Progress.linear(value: 0.7, size: s, color: {prefix}ProgressColor.values[s.index + 2], label: (variant.dir == TextDirection.rtl ? 'التخزين' : 'Storage')), {prefix}Progress.linear(label: (variant.dir == TextDirection.rtl ? 'التحضير' : 'Preparing')), Row(spacing: {prefix}Scope.of(context).space.lg, children: [for (final s in {prefix}ProgressSize.values) {prefix}Progress.circular(value: 0.7, size: s, label: (variant.dir == TextDirection.rtl ? 'المزامنة' : 'Syncing'))])])))",
+    "imports": [
+      "@components/progress/fl_progress.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "determinate",
+      "indeterminate"
+    ],
+    "settleMs": 600,
+    "canvas": {
+      "width": 390,
+      "height": 360
+    }
+  },
+  "categories": [
+    "feedback"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "determinate",
+      "indeterminate"
+    ],
+    "semanticsRoles": [
+      "progressBar",
+      "loadingSpinner"
+    ],
+    "intents": {
+      "fr": [
+        "montrer l'avancement d'un téléversement",
+        "afficher un chargement en cours",
+        "ajouter une barre de progression",
+        "indiquer une synchronisation avec un anneau",
+        "faire patienter pendant un traitement",
+        "montrer où en est un chargement de données"
+      ],
+      "en": [
+        "show upload progress",
+        "show a loading indicator",
+        "add a progress bar",
+        "show sync progress as a ring",
+        "let users know work is in progress",
+        "show progress while data is fetched",
+        "show how much of a download is done"
+      ]
+    },
+    "notFor": [
+      "a button that starts the action and waits: use the button's loading state (button)",
+      "a value the user sets: use a slider (slider)"
+    ],
+    "fr": {
+      "title": "Indicateur de progression",
+      "description": "Indique où en est une tâche longue, comme un téléversement : barre ou anneau rempli dans le sens de lecture, en trois tailles et cinq couleurs, avec libellé et pourcentage, ou barre indéterminée.",
+      "notFor": [
+        "bouton qui lance l'action et attend : utiliser l'état chargement du bouton (button)",
+        "réglage d'une valeur par l'utilisateur : utiliser un curseur (slider)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "`showLabel` also applies to the ring: its name and its value, muted, on a line after it. Without it, the rendering does not change. Also fixes a `valueLabel` that does not write a number (“$750 of $1,000”): the engine refused this progress bar value; it is now read after the label, the value staying the percentage."
+}

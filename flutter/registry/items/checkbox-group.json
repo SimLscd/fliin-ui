@@ -1,0 +1,99 @@
+{
+  "name": "checkbox-group",
+  "type": "registry:component",
+  "version": "0.2.2",
+  "title": "Checkbox group",
+  "description": "Ticks several options under one label, description and error, such as interests or alert channels, read by screen readers as one named group.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0",
+    "field@^0.2.0",
+    "control-field@^0.2.0",
+    "checkbox@^0.2.3"
+  ],
+  "files": [
+    {
+      "path": "components/checkbox_group/fl_checkbox_group.dart",
+      "type": "registry:component",
+      "target": "@components/checkbox_group/fl_checkbox_group.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "Localizations(locale: Locale(variant.dir == TextDirection.rtl ? 'ar' : 'en'), delegates: const [DefaultWidgetsLocalizations.delegate], child: Directionality(textDirection: variant.dir, child: ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: Padding(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, spacing: {prefix}Scope.of(context).space.xl, children: [{prefix}CheckboxGroup<String>(label: (variant.dir == TextDirection.rtl ? 'الاهتمامات' : 'Interests'), description: (variant.dir == TextDirection.rtl ? 'اختر كل ما يناسبك' : 'Choose everything you like'), value: const {'cuisine'}, onChanged: (_) {}, options: [{prefix}CheckboxGroupOption(value: 'cuisine', label: (variant.dir == TextDirection.rtl ? 'الطبخ' : 'Cooking')), {prefix}CheckboxGroupOption(value: 'voyage', label: (variant.dir == TextDirection.rtl ? 'السفر' : 'Travel'), description: (variant.dir == TextDirection.rtl ? 'رحلات وعروض' : 'Stays and deals')), {prefix}CheckboxGroupOption(value: 'sport', label: (variant.dir == TextDirection.rtl ? 'الرياضة' : 'Sports'), disabled: true)]), {prefix}CheckboxGroup<String>(label: (variant.dir == TextDirection.rtl ? 'التنبيهات' : 'Alerts'), required: true, invalid: true, error: (variant.dir == TextDirection.rtl ? 'اختر قناة واحدة على الأقل' : 'Choose at least one channel'), value: const {}, onChanged: (_) {}, options: [{prefix}CheckboxGroupOption(value: 'mail', label: (variant.dir == TextDirection.rtl ? 'البريد' : 'Email')), {prefix}CheckboxGroupOption(value: 'sms', label: 'SMS')])])))))",
+    "imports": [
+      "@components/checkbox_group/fl_checkbox_group.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "enabled",
+      "selected",
+      "unselected",
+      "disabled",
+      "invalid"
+    ],
+    "canvas": {
+      "width": 390,
+      "height": 1040
+    }
+  },
+  "categories": [
+    "forms",
+    "settings"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "enabled",
+      "selected",
+      "unselected",
+      "disabled",
+      "invalid"
+    ],
+    "semanticsRoles": [
+      "checkbox"
+    ],
+    "intents": {
+      "fr": [
+        "cocher plusieurs options sous un même libellé",
+        "choisir ses centres d'intérêt dans une liste",
+        "signaler qu'il faut cocher au moins une option",
+        "grouper des cases sous une erreur commune",
+        "demander les canaux de notification voulus"
+      ],
+      "en": [
+        "select several options under one label",
+        "pick your interests from a list",
+        "show that at least one option must be ticked",
+        "show one shared error for several checkboxes",
+        "ask which notification channels to use"
+      ]
+    },
+    "notFor": [
+      "a single option among several: use radio buttons (radio)",
+      "a single box with its label: use a labeled control (control-field)",
+      "grouped switches: use a switch group (switch-group)"
+    ],
+    "fr": {
+      "title": "Groupe de cases",
+      "description": "Permet de cocher plusieurs options sous un libellé, une description et une erreur communs : centres d'intérêt, canaux d'alerte, options d'une commande.",
+      "notFor": [
+        "une seule option parmi plusieurs : utiliser des boutons radio (radio)",
+        "une seule case avec son libellé : utiliser un contrôle avec libellé (control-field)",
+        "interrupteurs groupés : utiliser un groupe d'interrupteurs (switch-group)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "“Select all” (`selectAllLabel`): a mixed checkbox above the others, indented under it, that checks every enabled box or unchecks them; `framed` puts each checkbox on its own card; `variant: FlControlFieldVariant.secondary` for a group on a surface."
+}

@@ -1,0 +1,83 @@
+{
+  "name": "card",
+  "type": "registry:component",
+  "version": "0.2.3",
+  "changelog": "The card gains layouts without changing the common case: `media` puts an image before the content (`FlCardMedia`, `radiusXxl` corners, or `bleed` to the edges), above or at the start when `axis` is horizontal; `background` fills the whole card under the content; `trailing` pins a button in the top end corner, `space.md` from the edges, and the first child moves away from it; `spacing` sets the gap between children. `FlCardHeader` and `FlCardBody` take a `spacing`, `FlCardFooter` an `alignment` (`WrapAlignment.start` keeps its children together). The default rendering does not change.",
+  "title": "Card",
+  "description": "Groups a header, a title, a description and actions on a shadowed surface: a product, an offer, an account summary.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0",
+    "surface@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/card/fl_card.dart",
+      "type": "registry:component",
+      "target": "@components/card/fl_card.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: Padding(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, spacing: {prefix}Scope.of(context).space.md, children: [{prefix}Card(variant: {prefix}SurfaceVariant.primary, children: [{prefix}CardHeader(children: [SizedBox.square(dimension: 24, child: DecoratedBox(decoration: ShapeDecoration(color: {prefix}Scope.of(context).colors.accent, shape: const CircleBorder())))]), {prefix}CardBody(children: [{prefix}CardTitle((variant.dir == TextDirection.rtl ? 'أريكة غرفة المعيشة' : 'Living room sofa')), {prefix}CardDescription((variant.dir == TextDirection.rtl ? 'التوصيل خلال عشرة أيام.' : 'Delivered within ten days.'))])]), {prefix}Card(variant: {prefix}SurfaceVariant.secondary, children: [{prefix}CardBody(children: [{prefix}CardTitle((variant.dir == TextDirection.rtl ? 'الفاتورة القادمة' : 'Next invoice')), {prefix}CardDescription((variant.dir == TextDirection.rtl ? 'في 3 مارس، 12 يورو.' : 'March 3, €12.'))])]), {prefix}Card(variant: {prefix}SurfaceVariant.tertiary, children: [{prefix}CardBody(children: [{prefix}CardTitle((variant.dir == TextDirection.rtl ? 'وسيلة الدفع' : 'Payment method')), {prefix}CardDescription((variant.dir == TextDirection.rtl ? 'بطاقة تنتهي بـ 4829.' : 'Card ending in 4829.'))])]), {prefix}Card(variant: {prefix}SurfaceVariant.transparent, children: [{prefix}CardBody(children: [{prefix}CardTitle((variant.dir == TextDirection.rtl ? 'السجل' : 'History')), {prefix}CardDescription((variant.dir == TextDirection.rtl ? 'ثلاثة طلبات هذا العام.' : 'Three orders this year.'))])])])))",
+    "imports": [
+      "@components/card/fl_card.dart",
+      "@components/surface/fl_surface.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [],
+    "canvas": {
+      "width": 390,
+      "height": 900
+    }
+  },
+  "categories": [
+    "data-display"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [],
+    "semanticsRoles": [],
+    "intents": {
+      "fr": [
+        "présenter un produit sur une carte avec son prix",
+        "montrer un résumé de compte dans un bloc ombré",
+        "grouper un titre, un texte et des boutons d'action",
+        "afficher une offre avec une icône en tête",
+        "ranger des informations en cartes empilées"
+      ],
+      "en": [
+        "present a product on a card with its price",
+        "show an account summary in a raised block",
+        "keep a heading, some text and action buttons together",
+        "show an offer with an icon at the top",
+        "keep related details together in stacked cards"
+      ]
+    },
+    "notFor": [
+      "a plain background with no title or description: use a surface (surface)",
+      "a window over the page: use a dialog (dialog)",
+      "a bubble opened against a button: use a popover (popover)"
+    ],
+    "fr": {
+      "title": "Carte",
+      "description": "Regroupe sur une surface ombrée un en-tête, un titre, une description et des actions : un produit, une offre, un résumé de compte.",
+      "notFor": [
+        "fond seul sans titre ni description : utiliser une surface (surface)",
+        "fenêtre par-dessus la page : utiliser un dialogue (dialog)",
+        "une bulle ouverte contre un bouton : utiliser un popover (popover)"
+      ]
+    },
+    "goldens": null
+  }
+}

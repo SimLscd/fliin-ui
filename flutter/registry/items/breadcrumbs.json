@@ -1,0 +1,94 @@
+{
+  "name": "breadcrumbs",
+  "type": "registry:component",
+  "version": "0.1.1",
+  "title": "Breadcrumbs",
+  "description": "Shows where the current page sits in a hierarchy and goes back up a level: pressable levels between chevrons, on one line that scrolls and cuts long names.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0",
+    "icons@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/breadcrumbs/fl_breadcrumbs.dart",
+      "type": "registry:component",
+      "target": "@components/breadcrumbs/fl_breadcrumbs.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: SingleChildScrollView(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, spacing: {prefix}Scope.of(context).space.sm, children: [{prefix}Breadcrumbs(semanticLabel: (variant.dir == TextDirection.rtl ? 'مسار التنقل' : 'Breadcrumbs'), items: [{prefix}Breadcrumb(label: (variant.dir == TextDirection.rtl ? 'الرئيسية' : 'Home'), onPressed: () {}), {prefix}Breadcrumb(label: (variant.dir == TextDirection.rtl ? 'المنتجات' : 'Products'), onPressed: () {}), {prefix}Breadcrumb(label: (variant.dir == TextDirection.rtl ? 'الإلكترونيات' : 'Electronics'), onPressed: () {}), {prefix}Breadcrumb(label: (variant.dir == TextDirection.rtl ? 'حاسوب' : 'Computer'), onPressed: () {})]), {prefix}Breadcrumbs(items: [{prefix}Breadcrumb(label: (variant.dir == TextDirection.rtl ? 'الرئيسية' : 'Home'), onPressed: () {}), {prefix}Breadcrumb(label: (variant.dir == TextDirection.rtl ? 'المنزل والحديقة والأثاث والديكور' : 'Home and garden, furniture and decor'), onPressed: () {}), {prefix}Breadcrumb(label: (variant.dir == TextDirection.rtl ? 'أثاث خارجي' : 'Outdoor furniture'), onPressed: () {}), {prefix}Breadcrumb(label: (variant.dir == TextDirection.rtl ? 'طقم حديقة من خشب الساج' : 'Oiled solid teak garden lounge set'), onPressed: () {})]), {prefix}Breadcrumbs(maxItems: 3, expandLabel: (variant.dir == TextDirection.rtl ? 'عرض المسار كاملا' : 'Show the whole path'), items: [{prefix}Breadcrumb(label: (variant.dir == TextDirection.rtl ? 'الرئيسية' : 'Home'), onPressed: () {}), {prefix}Breadcrumb(label: (variant.dir == TextDirection.rtl ? 'المستندات' : 'Documents'), onPressed: () {}), {prefix}Breadcrumb(label: (variant.dir == TextDirection.rtl ? 'المشاريع' : 'Projects'), onPressed: () {}), {prefix}Breadcrumb(label: (variant.dir == TextDirection.rtl ? '٢٠٢٦' : '2026'), onPressed: () {}), {prefix}Breadcrumb(label: (variant.dir == TextDirection.rtl ? 'العروض' : 'Quotes'), onPressed: () {}), {prefix}Breadcrumb(label: (variant.dir == TextDirection.rtl ? 'العميل أ' : 'Client A'), onPressed: () {})]), {prefix}Breadcrumbs(enabled: false, items: [{prefix}Breadcrumb(label: (variant.dir == TextDirection.rtl ? 'الرئيسية' : 'Home'), onPressed: () {}), {prefix}Breadcrumb(label: (variant.dir == TextDirection.rtl ? 'الإعدادات' : 'Settings'), onPressed: () {}), {prefix}Breadcrumb(label: (variant.dir == TextDirection.rtl ? 'الحساب' : 'Account'), onPressed: () {})])])))",
+    "imports": [
+      "@components/breadcrumbs/fl_breadcrumbs.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "levels",
+      "long",
+      "collapsed",
+      "disabled"
+    ],
+    "canvas": {
+      "width": 390,
+      "height": 300
+    }
+  },
+  "categories": [
+    "navigation"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "levels",
+      "long",
+      "collapsed",
+      "disabled"
+    ],
+    "semanticsRoles": [
+      "button"
+    ],
+    "intents": {
+      "fr": [
+        "montrer le chemin du dossier ouvert dans un gestionnaire de fichiers",
+        "naviguer vers la catégorie parente d'une fiche produit",
+        "indiquer la rubrique d'une page d'aide",
+        "masquer les niveaux du milieu d'un chemin trop long",
+        "afficher le parcours accueil, catégorie, produit en haut d'un écran"
+      ],
+      "en": [
+        "show the path of the open folder in a file browser",
+        "navigate back up to the parent section of an article",
+        "show which section a help article belongs to",
+        "hide the middle levels of a long path",
+        "present a home, section, page trail at the top of a screen"
+      ]
+    },
+    "notFor": [
+      "a title bar with a back button: use the app bar (app-bar)",
+      "tabs between sibling views: use tabs (tabs)",
+      "the steps of a process to follow: use the tracking steps (tracking-steps)"
+    ],
+    "fr": {
+      "title": "Fil d'Ariane",
+      "description": "Indique où se trouve la page courante dans une arborescence et ramène d'un niveau : niveaux séparés par des chevrons, sur une ligne qui défile et coupe les noms longs.",
+      "notFor": [
+        "une barre d'en-tête avec retour : utiliser la barre d'application (app-bar)",
+        "des onglets entre vues voisines : utiliser des onglets (tabs)",
+        "les étapes d'un parcours à suivre : utiliser les étapes de suivi (tracking-steps)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "`FlBreadcrumb.leading` puts an icon before a level's name (the house of the home page), `separator` replaces the chevron (arrow, slash); stories for icons, the separator and a trail on a banner."
+}

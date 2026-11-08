@@ -1,0 +1,103 @@
+{
+  "name": "number-field",
+  "type": "registry:component",
+  "version": "0.2.4",
+  "title": "Number field",
+  "description": "Sets a quantity or a number of guests between two limits, typed or nudged with minus and plus buttons that repeat while held, read out as an adjustable value.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0",
+    "icons@^0.2.0",
+    "field@^0.2.0",
+    "text-field@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/number_field/fl_number_field.dart",
+      "type": "registry:component",
+      "target": "@components/number_field/fl_number_field.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "Localizations(locale: const Locale('en'), delegates: const [DefaultWidgetsLocalizations.delegate], child: Directionality(textDirection: variant.dir, child: Overlay(initialEntries: [OverlayEntry(builder: (context) => ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: Padding(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, spacing: {prefix}Scope.of(context).space.md, children: [{prefix}NumberField(label: (variant.dir == TextDirection.rtl ? 'الكمية' : 'Quantity'), value: 2, min: 1, max: 10, format: {prefix}IntegerFormat(digits: variant.dir == TextDirection.rtl ? {prefix}Digits.arabicIndic : {prefix}Digits.latin), decrementLabel: (variant.dir == TextDirection.rtl ? 'إنقاص' : 'Decrease'), incrementLabel: (variant.dir == TextDirection.rtl ? 'زيادة' : 'Increase'), helper: (variant.dir == TextDirection.rtl ? '١٠ على الأكثر' : '10 at most'), onChanged: (_) {}), {prefix}NumberField(label: (variant.dir == TextDirection.rtl ? 'المسافرون' : 'Travelers'), value: 1, min: 1, max: 10, format: {prefix}IntegerFormat(digits: variant.dir == TextDirection.rtl ? {prefix}Digits.arabicIndic : {prefix}Digits.latin), decrementLabel: (variant.dir == TextDirection.rtl ? 'إنقاص' : 'Decrease'), incrementLabel: (variant.dir == TextDirection.rtl ? 'زيادة' : 'Increase'), onChanged: (_) {}), {prefix}NumberField(label: (variant.dir == TextDirection.rtl ? 'الليالي' : 'Nights'), value: 3, min: 1, max: 10, format: {prefix}IntegerFormat(digits: variant.dir == TextDirection.rtl ? {prefix}Digits.arabicIndic : {prefix}Digits.latin), decrementLabel: (variant.dir == TextDirection.rtl ? 'إنقاص' : 'Decrease'), incrementLabel: (variant.dir == TextDirection.rtl ? 'زيادة' : 'Increase'), variant: {prefix}InputVariant.secondary, onChanged: (_) {}), {prefix}NumberField(label: (variant.dir == TextDirection.rtl ? 'المقاعد' : 'Seats'), value: 12, min: 1, max: 10, format: {prefix}IntegerFormat(digits: variant.dir == TextDirection.rtl ? {prefix}Digits.arabicIndic : {prefix}Digits.latin), decrementLabel: (variant.dir == TextDirection.rtl ? 'إنقاص' : 'Decrease'), incrementLabel: (variant.dir == TextDirection.rtl ? 'زيادة' : 'Increase'), error: (variant.dir == TextDirection.rtl ? 'بقي ١٠ مقاعد' : '10 seats left'), onChanged: (_) {}), {prefix}NumberField(label: (variant.dir == TextDirection.rtl ? 'الغرف' : 'Rooms'), value: 4, min: 1, max: 10, format: {prefix}IntegerFormat(digits: variant.dir == TextDirection.rtl ? {prefix}Digits.arabicIndic : {prefix}Digits.latin), decrementLabel: (variant.dir == TextDirection.rtl ? 'إنقاص' : 'Decrease'), incrementLabel: (variant.dir == TextDirection.rtl ? 'زيادة' : 'Increase'), enabled: false, onChanged: (_) {})]))))])))",
+    "imports": [
+      "@components/number_field/fl_number_field.dart",
+      "@components/text_field/fl_text_field.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "value",
+      "bound",
+      "secondary",
+      "invalid",
+      "disabled"
+    ],
+    "canvas": {
+      "width": 390,
+      "height": 1060
+    },
+    "settleMs": 300
+  },
+  "categories": [
+    "forms"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "value",
+      "bound",
+      "secondary",
+      "invalid",
+      "disabled"
+    ],
+    "semanticsRoles": [
+      "slider",
+      "button"
+    ],
+    "intents": {
+      "fr": [
+        "choisir la quantité à mettre au panier",
+        "indiquer le nombre de voyageurs d'une réservation",
+        "ajouter ou retirer une unité d'un toucher",
+        "régler un nombre de nuits entre deux bornes",
+        "saisir un nombre entier au clavier numérique",
+        "proposer un compteur avec moins et plus"
+      ],
+      "en": [
+        "pick how many items go in the cart",
+        "choose the number of guests for a booking",
+        "add or remove one unit with a tap",
+        "adjust a number of nights between two limits",
+        "use the numeric keypad for a whole number",
+        "offer a stepper with minus and plus buttons"
+      ]
+    },
+    "notFor": [
+      "an approximate value on a continuous range: use a slider (slider)",
+      "free text, email or password: use a text field (text-field)",
+      "a choice among a list of named values: use a select (select)"
+    ],
+    "fr": {
+      "title": "Champ de nombre",
+      "description": "Permet de saisir un nombre au clavier ou de l'ajuster par les boutons moins et plus : bornes, pas, appui long qui répète, chiffres arabes, libellé, aide et erreur.",
+      "notFor": [
+        "valeur approximative sur une plage continue : utiliser un curseur (slider)",
+        "texte libre, e-mail ou mot de passe : utiliser un champ de texte (text-field)",
+        "choix parmi une liste de valeurs nommées : utiliser une liste déroulante (select)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "`FlDecimalFormat` ships: fixed decimals, prefix and suffix (`$99.99`, `1000 kg`), the language's separators (`1 234,50 €`), `FlDecimalFormat.percent()` for a value from 0 to 1, parsed with or without its symbol; `decrementIcon` and `incrementIcon` replace the minus and the plus."
+}

@@ -1,0 +1,78 @@
+{
+  "name": "scroll-shadow",
+  "type": "registry:component",
+  "version": "0.2.1",
+  "title": "Scroll shadow",
+  "description": "Fades the edges of a scrolling list into the page to show there is more to scroll, vertically or horizontally.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/scroll_shadow/fl_scroll_shadow.dart",
+      "type": "registry:component",
+      "target": "@components/scroll_shadow/fl_scroll_shadow.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: Padding(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, spacing: {prefix}Scope.of(context).space.sm, children: [SizedBox(height: 160, child: {prefix}ScrollShadow(child: ListView(controller: ScrollController(initialScrollOffset: 80), children: [for (var i = 0; i < 8; i++) Padding(padding: EdgeInsetsDirectional.only(bottom: {prefix}Scope.of(context).space.sm), child: SizedBox(width: null, height: 40, child: DecoratedBox(decoration: BoxDecoration(color: {prefix}Scope.of(context).colors.surfaceSecondary, borderRadius: BorderRadius.all(Radius.circular({prefix}Scope.of(context).shape.radiusMd))))))]))), SizedBox(height: 40, child: {prefix}ScrollShadow(child: ListView(scrollDirection: Axis.horizontal, children: [for (var i = 0; i < 8; i++) Padding(padding: EdgeInsetsDirectional.only(end: {prefix}Scope.of(context).space.sm), child: SizedBox(width: 96, height: 40, child: DecoratedBox(decoration: BoxDecoration(color: {prefix}Scope.of(context).colors.surfaceSecondary, borderRadius: BorderRadius.all(Radius.circular({prefix}Scope.of(context).shape.radiusMd))))))])))])))",
+    "imports": [
+      "@components/scroll_shadow/fl_scroll_shadow.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [],
+    "canvas": {
+      "width": 390,
+      "height": 280
+    },
+    "settleMs": 400
+  },
+  "categories": [
+    "data-display"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [],
+    "semanticsRoles": [],
+    "intents": {
+      "fr": [
+        "indiquer qu'une liste continue hors de la vue",
+        "masquer en fondu les extrémités d'une zone défilante",
+        "montrer qu'il reste du contenu à faire défiler",
+        "ajouter un dégradé en haut et en bas d'un défilement",
+        "signaler la suite d'un carrousel horizontal"
+      ],
+      "en": [
+        "show that a list continues past its edge",
+        "hide the edges of a scrolling area behind a fade",
+        "show users there is more to scroll",
+        "add a gradient at the top and bottom of a scroll view",
+        "make a horizontal carousel hint at more items"
+      ]
+    },
+    "notFor": [
+      "separating two fixed blocks: use a separator (separator)"
+    ],
+    "fr": {
+      "title": "Ombre de défilement",
+      "description": "Signale qu'une liste défile encore en fondant ses extrémités dans la page. Entoure un défilant vertical ou horizontal d'ombres pilotées par sa position.",
+      "notFor": [
+        "séparer deux blocs fixes : utiliser un séparateur (separator)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "`mask` fades the content itself at the edges (a mask) instead of painting the page color on it: the shadow works on a gradient, an image or a tinted card. `onVisibilityChange` reports the edges that hide content on every change (`top`, `bottom`, `both`, `none`, or `start` and `end` horizontally). The default rendering does not change."
+}

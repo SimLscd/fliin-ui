@@ -1,0 +1,92 @@
+{
+  "name": "drawer",
+  "type": "registry:component",
+  "version": "0.2.2",
+  "changelog": "The title row is as tall as the close button, with the title centered on it, 20 from the links; the actions align to the start, like the Izydesk drawer. The API does not change.",
+  "title": "Drawer",
+  "description": "Opens a navigation panel from the side of the screen over a scrim, mirrored in right-to-left layouts, and closes by swipe, tap outside, Escape or back.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0",
+    "button@^0.2.0",
+    "close-button@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/drawer/fl_drawer.dart",
+      "type": "registry:component",
+      "target": "@components/drawer/fl_drawer.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "Navigator(onGenerateInitialRoutes: (navigator, _) => [PageRouteBuilder<void>(pageBuilder: (context, _, _) => ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: const SizedBox.expand())), {prefix}DrawerRoute<void>(context: context, barrierLabel: (variant.dir == TextDirection.rtl ? 'إغلاق القائمة' : 'Close the menu'), builder: (context) => {prefix}Drawer(title: (variant.dir == TextDirection.rtl ? 'التنقل' : 'Navigation'), closeLabel: (variant.dir == TextDirection.rtl ? 'إغلاق' : 'Close'), actions: [{prefix}Button(label: (variant.dir == TextDirection.rtl ? 'تسجيل الخروج' : 'Sign out'), size: {prefix}ButtonSize.sm, onPressed: () => Navigator.pop(context))], child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, spacing: {prefix}Scope.of(context).space.lg, children: [for (final (fr, ar) in const [('Home', 'الرئيسية'), ('Orders', 'الطلبات'), ('Messages', 'الرسائل'), ('Settings', 'الإعدادات')]) Text(variant.dir == TextDirection.rtl ? ar : fr, style: TextStyle(color: {prefix}Scope.of(context).colors.onSurface))])))])",
+    "imports": [
+      "@components/button/fl_button.dart",
+      "@components/drawer/fl_drawer.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "open"
+    ],
+    "canvas": {
+      "width": 390,
+      "height": 640
+    },
+    "settleMs": 400
+  },
+  "categories": [
+    "navigation",
+    "overlays"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "open"
+    ],
+    "semanticsRoles": [
+      "dialog"
+    ],
+    "intents": {
+      "fr": [
+        "ouvrir le menu principal sur le côté",
+        "ajouter un tiroir de navigation à gauche",
+        "fermer le menu latéral d'un geste",
+        "ranger les rubriques principales dans un tiroir",
+        "ajouter un menu hamburger"
+      ],
+      "en": [
+        "open the main menu from the side",
+        "add a side navigation drawer that slides in from the left",
+        "drag the side menu away to close it",
+        "show the main destinations in a drawer",
+        "add a hamburger menu"
+      ]
+    },
+    "notFor": [
+      "a sheet anchored at the bottom: use a bottom sheet (sheet)",
+      "a question awaiting an answer: use a dialog (dialog)",
+      "main navigation always visible: use a tab bar (tab-bar)"
+    ],
+    "fr": {
+      "title": "Tiroir latéral",
+      "description": "Permet d'ouvrir le menu de navigation sur le côté, par-dessus un voile : rubriques, comptes, filtres d'une liste. Il se ferme d'un geste vers l'extérieur.",
+      "notFor": [
+        "feuille ancrée en bas : utiliser une feuille (sheet)",
+        "question qui attend une réponse : utiliser un dialogue (dialog)",
+        "navigation principale toujours visible : utiliser une barre d'onglets (tab-bar)"
+      ]
+    },
+    "goldens": null
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "name": "page-indicator",
+  "type": "registry:component",
+  "version": "0.2.2",
+  "title": "Page indicator",
+  "description": "Shows the current page of an onboarding or a carousel as dots whose active one stretches into a pill, bound to a page view, and lets people change page by touch.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/page_indicator/fl_page_indicator.dart",
+      "type": "registry:component",
+      "target": "@components/page_indicator/fl_page_indicator.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: Padding(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, spacing: {prefix}Scope.of(context).space.sm, children: [for (final (count, index) in const [(3, 0), (3, 1), (3, 2), (7, 4)]) SizedBox(height: {prefix}Scope.of(context).hitTarget, child: Center(child: {prefix}PageIndicator(count: count, index: index, semanticLabel: (variant.dir == TextDirection.rtl ? 'العرض' : 'Introduction'), pageLabel: (page, count) => (variant.dir == TextDirection.rtl ? 'الصفحة $page من $count' : 'Page $page of $count'), onChanged: (_) {})))])))",
+    "imports": [
+      "@components/page_indicator/fl_page_indicator.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "first",
+      "middle",
+      "last"
+    ],
+    "canvas": {
+      "width": 390,
+      "height": 300
+    }
+  },
+  "categories": [
+    "navigation",
+    "onboarding"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "first",
+      "middle",
+      "last"
+    ],
+    "semanticsRoles": [
+      "slider"
+    ],
+    "intents": {
+      "fr": [
+        "montrer sur quelle page de l'onboarding on se trouve",
+        "afficher des points sous un carrousel d'images",
+        "indiquer combien d'écrans de présentation restent",
+        "suivre le défilement d'une vue de pages",
+        "passer à la page suivante d'un toucher sur les points"
+      ],
+      "en": [
+        "show which onboarding page is visible",
+        "show dots under an image carousel",
+        "show how many intro screens are left",
+        "keep dots in sync with a swiping page view",
+        "move to the next page by tapping the dots"
+      ]
+    },
+    "notFor": [
+      "sections of the same screen: use tabs (tabs)",
+      "the progress of a task: use a progress indicator (progress)"
+    ],
+    "fr": {
+      "title": "Indicateur de page",
+      "description": "Indique la page courante d'un onboarding ou d'un carrousel par des points dont l'actif s'allonge en pilule, lié à une vue de pages, et permet d'en changer au toucher.",
+      "notFor": [
+        "sections d'un même écran : utiliser des onglets (tabs)",
+        "avancement d'une tâche : utiliser un indicateur de progression (progress)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "`color` and `inactiveColor` tint the current page and the others, for dots placed on a colored banner or a photo; without `inactiveColor`, the others take `color` at 40% (30% for `bars`). Default rendering unchanged."
+}

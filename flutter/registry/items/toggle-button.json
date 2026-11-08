@@ -1,0 +1,101 @@
+{
+  "name": "toggle-button",
+  "type": "registry:component",
+  "version": "0.1.1",
+  "title": "Toggle button",
+  "description": "Turns an option on or off with one button that stays pressed, such as a favorite or an editor's bold: with text or an icon alone, filled or ghost.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0",
+    "button@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/toggle_button/fl_toggle_button.dart",
+      "type": "registry:component",
+      "target": "@components/toggle_button/fl_toggle_button.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: SingleChildScrollView(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, spacing: {prefix}Scope.of(context).space.sm, children: [Wrap(spacing: {prefix}Scope.of(context).space.sm, runSpacing: {prefix}Scope.of(context).space.sm, children: [for (final on in [false, true]) {prefix}ToggleButton(label: (variant.dir == TextDirection.rtl ? 'مفضلة' : 'Favorite'), selected: on, leading: {prefix}Icon(on ? {prefix}Icons.heartFill : {prefix}Icons.heart), onChanged: (_) {}), for (final on in [false, true]) {prefix}ToggleButton(label: (variant.dir == TextDirection.rtl ? 'حفظ' : 'Save'), selected: on, variant: {prefix}ToggleButtonVariant.ghost, leading: {prefix}Icon({prefix}Icons.bookmark), onChanged: (_) {})]), Wrap(spacing: {prefix}Scope.of(context).space.sm, runSpacing: {prefix}Scope.of(context).space.sm, children: [for (final size in {prefix}ButtonSize.values) for (final on in [false, true]) {prefix}ToggleButton.icon(label: (variant.dir == TextDirection.rtl ? 'مفضلة' : 'Favorite'), selected: on, size: size, icon: {prefix}Icon(on ? {prefix}Icons.starFill : {prefix}Icons.star), onChanged: (_) {})]), Wrap(spacing: {prefix}Scope.of(context).space.sm, runSpacing: {prefix}Scope.of(context).space.sm, children: [for (final on in [false, true]) {prefix}ToggleButton(label: (variant.dir == TextDirection.rtl ? 'مفضلة' : 'Favorite'), selected: on, leading: {prefix}Icon({prefix}Icons.heart), onChanged: null)])])))",
+    "imports": [
+      "@components/button/fl_button.dart",
+      "@components/toggle_button/fl_toggle_button.dart",
+      "@core/fliin.dart",
+      "@icons/fl_icons.dart"
+    ],
+    "states": [
+      "off",
+      "on",
+      "ghost",
+      "icon",
+      "disabled"
+    ],
+    "canvas": {
+      "width": 390,
+      "height": 360
+    }
+  },
+  "categories": [
+    "actions",
+    "forms"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "off",
+      "on",
+      "ghost",
+      "icon",
+      "disabled"
+    ],
+    "semanticsRoles": [
+      "button"
+    ],
+    "intents": {
+      "fr": [
+        "ajouter un article aux favoris d'un coup de cœur",
+        "basculer le gras dans un éditeur de texte",
+        "couper ou rétablir le son d'un appel",
+        "marquer une conversation comme épinglée",
+        "montrer qu'une option reste active par un bouton enfoncé",
+        "marquer un épisode comme suivi"
+      ],
+      "en": [
+        "add an item to favorites with a heart",
+        "toggle bold in a text editor",
+        "mute or unmute the microphone during a call",
+        "keep a conversation pinned to the top",
+        "keep a button pressed while an option stays on",
+        "switch following a show on and off"
+      ]
+    },
+    "notFor": [
+      "one exclusive choice among several options: use the segmented control (segmented)",
+      "a setting switched on or off in a list: use a switch (switch)",
+      "a one-off action: use a button (button)"
+    ],
+    "fr": {
+      "title": "Bouton à bascule",
+      "description": "Permet d'activer ou de couper une option d'un seul bouton qui reste enfoncé, comme un favori ou le gras d'un éditeur : texte ou icône seule, plein ou transparent.",
+      "notFor": [
+        "un choix exclusif entre plusieurs options : utiliser le contrôle segmenté (segmented)",
+        "un réglage qui s'allume ou s'éteint : utiliser un interrupteur (switch)",
+        "une action ponctuelle : utiliser un bouton (button)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "`selectedLeading` and `selectedIcon` show the icon of the on state without rewriting the condition in the app (the filled heart); `trailing` puts an icon after the text; stories for sizes and for state held by the app."
+}

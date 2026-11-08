@@ -1,0 +1,103 @@
+{
+  "name": "date-range-picker",
+  "type": "registry:component",
+  "version": "0.2.3",
+  "changelog": "`format` writes each end of the range the app's way, `variant` fills the field on a card, and `indicatorOf` passes its dots to the open calendar. Requires `date-picker` 0.2.3, `range-calendar` 0.2.3 and `calendar` 0.2.5.",
+  "title": "Date range picker",
+  "description": "Picks a period from a form field that opens the range calendar, as a bottom sheet on phones: the field shows the first and last day, and a start alone is never sent.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0",
+    "date-picker@^0.2.3",
+    "range-calendar@^0.2.3",
+    "calendar@^0.2.5"
+  ],
+  "files": [
+    {
+      "path": "components/date_range_picker/fl_date_range_picker.dart",
+      "type": "registry:component",
+      "target": "@components/date_range_picker/fl_date_range_picker.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "Overlay(initialEntries: [OverlayEntry(builder: (context) => ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: Padding(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: SingleChildScrollView(child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, spacing: {prefix}Scope.of(context).space.lg, children: [{prefix}DateRangePicker(label: (variant.dir == TextDirection.rtl ? 'تواريخ الإقامة' : 'Stay dates'), placeholder: (variant.dir == TextDirection.rtl ? 'الوصول – المغادرة' : 'Check-in – check-out'), clearLabel: (variant.dir == TextDirection.rtl ? 'مسح التواريخ' : 'Clear the dates'), value: {prefix}DateRange(DateTime(2026, 10, 12), DateTime(2026, 10, 16)), onChanged: (_) {}, presentation: {prefix}DatePickerPresentation.popover, defaultOpen: true, today: DateTime(2026, 10, 24), strings: {prefix}CalendarStrings.language(variant.dir == TextDirection.rtl ? 'ar' : 'en')), const SizedBox(height: 390), {prefix}DateRangePicker(label: (variant.dir == TextDirection.rtl ? 'الإجازة' : 'Time off'), placeholder: (variant.dir == TextDirection.rtl ? 'البداية – النهاية' : 'Start – end'), description: (variant.dir == TextDirection.rtl ? 'خمسة أيام على الأكثر' : 'Five days at most'), required: true, value: null, onChanged: (_) {}, presentation: {prefix}DatePickerPresentation.popover, today: DateTime(2026, 10, 24), strings: {prefix}CalendarStrings.language(variant.dir == TextDirection.rtl ? 'ar' : 'en')), {prefix}DateRangePicker(label: (variant.dir == TextDirection.rtl ? 'الاستئجار' : 'Rental'), placeholder: (variant.dir == TextDirection.rtl ? 'البداية – النهاية' : 'Start – end'), error: (variant.dir == TextDirection.rtl ? 'السيارة مستأجرة بالفعل' : 'The vehicle is already rented'), value: {prefix}DateRange(DateTime(2026, 10, 20), DateTime(2026, 10, 22)), onChanged: (_) {}, presentation: {prefix}DatePickerPresentation.popover, today: DateTime(2026, 10, 24), strings: {prefix}CalendarStrings.language(variant.dir == TextDirection.rtl ? 'ar' : 'en')), {prefix}DateRangePicker(label: (variant.dir == TextDirection.rtl ? 'فترة التقرير' : 'Report period'), placeholder: (variant.dir == TextDirection.rtl ? 'البداية – النهاية' : 'Start – end'), value: {prefix}DateRange(DateTime(2026, 10, 1), DateTime(2026, 10, 7)), onChanged: null, presentation: {prefix}DatePickerPresentation.popover, today: DateTime(2026, 10, 24), strings: {prefix}CalendarStrings.language(variant.dir == TextDirection.rtl ? 'ar' : 'en'))])))))])",
+    "imports": [
+      "@components/date_range_picker/fl_date_range_picker.dart",
+      "@components/date_picker/fl_date_picker.dart",
+      "@components/range_calendar/fl_range_calendar.dart",
+      "@components/calendar/fl_calendar_strings.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "open",
+      "range",
+      "placeholder",
+      "invalid",
+      "disabled"
+    ],
+    "canvas": {
+      "width": 390,
+      "height": 1000
+    },
+    "settleMs": 400
+  },
+  "categories": [
+    "forms",
+    "overlays"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "open",
+      "range",
+      "placeholder",
+      "invalid",
+      "disabled"
+    ],
+    "semanticsRoles": [
+      "button",
+      "dialog"
+    ],
+    "intents": {
+      "fr": [
+        "choisir une période dans un champ de formulaire",
+        "ouvrir le calendrier de période au toucher d'un champ",
+        "afficher la date de début et la date de fin dans un champ",
+        "supprimer la période retenue d'un champ",
+        "sélectionner des jours consécutifs dans un formulaire",
+        "sélectionner une plage de dates depuis un champ et son calendrier"
+      ],
+      "en": [
+        "pick a period of several days from a form field",
+        "open a range calendar when an input is tapped",
+        "show both ends of the period in one field",
+        "let people clear the period they chose",
+        "select consecutive days in a form"
+      ]
+    },
+    "notFor": [
+      "a period always visible on the screen: use a range calendar (range-calendar)",
+      "a single day: use a date picker (date-picker)"
+    ],
+    "fr": {
+      "title": "Sélecteur de période",
+      "description": "Permet de choisir une période dans un formulaire : un champ qui ouvre le calendrier de période et écrit ses deux bornes. Location, congés, filtre.",
+      "notFor": [
+        "une période toujours visible dans l'écran : utiliser un calendrier de période (range-calendar)",
+        "un seul jour : utiliser un sélecteur de date (date-picker)"
+      ]
+    },
+    "goldens": null
+  }
+}

@@ -1,0 +1,21 @@
+name: fliin_schema
+description: >-
+  The Fliin data model in Dart types: item manifests, the signed registry
+  index, the lockfile, fliin.yaml, design tokens, themes and three-way merge.
+version: 0.1.1
+homepage: https://fliin.dev
+repository: https://github.com/SimLscd/fliin-ui
+topics:
+  - flutter
+  - design-tokens
+  - registry
+  - cli
+resolution: workspace
+environment:
+  sdk: ^3.13.0
+dependencies:
+  crypto: ^3.0.7
+  pub_semver: ^2.2.0
+dev_dependencies:
+  lints: ^6.0.0
+  test: ^1.26.0

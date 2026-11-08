@@ -1,0 +1,15 @@
+name: fliin_harness
+description: Le harnais de rendu de la matrice de 16 variantes, partagé par la CI et par `fliin verify`.
+version: 0.1.0
+publish_to: none
+resolution: workspace
+environment:
+  sdk: ^3.13.0
+  flutter: ">=3.47.0 <4.0.0"
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_test:
+    sdk: flutter
+dev_dependencies:
+  flutter_lints: ^6.0.0

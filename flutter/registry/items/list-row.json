@@ -1,0 +1,88 @@
+{
+  "name": "list-row",
+  "type": "registry:component",
+  "version": "0.2.6",
+  "title": "List row",
+  "description": "Shows list or settings entries grouped on a surface between dividers, pressable by touch or keyboard, with prefix, title, subtitle, value and chevron.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0",
+    "icons@^0.2.0",
+    "surface@^0.2.0",
+    "separator@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/list_row/fl_list_row.dart",
+      "type": "registry:component",
+      "target": "@components/list_row/fl_list_row.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: Padding(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [{prefix}ListGroup(children: [{prefix}ListRow(title: (variant.dir == TextDirection.rtl ? 'واي فاي' : 'Wi-Fi'), subtitle: (variant.dir == TextDirection.rtl ? 'المنزل' : 'Home'), trailing: const {prefix}ListRowChevron(), onPressed: () {}), {prefix}ListRow(title: (variant.dir == TextDirection.rtl ? 'اللغة' : 'Language'), value: (variant.dir == TextDirection.rtl ? 'العربية' : 'English')), {prefix}ListRow(title: (variant.dir == TextDirection.rtl ? 'بلوتوث' : 'Bluetooth'), subtitle: (variant.dir == TextDirection.rtl ? 'غير متاح' : 'Unavailable'), trailing: const {prefix}ListRowChevron(), enabled: false, onPressed: () {})])])))",
+    "imports": [
+      "@components/list_row/fl_list_row.dart",
+      "@core/fliin.dart"
+    ],
+    "canvas": {
+      "width": 390,
+      "height": 460
+    },
+    "states": [
+      "enabled",
+      "disabled"
+    ]
+  },
+  "categories": [
+    "lists"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "enabled",
+      "disabled"
+    ],
+    "semanticsRoles": [
+      "button"
+    ],
+    "intents": {
+      "fr": [
+        "afficher une ligne de liste de réglages",
+        "lister des éléments avec icône et sous-titre",
+        "ouvrir un détail depuis une ligne cliquable",
+        "montrer une valeur ou un interrupteur en fin de ligne",
+        "séparer une liste par des filets"
+      ],
+      "en": [
+        "show a settings list row",
+        "show items with an icon and subtitle",
+        "open a detail from a tappable row",
+        "show a trailing value or switch in a row",
+        "separate list rows with divider lines"
+      ]
+    },
+    "notFor": [
+      "a standalone main action: use a button (button)"
+    ],
+    "fr": {
+      "title": "Ligne de liste",
+      "description": "Permet d'afficher des entrées de liste ou de réglages, groupées sur une surface entre des filets, pressables au toucher et au clavier, avec préfixe, titre, sous-titre, valeur et chevron.",
+      "notFor": [
+        "action principale isolée : utiliser un bouton (button)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "`FlListGroup.separatorInset` starts each divider at the given point, instead of the inset computed for an `sm` avatar: `0` from edge to edge, or the start of the text for rows led by an icon. The default rendering does not change."
+}

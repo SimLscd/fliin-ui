@@ -1,0 +1,93 @@
+{
+  "name": "time-field",
+  "type": "registry:component",
+  "version": "0.2.4",
+  "title": "Time field",
+  "description": "Types a time on the keyboard, hours and minutes, with AM or PM when the language counts twelve hours; the value counts as soon as it is complete.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0",
+    "icons@^0.2.0",
+    "date-field@^0.2.4"
+  ],
+  "files": [
+    {
+      "path": "components/time_field/fl_time_field.dart",
+      "type": "registry:component",
+      "target": "@components/time_field/fl_time_field.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: SingleChildScrollView(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, spacing: {prefix}Scope.of(context).space.sm, children: [{prefix}TimeField(label: (variant.dir == TextDirection.rtl ? 'وقت الموعد' : 'Appointment time'), value: null, onChanged: (_) {}, autofocus: true, strings: {prefix}DateFieldStrings.language(variant.dir == TextDirection.rtl ? 'ar' : 'en')), {prefix}TimeField(label: (variant.dir == TextDirection.rtl ? 'المنبّه' : 'Alarm'), value: const {prefix}Time(7, 30), onChanged: (_) {}, strings: {prefix}DateFieldStrings.language(variant.dir == TextDirection.rtl ? 'ar' : 'en')), {prefix}TimeField(label: (variant.dir == TextDirection.rtl ? 'وقت الوصول' : 'Arrival time'), description: (variant.dir == TextDirection.rtl ? 'التوقيت المحلي' : 'Local time'), required: true, value: null, onChanged: (_) {}, strings: {prefix}DateFieldStrings.language(variant.dir == TextDirection.rtl ? 'ar' : 'en')), {prefix}TimeField(label: (variant.dir == TextDirection.rtl ? 'الاستلام' : 'Pickup'), error: (variant.dir == TextDirection.rtl ? 'يغلق المتجر الساعة ٧ مساءً' : 'The store closes at 7 PM'), value: const {prefix}Time(20, 15), onChanged: (_) {}, strings: {prefix}DateFieldStrings.language(variant.dir == TextDirection.rtl ? 'ar' : 'en')), {prefix}TimeField(label: (variant.dir == TextDirection.rtl ? 'المغادرة' : 'Departure'), value: const {prefix}Time(14, 5), onChanged: null, strings: {prefix}DateFieldStrings.language(variant.dir == TextDirection.rtl ? 'ar' : 'en'))])))",
+    "imports": [
+      "@components/time_field/fl_time_field.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "focused",
+      "filled",
+      "placeholder",
+      "invalid",
+      "disabled"
+    ],
+    "canvas": {
+      "width": 390,
+      "height": 640
+    }
+  },
+  "categories": [
+    "forms"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "focused",
+      "filled",
+      "placeholder",
+      "invalid",
+      "disabled"
+    ],
+    "semanticsRoles": [],
+    "intents": {
+      "fr": [
+        "indiquer l'heure d'un retrait en magasin",
+        "remplir les heures et les minutes d'un horaire",
+        "demander une heure d'arrivée dans un formulaire",
+        "régler l'heure d'une alarme à la minute",
+        "proposer le matin ou l'après-midi pour une heure"
+      ],
+      "en": [
+        "ask for a pickup time in a form",
+        "make an input for hours and minutes",
+        "collect an arrival time",
+        "adjust an alarm time to the minute",
+        "switch between AM and PM for an hour"
+      ]
+    },
+    "notFor": [
+      "a duration or a countdown: use a number field (number-field)",
+      "a calendar date: use a date field (date-field)"
+    ],
+    "fr": {
+      "title": "Champ d'heure",
+      "description": "Permet d'écrire une heure au clavier, par segments : heure, minute, et matin ou après-midi quand la langue compte sur douze heures.",
+      "notFor": [
+        "une durée ou un compte à rebours : utiliser un champ de nombre (number-field)",
+        "une date du calendrier : utiliser un champ de date (date-field)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "`leading`, `showIcon` and `variant` as in `date-field` 0.2.4: a word or an icon before the segments, the clock removed, the field filled on a card. Requires `date-field` 0.2.4."
+}

@@ -1,0 +1,92 @@
+{
+  "name": "fieldset",
+  "type": "registry:component",
+  "version": "0.1.1",
+  "title": "Fieldset",
+  "description": "Gathers fields that belong together under a title, such as an address or a profile: legend, the group's description or error, spaced fields and action buttons.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0",
+    "field@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/fieldset/fl_fieldset.dart",
+      "type": "registry:component",
+      "target": "@components/fieldset/fl_fieldset.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "Localizations(locale: const Locale('en'), delegates: const [DefaultWidgetsLocalizations.delegate], child: Directionality(textDirection: variant.dir, child: Overlay(initialEntries: [OverlayEntry(builder: (context) => ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: Padding(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: SingleChildScrollView(child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, spacing: {prefix}Scope.of(context).space.xxl, children: [{prefix}Fieldset(legend: (variant.dir == TextDirection.rtl ? 'الملف الشخصي' : 'Profile'), description: (variant.dir == TextDirection.rtl ? 'يظهر في صفحتك العامة.' : 'Visible on your public page.'), actions: [{prefix}Button(label: (variant.dir == TextDirection.rtl ? 'حفظ' : 'Save'), onPressed: () {}), {prefix}Button(label: (variant.dir == TextDirection.rtl ? 'إلغاء' : 'Cancel'), variant: {prefix}ButtonVariant.tertiary, onPressed: () {})], children: [{prefix}TextField(label: (variant.dir == TextDirection.rtl ? 'الاسم' : 'Name'), required: true, controller: TextEditingController(text: (variant.dir == TextDirection.rtl ? 'ليلى حداد' : 'Camille Martin'))), {prefix}TextField(label: (variant.dir == TextDirection.rtl ? 'البريد الإلكتروني' : 'Email'), placeholder: 'camille@example.com')]), {prefix}Fieldset(legend: (variant.dir == TextDirection.rtl ? 'التوصيل' : 'Shipping'), description: (variant.dir == TextDirection.rtl ? 'أين نرسل الطلب.' : 'Where to send the order.'), error: (variant.dir == TextDirection.rtl ? 'أدخل عنوان التوصيل.' : 'Enter a shipping address.'), children: [{prefix}TextField(label: (variant.dir == TextDirection.rtl ? 'العنوان' : 'Address'))])])))))])))",
+    "imports": [
+      "@components/button/fl_button.dart",
+      "@components/fieldset/fl_fieldset.dart",
+      "@components/text_field/fl_text_field.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "described",
+      "error"
+    ],
+    "canvas": {
+      "width": 390,
+      "height": 640
+    }
+  },
+  "categories": [
+    "forms"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "described",
+      "error"
+    ],
+    "semanticsRoles": [
+      "header"
+    ],
+    "intents": {
+      "fr": [
+        "poser les champs d'une adresse de livraison sous une légende",
+        "séparer un long formulaire en sections nommées",
+        "nommer la partie profil d'un formulaire d'inscription",
+        "afficher une erreur commune à plusieurs champs",
+        "poser enregistrer et annuler sous un bloc de champs"
+      ],
+      "en": [
+        "keep shipping address fields together under a heading",
+        "split a long form into named sections",
+        "add a legend and a description above related inputs",
+        "show one error for a whole group of fields",
+        "offer save and cancel under a block of inputs"
+      ]
+    },
+    "notFor": [
+      "a single field with its label and message: use the field (field)",
+      "a section of settings rows: use the settings section (settings-section)",
+      "a whole sign-in form: use the auth form (auth-form)"
+    ],
+    "fr": {
+      "title": "Ensemble de champs",
+      "description": "Regroupe des champs qui vont ensemble sous une légende, comme l'adresse ou le profil : légende, description ou erreur commune, champs espacés et actions.",
+      "notFor": [
+        "un seul champ avec son libellé et son message : utiliser le champ (field)",
+        "des réglages en lignes : utiliser la section de réglages (settings-section)",
+        "un formulaire de connexion complet : utiliser le formulaire d'accès (auth-form)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "`trailing` puts an action at the end of the title line, `actionsAlignment` places the buttons at the end or in the center; stories on a surface, with a title action, and with a full-width button."
+}

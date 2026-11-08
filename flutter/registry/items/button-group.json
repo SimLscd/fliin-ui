@@ -1,0 +1,99 @@
+{
+  "name": "button-group",
+  "type": "registry:component",
+  "version": "0.1.1",
+  "title": "Button group",
+  "description": "Joins related actions into one bar of attached buttons, such as copy, paste and cut: rounded only at both ends, hairlines between the buttons.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0",
+    "button@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/button_group/fl_button_group.dart",
+      "type": "registry:component",
+      "target": "@components/button_group/fl_button_group.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: SingleChildScrollView(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, spacing: {prefix}Scope.of(context).space.sm, children: [Wrap(spacing: {prefix}Scope.of(context).space.sm, runSpacing: {prefix}Scope.of(context).space.sm, children: [for (final look in [{prefix}ButtonVariant.primary, {prefix}ButtonVariant.tertiary, {prefix}ButtonVariant.outline, {prefix}ButtonVariant.ghost, {prefix}ButtonVariant.danger]) {prefix}ButtonGroup(variant: look, items: [{prefix}ButtonGroupItem(label: (variant.dir == TextDirection.rtl ? 'نسخ' : 'Copy'), onPressed: () {}), {prefix}ButtonGroupItem(label: (variant.dir == TextDirection.rtl ? 'لصق' : 'Paste'), onPressed: () {}), {prefix}ButtonGroupItem(label: (variant.dir == TextDirection.rtl ? 'قص' : 'Cut'), onPressed: () {})]), {prefix}ButtonGroup(semanticLabel: (variant.dir == TextDirection.rtl ? 'تحرير' : 'Edit'), items: [{prefix}ButtonGroupItem.icon(label: (variant.dir == TextDirection.rtl ? 'تعديل' : 'Edit'), icon: {prefix}Icon({prefix}Icons.pencil), onPressed: () {}), {prefix}ButtonGroupItem.icon(label: (variant.dir == TextDirection.rtl ? 'مشاركة' : 'Share'), icon: {prefix}Icon({prefix}Icons.arrowUpFromSquare), onPressed: () {}), {prefix}ButtonGroupItem.icon(label: (variant.dir == TextDirection.rtl ? 'حذف' : 'Delete'), icon: {prefix}Icon({prefix}Icons.trashBin), onPressed: null)]), {prefix}ButtonGroup(axis: Axis.vertical, variant: {prefix}ButtonVariant.outline, items: [{prefix}ButtonGroupItem(label: (variant.dir == TextDirection.rtl ? 'السابق' : 'Previous'), leading: {prefix}Icon({prefix}Icons.chevronLeft), onPressed: () {}), {prefix}ButtonGroupItem(label: (variant.dir == TextDirection.rtl ? 'التالي' : 'Next'), trailing: {prefix}Icon({prefix}Icons.chevronRight), onPressed: () {})])]), {prefix}ButtonGroup(expanded: true, items: [{prefix}ButtonGroupItem(label: (variant.dir == TextDirection.rtl ? 'يوم' : 'Day'), selected: false, onPressed: () {}), {prefix}ButtonGroupItem(label: (variant.dir == TextDirection.rtl ? 'أسبوع' : 'Week'), selected: true, onPressed: () {}), {prefix}ButtonGroupItem(label: (variant.dir == TextDirection.rtl ? 'شهر' : 'Month'), selected: false, onPressed: () {})]), Align(alignment: AlignmentDirectional.centerStart, child: {prefix}ButtonGroup(enabled: false, variant: {prefix}ButtonVariant.primary, items: [{prefix}ButtonGroupItem(label: (variant.dir == TextDirection.rtl ? 'نسخ' : 'Copy'), onPressed: () {}), {prefix}ButtonGroupItem(label: (variant.dir == TextDirection.rtl ? 'لصق' : 'Paste'), onPressed: () {}), {prefix}ButtonGroupItem(label: (variant.dir == TextDirection.rtl ? 'قص' : 'Cut'), onPressed: () {})]))])))",
+    "imports": [
+      "@components/button/fl_button.dart",
+      "@components/button_group/fl_button_group.dart",
+      "@core/fliin.dart",
+      "@icons/fl_icons.dart"
+    ],
+    "states": [
+      "variants",
+      "icons",
+      "vertical",
+      "full-width",
+      "disabled"
+    ],
+    "canvas": {
+      "width": 390,
+      "height": 600
+    }
+  },
+  "categories": [
+    "actions"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "variants",
+      "icons",
+      "vertical",
+      "full-width",
+      "disabled"
+    ],
+    "semanticsRoles": [
+      "button"
+    ],
+    "intents": {
+      "fr": [
+        "copier, coller ou couper depuis une seule barre accolée",
+        "proposer modifier, partager et supprimer côte à côte sur un document",
+        "poser précédent et suivant l'un contre l'autre",
+        "séparer des actions reliées par un trait léger",
+        "présenter des actions liées empilées dans un bloc vertical"
+      ],
+      "en": [
+        "keep copy, paste and cut joined in one strip",
+        "offer edit, share and delete side by side on a document",
+        "keep back and forward actions attached side by side",
+        "make a split row of related actions",
+        "keep attached buttons inside one shared shape",
+        "present related actions stacked in one block"
+      ]
+    },
+    "notFor": [
+      "a single choice among several options: use the segmented control (segmented)",
+      "a toolbar with keyboard navigation: use the toolbar (toolbar)",
+      "a single action: use a button (button)"
+    ],
+    "fr": {
+      "title": "Groupe de boutons",
+      "description": "Regroupe des actions voisines en une seule barre accolée, comme copier, coller et couper : coins arrondis aux deux bouts, un filet entre deux actions.",
+      "notFor": [
+        "un seul choix parmi plusieurs options : utiliser le contrôle segmenté (segmented)",
+        "une barre d'outils avec navigation au clavier : utiliser la barre d'outils (toolbar)",
+        "une action seule : utiliser un bouton (button)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "A button in the group can be a toggle (`selected`): filled in `selected`, announced as selected, the neighboring divider removed; `trailing` puts an icon after the text (the chevron of “Next”); in a narrow row, each button gets a share sized to its label, which no longer truncates when the group fits; stories for sizes, the split button, toggles and the group without dividers."
+}

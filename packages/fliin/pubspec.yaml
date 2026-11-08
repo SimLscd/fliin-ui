@@ -1,0 +1,44 @@
+name: fliin
+description: >-
+  Copy-paste Flutter components and screens: a CLI that installs them in your
+  app, checks them on 16 variants and updates them with a three-way merge.
+version: 0.1.3
+homepage: https://fliin.dev
+repository: https://github.com/SimLscd/fliin-ui
+topics:
+  - flutter
+  - cli
+  - ui
+  - components
+  - mcp
+screenshots:
+  - description: A component page on fliin.dev, with the live Flutter widget.
+    path: doc/screenshots/component.png
+  - description: The theme page of fliin.dev, one preset code shaping every widget.
+    path: doc/screenshots/theme.png
+  - description: fliin verify renders an item on 16 variants and checks each one.
+    path: doc/screenshots/verify.png
+  - description: Create an app, add a button and verify it from the terminal.
+    path: doc/screenshots/terminal.png
+  - description: The fliin.dev home page.
+    path: doc/screenshots/home.png
+resolution: workspace
+environment:
+  sdk: ^3.13.0
+executables:
+  fliin: fliin
+dependencies:
+  fliin_schema: ^0.1.0
+  analyzer: ^14.5.0
+  args: ^2.7.0
+  crypto: ^3.0.7
+  cryptography: ^2.9.0
+  dart_style: 3.1.14
+  mcp_dart: ^2.4.3
+  path: ^1.9.1
+  pub_semver: ^2.2.0
+  yaml: ^3.1.3
+dev_dependencies:
+  lints: ^6.0.0
+  test: ^1.26.0
+  vm_service: ^15.0.0

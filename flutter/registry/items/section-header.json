@@ -1,0 +1,89 @@
+{
+  "name": "section-header",
+  "type": "registry:component",
+  "version": "0.2.2",
+  "title": "Section header",
+  "description": "Names the group of rows or the grid below it: a muted title aligned with the group, and an optional see all link.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0",
+    "button@^0.2.0",
+    "link-button@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/section_header/fl_section_header.dart",
+      "type": "registry:component",
+      "target": "@components/section_header/fl_section_header.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: Padding(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [{prefix}SectionHeader(title: (variant.dir == TextDirection.rtl ? 'الحساب' : 'Account')), SizedBox(height: 56, child: DecoratedBox(decoration: ShapeDecoration(color: {prefix}Scope.of(context).colors.surfaceRaised, shape: {prefix}ContinuousBorder(radius: {prefix}Scope.of(context).shape.radiusCard)))), SizedBox(height: {prefix}Scope.of(context).space.xl), {prefix}SectionHeader(title: (variant.dir == TextDirection.rtl ? 'الأخيرة' : 'Recent'), action: {prefix}SectionHeaderAction(label: (variant.dir == TextDirection.rtl ? 'عرض الكل' : 'See all'), onPressed: () {})), SizedBox(height: 56, child: DecoratedBox(decoration: ShapeDecoration(color: {prefix}Scope.of(context).colors.surfaceRaised, shape: {prefix}ContinuousBorder(radius: {prefix}Scope.of(context).shape.radiusCard))))])))",
+    "imports": [
+      "@components/section_header/fl_section_header.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "plain",
+      "action"
+    ],
+    "canvas": {
+      "width": 390,
+      "height": 280
+    }
+  },
+  "categories": [
+    "lists",
+    "navigation"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "plain",
+      "action"
+    ],
+    "semanticsRoles": [
+      "header",
+      "button"
+    ],
+    "intents": {
+      "fr": [
+        "nommer chaque groupe de lignes d'une page",
+        "ajouter un lien tout voir au bout d'un intitulé",
+        "séparer les sections d'une page par des intitulés",
+        "présenter une liste de favoris sous son intitulé",
+        "indiquer le sujet d'un groupe de réglages"
+      ],
+      "en": [
+        "describe each group of rows on a page",
+        "add a see all link at the end of a heading",
+        "separate the sections of a page with headings",
+        "present a list of favorites under its heading",
+        "show what a group of settings is about"
+      ]
+    },
+    "notFor": [
+      "the screen's title: use the app bar (app-bar)"
+    ],
+    "fr": {
+      "title": "Intitulé de section",
+      "description": "Indique de quoi parle le groupe de lignes ou la grille qui suit : un intitulé atténué, aligné sur le groupe, et un lien « Tout voir » facultatif au bout.",
+      "notFor": [
+        "titre de l'écran : utiliser la barre du haut (app-bar)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "`size: FlSectionHeaderSize.large` (`title3` title in `onSurface`, `space.md` above the content) to title a part of a screen; `description`, a muted line under the title; `trailing`, a widget other than a link at the end of the title (a counter). New optional parameters, nothing breaks."
+}

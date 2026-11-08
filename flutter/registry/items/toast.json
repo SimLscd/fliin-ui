@@ -1,0 +1,99 @@
+{
+  "name": "toast",
+  "type": "registry:component",
+  "version": "0.2.6",
+  "title": "Toast",
+  "description": "Reports the result of an action with a short message at the top or bottom of the screen, stacked with the previous ones, closed by time, swipe or its button.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.3",
+    "close-button@^0.2.0",
+    "button@^0.2.0",
+    "icons@^0.2.0",
+    "spinner@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/toast/fl_toast.dart",
+      "type": "registry:component",
+      "target": "@components/toast/fl_toast.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: Padding(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, spacing: {prefix}Scope.of(context).space.sm, children: [{prefix}Toast(title: (variant.dir == TextDirection.rtl ? 'تم نسخ الرابط' : 'Link copied'), closeLabel: (variant.dir == TextDirection.rtl ? 'إغلاق' : 'Close')), {prefix}Toast(title: (variant.dir == TextDirection.rtl ? 'تم حفظ الملف' : 'Profile saved'), description: (variant.dir == TextDirection.rtl ? 'يراه فريقك.' : 'Visible to the team.'), variant: {prefix}ToastVariant.success, icon: Builder(builder: (context) => SizedBox.square(dimension: IconTheme.of(context).size, child: DecoratedBox(decoration: BoxDecoration(color: IconTheme.of(context).color, shape: BoxShape.circle))))), {prefix}Toast(title: (variant.dir == TextDirection.rtl ? 'تعذّر الإرسال' : 'Couldn’t send'), variant: {prefix}ToastVariant.danger, action: {prefix}ToastAction(label: (variant.dir == TextDirection.rtl ? 'إعادة' : 'Try again'), onPressed: () {}))])))",
+    "imports": [
+      "@components/toast/fl_toast.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "neutral",
+      "success",
+      "danger"
+    ],
+    "canvas": {
+      "width": 390,
+      "height": 900
+    },
+    "settleMs": 400
+  },
+  "categories": [
+    "feedback",
+    "overlays"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "neutral",
+      "success",
+      "danger"
+    ],
+    "semanticsRoles": [
+      "button"
+    ],
+    "intents": {
+      "fr": [
+        "afficher un message bref après une action",
+        "confirmer qu'un enregistrement a réussi",
+        "signaler une erreur réseau par un message passager",
+        "proposer d'annuler une suppression",
+        "montrer une notification qui disparaît seule",
+        "confirmer qu'un téléversement a réussi"
+      ],
+      "en": [
+        "show a brief message after an action",
+        "confirm that a save succeeded",
+        "give word of a failed request in a passing message",
+        "offer to undo a deletion",
+        "show a notification that disappears on its own",
+        "let the user know a file was uploaded"
+      ]
+    },
+    "notFor": [
+      "asking for confirmation before an irreversible action: use a dialog (dialog)",
+      "explaining a control on hover or long press: use a tooltip (tooltip)",
+      "reporting an input error in a form: use the field's error message (field)"
+    ],
+    "fr": {
+      "title": "Message éphémère",
+      "description": "Signale le résultat d'une action par un message bref posé en haut ou en bas de l'écran, empilé avec les précédents, qui se ferme seul, au glisser ou par sa croix.",
+      "notFor": [
+        "demander une confirmation avant une action irréversible : utiliser un dialogue (dialog)",
+        "expliquer un contrôle au survol ou à l'appui long : utiliser une infobulle (tooltip)",
+        "signaler une erreur de saisie dans un formulaire : utiliser le message d'erreur du champ (field)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "New toast styles, without changing the existing ones: `showIcon` puts the status icon (information, check, warning, cross) when `icon` is null; `loading` puts a small activity indicator in its place; `FlToastAction.variant` chooses the button (`danger` to delete). `FlToasterState.update` replaces a shown toast in place and restarts its duration, and `FlToasterState.promise` shows a loading toast then the success or error one of a `Future`. Now depends on `icons` and `spinner`, which `button` already installed for the latter."
+}

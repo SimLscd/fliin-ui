@@ -1,0 +1,91 @@
+{
+  "name": "checkbox",
+  "type": "registry:component",
+  "version": "0.2.3",
+  "title": "Checkbox",
+  "description": "Lets people check one option, or several in a list. A box with a check drawn stroke by stroke, mixed and invalid states, visible keyboard focus.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/checkbox/fl_checkbox.dart",
+      "type": "registry:component",
+      "target": "@components/checkbox/fl_checkbox.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: Padding(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, spacing: {prefix}Scope.of(context).space.sm, children: [for (final (fr, ar, on, enabled) in [('Terms accepted', 'قبول الشروط', true, true), ('Newsletter', 'النشرة الإخبارية', false, true), ('Select all', 'تحديد الكل', null, true), ('Required', 'إلزامي', true, false)]) Row(spacing: {prefix}Scope.of(context).space.md, children: [Expanded(child: Text(variant.dir == TextDirection.rtl ? ar : fr, style: TextStyle(color: {prefix}Scope.of(context).colors.onSurface))), {prefix}Checkbox(value: on, tristate: true, label: variant.dir == TextDirection.rtl ? ar : fr, onChanged: enabled ? (_) {} : null)])])))",
+    "imports": [
+      "@components/checkbox/fl_checkbox.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "enabled",
+      "checked",
+      "unchecked",
+      "mixed",
+      "disabled"
+    ]
+  },
+  "categories": [
+    "forms"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "enabled",
+      "checked",
+      "unchecked",
+      "mixed",
+      "disabled"
+    ],
+    "semanticsRoles": [
+      "checkbox"
+    ],
+    "intents": {
+      "fr": [
+        "cocher une case pour accepter les conditions générales, les CGU",
+        "sélectionner plusieurs éléments d'une liste",
+        "sélectionner tout avec un état partiel",
+        "cocher une option facultative d'un formulaire",
+        "ajouter une case à cocher"
+      ],
+      "en": [
+        "select several items in a list",
+        "select all with a partial state",
+        "opt into an optional form field",
+        "add a checkbox",
+        "accept the terms before sending a form"
+      ]
+    },
+    "notFor": [
+      "a setting that takes effect immediately: use a switch (switch)",
+      "a single choice among several: use radio buttons (radio)",
+      "a form that requires at least one checked box: use a checkbox group (checkbox-group)"
+    ],
+    "fr": {
+      "title": "Case à cocher",
+      "description": "Permet de cocher une option, ou plusieurs dans une liste. Coche dessinée trait par trait, état mixte et invalide, focus clavier visible.",
+      "notFor": [
+        "réglage qui prend effet tout de suite : utiliser un interrupteur (switch)",
+        "un seul choix parmi plusieurs : utiliser des boutons radio (radio)",
+        "un formulaire qui exige au moins une case cochée : utiliser un groupe de cases (checkbox-group)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "Empty box like a field: `field` background under the `field` shadow, `border` outline at rest and `fieldBorder` on hover (or no shadow, in dark mode); a larger check with a 2 stroke, drawn along its whole length."
+}

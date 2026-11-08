@@ -1,0 +1,96 @@
+{
+  "name": "tag-group",
+  "type": "registry:component",
+  "version": "0.2.3",
+  "title": "Tag group",
+  "description": "Lets people pick tags among wrapping capsules, such as interests or filters, and remove them with their cross. Single or multiple selection, two backgrounds, three sizes.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0",
+    "icons@^0.2.0",
+    "field@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/tag_group/fl_tag_group.dart",
+      "type": "registry:component",
+      "target": "@components/tag_group/fl_tag_group.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: Padding(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, spacing: {prefix}Scope.of(context).space.lg, children: [{prefix}TagGroup<int>(tags: [for (final (i, label) in (variant.dir == TextDirection.rtl ? const ['أخبار', 'سفر', 'ألعاب', 'طبخ'] : const ['News', 'Travel', 'Games', 'Cooking']).indexed) {prefix}Tag(i, label, disabled: i == 3)], selection: {prefix}TagSelection.multiple, selected: const {1, 2}, onSelectionChanged: (_) {}), {prefix}TagGroup<int>(tags: [for (final (i, label) in (variant.dir == TextDirection.rtl ? const ['أخبار', 'سفر'] : const ['News', 'Travel']).indexed) {prefix}Tag(i, label)], variant: {prefix}TagGroupVariant.surface, size: {prefix}TagSize.lg, onRemove: (_) {}, removeLabel: (label) => (variant.dir == TextDirection.rtl ? 'إزالة $label' : 'Remove $label'))])))",
+    "imports": [
+      "@components/tag_group/fl_tag_group.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "selected",
+      "unselected",
+      "disabled",
+      "removable"
+    ],
+    "canvas": {
+      "width": 390,
+      "height": 340
+    }
+  },
+  "categories": [
+    "forms",
+    "data-display"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "selected",
+      "unselected",
+      "disabled",
+      "removable"
+    ],
+    "semanticsRoles": [
+      "list",
+      "listItem",
+      "button"
+    ],
+    "intents": {
+      "fr": [
+        "choisir ses centres d'intérêt parmi des tags",
+        "filtrer une liste par catégories",
+        "sélectionner des tags d'un toucher",
+        "supprimer une étiquette d'un champ de mots-clés",
+        "proposer des équipements à choisir comme parking ou piscine"
+      ],
+      "en": [
+        "pick interests from a set of tags",
+        "let users filter a list by categories",
+        "select several tags at once",
+        "remove a tag from a keyword list",
+        "let guests choose amenities like parking or pool"
+      ]
+    },
+    "notFor": [
+      "a status shown without a choice: use a chip (chip)",
+      "an exclusive choice in a form: use radio buttons (radio)"
+    ],
+    "fr": {
+      "title": "Groupe d'étiquettes",
+      "description": "Permet de choisir des étiquettes parmi des capsules qui passent à la ligne, comme des centres d'intérêt ou des filtres, et de les retirer par leur croix.",
+      "notFor": [
+        "statut affiché sans choix : utiliser une puce (chip)",
+        "choix exclusif dans un formulaire : utiliser des boutons radio (radio)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "An icon or small avatar before the label (`FlTag(leading:)`), in the text color and at the tag size (12, 14 or 16); `label`, `description` and `error` frame the group like a field, the label naming the list for the screen reader."
+}

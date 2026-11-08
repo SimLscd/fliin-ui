@@ -1,0 +1,89 @@
+{
+  "name": "close-button",
+  "type": "registry:component",
+  "version": "0.2.5",
+  "title": "Close button",
+  "description": "Closes a dialog, a window, a popover or a menu: a round button with a cross, named for screen readers.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0",
+    "icons@^0.2.0",
+    "button@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/close_button/fl_close_button.dart",
+      "type": "registry:component",
+      "target": "@components/close_button/fl_close_button.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: Padding(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: Column(crossAxisAlignment: CrossAxisAlignment.start, spacing: {prefix}Scope.of(context).space.sm, children: [Row(spacing: {prefix}Scope.of(context).space.lg, children: [{prefix}CloseButton(label: (variant.dir == TextDirection.rtl ? 'إغلاق' : 'Close'), onPressed: () {}), {prefix}CloseButton(label: (variant.dir == TextDirection.rtl ? 'إغلاق' : 'Close'), onPressed: null)])])))",
+    "imports": [
+      "@components/close_button/fl_close_button.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "enabled",
+      "disabled"
+    ],
+    "canvas": {
+      "width": 390,
+      "height": 120
+    },
+    "settleMs": 400
+  },
+  "categories": [
+    "actions",
+    "overlays"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "enabled",
+      "disabled"
+    ],
+    "semanticsRoles": [
+      "button"
+    ],
+    "intents": {
+      "fr": [
+        "fermer un dialogue",
+        "ajouter une croix pour fermer",
+        "fermer une fenêtre posée sur la page",
+        "fermer un popover ou un menu",
+        "proposer un bouton de fermeture accessible"
+      ],
+      "en": [
+        "close a dialog",
+        "add an x button to dismiss a window",
+        "close a window shown over the page",
+        "close a popover or a menu",
+        "offer an accessible close button"
+      ]
+    },
+    "notFor": [
+      "cancelling an action in progress: use a button (button)"
+    ],
+    "fr": {
+      "title": "Bouton de fermeture",
+      "description": "Permet de fermer un dialogue, une fenêtre, un popover ou un menu : un disque à croix, nommé pour le lecteur d'écran.",
+      "notFor": [
+        "annuler une action en cours : utiliser un bouton (button)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "`icon` replaces the cross with another glyph (a chevron to lower a sheet, a circled cross), at its size and in its color. Default rendering unchanged."
+}

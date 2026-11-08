@@ -1,0 +1,90 @@
+{
+  "name": "skeleton",
+  "type": "registry:component",
+  "version": "0.2.1",
+  "title": "Skeleton",
+  "description": "Holds the place of loading content with animated grey shapes, then fades the content in. Includes a single bone and a bone group.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/skeleton/fl_skeleton.dart",
+      "type": "registry:component",
+      "target": "@components/skeleton/fl_skeleton.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: Padding(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, spacing: {prefix}Scope.of(context).space.sm, children: [{prefix}SkeletonGroup(label: (variant.dir == TextDirection.rtl ? 'جارٍ تحميل الملف الشخصي' : 'Loading the profile'), child: Row(spacing: {prefix}Scope.of(context).space.md, children: [const {prefix}Skeleton.item(width: 40, height: 40, radius: double.infinity), Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, spacing: {prefix}Scope.of(context).space.xs, children: [{prefix}Skeleton.item(width: 128, height: 12, radius: {prefix}Scope.of(context).shape.radiusMd), {prefix}Skeleton.item(width: 96, height: 12, radius: {prefix}Scope.of(context).shape.radiusMd)]))])), {prefix}Skeleton(label: (variant.dir == TextDirection.rtl ? 'جارٍ تحميل الصورة' : 'Loading the image'), variant: {prefix}SkeletonVariant.pulse, height: 80, radius: {prefix}Scope.of(context).shape.radiusLg), {prefix}Skeleton(label: (variant.dir == TextDirection.rtl ? 'جارٍ تحميل العنوان' : 'Loading the title'), variant: {prefix}SkeletonVariant.none, height: 16, radius: {prefix}Scope.of(context).shape.radiusMd), {prefix}Skeleton(label: (variant.dir == TextDirection.rtl ? 'جارٍ تحميل الاسم' : 'Loading the name'), loading: false, height: 16, radius: {prefix}Scope.of(context).shape.radiusMd, child: Text((variant.dir == TextDirection.rtl ? 'آدا لوفليس' : 'Ada Lovelace'), style: TextStyle(color: {prefix}Scope.of(context).colors.onSurface)))])))",
+    "imports": [
+      "@components/skeleton/fl_skeleton.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "loading",
+      "loaded"
+    ],
+    "canvas": {
+      "width": 390,
+      "height": 320
+    },
+    "settleMs": 400
+  },
+  "categories": [
+    "feedback"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "loading",
+      "loaded"
+    ],
+    "semanticsRoles": [
+      "loadingSpinner"
+    ],
+    "intents": {
+      "fr": [
+        "poser des formes à la place d'un contenu qui arrive",
+        "afficher des blocs gris en attendant une liste",
+        "montrer un profil fantôme avant l'arrivée des données",
+        "afficher une forme animée à la place d'une image pas encore reçue",
+        "garantir une mise en page stable tant que rien n'est reçu",
+        "afficher un placeholder de carte avec reflet"
+      ],
+      "en": [
+        "show a placeholder while content is loading",
+        "show grey shapes while a list loads",
+        "show a ghost profile before data arrives",
+        "show an animated shape instead of a loading image",
+        "keep the layout stable while loading",
+        "show a shimmering card placeholder"
+      ]
+    },
+    "notFor": [
+      "waiting with no known shape: use a spinner (spinner)",
+      "measurable progress: use a progress bar (progress)"
+    ],
+    "fr": {
+      "title": "Squelette de chargement",
+      "description": "Indique qu'un contenu charge par des formes grises animées à sa place, puis le montre en fondu. Contient l'os seul et le groupe d'os.",
+      "notFor": [
+        "attente sans forme connue : utiliser un indicateur d'attente (spinner)",
+        "avancement mesurable : utiliser une barre de progression (progress)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "`FlSkeletonText` holds the place of a paragraph: `space.md` lines spaced by `space.sm` (the rhythm of `textSm`), with `shape.radiusXs` corners, the last one shorter (`lastLineWidth`), alone with its `label` or in an `FlSkeletonGroup` whose loading and animation it follows; once loaded, its `child` takes its place. `FlSkeleton` and `FlSkeletonGroup` do not change."
+}

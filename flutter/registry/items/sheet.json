@@ -1,0 +1,82 @@
+{
+  "name": "sheet",
+  "type": "registry:component",
+  "version": "0.2.3",
+  "title": "Bottom sheet",
+  "description": "Opens a panel from the bottom of the screen for a short task, dragged or closed. Spring snap points, icon, title, text, actions, close button, scrim, trapped focus and Escape.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0",
+    "close-button@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/sheet/fl_sheet.dart",
+      "type": "registry:component",
+      "target": "@components/sheet/fl_sheet.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "Stack(fit: StackFit.expand, children: [ColoredBox(color: {prefix}Scope.of(context).colors.surface), {prefix}Sheet(label: (variant.dir == TextDirection.rtl ? 'مشاركة' : 'Share'), title: (variant.dir == TextDirection.rtl ? 'مشاركة' : 'Share'), description: (variant.dir == TextDirection.rtl ? 'أرسل نسخة أو انسخ الرابط.' : 'Send a copy or copy the link.'), closeLabel: (variant.dir == TextDirection.rtl ? 'إغلاق' : 'Close'), barrierLabel: (variant.dir == TextDirection.rtl ? 'إغلاق الورقة' : 'Close the sheet'), snaps: const [0.6, 1], onDismiss: () {}, child: Align(alignment: AlignmentDirectional.topStart, child: Text((variant.dir == TextDirection.rtl ? 'إرسال نسخة' : 'Send a copy'), style: TextStyle(color: {prefix}Scope.of(context).colors.onSurface))))])",
+    "imports": [
+      "@components/sheet/fl_sheet.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "open"
+    ]
+  },
+  "categories": [
+    "overlays"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "open"
+    ],
+    "semanticsRoles": [
+      "dialog"
+    ],
+    "intents": {
+      "fr": [
+        "ouvrir un panneau depuis le bas de l'écran",
+        "afficher des options de partage",
+        "proposer une action rapide sans quitter la page",
+        "faire glisser une feuille pour la fermer",
+        "ajouter une feuille modale à mi-hauteur"
+      ],
+      "en": [
+        "open a bottom sheet",
+        "show share options in a panel",
+        "offer a quick action without leaving the page",
+        "drag a sheet down to dismiss it",
+        "add a half-height modal sheet"
+      ]
+    },
+    "notFor": [
+      "an on/off choice in a settings list: use a list row (list-row)",
+      "the page's main action: use a button (button)"
+    ],
+    "fr": {
+      "title": "Feuille du bas",
+      "description": "Ouvre un panneau depuis le bas de l'écran pour une tâche courte, qu'on glisse ou ferme. Feuille à arrêts par ressort, icône, titre, texte, actions, croix de fermeture, voile, focus piégé et Échap.",
+      "notFor": [
+        "choix marche/arrêt dans une liste de réglages : utiliser une ligne de liste (list-row)",
+        "action principale de la page : utiliser un bouton (button)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "`icon` (and `iconTone`) above the title, in a disc, with the header then centered, and `actions`, the bottom buttons stacked full width under the content. `child` and the `builder` of `showFlSheet` become optional. With `fitContent`, the header scrolls with the content and counts in the height: it is no longer cut in half."
+}

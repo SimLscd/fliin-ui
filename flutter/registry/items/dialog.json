@@ -1,0 +1,96 @@
+{
+  "name": "dialog",
+  "type": "registry:component",
+  "version": "0.2.4",
+  "title": "Modal dialog",
+  "description": "Asks for a decision or a confirmation before going on, over a dimmed page. Title, scrolling text, actions, close button, swipe down to dismiss, trapped focus, Escape and focus returned on close.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.2",
+    "button@^0.2.0",
+    "close-button@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/dialog/fl_dialog.dart",
+      "type": "registry:component",
+      "target": "@components/dialog/fl_dialog.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "Navigator(onGenerateInitialRoutes: (navigator, _) => [PageRouteBuilder<void>(pageBuilder: (context, _, _) => ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: const SizedBox.expand())), {prefix}DialogRoute<void>(context: context, barrierLabel: (variant.dir == TextDirection.rtl ? 'إغلاق' : 'Close'), builder: (context) => {prefix}Dialog(title: (variant.dir == TextDirection.rtl ? 'حذف الملف؟' : 'Delete the file?'), closeLabel: (variant.dir == TextDirection.rtl ? 'إغلاق' : 'Close'), content: Text((variant.dir == TextDirection.rtl ? 'سينقل الملف إلى سلة المهملات لمدة 30 يومًا، ثم يُحذف من جميع أجهزتك.' : 'The file will stay in the trash for 30 days, then be erased from all your devices.')), actions: [{prefix}Button(label: (variant.dir == TextDirection.rtl ? 'إلغاء' : 'Cancel'), variant: {prefix}ButtonVariant.ghost, size: {prefix}ButtonSize.sm, onPressed: () => Navigator.pop(context)), {prefix}Button(label: (variant.dir == TextDirection.rtl ? 'حذف' : 'Delete'), size: {prefix}ButtonSize.sm, onPressed: () => Navigator.pop(context))]))])",
+    "imports": [
+      "@components/button/fl_button.dart",
+      "@components/dialog/fl_dialog.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "open",
+      "alert"
+    ],
+    "canvas": {
+      "width": 390,
+      "height": 560
+    },
+    "settleMs": 400
+  },
+  "categories": [
+    "overlays",
+    "feedback"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "open",
+      "alert"
+    ],
+    "semanticsRoles": [
+      "dialog",
+      "alertDialog"
+    ],
+    "intents": {
+      "fr": [
+        "confirmer une suppression",
+        "demander une décision avant de continuer",
+        "ouvrir une boîte de dialogue modale",
+        "afficher une alerte bloquante",
+        "piéger le focus dans une fenêtre modale",
+        "demander confirmation avant une action destructive"
+      ],
+      "en": [
+        "confirm a deletion",
+        "ask for a decision before continuing",
+        "open a modal dialog",
+        "show a blocking alert",
+        "keep focus inside a modal window"
+      ]
+    },
+    "notFor": [
+      "anchored content that does not block the page: use a popover (popover)",
+      "a list of actions: use a menu (menu)",
+      "a hint on hover: use a tooltip (tooltip)"
+    ],
+    "fr": {
+      "title": "Dialogue modal",
+      "description": "Exige une décision ou une confirmation avant de continuer, sur une page voilée. Dialogue avec titre, texte qui défile, actions, croix de fermeture, glisser pour fermer, focus piégé et Échap.",
+      "notFor": [
+        "un contenu ancré sans bloquer la page : utiliser un popover (popover)",
+        "une liste d'actions : utiliser un menu (menu)",
+        "un indice au survol : utiliser une infobulle (tooltip)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "The icon also takes the `accent`, `success` and `warning` tones (`FlDialogIconTone`); `actionsLayout: FlDialogActionsLayout.stacked` stacks the actions full width, the main action first; the title and its text move closer (8 instead of 16) under an icon at 12, the actions stay at 16. New optional parameters, nothing breaks."
+}

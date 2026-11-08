@@ -1,0 +1,100 @@
+{
+  "name": "tabs",
+  "type": "registry:component",
+  "version": "0.3.3",
+  "title": "Tabs",
+  "description": "Moves between views at the same level of a screen. Segmented or underlined tabs with a spring indicator, disabled tabs, separators and arrow key navigation.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/tabs/fl_tabs.dart",
+      "type": "registry:component",
+      "target": "@components/tabs/fl_tabs.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: Padding(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, spacing: {prefix}Scope.of(context).space.md, children: [{prefix}Tabs(controller: {prefix}TabController(length: 3, initialIndex: 1), labels: [(variant.dir == TextDirection.rtl ? 'الرسائل' : 'Messages'), (variant.dir == TextDirection.rtl ? 'المكالمات' : 'Calls'), (variant.dir == TextDirection.rtl ? 'جهات الاتصال' : 'Contacts')]), {prefix}Tabs(controller: {prefix}TabController(length: 3), variant: {prefix}TabsVariant.secondary, labels: [(variant.dir == TextDirection.rtl ? 'الرسائل' : 'Messages'), (variant.dir == TextDirection.rtl ? 'المكالمات' : 'Calls'), (variant.dir == TextDirection.rtl ? 'جهات الاتصال' : 'Contacts')]), {prefix}Tabs(controller: {prefix}TabController(length: 3), disabled: const {1}, separators: true, labels: [(variant.dir == TextDirection.rtl ? 'الرسائل' : 'Messages'), (variant.dir == TextDirection.rtl ? 'المكالمات' : 'Calls'), (variant.dir == TextDirection.rtl ? 'جهات الاتصال' : 'Contacts')])])))",
+    "imports": [
+      "@components/tabs/fl_tabs.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "primary",
+      "secondary",
+      "disabled"
+    ],
+    "canvas": {
+      "width": 390,
+      "height": 360
+    }
+  },
+  "categories": [
+    "navigation"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "primary",
+      "secondary",
+      "disabled"
+    ],
+    "semanticsRoles": [
+      "tab",
+      "tabBar",
+      "tabPanel"
+    ],
+    "intents": {
+      "fr": [
+        "passer d'une vue à l'autre dans un écran",
+        "ajouter des onglets en haut de page",
+        "séparer messages, appels et contacts",
+        "naviguer entre sections sans changer de page",
+        "changer de section au clavier avec les flèches"
+      ],
+      "en": [
+        "switch between views on one screen",
+        "add a tab bar at the top of a page",
+        "split content into sections",
+        "navigate sections without leaving the page",
+        "let keyboard users move between tabs with arrows",
+        "show segmented tabs above the content of each section"
+      ]
+    },
+    "notFor": [
+      "picking an exclusive option in a form: use radio buttons (radio)",
+      "triggering a one-off action: use a button (button)",
+      "picking a period or a filter among a few short options: use a segmented control (segmented)"
+    ],
+    "fr": {
+      "title": "Onglets",
+      "description": "Regroupe des contenus en onglets qu'on choisit d'un toucher ou au clavier : contrôle segmenté en capsule ou onglets soulignés, avec onglets désactivés et séparateurs, qui défilent quand ils dépassent.",
+      "notFor": [
+        "choisir une option exclusive dans un formulaire : utiliser des boutons radio (radio)",
+        "ouvrir une action ponctuelle : utiliser un bouton (button)",
+        "choisir une période ou un filtre parmi quelques options courtes : utiliser un contrôle segmenté (segmented)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "`icons` puts an icon before each label (one per tab, `null` for none), at `size.buttonIconSm` and in the label color, counted in the width that decides scrolling; `indicatorColor` and `selectedLabelColor` replace the colors of the thumb (or the underline) and of the chosen label. The default rendering does not change.",
+  "breaking": [
+    {
+      "kind": "semantic",
+      "description": "`FlTabBar` is renamed `FlTabs` (the canvas name), so it is no longer confused with `FlBottomTabBar` from the tab-bar item. Replace `FlTabBar(` with `FlTabs(`; `FlTabController`, `FlTabsVariant` and `FlTabView` keep their names. The list now stretches across the width it is given."
+    }
+  ]
+}

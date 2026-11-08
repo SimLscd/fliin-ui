@@ -1,0 +1,106 @@
+{
+  "name": "table",
+  "type": "registry:component",
+  "version": "0.1.1",
+  "title": "Data table",
+  "description": "Presents rows of data in columns: sort by header, selection, empty and loading states. On a phone it scrolls sideways with the first column held, or stacks each row.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0",
+    "icons@^0.2.0",
+    "checkbox@^0.2.0",
+    "spinner@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/table/fl_table.dart",
+      "type": "registry:component",
+      "target": "@components/table/fl_table.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "Builder(builder: (context) { final rtl = variant.dir == TextDirection.rtl; final theme = {prefix}Scope.of(context); String tr(String fr, String ar) => rtl ? ar : fr; final people = [ (tr('Kate Moore', 'كيت مور'), tr('CEO', 'المديرة'), tr('Active', 'نشطة'), 'kate@acme.com'), (tr('John Smith', 'جون سميث'), tr('CTO', 'المدير التقني'), tr('Active', 'نشط'), 'john@acme.com'), (tr('Sara Johnson', 'سارة جونسون'), tr('CMO', 'مديرة التسويق'), tr('On leave', 'في إجازة'), 'sara@acme.com'), ]; final columns = [ {prefix}TableColumn<(String, String, String, String)>(id: 'name', label: tr('Name', 'الاسم'), text: (p) => p.$1, width: 132, sortable: true), {prefix}TableColumn<(String, String, String, String)>(id: 'role', label: tr('Role', 'الدور'), text: (p) => p.$2, width: 112, sortable: true), {prefix}TableColumn<(String, String, String, String)>(id: 'status', label: tr('Status', 'الحالة'), text: (p) => p.$3, width: 104), {prefix}TableColumn<(String, String, String, String)>(id: 'email', label: tr('Email', 'البريد'), text: (p) => p.$4, width: 152), ]; final labels = {prefix}TableLabels(ascending: tr('Ascending', 'تصاعدي'), descending: tr('Descending', 'تنازلي'), selectAll: tr('Select all', 'تحديد الكل'), loading: tr('Loading', 'جارٍ التحميل'), empty: tr('No results', 'لا توجد نتائج')); return ColoredBox( color: theme.colors.surface, child: SingleChildScrollView( padding: EdgeInsetsDirectional.all(theme.space.lg), child: Column( crossAxisAlignment: CrossAxisAlignment.stretch, spacing: theme.space.lg, children: [ {prefix}Table<(String, String, String, String)>( label: tr('Team', 'الفريق'), columns: columns, rows: people, rowKey: (p) => p.$4, labels: labels, sort: (column: 'name', direction: {prefix}SortDirection.ascending), onSortChanged: (_) {}, selected: const {'john@acme.com'}, onSelectionChanged: (_) {}, ), {prefix}Table<(String, String, String, String)>( label: tr('Roles', 'الأدوار'), variant: {prefix}TableVariant.secondary, columns: columns.take(2).toList(), rows: people, rowKey: (p) => p.$4, labels: labels, sort: (column: 'role', direction: {prefix}SortDirection.descending), onSortChanged: (_) {}, loading: true, ), {prefix}Table<(String, String, String, String)>( label: tr('Team', 'الفريق'), layout: {prefix}TableLayout.stacked, columns: columns, rows: people.take(2).toList(), rowKey: (p) => p.$4, labels: labels, selected: const {'kate@acme.com'}, onSelectionChanged: (_) {}, ), {prefix}Table<(String, String, String, String)>( label: tr('Invitations', 'الدعوات'), columns: columns.take(2).toList(), rows: const [], rowKey: (p) => p.$4, labels: labels, ), ], ), ), ); })",
+    "imports": [
+      "@components/table/fl_table.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "sorted",
+      "selected",
+      "stacked",
+      "empty",
+      "loading"
+    ],
+    "canvas": {
+      "width": 390,
+      "height": 1000
+    },
+    "settleMs": 400
+  },
+  "categories": [
+    "data-display",
+    "lists"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "sorted",
+      "selected",
+      "stacked",
+      "empty",
+      "loading"
+    ],
+    "semanticsRoles": [
+      "table",
+      "row",
+      "columnHeader",
+      "cell",
+      "checkbox"
+    ],
+    "intents": {
+      "fr": [
+        "présenter des données en lignes et en colonnes",
+        "trier un tableau en touchant l'en-tête d'une colonne",
+        "sélectionner plusieurs lignes d'un tableau de données",
+        "faire défiler un tableau large en gardant la première colonne",
+        "passer chaque ligne d'un tableau en bloc sur un téléphone étroit",
+        "afficher un tableau vide ou en cours de chargement"
+      ],
+      "en": [
+        "show data in rows and columns",
+        "change the order of a table by tapping a column header",
+        "select rows of a data table to act on them together",
+        "keep the first column in view while a wide table scrolls sideways",
+        "turn each table row into a block on a narrow phone",
+        "show an empty or loading data table"
+      ]
+    },
+    "notFor": [
+      "a list of settings or contacts: use a list row (list-row)",
+      "one figure in the spotlight: use a stat card (stat-card)",
+      "values over time: use a chart (chart)"
+    ],
+    "fr": {
+      "title": "Tableau de données",
+      "description": "Permet de lire des données en lignes et en colonnes, triées par en-tête et sélectionnables. Sur un téléphone, il défile de côté en gardant la première colonne, ou empile chaque ligne.",
+      "notFor": [
+        "une liste de réglages ou de contacts : utiliser la ligne de liste (list-row)",
+        "une seule mesure mise en avant : utiliser la carte de statistique (stat-card)",
+        "des valeurs dans le temps : utiliser le graphique (chart)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "`onRowPressed` receives the tapped row to open its details (with a selection, only the checkbox toggles it; the row takes the tap target height and the screen reader activates it); `emptyState` replaces the default message of a table without rows. Without them, the rendering does not change."
+}

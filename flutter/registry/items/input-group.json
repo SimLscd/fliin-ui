@@ -1,0 +1,92 @@
+{
+  "name": "input-group",
+  "type": "registry:component",
+  "version": "0.2.2",
+  "title": "Input group",
+  "description": "Puts a prefix and a suffix around an input: an icon, a unit, a protocol or a button inside the field frame, the text between them.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0",
+    "text-field@^0.2.5"
+  ],
+  "files": [
+    {
+      "path": "components/input_group/fl_input_group.dart",
+      "type": "registry:component",
+      "target": "@components/input_group/fl_input_group.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "Localizations(locale: const Locale('en'), delegates: const [DefaultWidgetsLocalizations.delegate], child: Directionality(textDirection: variant.dir, child: Overlay(initialEntries: [OverlayEntry(builder: (context) => ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: Padding(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, spacing: {prefix}Scope.of(context).space.lg, children: [{prefix}InputGroup(prefix: const Text('https://'), decorativePrefix: true, child: {prefix}Input(label: variant.dir == TextDirection.rtl ? 'الموقع' : 'Website', placeholder: variant.dir == TextDirection.rtl ? 'مثال' : 'example')), {prefix}InputGroup(suffix: const Text('€'), decorativeSuffix: true, child: {prefix}Input(label: variant.dir == TextDirection.rtl ? 'المبلغ' : 'Amount', controller: TextEditingController(text: '42'))), {prefix}InputGroup(prefix: const Text('https://'), suffix: const Text('.com'), decorativePrefix: true, decorativeSuffix: true, child: {prefix}Input(label: variant.dir == TextDirection.rtl ? 'الموقع' : 'Website', controller: TextEditingController(text: 'fliin'), invalid: true)), {prefix}InputGroup(prefix: const Text('@'), decorativePrefix: true, disabled: true, child: {prefix}Input(label: variant.dir == TextDirection.rtl ? 'المعرّف' : 'Username', controller: TextEditingController(text: 'demo')))]))))])))",
+    "imports": [
+      "@components/input_group/fl_input_group.dart",
+      "@components/text_field/fl_text_field.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "enabled",
+      "error",
+      "disabled"
+    ],
+    "canvas": {
+      "width": 390,
+      "height": 520
+    },
+    "settleMs": 300
+  },
+  "categories": [
+    "forms"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "enabled",
+      "error",
+      "disabled"
+    ],
+    "semanticsRoles": [
+      "textField"
+    ],
+    "intents": {
+      "fr": [
+        "poser une icône au début d'un champ",
+        "afficher une unité, ou le symbole d'une devise à droite d'un prix",
+        "ajouter https:// devant une adresse web",
+        "ajouter un bouton pour montrer le mot de passe dans le champ",
+        "masquer une icône décorative au lecteur d'écran"
+      ],
+      "en": [
+        "add an icon at the start of an input",
+        "show a unit or currency after the amount",
+        "add https:// before a web address",
+        "add a show password button inside the field",
+        "hide a decorative icon from screen readers"
+      ]
+    },
+    "notFor": [
+      "showing a label, help or an error: use a text field (text-field)",
+      "searching a list: use a search field (search-field)"
+    ],
+    "fr": {
+      "title": "Groupe d'entrée",
+      "description": "Permet d'entourer une entrée d'un préfixe et d'un suffixe : icône, unité, protocole ou bouton, dans le cadre du champ, le texte entre eux.",
+      "notFor": [
+        "afficher un libellé, une aide ou une erreur : utiliser un champ de texte (text-field)",
+        "chercher dans une liste : utiliser un champ de recherche (search-field)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "`tightPrefix` and `tightSuffix` bring an affix to `space.xs` from the edge, for a ghost button or a key that carries its own padding; `flInputAffixExtent` gives the height of such a button, which keeps the input at the control height (text-field 0.2.5). Default rendering unchanged."
+}

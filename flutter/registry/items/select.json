@@ -1,0 +1,103 @@
+{
+  "name": "select",
+  "type": "registry:component",
+  "version": "0.2.5",
+  "changelog": "`helper` and `error` under the trigger (the error rings the trigger in `danger` and is announced), `required` (visible label asterisk, announced), `variant` (`secondary` on a surface); `FlSelectOption.leading` (icon, flag, avatar) before the label in the list and, once chosen, in the trigger. New optional parameters, nothing breaks.",
+  "title": "Select",
+  "description": "Offers one or several choices from a closed list, from a trigger that shows the current choice. A list as wide as the trigger, or a bottom sheet or a dialog.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0",
+    "icons@^0.2.0",
+    "popover@^0.2.0",
+    "sheet@^0.2.0",
+    "dialog@^0.2.0",
+    "close-button@^0.2.0",
+    "field@^0.2.0",
+    "text-field@^0.2.3"
+  ],
+  "files": [
+    {
+      "path": "components/select/fl_select.dart",
+      "type": "registry:component",
+      "target": "@components/select/fl_select.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "Overlay(initialEntries: [OverlayEntry(builder: (context) => ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: Padding(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, spacing: {prefix}Scope.of(context).space.md, children: [{prefix}Select<int>(label: (variant.dir == TextDirection.rtl ? 'الحجم' : 'Size'), placeholder: (variant.dir == TextDirection.rtl ? 'اختر حجمًا' : 'Choose a size'), options: const [], selection: {prefix}SingleSelection(value: null, onChanged: null)), Builder(builder: (context) { final controller = {prefix}SelectController(); WidgetsBinding.instance.addPostFrameCallback((_) => controller.open()); return {prefix}Select<int>(controller: controller, label: (variant.dir == TextDirection.rtl ? 'الفاكهة' : 'Fruit'), placeholder: (variant.dir == TextDirection.rtl ? 'اختر فاكهة' : 'Choose a fruit'), listLabel: (variant.dir == TextDirection.rtl ? 'الفواكه' : 'Fruits'), options: [for (final (i, name) in (variant.dir == TextDirection.rtl ? const ['تفاح', 'برتقال', 'موز'] : const ['Apple', 'Orange', 'Banana']).indexed) {prefix}SelectOption(value: i, label: name)], selection: {prefix}SingleSelection(value: 0, onChanged: (_) {})); })]))))])",
+    "imports": [
+      "@components/select/fl_select.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "open",
+      "placeholder",
+      "disabled"
+    ],
+    "canvas": {
+      "width": 390,
+      "height": 420
+    },
+    "settleMs": 400
+  },
+  "categories": [
+    "forms",
+    "overlays"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "open",
+      "placeholder",
+      "disabled"
+    ],
+    "semanticsRoles": [
+      "button",
+      "dialog"
+    ],
+    "intents": {
+      "fr": [
+        "choisir un pays ou une ville dans un champ de formulaire",
+        "proposer des choix imposés au lieu d'un champ libre",
+        "montrer les choix possibles d'un champ",
+        "ajouter des étiquettes à un champ par une liste",
+        "choisir un mode de livraison dans une liste fermée"
+      ],
+      "en": [
+        "pick a size or a quantity from a dropdown",
+        "add a dropdown field to a form",
+        "offer a fixed set of choices instead of free text",
+        "let people pick several tags in one field",
+        "choose a delivery method from a closed list"
+      ]
+    },
+    "notFor": [
+      "triggering an action: use a menu (menu)",
+      "two or three choices always visible: use radio buttons (radio)",
+      "entering free text: use a text field (text-field)",
+      "a city or an address to find by typing: use a combo box (combo-box)"
+    ],
+    "fr": {
+      "title": "Liste de choix",
+      "description": "Propose un ou plusieurs choix d'une liste fermée, depuis un déclencheur qui montre le choix courant. Liste à la largeur du déclencheur, ou en feuille ou en dialogue.",
+      "notFor": [
+        "déclencher une action : utiliser un menu (menu)",
+        "deux ou trois choix toujours visibles : utiliser des boutons radio (radio)",
+        "saisir un texte libre : utiliser un champ de texte (text-field)",
+        "une ville ou une adresse à trouver en écrivant : utiliser un champ à suggestions (combo-box)"
+      ]
+    },
+    "goldens": null
+  }
+}

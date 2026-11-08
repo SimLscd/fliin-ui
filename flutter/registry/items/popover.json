@@ -1,0 +1,91 @@
+{
+  "name": "popover",
+  "type": "registry:component",
+  "version": "0.2.4",
+  "changelog": "`content` sits `space.md` below the title or the text instead of touching them; a `content` that already added its own gap can remove it. The API does not change.",
+  "title": "Anchored popover",
+  "description": "Opens free content next to the control that opens it, closed by a tap outside or Escape. A panel with a title, text, a close button and an arrow, or a bottom sheet.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.2",
+    "close-button@^0.2.0",
+    "sheet@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/popover/fl_popover.dart",
+      "type": "registry:component",
+      "target": "@components/popover/fl_popover.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "Overlay(initialEntries: [OverlayEntry(builder: (context) => ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: Padding(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: Align(alignment: AlignmentDirectional.topCenter, child: Builder(builder: (context) { final controller = {prefix}PopoverController(); WidgetsBinding.instance.addPostFrameCallback((_) => controller.open()); return {prefix}Popover(controller: controller, label: (variant.dir == TextDirection.rtl ? 'عوامل التصفية' : 'Filters'), title: (variant.dir == TextDirection.rtl ? 'عوامل التصفية' : 'Filters'), description: (variant.dir == TextDirection.rtl ? 'الأحدث أولاً، في كل المجلدات.' : 'Newest first, in all folders.'), closeLabel: (variant.dir == TextDirection.rtl ? 'إغلاق' : 'Close'), width: 280, child: {prefix}Pressable(onPressed: controller.toggle, label: (variant.dir == TextDirection.rtl ? 'عوامل التصفية' : 'Filters'), borderRadius: {prefix}Scope.of(context).shape.buttonRadius, builder: (context, states) => Padding(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.md), child: Text((variant.dir == TextDirection.rtl ? 'عوامل التصفية' : 'Filters'), style: TextStyle(color: {prefix}Scope.of(context).colors.onSurface))))); })))))])",
+    "imports": [
+      "@components/popover/fl_popover.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "open"
+    ],
+    "canvas": {
+      "width": 390,
+      "height": 340
+    },
+    "settleMs": 400
+  },
+  "categories": [
+    "overlays"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "open"
+    ],
+    "semanticsRoles": [
+      "dialog"
+    ],
+    "intents": {
+      "fr": [
+        "afficher des filtres sous une barre d'outils",
+        "ouvrir une bulle d'options contre une icône",
+        "montrer un panneau flottant ancré",
+        "proposer un réglage rapide sans quitter l'écran",
+        "ajouter un popover qui se ferme au toucher extérieur",
+        "afficher une aide détaillée avec un bouton de fermeture"
+      ],
+      "en": [
+        "show filters under a button",
+        "open an anchored floating panel",
+        "add a popover that closes on outside tap",
+        "reach quick settings without leaving the screen",
+        "show rich contextual help next to a control"
+      ]
+    },
+    "notFor": [
+      "a list of actions to pick from: use a menu (menu)",
+      "a short label on hover or long press: use a tooltip (tooltip)",
+      "a decision that blocks the screen: use a dialog (dialog)"
+    ],
+    "fr": {
+      "title": "Popover ancré",
+      "description": "Ouvre un contenu libre contre la commande qui l'ouvre, fermé d'un toucher dehors ou par Échap. Panneau avec titre, texte, bouton de fermeture et flèche, ou feuille du bas.",
+      "notFor": [
+        "une liste d'actions à choisir : utiliser un menu (menu)",
+        "un libellé court au survol ou à l'appui long : utiliser une infobulle (tooltip)",
+        "une décision qui bloque l'écran : utiliser un dialogue (dialog)"
+      ]
+    },
+    "goldens": null
+  }
+}

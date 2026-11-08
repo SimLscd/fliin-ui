@@ -1,0 +1,98 @@
+{
+  "name": "switch-group",
+  "type": "registry:component",
+  "version": "0.2.3",
+  "title": "Switch group",
+  "description": "Gathers independent on/off settings under one label, description and error, such as alerts or sync options, read as one named group.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0",
+    "field@^0.2.0",
+    "control-field@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/switch_group/fl_switch_group.dart",
+      "type": "registry:component",
+      "target": "@components/switch_group/fl_switch_group.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "Localizations(locale: Locale(variant.dir == TextDirection.rtl ? 'ar' : 'en'), delegates: const [DefaultWidgetsLocalizations.delegate], child: Directionality(textDirection: variant.dir, child: ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: Padding(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, spacing: {prefix}Scope.of(context).space.xl, children: [{prefix}SwitchGroup(label: (variant.dir == TextDirection.rtl ? 'التنبيهات' : 'Alerts'), description: (variant.dir == TextDirection.rtl ? 'لكل رسالة واردة' : 'For each message received'), options: [{prefix}SwitchGroupOption(value: true, onChanged: (_) {}, label: (variant.dir == TextDirection.rtl ? 'الأصوات' : 'Sounds')), {prefix}SwitchGroupOption(value: false, onChanged: (_) {}, label: (variant.dir == TextDirection.rtl ? 'الشارات' : 'Badges'), description: (variant.dir == TextDirection.rtl ? 'على أيقونة التطبيق' : 'On the app icon')), {prefix}SwitchGroupOption(value: true, onChanged: null, label: (variant.dir == TextDirection.rtl ? 'المعاينات' : 'Previews'))]), {prefix}SwitchGroup(label: (variant.dir == TextDirection.rtl ? 'المزامنة' : 'Syncing'), invalid: true, error: (variant.dir == TextDirection.rtl ? 'فعّل خيارًا واحدًا على الأقل' : 'Turn on at least one option'), options: [{prefix}SwitchGroupOption(value: false, onChanged: (_) {}, label: (variant.dir == TextDirection.rtl ? 'الصور' : 'Photos')), {prefix}SwitchGroupOption(value: false, onChanged: (_) {}, label: (variant.dir == TextDirection.rtl ? 'جهات الاتصال' : 'Contacts'))])])))))",
+    "imports": [
+      "@components/switch_group/fl_switch_group.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "enabled",
+      "selected",
+      "unselected",
+      "disabled",
+      "invalid"
+    ],
+    "canvas": {
+      "width": 390,
+      "height": 1100
+    }
+  },
+  "categories": [
+    "forms",
+    "settings"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "enabled",
+      "selected",
+      "unselected",
+      "disabled",
+      "invalid"
+    ],
+    "semanticsRoles": [
+      "toggled"
+    ],
+    "intents": {
+      "fr": [
+        "grouper plusieurs interrupteurs sous un même titre",
+        "activer ou couper chaque type d'alerte",
+        "ranger les options de synchronisation ensemble",
+        "signaler qu'au moins un interrupteur doit rester allumé",
+        "poser une section d'interrupteurs dans un formulaire"
+      ],
+      "en": [
+        "show several switches under one heading",
+        "turn each kind of alert on or off",
+        "keep sync options together",
+        "show that at least one switch must stay on",
+        "add a section of switches to a form"
+      ]
+    },
+    "notFor": [
+      "a single switch with its label: use a labeled control (control-field)",
+      "several choices sent with the form: use a checkbox group (checkbox-group)",
+      "a settings page as a list: use a list row (list-row)"
+    ],
+    "fr": {
+      "title": "Groupe d'interrupteurs",
+      "description": "Permet de réunir plusieurs interrupteurs sous un libellé, une description et une erreur communs : alertes, synchronisation, confidentialité.",
+      "notFor": [
+        "un seul interrupteur avec son libellé : utiliser un contrôle avec libellé (control-field)",
+        "plusieurs choix envoyés avec le formulaire : utiliser un groupe de cases (checkbox-group)",
+        "page de paramètres en liste : utiliser une ligne de liste (list-row)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "`framed` puts each setting on its own `surfaceRaised` card, `space.sm` apart, for settings placed on the page."
+}

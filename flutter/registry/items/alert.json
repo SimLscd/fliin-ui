@@ -1,0 +1,98 @@
+{
+  "name": "alert",
+  "type": "registry:component",
+  "version": "0.2.4",
+  "title": "Inline alert",
+  "description": "Reports information, success, a warning or an error in the page, with the status icon and color, a title, a description and an action.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0",
+    "icons@^0.2.0",
+    "surface@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/alert/fl_alert.dart",
+      "type": "registry:component",
+      "target": "@components/alert/fl_alert.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: Padding(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, spacing: {prefix}Scope.of(context).space.md, children: [{prefix}Alert(status: {prefix}AlertStatus.neutral, title: (variant.dir == TextDirection.rtl ? 'ميزات جديدة' : 'New features'), description: (variant.dir == TextDirection.rtl ? 'الوضع الداكن متاح.' : 'Dark mode is available.')), {prefix}Alert(status: {prefix}AlertStatus.accent, title: (variant.dir == TextDirection.rtl ? 'التحديث جاهز' : 'Update ready'), description: (variant.dir == TextDirection.rtl ? 'أعد التشغيل لتثبيته.' : 'Restart to install it.')), {prefix}Alert(status: {prefix}AlertStatus.success, title: (variant.dir == TextDirection.rtl ? 'تم حفظ الملف' : 'Profile saved'), description: (variant.dir == TextDirection.rtl ? 'يراه فريقك.' : 'Your team can see it.')), {prefix}Alert(status: {prefix}AlertStatus.warning, title: (variant.dir == TextDirection.rtl ? 'صيانة مجدولة' : 'Scheduled maintenance'), description: (variant.dir == TextDirection.rtl ? 'الأحد من 2 إلى 4.' : 'Sunday from 2 AM to 4 AM.')), {prefix}Alert(status: {prefix}AlertStatus.danger, title: (variant.dir == TextDirection.rtl ? 'تعذر الاتصال' : 'Can’t connect'), description: (variant.dir == TextDirection.rtl ? 'تحقق من شبكتك.' : 'Check your network.'))])))",
+    "imports": [
+      "@components/alert/fl_alert.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "neutral",
+      "accent",
+      "success",
+      "warning",
+      "danger"
+    ],
+    "canvas": {
+      "width": 390,
+      "height": 1100
+    }
+  },
+  "categories": [
+    "feedback"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "neutral",
+      "accent",
+      "success",
+      "warning",
+      "danger"
+    ],
+    "semanticsRoles": [
+      "alert",
+      "liveRegion"
+    ],
+    "intents": {
+      "fr": [
+        "signaler une maintenance prévue dans la page",
+        "indiquer qu'une mise à jour est prête à installer",
+        "confirmer dans la page qu'un profil est enregistré",
+        "expliquer pourquoi une connexion a échoué",
+        "afficher un bandeau d'information avec une action"
+      ],
+      "en": [
+        "give notice of planned maintenance on the page",
+        "let people know an update is ready to install",
+        "confirm on the page that a profile was saved",
+        "explain why a payment or a connection failed",
+        "show an inline notice with an action button"
+      ]
+    },
+    "notFor": [
+      "a passing message after an action: use a toast (toast)",
+      "an input error on a field: use the field's error message (field)",
+      "a confirmation before an irreversible action: use a dialog (dialog)"
+    ],
+    "fr": {
+      "title": "Alerte en ligne",
+      "description": "Signale dans la page une information, un succès, un avertissement ou une erreur, avec l'icône et la couleur du statut, un titre, une description et une action.",
+      "notFor": [
+        "message passager après une action : utiliser un message éphémère (toast)",
+        "erreur de saisie d'un champ : utiliser le message d'erreur du champ (field)",
+        "confirmation avant une action irréversible : utiliser un dialogue (dialog)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "Two optional slots under the text, for a narrow screen: `content` (a list of steps, a link, in muted `textSm`, 8 below the description) and `action` (a button 12 below the text, aligned with the title), next to `trailing`, which keeps the end of the line for a cross. Without them, the rendering does not change."
+}

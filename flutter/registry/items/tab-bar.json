@@ -1,0 +1,90 @@
+{
+  "name": "tab-bar",
+  "type": "registry:component",
+  "version": "0.2.3",
+  "changelog": "The chosen tab's icon in `selected`, the selection color; its label stays `onSurface`.",
+  "title": "Tab bar",
+  "description": "Switches between the main sections of an app from the bottom of the screen: three to five tabs with icon, label and badge, and a selection that springs from tab to tab.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/tab_bar/fl_tab_bar.dart",
+      "type": "registry:component",
+      "target": "@components/tab_bar/fl_tab_bar.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, spacing: {prefix}Scope.of(context).space.xl, children: [for (final (count, index) in [(3, 0), (5, 4)]) {prefix}BottomTabBar(index: index, onSelected: (_) {}, tabs: [for (final (fr, ar) in [('Home', 'الرئيسية'), ('Messages', 'الرسائل'), ('Alerts', 'التنبيهات'), ('Profile', 'الملف'), ('Settings', 'الإعدادات')].take(count)) {prefix}BottomTab(label: (variant.dir == TextDirection.rtl ? ar : fr), badge: fr == 'Messages' ? Semantics(label: (variant.dir == TextDirection.rtl ? 'غير مقروءة' : 'Unread'), child: SizedBox.square(dimension: 10, child: DecoratedBox(decoration: ShapeDecoration(color: {prefix}Scope.of(context).colors.dangerFill, shape: const CircleBorder())))) : null, icon: Builder(builder: (context) => SizedBox.square(dimension: 18, child: DecoratedBox(decoration: ShapeDecoration(color: IconTheme.of(context).color, shape: const CircleBorder())))))])]))",
+    "imports": [
+      "@components/tab_bar/fl_tab_bar.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "selected",
+      "badge"
+    ],
+    "canvas": {
+      "width": 390,
+      "height": 240
+    }
+  },
+  "categories": [
+    "navigation"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "selected",
+      "badge"
+    ],
+    "semanticsRoles": [
+      "tabBar",
+      "tab"
+    ],
+    "intents": {
+      "fr": [
+        "ouvrir une rubrique principale d'un toucher",
+        "ajouter des onglets illustrés tout en bas",
+        "signaler des messages non lus sur un onglet",
+        "basculer de l'accueil au profil",
+        "poser les rubriques principales à portée du pouce"
+      ],
+      "en": [
+        "switch between the main sections of the app",
+        "add icon tabs with labels for the main sections",
+        "show unread messages on a tab",
+        "switch from home to profile in one tap",
+        "keep the main sections within thumb reach"
+      ]
+    },
+    "notFor": [
+      "views of the same screen: use tabs (tabs)",
+      "a screen's actions: use the app bar (app-bar)",
+      "navigation tucked into a side panel: use a drawer (drawer)"
+    ],
+    "fr": {
+      "title": "Navigation du bas",
+      "description": "Permet de passer d'une rubrique à l'autre depuis le bas : trois à cinq onglets illustrés et nommés, une pastille de compte et une sélection qui glisse.",
+      "notFor": [
+        "vues d'un même écran : utiliser des onglets (tabs)",
+        "actions d'un écran : utiliser la barre du haut (app-bar)",
+        "navigation rangée dans un panneau latéral : utiliser un tiroir (drawer)"
+      ]
+    },
+    "goldens": null
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "name": "input-otp",
+  "type": "registry:component",
+  "version": "0.2.5",
+  "title": "One-time code",
+  "description": "Takes a code received by text message or email: one box per digit, in groups, a single field for screen readers, paste and the code the system suggests.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.3",
+    "text-field@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/input_otp/fl_input_otp.dart",
+      "type": "registry:component",
+      "target": "@components/input_otp/fl_input_otp.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "Localizations(locale: const Locale('en'), delegates: const [DefaultWidgetsLocalizations.delegate], child: Directionality(textDirection: variant.dir, child: Overlay(initialEntries: [OverlayEntry(builder: (context) => ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: Padding(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: Column(crossAxisAlignment: CrossAxisAlignment.start, spacing: {prefix}Scope.of(context).space.lg, children: [{prefix}InputOtp(label: (variant.dir == TextDirection.rtl ? 'رمز التحقق' : 'Verification code'), groups: const [3, 3], controller: TextEditingController(text: '12'), autofocus: true), {prefix}InputOtp(label: (variant.dir == TextDirection.rtl ? 'الرمز السري' : 'PIN code'), groups: const [4], placeholder: '0000'), {prefix}InputOtp(label: (variant.dir == TextDirection.rtl ? 'رمز التحقق' : 'Verification code'), groups: const [3, 3], controller: TextEditingController(text: '123456'), invalid: true), {prefix}InputOtp(label: (variant.dir == TextDirection.rtl ? 'رمز التحقق' : 'Verification code'), groups: const [3, 3], controller: TextEditingController(text: '123'), disabled: true)]))))])))",
+    "imports": [
+      "@components/input_otp/fl_input_otp.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "focused",
+      "placeholder",
+      "error",
+      "disabled"
+    ],
+    "canvas": {
+      "width": 390,
+      "height": 320
+    },
+    "settleMs": 300
+  },
+  "categories": [
+    "forms"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "focused",
+      "placeholder",
+      "error",
+      "disabled"
+    ],
+    "semanticsRoles": [
+      "textField"
+    ],
+    "intents": {
+      "fr": [
+        "entrer le code de vérification reçu par SMS",
+        "demander un code à six chiffres",
+        "demander un code PIN à quatre chiffres",
+        "remplir le code proposé par le système",
+        "accepter un code de connexion collé",
+        "valider un compte par code à usage unique"
+      ],
+      "en": [
+        "submit the verification code received by SMS",
+        "ask for a six-digit code",
+        "ask for a four-digit PIN",
+        "accept the code suggested by the system",
+        "accept a pasted sign-in code",
+        "confirm an account with a one-time code"
+      ]
+    },
+    "notFor": [
+      "entering a password: use an obscured text field (text-field)"
+    ],
+    "fr": {
+      "title": "Code à usage unique",
+      "description": "Permet de remplir un code reçu par SMS ou e-mail : une case par chiffre, en groupes, un seul champ pour le lecteur d'écran, le collage et le code proposé par le système.",
+      "notFor": [
+        "saisir un mot de passe : utiliser un champ de texte masqué (text-field)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "A code that becomes invalid shakes once (`FlShake`), on top of its `danger` outline. New `success`: a `success` outline is drawn around each box, one after the other (`medium2` each, `short1` apart), at once under reduced motion. Resting rendering unchanged; adding `success` breaks nothing."
+}

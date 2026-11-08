@@ -1,0 +1,8 @@
+name: fliin_workspace
+description: Workspace A, pure Dart. The CLI and the item format. No member depends on Flutter.
+publish_to: none
+environment:
+  sdk: ^3.13.0
+workspace:
+  - packages/fliin_schema
+  - packages/fliin

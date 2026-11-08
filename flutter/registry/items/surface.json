@@ -1,0 +1,77 @@
+{
+  "name": "surface",
+  "type": "registry:component",
+  "version": "0.2.1",
+  "title": "Surface",
+  "description": "Groups content on a raised, shadowed background with continuous corners: the base of cards, row groups and alerts.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/surface/fl_surface.dart",
+      "type": "registry:component",
+      "target": "@components/surface/fl_surface.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: Padding(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, spacing: {prefix}Scope.of(context).space.sm, children: [{prefix}Surface(child: Text((variant.dir == TextDirection.rtl ? 'اشتراك احترافي' : 'Pro subscription'), style: TextStyle(color: {prefix}Scope.of(context).colors.onSurface))), {prefix}Surface(variant: {prefix}SurfaceVariant.secondary, child: Text((variant.dir == TextDirection.rtl ? 'الفاتورة القادمة في 3 مارس' : 'Next invoice on March 3'), style: TextStyle(color: {prefix}Scope.of(context).colors.onSurface))), {prefix}Surface(variant: {prefix}SurfaceVariant.tertiary, child: Text((variant.dir == TextDirection.rtl ? 'وسيلة الدفع' : 'Payment method'), style: TextStyle(color: {prefix}Scope.of(context).colors.onSurface))), {prefix}Surface(variant: {prefix}SurfaceVariant.transparent, child: Text((variant.dir == TextDirection.rtl ? 'السجل' : 'History'), style: TextStyle(color: {prefix}Scope.of(context).colors.onSurface)))])))",
+    "imports": [
+      "@components/surface/fl_surface.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [],
+    "canvas": {
+      "width": 390,
+      "height": 760
+    }
+  },
+  "categories": [
+    "data-display"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [],
+    "semanticsRoles": [],
+    "intents": {
+      "fr": [
+        "poser un contenu sur une carte",
+        "grouper des réglages sur un fond surélevé",
+        "présenter un bloc d'informations ombré",
+        "créer une carte aux coins arrondis",
+        "présenter une section en retrait"
+      ],
+      "en": [
+        "present content on a card",
+        "show settings on a raised background",
+        "present a shadowed block of information",
+        "create a card with rounded corners",
+        "show a section on a muted background"
+      ]
+    },
+    "notFor": [
+      "a window over the page: use a dialog (dialog)"
+    ],
+    "fr": {
+      "title": "Surface",
+      "description": "Regroupe un contenu sur un fond surélevé, ombré et aux coins continus : la base des cartes, des groupes de lignes et des alertes.",
+      "notFor": [
+        "fenêtre par-dessus la page : utiliser un dialogue (dialog)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "A surface adjusts without touching the theme: `radius` (continuous corners), `color` (the background instead of the variant's, the shadow staying the variant's), `gradient` (painted on the background, clipped to the shape) and `outlined` (a `border` stroke of `size.border`, whatever the variant). The default rendering does not change."
+}

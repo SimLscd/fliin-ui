@@ -1,0 +1,101 @@
+{
+  "name": "menu",
+  "type": "registry:component",
+  "version": "0.2.5",
+  "changelog": "`FlMenuOption.leading`, an icon before the title of a selectable option; with a description, the indicator, the icon and the shortcut stay on the title line instead of centering on both lines. New optional parameter, nothing breaks.",
+  "title": "Action menu",
+  "description": "Lets people pick an action from a list opened by a control, by touch or keyboard. Checked options, a submenu that unfolds in place, or a bottom sheet.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.2",
+    "icons@^0.2.0",
+    "separator@^0.2.0",
+    "sheet@^0.2.0",
+    "button@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/menu/fl_menu.dart",
+      "type": "registry:component",
+      "target": "@components/menu/fl_menu.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "Overlay(initialEntries: [OverlayEntry(builder: (context) => ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: Padding(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: Align(alignment: AlignmentDirectional.topStart, child: {prefix}Menu(items: [{prefix}MenuItem(label: (variant.dir == TextDirection.rtl ? 'نسخ' : 'Copy'), onPressed: () {}), {prefix}MenuItem(label: (variant.dir == TextDirection.rtl ? 'لصق' : 'Paste'), onPressed: null), const {prefix}MenuDivider(), {prefix}MenuItem(label: (variant.dir == TextDirection.rtl ? 'حذف' : 'Delete'), destructive: true, onPressed: () {})], builder: (context, controller) { if (!controller.isOpen) WidgetsBinding.instance.addPostFrameCallback((_) { if (!controller.isOpen) controller.open(); }); return {prefix}Pressable(onPressed: controller.open, label: (variant.dir == TextDirection.rtl ? 'خيارات' : 'Options'), borderRadius: {prefix}Scope.of(context).shape.buttonRadius, builder: (context, states) => Padding(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.md), child: Text((variant.dir == TextDirection.rtl ? 'خيارات' : 'Options'), style: TextStyle(color: {prefix}Scope.of(context).colors.onSurface)))); })))))])",
+    "imports": [
+      "@components/menu/fl_menu.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "open",
+      "disabled",
+      "destructive"
+    ],
+    "canvas": {
+      "width": 390,
+      "height": 360
+    },
+    "settleMs": 400
+  },
+  "categories": [
+    "overlays",
+    "navigation"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "open",
+      "disabled",
+      "destructive"
+    ],
+    "semanticsRoles": [
+      "menu",
+      "menuItem"
+    ],
+    "intents": {
+      "fr": [
+        "choisir une action dans un menu",
+        "ouvrir le menu « plus d'options »",
+        "proposer copier, partager ou supprimer",
+        "ajouter un menu déroulant d'actions",
+        "naviguer dans un menu au clavier",
+        "afficher un sous-menu de partage"
+      ],
+      "en": [
+        "pick an action from a menu",
+        "open a more options menu from a button",
+        "offer copy, share or delete actions",
+        "add a dropdown action menu",
+        "navigate a menu with the keyboard"
+      ]
+    },
+    "notFor": [
+      "free content or a form, anchored: use a popover (popover)",
+      "a confirmation that blocks the screen: use a dialog (dialog)",
+      "picking a value among exclusive options: use radio buttons (radio)",
+      "a navigation panel that slides from the left edge, opened by the three-bar icon: use a drawer (drawer)"
+    ],
+    "fr": {
+      "title": "Menu d'actions",
+      "description": "Permet de choisir une action dans une liste ouverte depuis une commande, au toucher ou au clavier. Options cochées, sous-menu déplié sur place, ou feuille du bas.",
+      "notFor": [
+        "un contenu libre ou un formulaire ancré : utiliser un popover (popover)",
+        "une confirmation qui bloque l'écran : utiliser un dialogue (dialog)",
+        "choisir une valeur parmi des options exclusives : utiliser une liste de choix exclusifs (radio)",
+        "panneau de navigation qui sort du bord gauche, ouvert par l'icône à trois barres : utiliser un tiroir (drawer)"
+      ]
+    },
+    "goldens": null
+  }
+}

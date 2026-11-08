@@ -1,0 +1,102 @@
+{
+  "name": "color-picker",
+  "type": "registry:component",
+  "version": "0.1.1",
+  "title": "Color picker",
+  "description": "Opens, under a swatch and its label, the color area, the hue slider, opacity, the hex code and presets, all in sync.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0",
+    "color-swatch@^0.1.0",
+    "color-slider@^0.1.0",
+    "color-area@^0.1.0",
+    "color-field@^0.1.0",
+    "color-swatch-picker@^0.3.0",
+    "popover@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/color_picker/fl_color_picker.dart",
+      "type": "registry:component",
+      "target": "@components/color_picker/fl_color_picker.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "Builder(builder: (context) { final rtl = variant.dir == TextDirection.rtl; String tr(String fr, String ar) => rtl ? ar : fr; final labels = {prefix}ColorPickerLabels( saturation: tr('Saturation', 'التشبع'), brightness: tr('Brightness', 'السطوع'), hue: tr('Hue', 'الصبغة'), alpha: tr('Opacity', 'العتامة'), hex: tr('Hexadecimal', 'ست عشري'), swatches: tr('Presets', 'ألوان جاهزة'), ); final presets = [ for (final (fr, ar, hue, s, v) in const [ ('Pink', 'وردي', 350.0, 0.74, 0.96), ('Purple', 'بنفسجي', 258.0, 0.64, 0.96), ('Blue', 'أزرق', 217.0, 0.76, 0.96), ('Cyan', 'سماوي', 189.0, 0.97, 0.83), ('Emerald', 'زمردي', 160.0, 0.9, 0.73), ('Amber', 'كهرماني', 38.0, 0.92, 0.96), ]) {prefix}ColorSwatchItem<Color>(value: HSVColor.fromAHSV(1, hue, s, v).toColor(), color: HSVColor.fromAHSV(1, hue, s, v).toColor(), label: tr(fr, ar)), ]; return Localizations( locale: Locale(rtl ? 'ar' : 'en'), delegates: const [DefaultWidgetsLocalizations.delegate], child: Overlay( initialEntries: [ OverlayEntry( builder: (context) => ColoredBox( color: {prefix}Scope.of(context).colors.surface, child: Padding( padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: SingleChildScrollView(child: Column( crossAxisAlignment: CrossAxisAlignment.start, spacing: {prefix}Scope.of(context).space.lg, children: [ {prefix}ColorPicker( label: tr('Choose a color', 'اختر لونًا'), value: const HSVColor.fromAHSV(1, 217, 0.76, 0.96), labels: labels, swatches: presets, showField: true, showAlpha: true, defaultOpen: true, onChanged: (_) {}, ), const SizedBox(height: 520), {prefix}ColorPicker( label: tr('Label color', 'لون الملصق'), value: const HSVColor.fromAHSV(1, 160, 0.9, 0.73), labels: labels, onChanged: (_) {}, ), {prefix}ColorPicker( label: tr('Locked color', 'لون مقفل'), value: const HSVColor.fromAHSV(1, 350, 0.74, 0.96), labels: labels, onChanged: null, ), ], )), ), ), ), ], ), ); })",
+    "imports": [
+      "@components/color_picker/fl_color_picker.dart",
+      "@components/color_swatch_picker/fl_color_swatch_picker.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "open",
+      "closed",
+      "disabled"
+    ],
+    "canvas": {
+      "width": 390,
+      "height": 900
+    },
+    "settleMs": 400
+  },
+  "categories": [
+    "forms",
+    "overlays"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "open",
+      "closed",
+      "disabled"
+    ],
+    "semanticsRoles": [
+      "button",
+      "dialog",
+      "slider"
+    ],
+    "intents": {
+      "fr": [
+        "choisir librement une couleur à l'œil",
+        "ouvrir le sélecteur de couleur sous un échantillon",
+        "régler une couleur puis lire son code hexadécimal",
+        "proposer des teintes prêtes au-dessus du carré de couleur",
+        "ajuster une couleur, sa teinte et son opacité au même endroit"
+      ],
+      "en": [
+        "let users choose a custom colour by eye",
+        "open a colour chooser under a swatch button",
+        "adjust a colour and read its hex code",
+        "offer preset shades above the colour square",
+        "change a colour, its hue and its opacity in one place"
+      ]
+    },
+    "notFor": [
+      "a shade from a fixed palette: use a color swatch picker (color-swatch-picker)",
+      "a code typed on the keyboard only: use a color field (color-field)",
+      "a color shown without changing it: use a color swatch (color-swatch)"
+    ],
+    "fr": {
+      "title": "Sélecteur de couleur",
+      "description": "Ouvre, sous un échantillon et son libellé, la zone de couleur, le curseur de teinte, l'opacité, le code hexadécimal et des teintes prêtes, tous synchronisés.",
+      "notFor": [
+        "une teinte parmi une palette fixe : utiliser le choix de teinte (color-swatch-picker)",
+        "un code tapé au clavier seulement : utiliser le champ de couleur (color-field)",
+        "une couleur montrée sans la changer : utiliser l'échantillon de couleur (color-swatch)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "`showArea: false` replaces the area with HSL saturation and lightness sliders under the hue (`FlColorPickerLabels.lightness` names them)."
+}

@@ -1,0 +1,96 @@
+{
+  "name": "accordion",
+  "type": "registry:component",
+  "version": "0.2.5",
+  "title": "Accordion",
+  "description": "Groups sections that open one at a time or together from their header, with a spring height, a content fade and a turning chevron.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.3",
+    "icons@^0.2.0",
+    "surface@^0.2.0",
+    "separator@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/accordion/fl_accordion.dart",
+      "type": "registry:component",
+      "target": "@components/accordion/fl_accordion.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: Padding(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, spacing: {prefix}Scope.of(context).space.xl, children: [{prefix}Accordion<String>(initialExpanded: const {'b'}, items: [{prefix}AccordionItem(value: 'a', leading: {prefix}Icon({prefix}Icons.shoppingCart), title: (variant.dir == TextDirection.rtl ? 'كيف أطلب؟' : 'How do I order?'), content: Text((variant.dir == TextDirection.rtl ? 'أضف إلى السلة ثم ادفع.' : 'Add to cart, then pay.'))), {prefix}AccordionItem(value: 'b', leading: {prefix}Icon({prefix}Icons.lock), title: (variant.dir == TextDirection.rtl ? 'طرق الدفع' : 'Payment methods'), content: Text((variant.dir == TextDirection.rtl ? 'البطاقة وApple Pay وPayPal.' : 'Card, Apple Pay and PayPal.'))), {prefix}AccordionItem(value: 'c', leading: {prefix}Icon({prefix}Icons.mapPin), title: (variant.dir == TextDirection.rtl ? 'رسوم الشحن' : 'Shipping fees'), content: Text((variant.dir == TextDirection.rtl ? 'مجانية من 50 يورو.' : 'Free from €50.')), enabled: false)]), {prefix}Accordion<String>(variant: {prefix}AccordionVariant.surface, initialExpanded: const {'a'}, items: [{prefix}AccordionItem(value: 'a', title: (variant.dir == TextDirection.rtl ? 'كيف أطلب؟' : 'How do I order?'), content: Text((variant.dir == TextDirection.rtl ? 'أضف إلى السلة ثم ادفع.' : 'Add to cart, then pay.'))), {prefix}AccordionItem(value: 'b', title: (variant.dir == TextDirection.rtl ? 'طرق الدفع' : 'Payment methods'), content: Text((variant.dir == TextDirection.rtl ? 'البطاقة وApple Pay وPayPal.' : 'Card, Apple Pay and PayPal.'))), {prefix}AccordionItem(value: 'c', title: (variant.dir == TextDirection.rtl ? 'رسوم الشحن' : 'Shipping fees'), content: Text((variant.dir == TextDirection.rtl ? 'مجانية من 50 يورو.' : 'Free from €50.')))])])))",
+    "imports": [
+      "@components/accordion/fl_accordion.dart",
+      "@core/fliin.dart",
+      "@icons/fl_icons.dart"
+    ],
+    "states": [
+      "collapsed",
+      "expanded",
+      "disabled"
+    ],
+    "canvas": {
+      "width": 390,
+      "height": 1100
+    },
+    "settleMs": 600
+  },
+  "categories": [
+    "data-display"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "collapsed",
+      "expanded",
+      "disabled"
+    ],
+    "semanticsRoles": [
+      "button",
+      "header"
+    ],
+    "intents": {
+      "fr": [
+        "afficher une foire aux questions dépliable",
+        "masquer le détail d'une section jusqu'à l'appui",
+        "grouper des réglages avancés repliés",
+        "montrer une seule réponse ouverte à la fois",
+        "ouvrir plusieurs sections de détails ensemble"
+      ],
+      "en": [
+        "show a collapsible list of frequent questions",
+        "hide the details of a section behind a tap",
+        "keep advanced settings folded away",
+        "show a single open answer at a time",
+        "open several detail sections together",
+        "hide shipping and returns details in collapsible panels"
+      ]
+    },
+    "notFor": [
+      "navigation between sibling views: use tabs (tabs)",
+      "a list of settings that open a screen: use a list row (list-row)"
+    ],
+    "fr": {
+      "title": "Accordéon",
+      "description": "Regroupe des sections qu'on déplie une à une ou ensemble par leur en-tête, avec une hauteur au ressort, un fondu du contenu et un chevron qui tourne.",
+      "notFor": [
+        "navigation entre vues de même niveau : utiliser des onglets (tabs)",
+        "liste de réglages qui ouvrent un écran : utiliser une ligne de liste (list-row)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "A section takes a `subtitle`, a muted `textSm` line under the title, and an `expandedIndicator` that crossfades in place of `indicator` (`short3`) when it opens: a minus after a plus. The default rendering does not change."
+}

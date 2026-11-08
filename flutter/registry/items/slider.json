@@ -1,0 +1,95 @@
+{
+  "name": "slider",
+  "type": "registry:component",
+  "version": "0.2.5",
+  "title": "Slider",
+  "description": "Lets people pick a value or a range by dragging, tapping the track or with the keyboard. One or two thumbs, divisions, label and value, horizontal or vertical.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.1",
+    "field@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/slider/fl_slider.dart",
+      "type": "registry:component",
+      "target": "@components/slider/fl_slider.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: Padding(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, spacing: {prefix}Scope.of(context).space.md, children: [{prefix}Slider(value: 0.4, label: (variant.dir == TextDirection.rtl ? 'مستوى الصوت' : 'Volume'), showLabel: true, onChanged: (_) {}), {prefix}Slider(value: 0.75, divisions: 4, label: (variant.dir == TextDirection.rtl ? 'السطوع' : 'Brightness'), showLabel: true, onChanged: (_) {}), {prefix}Slider(value: 0.6, label: (variant.dir == TextDirection.rtl ? 'التباين' : 'Contrast'), showLabel: true, onChanged: null), {prefix}RangeSlider(values: (start: 0.2, end: 0.7), label: (variant.dir == TextDirection.rtl ? 'السعر' : 'Price'), startLabel: (variant.dir == TextDirection.rtl ? 'أدنى سعر' : 'Minimum price'), endLabel: (variant.dir == TextDirection.rtl ? 'أعلى سعر' : 'Maximum price'), showLabel: true, onChanged: (_) {}), SizedBox(height: 120, child: Row(children: [{prefix}Slider(value: 0.6, label: (variant.dir == TextDirection.rtl ? 'الجهير' : 'Bass'), axis: Axis.vertical, onChanged: (_) {})]))])))",
+    "imports": [
+      "@components/slider/fl_slider.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "enabled",
+      "disabled",
+      "divisions",
+      "range"
+    ],
+    "canvas": {
+      "width": 390,
+      "height": 520
+    }
+  },
+  "categories": [
+    "forms",
+    "settings"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "enabled",
+      "disabled",
+      "divisions",
+      "range"
+    ],
+    "semanticsRoles": [
+      "slider"
+    ],
+    "intents": {
+      "fr": [
+        "régler une valeur en glissant",
+        "choisir le volume ou la luminosité",
+        "ajouter un curseur à crans dans des réglages",
+        "sélectionner un nombre dans une plage",
+        "ajuster une intensité au clavier avec les flèches",
+        "choisir une fourchette de prix avec deux poignées"
+      ],
+      "en": [
+        "adjust a value by dragging",
+        "pick volume or brightness",
+        "add a stepped slider to settings",
+        "select a number within a range",
+        "let users fine-tune a level with arrow keys",
+        "pick a price range with two handles"
+      ]
+    },
+    "notFor": [
+      "turning a setting on or off: use a switch (switch)",
+      "entering an exact value: use a text field (text-field)"
+    ],
+    "fr": {
+      "title": "Curseur",
+      "description": "Permet de choisir une valeur ou une plage en glissant un pouce, en touchant la piste ou au clavier : un ou deux pouces, crans optionnels, horizontal ou vertical, avec libellé et valeur.",
+      "notFor": [
+        "activer ou désactiver un réglage : utiliser un interrupteur (switch)",
+        "saisir une valeur exacte : utiliser un champ de texte (text-field)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "Marks under the track (`marks: [FlSliderMark(0, 'Off'), …]`, beside it when vertical): in `textXs`, muted outside the fill, in the text color inside it, kept within the track length; label and value in medium `textSm`, the value in tabular figures, 4 from the track, as in `color-slider`."
+}

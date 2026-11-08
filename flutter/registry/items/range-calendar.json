@@ -1,0 +1,98 @@
+{
+  "name": "range-calendar",
+  "type": "registry:component",
+  "version": "0.2.3",
+  "changelog": "`indicatorOf` (see `calendar` 0.2.5): a dot under days already planned, inside the range or outside it. Requires `calendar` 0.2.5.",
+  "title": "Range calendar",
+  "description": "Picks a period from a month grid, a first then a last day, for a stay or a rental: the days between are highlighted, and the range never crosses an unavailable day.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "calendar@^0.2.5",
+    "core@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/range_calendar/fl_range_calendar.dart",
+      "type": "registry:component",
+      "target": "@components/range_calendar/fl_range_calendar.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: Padding(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: Wrap(spacing: {prefix}Scope.of(context).space.lg, runSpacing: {prefix}Scope.of(context).space.lg, children: [SizedBox(width: 320, child: {prefix}RangeCalendar(value: {prefix}DateRange(DateTime(2026, 10, 8), DateTime(2026, 10, 19)), onChanged: (_) {}, today: DateTime(2026, 10, 24), strings: {prefix}CalendarStrings.language(variant.dir == TextDirection.rtl ? 'ar' : 'en'), semanticLabel: (variant.dir == TextDirection.rtl ? 'تواريخ الإقامة' : 'Stay dates'))), SizedBox(width: 320, child: {prefix}RangeCalendar(value: {prefix}DateRange(DateTime(2026, 10, 27), DateTime(2026, 11, 4)), onChanged: (_) {}, today: DateTime(2026, 10, 24), focusedDate: DateTime(2026, 10, 27), weeksInMonth: 6, strings: {prefix}CalendarStrings.language(variant.dir == TextDirection.rtl ? 'ar' : 'en'), semanticLabel: (variant.dir == TextDirection.rtl ? 'تواريخ الاستئجار' : 'Rental dates'))), SizedBox(width: 320, child: {prefix}RangeCalendar(value: {prefix}DateRange(DateTime(2026, 10, 12), DateTime(2026, 10, 16)), onChanged: (_) {}, today: DateTime(2026, 10, 24), isUnavailable: (day) => day.weekday == DateTime.saturday || day.weekday == DateTime.sunday, strings: {prefix}CalendarStrings.language(variant.dir == TextDirection.rtl ? 'ar' : 'en'), semanticLabel: (variant.dir == TextDirection.rtl ? 'أسبوع العمل' : 'Work week'))), SizedBox(width: 320, child: {prefix}RangeCalendar(value: {prefix}DateRange(DateTime(2026, 10, 21), DateTime(2026, 10, 21)), onChanged: (_) {}, today: DateTime(2026, 10, 24), minDate: DateTime(2026, 10, 5), strings: {prefix}CalendarStrings.language(variant.dir == TextDirection.rtl ? 'ar' : 'en'), semanticLabel: (variant.dir == TextDirection.rtl ? 'الفترة' : 'Period'))), SizedBox(width: 320, child: {prefix}RangeCalendar(value: null, initialStart: DateTime(2026, 10, 12), onChanged: (_) {}, today: DateTime(2026, 10, 24), strings: {prefix}CalendarStrings.language(variant.dir == TextDirection.rtl ? 'ar' : 'en'), semanticLabel: (variant.dir == TextDirection.rtl ? 'تواريخ الإجازة' : 'Vacation dates')))])))",
+    "imports": [
+      "@components/range_calendar/fl_range_calendar.dart",
+      "@components/calendar/fl_calendar_strings.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "range",
+      "across-months",
+      "unavailable",
+      "single-day",
+      "start-picked"
+    ],
+    "canvas": {
+      "width": 760,
+      "height": 2000
+    }
+  },
+  "categories": [
+    "forms"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "range",
+      "across-months",
+      "unavailable",
+      "single-day",
+      "start-picked"
+    ],
+    "semanticsRoles": [
+      "button"
+    ],
+    "intents": {
+      "fr": [
+        "choisir les dates d'arrivée et de départ d'un séjour",
+        "sélectionner une période de location dans un calendrier",
+        "poser des congés du premier au dernier jour",
+        "choisir les dates couvertes par un rapport",
+        "marquer les nuits déjà réservées comme indisponibles"
+      ],
+      "en": [
+        "pick check-in and check-out dates for a stay",
+        "select a rental period in a calendar",
+        "choose the first and last day of a vacation",
+        "choose the dates covered by a report",
+        "make already booked nights unavailable",
+        "select a contiguous range of dates with a start and an end"
+      ]
+    },
+    "notFor": [
+      "a single day: use a calendar (calendar)",
+      "a preset duration such as 7 or 30 days: use a segmented control (segmented)",
+      "a form field that opens the grid on tap: use a date range picker (date-range-picker)"
+    ],
+    "fr": {
+      "title": "Calendrier de période",
+      "description": "Permet de choisir une période dans la grille d'un mois, un premier jour puis un dernier : séjour, location, congés. Les jours entre les deux sont surlignés.",
+      "notFor": [
+        "un seul jour : utiliser un calendrier (calendar)",
+        "durée prédéfinie comme 7 ou 30 jours : utiliser un contrôle segmenté (segmented)",
+        "un champ de formulaire qui ouvre la grille au toucher : utiliser un sélecteur de période (date-range-picker)"
+      ]
+    },
+    "goldens": null
+  }
+}

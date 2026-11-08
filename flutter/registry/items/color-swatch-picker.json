@@ -1,0 +1,93 @@
+{
+  "name": "color-swatch-picker",
+  "type": "registry:component",
+  "version": "0.3.0",
+  "title": "Color swatch picker",
+  "description": "Picks a shade from a palette the app provides, such as a product or label color: the chosen dot shrinks inside a ring and gets a check mark, and each dot is read by its name.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0",
+    "color-swatch@^0.1.0"
+  ],
+  "files": [
+    {
+      "path": "components/color_swatch_picker/fl_color_swatch_picker.dart",
+      "type": "registry:component",
+      "target": "@components/color_swatch_picker/fl_color_swatch_picker.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "Localizations(locale: Locale(variant.dir == TextDirection.rtl ? 'ar' : 'en'), delegates: const [DefaultWidgetsLocalizations.delegate], child: Directionality(textDirection: variant.dir, child: ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: Padding(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: Column(crossAxisAlignment: CrossAxisAlignment.start, spacing: {prefix}Scope.of(context).space.xl, children: [{prefix}ColorSwatchPicker<String>(semanticLabel: (variant.dir == TextDirection.rtl ? 'اللون' : 'Color'), value: 'Purple', onChanged: (_) {}, items: [for (final (fr, ar, color) in const [('Pink', 'وردي', 0xFFF43F5E), ('Fuchsia', 'فوشيا', 0xFFD946EF), ('Purple', 'بنفسجي', 0xFF8B5CF6), ('Blue', 'أزرق', 0xFF3B82F6), ('Cyan', 'سماوي', 0xFF06B6D4), ('Emerald', 'زمردي', 0xFF10B981), ('Lime', 'ليموني', 0xFF84CC16), ('White', 'أبيض', 0xFFFAFAFA), ('Black', 'أسود', 0xFF18181B)]) {prefix}ColorSwatchItem(value: fr, color: Color(color), label: variant.dir == TextDirection.rtl ? ar : fr, disabled: fr == 'Cyan')]), {prefix}ColorSwatchPicker<String>(semanticLabel: (variant.dir == TextDirection.rtl ? 'لون الملصق' : 'Label color'), value: 'Lime', size: {prefix}ColorSwatchSize.lg, shape: {prefix}ColorSwatchShape.square, onChanged: (_) {}, items: [for (final (fr, ar, color) in const [('Pink', 'وردي', 0xFFF43F5E), ('Fuchsia', 'فوشيا', 0xFFD946EF), ('Purple', 'بنفسجي', 0xFF8B5CF6), ('Blue', 'أزرق', 0xFF3B82F6), ('Cyan', 'سماوي', 0xFF06B6D4), ('Emerald', 'زمردي', 0xFF10B981), ('Lime', 'ليموني', 0xFF84CC16), ('White', 'أبيض', 0xFFFAFAFA), ('Black', 'أسود', 0xFF18181B)]) {prefix}ColorSwatchItem(value: fr, color: Color(color), label: variant.dir == TextDirection.rtl ? ar : fr, disabled: fr == 'Cyan')]), {prefix}ColorSwatchPicker<String>(semanticLabel: (variant.dir == TextDirection.rtl ? 'لون التقويم' : 'Calendar color'), value: 'White', size: {prefix}ColorSwatchSize.sm, enabled: false, onChanged: (_) {}, items: [for (final (fr, ar, color) in const [('Pink', 'وردي', 0xFFF43F5E), ('Fuchsia', 'فوشيا', 0xFFD946EF), ('Purple', 'بنفسجي', 0xFF8B5CF6), ('Blue', 'أزرق', 0xFF3B82F6), ('Cyan', 'سماوي', 0xFF06B6D4), ('Emerald', 'زمردي', 0xFF10B981), ('Lime', 'ليموني', 0xFF84CC16), ('White', 'أبيض', 0xFFFAFAFA), ('Black', 'أسود', 0xFF18181B)]) {prefix}ColorSwatchItem(value: fr, color: Color(color), label: variant.dir == TextDirection.rtl ? ar : fr, disabled: fr == 'Cyan')]), Row(spacing: {prefix}Scope.of(context).space.sm, children: [{prefix}ColorSwatch(color: const Color(0xFF3B82F6), label: variant.dir == TextDirection.rtl ? 'أزرق' : 'Blue'), {prefix}ColorSwatch(color: const Color(0xFFFAFAFA), label: variant.dir == TextDirection.rtl ? 'أبيض' : 'White', shape: {prefix}ColorSwatchShape.square)])])))))",
+    "imports": [
+      "@components/color_swatch_picker/fl_color_swatch_picker.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "selected",
+      "unselected",
+      "disabled"
+    ],
+    "canvas": {
+      "width": 390,
+      "height": 520
+    }
+  },
+  "categories": [
+    "forms"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "selected",
+      "unselected",
+      "disabled"
+    ],
+    "semanticsRoles": [
+      "radioGroup",
+      "radio"
+    ],
+    "intents": {
+      "fr": [
+        "choisir la couleur d'un produit dans une palette",
+        "donner une couleur à un agenda",
+        "proposer des pastilles de teintes à toucher",
+        "montrer quelle teinte est choisie",
+        "nommer chaque teinte pour le lecteur d'écran"
+      ],
+      "en": [
+        "pick a product colour from a palette",
+        "give a calendar its own colour",
+        "offer colour dots to tap",
+        "show which shade is chosen",
+        "give each shade a name for screen readers"
+      ]
+    },
+    "notFor": [
+      "an option with a text label: use radio buttons (radio)",
+      "a continuous value set by hand, such as an opacity: use a slider (slider)",
+      "an option you check or uncheck: use a checkbox (checkbox)"
+    ],
+    "fr": {
+      "title": "Choix de teinte",
+      "description": "Permet de choisir une teinte dans une palette fournie par l'app : couleur d'un produit ou d'un agenda. Chaque pastille porte un nom lu au lecteur d'écran.",
+      "notFor": [
+        "choix d'une option à libellé texte : utiliser des boutons radio (radio)",
+        "valeur continue réglée à la main, comme une opacité : utiliser un curseur (slider)",
+        "option qu'on coche ou décoche : utiliser une case à cocher (checkbox)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "`FlColorSwatch`, `FlColorSwatchSize` and `FlColorSwatchShape` move to the new `color-swatch` item, which the picker depends on and re-exports: an `import` of the picker still gives them, but the API diff sees them leave this file, hence the minor version. A translucent color now shows the checkerboard; the rendering of an opaque color does not change."
+}

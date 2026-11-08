@@ -1,0 +1,93 @@
+{
+  "name": "icons",
+  "type": "registry:icon",
+  "version": "0.2.0",
+  "title": "Icons",
+  "description": "Gives 44 mobile icons as Flutter paths, from Gravity UI, Lucide, Tabler or Phosphor as the preset says: arrows, chevrons, search, cart, heart, play. Directional ones flip right to left.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "icons/fl_icons.dart",
+      "type": "registry:icon",
+      "target": "@icons/fl_icons.dart",
+      "variants": {
+        "lucide": {
+          "path": "icons/sets/lucide/fl_icons.dart"
+        },
+        "tabler": {
+          "path": "icons/sets/tabler/fl_icons.dart"
+        },
+        "phosphor": {
+          "path": "icons/sets/phosphor/fl_icons.dart"
+        }
+      }
+    }
+  ],
+  "l10n": {},
+  "changelog": "New Izydesk look: follows the tokens of core 0.2.0 (colors, radii, typography, shadows), with no code change. The API does not change. Also includes 0.1.2: two more icons in all four sets, inbox and cloud-slash (the crossed-out cloud: offline), so that the empty state and the post card follow the chosen set. The other 44 do not change.",
+  "snippets": {},
+  "verify": {
+    "entry": "ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: Padding(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: Column(crossAxisAlignment: CrossAxisAlignment.start, spacing: {prefix}Scope.of(context).space.xl, children: [Wrap(spacing: {prefix}Scope.of(context).space.lg, runSpacing: {prefix}Scope.of(context).space.lg, children: [for (final icon in [{prefix}Icons.arrowLeft, {prefix}Icons.chevronRight, {prefix}Icons.xmark, {prefix}Icons.bars, {prefix}Icons.house, {prefix}Icons.magnifier, {prefix}Icons.gear, {prefix}Icons.plus, {prefix}Icons.check, {prefix}Icons.trashBin, {prefix}Icons.arrowUpFromSquare, {prefix}Icons.heart, {prefix}Icons.heartFill, {prefix}Icons.starFill, {prefix}Icons.circleInfo, {prefix}Icons.triangleExclamation, {prefix}Icons.bell, {prefix}Icons.person, {prefix}Icons.lock, {prefix}Icons.calendar, {prefix}Icons.shoppingCart, {prefix}Icons.comment, {prefix}Icons.playFill, {prefix}Icons.pauseFill]) {prefix}Icon(icon)]), IconTheme(data: IconThemeData(size: {prefix}Scope.of(context).size.buttonIconLg, color: {prefix}Scope.of(context).colors.accent), child: Row(spacing: {prefix}Scope.of(context).space.lg, children: [{prefix}Icon({prefix}Icons.arrowLeft), {prefix}Icon({prefix}Icons.chevronRight), {prefix}Icon({prefix}Icons.paperPlane), {prefix}Icon({prefix}Icons.playFill), {prefix}Icon({prefix}Icons.heartFill)]))])))",
+    "imports": [
+      "@core/fliin.dart",
+      "@icons/fl_icons.dart"
+    ],
+    "states": [],
+    "canvas": {
+      "width": 390,
+      "height": 600
+    }
+  },
+  "categories": [
+    "foundation",
+    "actions"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [],
+    "semanticsRoles": [],
+    "intents": {
+      "fr": [
+        "ajouter un jeu d'icônes à l'application",
+        "afficher une flèche de retour ou un chevron qui suit le sens de lecture",
+        "montrer un cœur, une étoile ou un panier",
+        "signaler un statut par un symbole d'information ou d'alerte",
+        "afficher lecture et pause dans un lecteur audio",
+        "poser des symboles en tracés, sans police ni Material"
+      ],
+      "en": [
+        "add a complete set of common mobile icons to the whole app",
+        "show a back arrow or a chevron that follows reading direction",
+        "use a heart, star or cart icon for favorites and the cart",
+        "show an info, success or warning glyph",
+        "add play and pause glyphs",
+        "use glyphs drawn as paths, without a font or Material"
+      ]
+    },
+    "notFor": [
+      "a tappable close cross: use a close button (close-button)",
+      "a menu that slides from the edge, opened by the three-line icon: use a drawer (drawer)"
+    ],
+    "fr": {
+      "title": "Icônes",
+      "description": "Fournit 46 icônes, tracés Flutter : Gravity UI, Lucide, Tabler ou Phosphor selon le préréglage. Flèches, chevrons, recherche, panier, cœur, lecture, retournées en RTL.",
+      "notFor": [
+        "croix de fermeture cliquable : utiliser un bouton de fermeture (close-button)",
+        "menu qui sort du bord, ouvert par l'icône à trois traits : utiliser un tiroir (drawer)"
+      ]
+    },
+    "goldens": null
+  }
+}

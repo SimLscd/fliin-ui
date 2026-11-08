@@ -1,0 +1,14 @@
+Fliin
+https://github.com/SimLscd/fliin-ui
+
+Fliin is licensed under the MIT License (LICENSE).
+
+Some files are modified from third-party work: HeroUI Native and HeroUI
+React v3 (Apache License 2.0, and MIT for part of HeroUI React), Gravity UI
+Icons (MIT), Lucide (ISC, MIT for the icons derived from Feather), Tabler
+Icons (MIT) and Phosphor Icons (MIT). The header of each modified file names
+its origin, its copyright and its license.
+
+flutter/registry/lib/LICENSE gathers these notices; the fliin CLI installs it
+in each app as lib/ui/fliin/LICENSE. The full texts of the licenses are in
+LICENSES/.

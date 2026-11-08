@@ -1,0 +1,90 @@
+{
+  "name": "switch",
+  "type": "registry:component",
+  "version": "0.2.4",
+  "title": "Switch",
+  "description": "Turns a setting on or off with a tap or a drag. The track turns to the accent, a spring thumb, still when motion is reduced.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.1"
+  ],
+  "files": [
+    {
+      "path": "components/switch/fl_switch.dart",
+      "type": "registry:component",
+      "target": "@components/switch/fl_switch.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: Padding(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, spacing: {prefix}Scope.of(context).space.sm, children: [for (final (fr, ar, on, enabled) in [('Wi-Fi', 'واي فاي', true, true), ('Bluetooth', 'بلوتوث', false, true), ('Airplane mode', 'وضع الطيران', true, false)]) Row(spacing: {prefix}Scope.of(context).space.md, children: [Expanded(child: Text(variant.dir == TextDirection.rtl ? ar : fr, style: TextStyle(color: {prefix}Scope.of(context).colors.onSurface))), {prefix}Switch(value: on, label: variant.dir == TextDirection.rtl ? ar : fr, onChanged: enabled ? (_) {} : null)])])))",
+    "imports": [
+      "@components/switch/fl_switch.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "enabled",
+      "on",
+      "off",
+      "disabled"
+    ]
+  },
+  "categories": [
+    "forms",
+    "settings"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "enabled",
+      "on",
+      "off",
+      "disabled"
+    ],
+    "semanticsRoles": [
+      "toggled"
+    ],
+    "intents": {
+      "fr": [
+        "activer ou désactiver un réglage",
+        "allumer ou éteindre une option",
+        "basculer les notifications",
+        "ajouter un interrupteur marche/arrêt dans des réglages",
+        "couper le wifi ou le mode avion"
+      ],
+      "en": [
+        "turn a setting on or off",
+        "toggle notifications",
+        "add an on/off switch to settings",
+        "enable or disable a feature",
+        "switch airplane mode on",
+        "apply a setting as soon as it is flipped",
+        "toggle dark mode on or off"
+      ]
+    },
+    "notFor": [
+      "a choice among several exclusive options: use radio buttons (radio)",
+      "accepting terms before sending: use a checkbox (checkbox)"
+    ],
+    "fr": {
+      "title": "Interrupteur",
+      "description": "Permet d'activer ou de désactiver un réglage d'un toucher ou d'un glisser. Piste qui passe à l'accent, pouce à ressort, immobile en mouvement réduit.",
+      "notFor": [
+        "choix parmi plusieurs options exclusives : utiliser des boutons radio (radio)",
+        "accepter des conditions avant d'envoyer : utiliser une case à cocher (checkbox)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "`size` (`sm`, `md`, `lg`) sets the track and thumb to three quarters or five quarters of the tokens, tap target unchanged; `thumbIcon` puts an icon in the thumb, `selected` when on and `onSurfaceMuted` when off. Optional: the default switch does not change."
+}

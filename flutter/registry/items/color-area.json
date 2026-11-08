@@ -1,0 +1,93 @@
+{
+  "name": "color-area",
+  "type": "registry:component",
+  "version": "0.1.0",
+  "title": "Color area",
+  "description": "Sets two channels of a color at once on a gradient square, saturation and brightness under the chosen hue by default.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0",
+    "color-swatch@^0.1.0"
+  ],
+  "files": [
+    {
+      "path": "components/color_area/fl_color_area.dart",
+      "type": "registry:component",
+      "target": "@components/color_area/fl_color_area.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "Builder(builder: (context) { final rtl = variant.dir == TextDirection.rtl; final theme = {prefix}Scope.of(context); String tr(String fr, String ar) => rtl ? ar : fr; return ColoredBox( color: theme.colors.surface, child: SingleChildScrollView( padding: EdgeInsetsDirectional.all(theme.space.lg), child: Column( crossAxisAlignment: CrossAxisAlignment.start, spacing: theme.space.lg, children: [ {prefix}ColorArea( value: const HSVColor.fromAHSV(1, 291, 0.45, 0.8), xLabel: tr('Saturation', 'التشبع'), yLabel: tr('Brightness', 'السطوع'), onChanged: (_) {}, ), Row( spacing: theme.space.lg, children: [ Expanded( child: {prefix}ColorArea( value: const HSVColor.fromAHSV(1, 200, 1, 0.9), xChannel: {prefix}ColorChannel.hue, yChannel: {prefix}ColorChannel.saturation, showDots: true, xLabel: tr('Hue', 'الصبغة'), yLabel: tr('Saturation', 'التشبع'), onChanged: (_) {}, ), ), Expanded( child: {prefix}ColorArea( value: const HSVColor.fromAHSV(1, 140, 0.6, 0.7), xLabel: tr('Saturation', 'التشبع'), yLabel: tr('Brightness', 'السطوع'), onChanged: null, ), ), ], ), ], ), ), ); })",
+    "imports": [
+      "@components/color_area/fl_color_area.dart",
+      "@components/color_swatch/fl_color_swatch.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "value",
+      "dots",
+      "disabled"
+    ],
+    "canvas": {
+      "width": 390,
+      "height": 600
+    }
+  },
+  "categories": [
+    "forms"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "value",
+      "dots",
+      "disabled"
+    ],
+    "semanticsRoles": [
+      "slider"
+    ],
+    "intents": {
+      "fr": [
+        "choisir la saturation et la luminosité d'une couleur sur un carré",
+        "ajuster deux canaux de couleur à la fois sur un carré dégradé",
+        "régler la teinte et la saturation dans un même carré",
+        "afficher une grille de points sur la zone de couleur",
+        "ajuster la couleur aux flèches du clavier"
+      ],
+      "en": [
+        "pick saturation and brightness of a colour on a square",
+        "adjust two colour channels at once on a gradient square",
+        "choose hue and saturation in one colour square",
+        "show a dot grid over the colour area",
+        "move the colour with the keyboard arrows"
+      ]
+    },
+    "notFor": [
+      "a single channel, such as the hue: use a color slider (color-slider)",
+      "one color among a few shades: use a color swatch picker (color-swatch-picker)",
+      "a full choice in a panel: use a color picker (color-picker)"
+    ],
+    "fr": {
+      "title": "Zone de couleur",
+      "description": "Permet de régler deux canaux d'une couleur à la fois sur un carré dégradé, par défaut la saturation et la luminosité sous la teinte choisie.",
+      "notFor": [
+        "un seul canal, comme la teinte : utiliser le curseur de couleur (color-slider)",
+        "une couleur parmi quelques teintes : utiliser le choix de teinte (color-swatch-picker)",
+        "un choix complet dans un panneau : utiliser le sélecteur de couleur (color-picker)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "First version."
+}

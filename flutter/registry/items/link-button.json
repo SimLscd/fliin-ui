@@ -1,0 +1,88 @@
+{
+  "name": "link-button",
+  "type": "registry:component",
+  "version": "0.2.4",
+  "title": "Link",
+  "description": "Opens a related page from a sentence, such as terms or help: a pressable label with no background or padding, in three sizes.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0",
+    "button@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/link_button/fl_link_button.dart",
+      "type": "registry:component",
+      "target": "@components/link_button/fl_link_button.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: Padding(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: Column(crossAxisAlignment: CrossAxisAlignment.start, spacing: {prefix}Scope.of(context).space.md, children: [for (final s in {prefix}ButtonSize.values) {prefix}LinkButton(label: (variant.dir == TextDirection.rtl ? 'معرفة المزيد' : 'Learn more'), size: s, underline: true, onPressed: () {}), {prefix}LinkButton(label: (variant.dir == TextDirection.rtl ? 'سياسة الخصوصية' : 'Privacy'), underline: true, onPressed: null)])))",
+    "imports": [
+      "@components/button/fl_button.dart",
+      "@components/link_button/fl_link_button.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "enabled",
+      "disabled"
+    ],
+    "canvas": {
+      "width": 390,
+      "height": 300
+    }
+  },
+  "categories": [
+    "actions",
+    "navigation"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "enabled",
+      "disabled"
+    ],
+    "semanticsRoles": [
+      "button"
+    ],
+    "intents": {
+      "fr": [
+        "ajouter un lien vers les conditions d'utilisation",
+        "proposer un lien en savoir plus sous un texte",
+        "ajouter un lien au milieu d'une phrase",
+        "ouvrir la politique de confidentialité depuis un formulaire d'inscription",
+        "afficher un lien discret vers l'aide"
+      ],
+      "en": [
+        "add a terms of service link",
+        "add a learn more link under some text",
+        "add an inline link inside a sentence",
+        "open the privacy policy from a sign up form",
+        "show a subtle link to the help page"
+      ]
+    },
+    "notFor": [
+      "a screen's main action: use a button (button)"
+    ],
+    "fr": {
+      "title": "Lien",
+      "description": "Ouvre une page annexe depuis une phrase, comme les conditions d'utilisation ou une aide : un libellé pressable sans fond ni marge, en trois tailles.",
+      "notFor": [
+        "action principale d'un écran : utiliser un bouton (button)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "`leading` and `trailing` put an icon before or after the label, at three quarters of the text size and in its color; only the text is underlined. Without `underline`, the underline appears on hover and press in `onSurfaceMuted`. Resting rendering unchanged."
+}

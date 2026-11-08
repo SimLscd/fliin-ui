@@ -1,0 +1,80 @@
+{
+  "name": "spinner",
+  "type": "registry:component",
+  "version": "0.2.2",
+  "title": "Spinner",
+  "description": "Shows that something is loading with a spinning arc, in three sizes and four colors, still when motion is reduced.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/spinner/fl_spinner.dart",
+      "type": "registry:component",
+      "target": "@components/spinner/fl_spinner.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: Padding(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, spacing: {prefix}Scope.of(context).space.sm, children: [Row(spacing: {prefix}Scope.of(context).space.lg, children: [{prefix}Spinner(label: (variant.dir == TextDirection.rtl ? 'جارٍ التحميل' : 'Loading'), size: {prefix}SpinnerSize.sm), {prefix}Spinner(label: (variant.dir == TextDirection.rtl ? 'جارٍ التحميل' : 'Loading')), {prefix}Spinner(label: (variant.dir == TextDirection.rtl ? 'جارٍ التحميل' : 'Loading'), size: {prefix}SpinnerSize.lg)]), Row(spacing: {prefix}Scope.of(context).space.lg, children: [{prefix}Spinner(label: (variant.dir == TextDirection.rtl ? 'الإرسال' : 'Sending'), tone: {prefix}SpinnerTone.success), {prefix}Spinner(label: (variant.dir == TextDirection.rtl ? 'الإرسال' : 'Sending'), tone: {prefix}SpinnerTone.warning), {prefix}Spinner(label: (variant.dir == TextDirection.rtl ? 'الإرسال' : 'Sending'), tone: {prefix}SpinnerTone.danger)])])))",
+    "imports": [
+      "@components/spinner/fl_spinner.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [],
+    "canvas": {
+      "width": 390,
+      "height": 200
+    },
+    "settleMs": 400
+  },
+  "categories": [
+    "feedback"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [],
+    "semanticsRoles": [
+      "loadingSpinner"
+    ],
+    "intents": {
+      "fr": [
+        "indiquer un chargement en cours",
+        "faire patienter pendant une requête",
+        "afficher une roue de chargement",
+        "signaler une synchronisation sans durée connue",
+        "montrer une attente dans un bouton"
+      ],
+      "en": [
+        "show that something is loading",
+        "keep users waiting during a request",
+        "show a loading wheel",
+        "show a sync of unknown duration",
+        "show a wait inside a button"
+      ]
+    },
+    "notFor": [
+      "measurable progress: use a progress bar (progress)"
+    ],
+    "fr": {
+      "title": "Indicateur d'attente",
+      "description": "Signale qu'un chargement est en cours par un arc qui tourne, en trois tailles et quatre couleurs, immobile quand le mouvement est réduit.",
+      "notFor": [
+        "avancement mesurable : utiliser une barre de progression (progress)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "`speed` sets the rotation speed (1 by default, 0.5 twice as slow, 2 twice as fast); a change of `speed` is followed without restarting from zero. Without it, the rendering does not change."
+}

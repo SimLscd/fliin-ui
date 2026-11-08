@@ -1,0 +1,79 @@
+{
+  "name": "text",
+  "type": "registry:component",
+  "version": "0.2.2",
+  "title": "Text",
+  "description": "Gives the headings, paragraphs and inline code of the type scale, in the regular or muted color.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/text/fl_text.dart",
+      "type": "registry:component",
+      "target": "@components/text/fl_text.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: Padding(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, spacing: {prefix}Scope.of(context).space.sm, children: [{prefix}Text((variant.dir == TextDirection.rtl ? 'الإعدادات' : 'Settings'), type: {prefix}TextType.h2), {prefix}Text((variant.dir == TextDirection.rtl ? 'الخصوصية' : 'Privacy'), type: {prefix}TextType.h5), {prefix}Text((variant.dir == TextDirection.rtl ? 'تبقى بياناتك على هذا الجهاز.' : 'Your data stays on this device.')), {prefix}Text((variant.dir == TextDirection.rtl ? 'آخر مزامنة الساعة 9:41' : 'Last synced at 9:41'), type: {prefix}TextType.bodySm, tone: {prefix}TextTone.muted), const {prefix}Text('flutter pub get', type: {prefix}TextType.code)])))",
+    "imports": [
+      "@components/text/fl_text.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [],
+    "canvas": {
+      "width": 390,
+      "height": 820
+    }
+  },
+  "categories": [
+    "data-display"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [],
+    "semanticsRoles": [
+      "header"
+    ],
+    "intents": {
+      "fr": [
+        "afficher un grand titre en tête d'écran",
+        "poser un paragraphe de texte courant",
+        "montrer un texte secondaire atténué",
+        "présenter une commande en code",
+        "choisir une taille de titre de h1 à h6"
+      ],
+      "en": [
+        "show a page heading",
+        "add a paragraph of body text",
+        "show muted secondary text",
+        "present a command as inline code",
+        "pick a heading size from h1 to h6"
+      ]
+    },
+    "notFor": [
+      "text typed by the user: use a text field (text-field)"
+    ],
+    "fr": {
+      "title": "Texte",
+      "description": "Fournit les titres, paragraphes et le code de l'échelle typographique, en couleur courante ou atténuée.",
+      "notFor": [
+        "texte saisi par l'utilisateur : utiliser un champ (text-field)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "The text takes a `color` instead of the tone's (`accent` for an overline), and `spans`: styled pieces (a bold word, code) in the type's style, whose text must be `data`, the one the screen reader reads. The default rendering does not change."
+}

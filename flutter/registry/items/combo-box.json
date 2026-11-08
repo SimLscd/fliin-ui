@@ -1,0 +1,100 @@
+{
+  "name": "combo-box",
+  "type": "registry:component",
+  "version": "0.2.3",
+  "changelog": "`FlComboBox.filtering` filters a list the app already holds (labels that contain the input, case-insensitive): no search function to write and no waiting or failure texts to give. New constructor, nothing breaks.",
+  "title": "Combo box",
+  "description": "Suggests matches under a text field as you type, from a local list or a remote lookup, with loading, no-result and error states; arrow keys pick a suggestion while focus stays in the field.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0",
+    "text-field@^0.2.0",
+    "popover@^0.2.0",
+    "list-row@^0.2.0",
+    "select@^0.2.0",
+    "spinner@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/combo_box/fl_combo_box.dart",
+      "type": "registry:component",
+      "target": "@components/combo_box/fl_combo_box.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "Overlay(initialEntries: [OverlayEntry(builder: (context) => ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: Padding(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, spacing: {prefix}Scope.of(context).space.md, children: [{prefix}ComboBox<int>(label: (variant.dir == TextDirection.rtl ? 'البلد' : 'Country'), triggerLabel: (variant.dir == TextDirection.rtl ? 'كل البلدان' : 'All countries'), value: {prefix}SelectOption(value: 0, label: (variant.dir == TextDirection.rtl ? 'المملكة المتحدة' : 'United Kingdom')), onChanged: null, suggestions: (_) => const [], countText: (count) => (variant.dir == TextDirection.rtl ? '$count اقتراحات' : '$count suggestions'), emptyText: (variant.dir == TextDirection.rtl ? 'لا توجد مدينة' : 'No city'), loadingText: (variant.dir == TextDirection.rtl ? 'جارٍ البحث…' : 'Searching…'), errorText: (variant.dir == TextDirection.rtl ? 'تعذّر البحث' : 'The search failed')), {prefix}ComboBox<int>(autofocus: true, label: (variant.dir == TextDirection.rtl ? 'المدينة' : 'City'), placeholder: (variant.dir == TextDirection.rtl ? 'ابحث عن مدينة' : 'Search for a city'), triggerLabel: (variant.dir == TextDirection.rtl ? 'كل المدن' : 'All cities'), value: {prefix}SelectOption(value: 0, label: (variant.dir == TextDirection.rtl ? 'بريستول' : 'Bristol')), onChanged: (_) {}, suggestions: (query) => [for (final (i, (name, region)) in (variant.dir == TextDirection.rtl ? const [('بريستول', null), ('ليدز', null), ('يورك', null), ('لندن', 'إنجلترا')] : const [('Bristol', null), ('Leeds', null), ('York', null), ('London', 'England')]).indexed) if (name.toLowerCase().contains(query.toLowerCase())) {prefix}SelectOption(value: i, label: name, description: region)], countText: (count) => (variant.dir == TextDirection.rtl ? '$count اقتراحات' : '$count suggestions'), emptyText: (variant.dir == TextDirection.rtl ? 'لا توجد مدينة' : 'No city'), loadingText: (variant.dir == TextDirection.rtl ? 'جارٍ البحث…' : 'Searching…'), errorText: (variant.dir == TextDirection.rtl ? 'تعذّر البحث' : 'The search failed'))]))))])",
+    "imports": [
+      "@components/combo_box/fl_combo_box.dart",
+      "@components/select/fl_select.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "open",
+      "disabled"
+    ],
+    "canvas": {
+      "width": 390,
+      "height": 520
+    },
+    "settleMs": 400
+  },
+  "categories": [
+    "forms"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "open",
+      "disabled"
+    ],
+    "semanticsRoles": [
+      "textField",
+      "button"
+    ],
+    "intents": {
+      "fr": [
+        "proposer des suggestions sous un champ à chaque lettre",
+        "choisir une ville d'après ses premières lettres",
+        "rechercher une adresse auprès d'un service et la choisir",
+        "filtrer une longue liste d'options au clavier",
+        "valider un texte libre quand aucune suggestion ne convient",
+        "ajouter l'autocomplétion à un champ de formulaire"
+      ],
+      "en": [
+        "show suggestions under a field while typing",
+        "pick a city by typing its first letters",
+        "choose an address returned by a lookup service",
+        "choose from a list box filtered by the text typed in the input",
+        "keep free text when no suggestion fits",
+        "use the keyboard to filter a long dropdown of options",
+        "add an autocomplete field to a form"
+      ]
+    },
+    "notFor": [
+      "a short list, without typing: use a select (select)",
+      "filtering the results shown on the page: use a search field (search-field)",
+      "free text, without suggestions: use a text field (text-field)"
+    ],
+    "fr": {
+      "title": "Champ à suggestions",
+      "description": "Propose des suggestions sous un champ, filtrées à chaque lettre : ville, adresse, contact. La liste peut venir d'un service, avec attente, absence de résultat et erreur.",
+      "notFor": [
+        "une liste courte, sans saisie : utiliser une liste de choix (select)",
+        "filtrer les résultats affichés dans la page : utiliser un champ de recherche (search-field)",
+        "un texte libre, sans suggestion : utiliser un champ de texte (text-field)"
+      ]
+    },
+    "goldens": null
+  }
+}

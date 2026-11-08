@@ -1,0 +1,98 @@
+{
+  "name": "pagination",
+  "type": "registry:component",
+  "version": "0.1.1",
+  "title": "Pagination",
+  "description": "Moves from one page of results to another: previous, numbers with ellipses, next, and a summary; compact on a phone, it folds what does not fit.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0",
+    "icons@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/pagination/fl_pagination.dart",
+      "type": "registry:component",
+      "target": "@components/pagination/fl_pagination.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: SingleChildScrollView(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, spacing: {prefix}Scope.of(context).space.sm, children: [Column(crossAxisAlignment: CrossAxisAlignment.stretch, spacing: {prefix}Scope.of(context).space.xl, children: [{prefix}Pagination(page: 1, pageCount: 3, onChanged: (_) {}, previousLabel: (variant.dir == TextDirection.rtl ? 'السابق' : 'Previous'), nextLabel: (variant.dir == TextDirection.rtl ? 'التالي' : 'Next'), pageLabel: (int n) => variant.dir == TextDirection.rtl ? 'الصفحة ${String.fromCharCodes('$n'.codeUnits.map((c) => c + 1584))}' : 'Page $n', format: (int n) => variant.dir == TextDirection.rtl ? String.fromCharCodes('$n'.codeUnits.map((c) => c + 1584)) : '$n', size: {prefix}PaginationSize.md, showNavLabels: true, showPages: true), {prefix}Pagination(page: 6, pageCount: 20, onChanged: (_) {}, previousLabel: (variant.dir == TextDirection.rtl ? 'السابق' : 'Previous'), nextLabel: (variant.dir == TextDirection.rtl ? 'التالي' : 'Next'), pageLabel: (int n) => variant.dir == TextDirection.rtl ? 'الصفحة ${String.fromCharCodes('$n'.codeUnits.map((c) => c + 1584))}' : 'Page $n', format: (int n) => variant.dir == TextDirection.rtl ? String.fromCharCodes('$n'.codeUnits.map((c) => c + 1584)) : '$n', size: {prefix}PaginationSize.md, showNavLabels: false, showPages: true), {prefix}Pagination(page: 2, pageCount: 3, onChanged: (_) {}, previousLabel: (variant.dir == TextDirection.rtl ? 'السابق' : 'Previous'), nextLabel: (variant.dir == TextDirection.rtl ? 'التالي' : 'Next'), pageLabel: (int n) => variant.dir == TextDirection.rtl ? 'الصفحة ${String.fromCharCodes('$n'.codeUnits.map((c) => c + 1584))}' : 'Page $n', format: (int n) => variant.dir == TextDirection.rtl ? String.fromCharCodes('$n'.codeUnits.map((c) => c + 1584)) : '$n', size: {prefix}PaginationSize.sm, showNavLabels: false, showPages: true), {prefix}Pagination(page: 2, pageCount: 3, onChanged: (_) {}, previousLabel: (variant.dir == TextDirection.rtl ? 'السابق' : 'Previous'), nextLabel: (variant.dir == TextDirection.rtl ? 'التالي' : 'Next'), pageLabel: (int n) => variant.dir == TextDirection.rtl ? 'الصفحة ${String.fromCharCodes('$n'.codeUnits.map((c) => c + 1584))}' : 'Page $n', format: (int n) => variant.dir == TextDirection.rtl ? String.fromCharCodes('$n'.codeUnits.map((c) => c + 1584)) : '$n', size: {prefix}PaginationSize.lg, showNavLabels: false, showPages: true), {prefix}Pagination(page: 3, pageCount: 12, onChanged: (_) {}, previousLabel: (variant.dir == TextDirection.rtl ? 'السابق' : 'Previous'), nextLabel: (variant.dir == TextDirection.rtl ? 'التالي' : 'Next'), pageLabel: (int n) => variant.dir == TextDirection.rtl ? 'الصفحة ${String.fromCharCodes('$n'.codeUnits.map((c) => c + 1584))}' : 'Page $n', format: (int n) => variant.dir == TextDirection.rtl ? String.fromCharCodes('$n'.codeUnits.map((c) => c + 1584)) : '$n', size: {prefix}PaginationSize.md, showNavLabels: false, showPages: true, summary: (variant.dir == TextDirection.rtl ? '٢١–٣٠ من ١٢٠ نتيجة' : '21–30 of 120 results')), {prefix}Pagination(page: 2, pageCount: 5, onChanged: (_) {}, previousLabel: (variant.dir == TextDirection.rtl ? 'السابق' : 'Previous'), nextLabel: (variant.dir == TextDirection.rtl ? 'التالي' : 'Next'), pageLabel: (int n) => variant.dir == TextDirection.rtl ? 'الصفحة ${String.fromCharCodes('$n'.codeUnits.map((c) => c + 1584))}' : 'Page $n', format: (int n) => variant.dir == TextDirection.rtl ? String.fromCharCodes('$n'.codeUnits.map((c) => c + 1584)) : '$n', size: {prefix}PaginationSize.md, showNavLabels: false, showPages: false), {prefix}Pagination(page: 2, pageCount: 5, onChanged: null, previousLabel: (variant.dir == TextDirection.rtl ? 'السابق' : 'Previous'), nextLabel: (variant.dir == TextDirection.rtl ? 'التالي' : 'Next'), pageLabel: (int n) => variant.dir == TextDirection.rtl ? 'الصفحة ${String.fromCharCodes('$n'.codeUnits.map((c) => c + 1584))}' : 'Page $n', format: (int n) => variant.dir == TextDirection.rtl ? String.fromCharCodes('$n'.codeUnits.map((c) => c + 1584)) : '$n', size: {prefix}PaginationSize.md, showNavLabels: false, showPages: true)])])))",
+    "imports": [
+      "@components/pagination/fl_pagination.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "first",
+      "middle",
+      "sizes",
+      "summary",
+      "previous-next",
+      "disabled"
+    ],
+    "canvas": {
+      "width": 390,
+      "height": 600
+    }
+  },
+  "categories": [
+    "navigation",
+    "data-display"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "first",
+      "middle",
+      "sizes",
+      "summary",
+      "previous-next",
+      "disabled"
+    ],
+    "semanticsRoles": [
+      "button"
+    ],
+    "intents": {
+      "fr": [
+        "passer à la page suivante d'une liste de résultats",
+        "sélectionner directement la dixième page d'un tableau",
+        "passer d'une page à l'autre dans un long tableau",
+        "afficher les numéros de page avec des points de suspension",
+        "indiquer combien de résultats sont affichés sur le total"
+      ],
+      "en": [
+        "move to the next page of results",
+        "pick page ten of a table directly",
+        "navigate an order history page by page",
+        "show page numbers with ellipses for the gaps",
+        "explain how many results are shown out of the total",
+        "offer previous and next page links under a long list"
+      ]
+    },
+    "notFor": [
+      "the dots of a carousel or an onboarding: use the page indicator (page-indicator)",
+      "a list that loads as it scrolls: use a list row (list-row)"
+    ],
+    "fr": {
+      "title": "Pagination",
+      "description": "Permet de passer d'une page de résultats à l'autre : précédent, numéros avec ellipses, suivant, et un résumé ; compacte sur téléphone, elle replie ce qui ne tient pas.",
+      "notFor": [
+        "les points d'un carrousel ou d'un accueil : utiliser l'indicateur de page (page-indicator)",
+        "un fil qui se charge en défilant : utiliser une ligne (list-row)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "`previousIcon` and `nextIcon` replace the chevrons (arrows for “Back” and “Next”); icons story; the example's summary follows the page."
+}

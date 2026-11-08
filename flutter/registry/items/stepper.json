@@ -1,0 +1,97 @@
+{
+  "name": "stepper",
+  "type": "registry:component",
+  "version": "0.1.4",
+  "title": "Stepper",
+  "description": "Sets a small count one step at a time, with round minus and plus buttons around the number at the end of a row: guests, quantity, seats. Each button turns off at its limit.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0",
+    "icons@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/stepper/fl_stepper.dart",
+      "type": "registry:component",
+      "target": "@components/stepper/fl_stepper.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: SingleChildScrollView(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [{prefix}ListGroup(children: [{prefix}ListRow(title: (variant.dir == TextDirection.rtl ? \"البالغون\" : \"Adults\"), subtitle: (variant.dir == TextDirection.rtl ? \"١٣ سنة فأكثر\" : \"13 and older\"), enabled: true, trailing: {prefix}Stepper(label: (variant.dir == TextDirection.rtl ? \"البالغون\" : \"Adults\"), value: 2, min: 1, max: 6, decrementLabel: (variant.dir == TextDirection.rtl ? \"أقل\" : \"Fewer\"), incrementLabel: (variant.dir == TextDirection.rtl ? \"أكثر\" : \"Plus\"), format: (int n) => variant.dir == TextDirection.rtl ? \"$n\".replaceAllMapped(RegExp(\"[0-9]\"), (m) => \"٠١٢٣٤٥٦٧٨٩\"[int.parse(m[0]!)]) : \"$n\", onChanged: (_) {})), {prefix}ListRow(title: (variant.dir == TextDirection.rtl ? \"الأطفال\" : \"Children\"), subtitle: (variant.dir == TextDirection.rtl ? \"من ٢ إلى ١٢ سنة\" : \"Ages 2 to 12\"), enabled: true, trailing: {prefix}Stepper(label: (variant.dir == TextDirection.rtl ? \"الأطفال\" : \"Children\"), value: 0, min: 0, max: 4, decrementLabel: (variant.dir == TextDirection.rtl ? \"أقل\" : \"Fewer\"), incrementLabel: (variant.dir == TextDirection.rtl ? \"أكثر\" : \"Plus\"), format: (int n) => variant.dir == TextDirection.rtl ? \"$n\".replaceAllMapped(RegExp(\"[0-9]\"), (m) => \"٠١٢٣٤٥٦٧٨٩\"[int.parse(m[0]!)]) : \"$n\", onChanged: (_) {})), {prefix}ListRow(title: (variant.dir == TextDirection.rtl ? \"الرضّع\" : \"Infants\"), subtitle: (variant.dir == TextDirection.rtl ? \"أقل من سنتين\" : \"Under 2\"), enabled: true, trailing: {prefix}Stepper(label: (variant.dir == TextDirection.rtl ? \"الرضّع\" : \"Infants\"), value: 2, min: 0, max: 2, decrementLabel: (variant.dir == TextDirection.rtl ? \"أقل\" : \"Fewer\"), incrementLabel: (variant.dir == TextDirection.rtl ? \"أكثر\" : \"Plus\"), format: (int n) => variant.dir == TextDirection.rtl ? \"$n\".replaceAllMapped(RegExp(\"[0-9]\"), (m) => \"٠١٢٣٤٥٦٧٨٩\"[int.parse(m[0]!)]) : \"$n\", onChanged: (_) {})), {prefix}ListRow(title: (variant.dir == TextDirection.rtl ? \"الحيوانات\" : \"Pets\"), enabled: false, trailing: {prefix}Stepper(label: (variant.dir == TextDirection.rtl ? \"الحيوانات\" : \"Pets\"), value: 1, min: 0, max: 2, decrementLabel: (variant.dir == TextDirection.rtl ? \"أقل\" : \"Fewer\"), incrementLabel: (variant.dir == TextDirection.rtl ? \"أكثر\" : \"Plus\"), format: (int n) => variant.dir == TextDirection.rtl ? \"$n\".replaceAllMapped(RegExp(\"[0-9]\"), (m) => \"٠١٢٣٤٥٦٧٨٩\"[int.parse(m[0]!)]) : \"$n\", onChanged: null))])])))",
+    "imports": [
+      "@components/list_row/fl_list_row.dart",
+      "@components/stepper/fl_stepper.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [
+      "value",
+      "at-min",
+      "at-max",
+      "disabled"
+    ],
+    "canvas": {
+      "width": 390,
+      "height": 600
+    },
+    "settleMs": 400
+  },
+  "categories": [
+    "forms"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "value",
+      "at-min",
+      "at-max",
+      "disabled"
+    ],
+    "semanticsRoles": [
+      "button",
+      "slider"
+    ],
+    "intents": {
+      "fr": [
+        "choisir combien d'adultes et d'enfants compte une réservation",
+        "régler une quantité de billets ou de places au compteur",
+        "poser un compteur au bout d'une ligne de liste",
+        "ajouter les voyageurs un par un",
+        "bloquer le compteur à sa limite"
+      ],
+      "en": [
+        "pick how many adults and children are in a booking",
+        "adjust how many tickets or seats with a counter",
+        "use a small counter at the end of a list row",
+        "add guests one at a time",
+        "disable a counter button at its limit"
+      ]
+    },
+    "notFor": [
+      "a number typed on the keyboard, a price, a weight: use the number field (number-field)",
+      "a value on a continuous range: use the slider (slider)",
+      "a quantity in a cart line: use the cart line (cart-line)"
+    ],
+    "fr": {
+      "title": "Compteur",
+      "description": "Permet de régler un petit nombre d'un pas à la fois, moins et plus en petits boutons carrés autour du nombre, au bout d'une ligne : voyageurs, quantité, places. Chaque bouton s'éteint à sa borne.",
+      "notFor": [
+        "un nombre à taper au clavier, un prix, un poids : utiliser le champ de nombre (number-field)",
+        "une valeur sur une plage continue : utiliser le curseur (slider)",
+        "une quantité dans une ligne de panier : utiliser la ligne de panier (cart-line)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "`step` counts by more than one (by quarter hours), the number stopping at the bound; `variant: FlStepperVariant.outline` gives round buttons ringed with a `border` stroke, without background until pressed, those of a traveler picker."
+}

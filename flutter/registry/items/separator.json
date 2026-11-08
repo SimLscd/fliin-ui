@@ -1,0 +1,77 @@
+{
+  "name": "separator",
+  "type": "registry:component",
+  "version": "0.2.2",
+  "title": "Separator",
+  "description": "Marks the limit between two rows, two blocks or two columns with a thin or thick line, sharp to the pixel.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/separator/fl_separator.dart",
+      "type": "registry:component",
+      "target": "@components/separator/fl_separator.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: Padding(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, spacing: {prefix}Scope.of(context).space.sm, children: [Text((variant.dir == TextDirection.rtl ? 'الوضع الداكن' : 'Dark mode'), style: TextStyle(color: {prefix}Scope.of(context).colors.onSurface)), Padding(padding: EdgeInsetsDirectional.symmetric(vertical: {prefix}Scope.of(context).space.sm), child: {prefix}Separator()), Text((variant.dir == TextDirection.rtl ? 'الإشعارات' : 'Notifications'), style: TextStyle(color: {prefix}Scope.of(context).colors.onSurface)), Padding(padding: EdgeInsetsDirectional.symmetric(vertical: {prefix}Scope.of(context).space.sm), child: {prefix}Separator(variant: {prefix}SeparatorVariant.thick)), SizedBox(height: 32, child: Row(spacing: {prefix}Scope.of(context).space.sm, children: [Flexible(child: Text((variant.dir == TextDirection.rtl ? 'واي فاي' : 'Wi-Fi'), style: TextStyle(color: {prefix}Scope.of(context).colors.onSurface))), {prefix}Separator(axis: Axis.vertical), Flexible(child: Text((variant.dir == TextDirection.rtl ? 'بلوتوث' : 'Bluetooth'), style: TextStyle(color: {prefix}Scope.of(context).colors.onSurface)))]))])))",
+    "imports": [
+      "@components/separator/fl_separator.dart",
+      "@core/fliin.dart"
+    ],
+    "states": [],
+    "canvas": {
+      "width": 390,
+      "height": 420
+    }
+  },
+  "categories": [
+    "data-display"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [],
+    "semanticsRoles": [],
+    "intents": {
+      "fr": [
+        "séparer deux lignes d'une liste",
+        "ajouter un trait entre deux sections",
+        "séparer deux colonnes d'un trait vertical",
+        "marquer une séparation épaisse entre deux blocs",
+        "séparer un formulaire en parties"
+      ],
+      "en": [
+        "separate list items with a horizontal line",
+        "add a divider rule between sections or rows",
+        "separate two columns with a vertical line",
+        "split a form into parts",
+        "show a thick break between two parts of a page"
+      ]
+    },
+    "notFor": [
+      "space without a line: use the token spacing (core)"
+    ],
+    "fr": {
+      "title": "Séparateur",
+      "description": "Indique la limite entre deux lignes, deux blocs ou deux colonnes d'un trait fin ou épais, net au pixel près.",
+      "notFor": [
+        "espace sans trait : utiliser l'espacement des jetons (core)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "The separator takes a `color` (`separatorSecondary` or `separatorTertiary` on an inset surface), a `length` (a vertical stroke at the height of the text, without `IntrinsicHeight` around the row), and `indent` and `endIndent`, directional insets. The default rendering does not change."
+}

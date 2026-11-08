@@ -1,0 +1,104 @@
+{
+  "name": "app-bar",
+  "type": "registry:component",
+  "version": "0.3.1",
+  "title": "App bar",
+  "description": "Shows where the user is and leads back: the screen title, a back chevron and up to three actions, with a large title that collapses into the bar on scroll.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.2",
+    "icons@^0.2.0",
+    "button@^0.2.0",
+    "spinner@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/app_bar/fl_app_bar.dart",
+      "type": "registry:component",
+      "target": "@components/app_bar/fl_app_bar.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, spacing: {prefix}Scope.of(context).space.lg, children: [{prefix}AppBar(title: (variant.dir == TextDirection.rtl ? 'الإعدادات' : 'Settings'), back: {prefix}AppBarBack(label: (variant.dir == TextDirection.rtl ? 'رجوع' : 'Back'), onPressed: () {}), actions: [{prefix}AppBarAction(icon: {prefix}Icon({prefix}Icons.ellipsis), label: (variant.dir == TextDirection.rtl ? 'المزيد' : 'More'), onPressed: () {})]), {prefix}AppBar(title: (variant.dir == TextDirection.rtl ? 'المنتج' : 'Product'), filled: false, back: {prefix}AppBarBack(label: (variant.dir == TextDirection.rtl ? 'رجوع' : 'Back'), onPressed: () {}), actions: [{prefix}AppBarAction(icon: {prefix}Icon({prefix}Icons.arrowUpFromSquare), label: (variant.dir == TextDirection.rtl ? 'مشاركة' : 'Share'), onPressed: () {}), {prefix}AppBarAction(icon: {prefix}Icon({prefix}Icons.heart), label: (variant.dir == TextDirection.rtl ? 'المفضلة' : 'Favorite'), onPressed: () {})]), {prefix}AppBar(title: (variant.dir == TextDirection.rtl ? 'الملف الشخصي' : 'Profile'), titleSize: {prefix}AppBarTitleSize.small, back: {prefix}AppBarBack(label: (variant.dir == TextDirection.rtl ? 'رجوع' : 'Back'), onPressed: () {}), actions: [{prefix}AppBarAction.text(label: (variant.dir == TextDirection.rtl ? 'حفظ' : 'Save'), onPressed: () {})]), {prefix}AppBar(title: (variant.dir == TextDirection.rtl ? 'الرسائل' : 'Messages'), titleSize: {prefix}AppBarTitleSize.large, actions: [{prefix}AppBarAction(icon: {prefix}Icon({prefix}Icons.magnifier), label: (variant.dir == TextDirection.rtl ? 'بحث' : 'Search'), onPressed: () {}), {prefix}AppBarAction(icon: {prefix}Icon({prefix}Icons.pencil), label: (variant.dir == TextDirection.rtl ? 'جديد' : 'New'), onPressed: () {})]), SizedBox(height: 160, child: CustomScrollView(controller: ScrollController(initialScrollOffset: 200), slivers: [{prefix}SliverAppBar(appBar: {prefix}AppBar(title: (variant.dir == TextDirection.rtl ? 'الرسائل' : 'Messages'), titleSize: {prefix}AppBarTitleSize.large, back: {prefix}AppBarBack(label: (variant.dir == TextDirection.rtl ? 'رجوع' : 'Back'), onPressed: () {}), actions: [{prefix}AppBarAction(icon: {prefix}Icon({prefix}Icons.magnifier), label: (variant.dir == TextDirection.rtl ? 'بحث' : 'Search'), onPressed: () {})])), SliverList.list(children: [for (var i = 0; i < 12; i++) Padding(padding: EdgeInsetsDirectional.symmetric(horizontal: {prefix}Scope.of(context).space.lg, vertical: {prefix}Scope.of(context).space.xs), child: SizedBox(height: 40, child: DecoratedBox(decoration: ShapeDecoration(color: {prefix}Scope.of(context).colors.surfaceSecondary, shape: {prefix}ContinuousBorder(radius: {prefix}Scope.of(context).shape.radiusMd)))))])]))]))",
+    "imports": [
+      "@components/app_bar/fl_app_bar.dart",
+      "@core/fliin.dart",
+      "@icons/fl_icons.dart"
+    ],
+    "states": [
+      "inline",
+      "bare",
+      "text-action",
+      "large",
+      "scrolled"
+    ],
+    "canvas": {
+      "width": 390,
+      "height": 560
+    }
+  },
+  "categories": [
+    "navigation"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "inline",
+      "bare",
+      "text-action",
+      "large",
+      "scrolled"
+    ],
+    "semanticsRoles": [
+      "header",
+      "button"
+    ],
+    "intents": {
+      "fr": [
+        "naviguer vers la page précédente par un chevron",
+        "nommer la page courante avec un grand titre repliable",
+        "poser deux actions à côté du nom de la page",
+        "suivre le défilement sans perdre le nom de la page",
+        "proposer un retour à la page parente"
+      ],
+      "en": [
+        "navigate back to the previous page with a chevron",
+        "add a large title that collapses on scroll",
+        "add actions next to the page name",
+        "keep the page name visible while the list scrolls",
+        "offer a way back to the parent page"
+      ]
+    },
+    "notFor": [
+      "the title of a section in the page: use a section header (section-header)",
+      "navigation between the app's sections: use the tab bar (tab-bar)"
+    ],
+    "fr": {
+      "title": "Barre du haut",
+      "description": "Indique où l’on est et permet de revenir en arrière : un titre en quatre tailles, un chevron de retour, jusqu’à trois actions et un grand titre qui se réduit au défilement.",
+      "notFor": [
+        "titre d'une section dans la page : utiliser un titre de section (section-header)",
+        "navigation entre les rubriques de l'app : utiliser la barre d'onglets (tab-bar)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "`FlAppBarBack.icon` replaces the chevron in the disc (a cross for a screen that closes); `FlAppBar.leading` puts an avatar or a brand at the start of a root screen, with no back button. A centered title too long to sit in the middle keeps the `space.sm` gap before the actions instead of touching them (“Edit profile” against “Save”). New optional parameters, nothing breaks.",
+  "breaking": [
+    {
+      "kind": "semantic",
+      "description": "The back button no longer writes its label, which the screen reader still reads. Remove `showLabel` and `filled` from `FlAppBarBack(`; replace `variant: FlAppBarVariant.large` with `titleSize: FlAppBarTitleSize.large` and `FlAppBarVariant.inline` with `FlAppBarTitleSize.medium`. The bare style of the back button and icons is set on the bar, `FlAppBar(filled: false)`. A bar with a large title and no back button no longer reserves a line above the title: a screen that placed content under `FlAppBar.barHeight` must read its height again."
+    }
+  ]
+}
