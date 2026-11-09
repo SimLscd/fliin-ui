@@ -43,6 +43,7 @@ class FlSearchField extends StatefulWidget {
     this.onChanged,
     this.onSubmitted,
     this.onCleared,
+    this.pill = false,
   });
 
   /// The field name, read by the screen reader ("Search").
@@ -96,6 +97,10 @@ class FlSearchField extends StatefulWidget {
 
   /// Called after the button clears the input.
   final VoidCallback? onCleared;
+
+  /// True: a capsule, its text at the size of body text, like a
+  /// conversation's composer; false, the field's corners.
+  final bool pill;
 
   @override
   State<FlSearchField> createState() => _FlSearchFieldState();
@@ -206,6 +211,7 @@ class _FlSearchFieldState extends State<FlSearchField> {
         disabled: widget.disabled,
         autofocus: widget.autofocus,
         textInputAction: TextInputAction.search,
+        compact: widget.pill,
         onChanged: widget.onChanged,
         onSubmitted: widget.onSubmitted,
       ),

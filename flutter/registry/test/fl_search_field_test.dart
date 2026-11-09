@@ -2,6 +2,7 @@ import 'dart:math' as math;
 import 'dart:ui' as ui;
 
 import 'package:fliin_ui/components/search_field/fl_search_field.dart';
+import 'package:fliin_ui/components/text_field/fl_input.dart';
 import 'package:fliin_ui/components/text_field/fl_text_field.dart';
 import 'package:fliin_ui/core/fliin.dart';
 import 'package:flutter/foundation.dart';
@@ -35,6 +36,15 @@ Widget _iconProbe(BuildContext context) {
 Finder get _clear => find.descendant(of: find.byType(FlSearchField), matching: find.byType(FlPressable));
 
 void main() {
+  testWidgets('devrait poser une pilule compacte quand pill vaut true, et un champ rectangulaire sinon', (
+    tester,
+  ) async {
+    await tester.pumpWidget(_app(const FlSearchField(label: 'Rechercher', clearLabel: 'Effacer', pill: true)));
+    expect(tester.widget<FlInput>(find.byType(FlInput)).compact, isTrue);
+    await tester.pumpWidget(_app(const FlSearchField(label: 'Rechercher', clearLabel: 'Effacer')));
+    expect(tester.widget<FlInput>(find.byType(FlInput)).compact, isFalse);
+  });
+
   testWidgets("devrait montrer le bouton d'effacement tant que la saisie n'est pas vide, et l'effacer au toucher", (
     tester,
   ) async {

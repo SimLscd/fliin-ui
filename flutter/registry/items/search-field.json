@@ -1,8 +1,8 @@
 {
   "name": "search-field",
   "type": "registry:component",
-  "version": "0.2.3",
-  "changelog": "`icon` replaces the magnifier, and `trailing` sits at the end of the field while it is empty (the key of the shortcut that focuses it) then gives way to the clear button. Optional parameters: default rendering unchanged.",
+  "version": "0.2.4",
+  "changelog": "`pill: true` draws the field as a full pill, a little shorter, for a search at the top of a list. By default, the field does not change.",
   "title": "Search field",
   "description": "Searches or filters a list: a field with a magnifier, the search key of the keyboard and a button that clears the query.",
   "flutter": ">=3.47.0 <4.0.0",

@@ -4731,7 +4731,7 @@ final Map<String, FlReferenceEntry> verifyEntries = {
     ),
   ),
   'search-field': (
-    version: '0.2.3',
+    version: '0.2.4',
     canvas: const Size(390, 600),
     platformCanvas: const {},
     settle: const Duration(milliseconds: 300),

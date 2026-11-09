@@ -678,9 +678,9 @@ itemEnglish = {
   'composer': (
     title: 'Message composer',
     description:
-        'Lets people write a chat message: an input that grows up to a few '
-        'lines, a send button enabled only with text, and the reply being '
-        'written above it.',
+        'Lets people write a chat message: a pill input that grows up to a '
+        'few lines, a send button in an accent circle enabled only with text, '
+        'an attach slot, and the reply being written above it.',
     notFor: [
       'a form field with a label: use a text field (text-field)',
       'searching a list: use a search field (search-field)',
@@ -689,9 +689,9 @@ itemEnglish = {
   'conversations': (
     title: 'Conversations',
     description:
-        'Lists the conversations of a messaging app, pinned first, with '
-        'search, pull to refresh, a new conversation, archive, mute and delete, '
-        'and its empty, loading, error and offline states.',
+        'Lists the conversations of a messaging app, pinned ones as avatars '
+        'on top, with swipe actions, search, pull to refresh, a new message '
+        'sheet, and its empty, loading, error and offline states.',
     notFor: [
       'the thread of a single discussion: use the chat thread (chat)',
       'received notifications: use the notification center (notifications)',
