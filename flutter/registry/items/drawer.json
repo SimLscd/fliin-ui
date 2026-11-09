@@ -1,8 +1,8 @@
 {
   "name": "drawer",
   "type": "registry:component",
-  "version": "0.2.2",
-  "changelog": "The title row is as tall as the close button, with the title centered on it, 20 from the links; the actions align to the start, like the Izydesk drawer. The API does not change.",
+  "version": "0.3.0",
+  "changelog": "`FlDrawerItem`, a destination aligned to the start: icon, label, count at the end, current page on `accentSoft`, a destructive action in the danger color, a fade on press. `FlDrawerSection`, a group under a heading. `header` replaces the shown title (an account, a logo); `footer` puts a full-width foot at the bottom, under a separator. Additions only: the existing API does not change.",
   "title": "Drawer",
   "description": "Opens a navigation panel from the side of the screen over a scrim, mirrored in right-to-left layouts, and closes by swipe, tap outside, Escape or back.",
   "flutter": ">=3.47.0 <4.0.0",
@@ -10,7 +10,8 @@
   "registryDependencies": [
     "core@^0.2.0",
     "button@^0.2.0",
-    "close-button@^0.2.0"
+    "close-button@^0.2.0",
+    "icons@^0.2.1"
   ],
   "files": [
     {
@@ -22,11 +23,11 @@
   "l10n": {},
   "snippets": {},
   "verify": {
-    "entry": "Navigator(onGenerateInitialRoutes: (navigator, _) => [PageRouteBuilder<void>(pageBuilder: (context, _, _) => ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: const SizedBox.expand())), {prefix}DrawerRoute<void>(context: context, barrierLabel: (variant.dir == TextDirection.rtl ? 'إغلاق القائمة' : 'Close the menu'), builder: (context) => {prefix}Drawer(title: (variant.dir == TextDirection.rtl ? 'التنقل' : 'Navigation'), closeLabel: (variant.dir == TextDirection.rtl ? 'إغلاق' : 'Close'), actions: [{prefix}Button(label: (variant.dir == TextDirection.rtl ? 'تسجيل الخروج' : 'Sign out'), size: {prefix}ButtonSize.sm, onPressed: () => Navigator.pop(context))], child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, spacing: {prefix}Scope.of(context).space.lg, children: [for (final (fr, ar) in const [('Home', 'الرئيسية'), ('Orders', 'الطلبات'), ('Messages', 'الرسائل'), ('Settings', 'الإعدادات')]) Text(variant.dir == TextDirection.rtl ? ar : fr, style: TextStyle(color: {prefix}Scope.of(context).colors.onSurface))])))])",
+    "entry": "Navigator(onGenerateInitialRoutes: (navigator, _) => [PageRouteBuilder<void>(pageBuilder: (context, _, _) => ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: const SizedBox.expand())), {prefix}DrawerRoute<void>(context: context, barrierLabel: (variant.dir == TextDirection.rtl ? 'إغلاق القائمة' : 'Close the menu'), builder: (context) => {prefix}Drawer(title: (variant.dir == TextDirection.rtl ? 'التنقل' : 'Navigation'), closeLabel: (variant.dir == TextDirection.rtl ? 'إغلاق' : 'Close'), footer: {prefix}DrawerItem(label: (variant.dir == TextDirection.rtl ? 'تسجيل الخروج' : 'Sign out'), icon: {prefix}Icons.arrowRightFromSquare, danger: true, onPressed: () => Navigator.pop(context)), child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, spacing: {prefix}Scope.of(context).space.lg, children: [{prefix}DrawerSection(children: [{prefix}DrawerItem(label: (variant.dir == TextDirection.rtl ? 'الرئيسية' : 'Home'), icon: {prefix}Icons.house, selected: true, onPressed: () {}), {prefix}DrawerItem(label: (variant.dir == TextDirection.rtl ? 'الطلبات' : 'Orders'), icon: {prefix}Icons.shoppingCart, onPressed: () {}), {prefix}DrawerItem(label: (variant.dir == TextDirection.rtl ? 'الرسائل' : 'Messages'), icon: {prefix}Icons.envelope, onPressed: () {})]), {prefix}DrawerSection(title: (variant.dir == TextDirection.rtl ? 'الحساب' : 'Account'), children: [{prefix}DrawerItem(label: (variant.dir == TextDirection.rtl ? 'الإعدادات' : 'Settings'), icon: {prefix}Icons.gear, onPressed: () {})])])))])",
     "imports": [
-      "@components/button/fl_button.dart",
       "@components/drawer/fl_drawer.dart",
-      "@core/fliin.dart"
+      "@core/fliin.dart",
+      "@icons/fl_icons.dart"
     ],
     "states": [
       "open"

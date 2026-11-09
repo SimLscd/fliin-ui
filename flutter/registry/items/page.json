@@ -1,7 +1,7 @@
 {
   "name": "page",
   "type": "registry:component",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "title": "Page",
   "description": "Frames a whole mobile screen: safe areas, an app bar tied to scrolling, scrolling content, a tab bar, the keyboard and pull to refresh with each platform gesture.",
   "flutter": ">=3.47.0 <4.0.0",
@@ -87,5 +87,5 @@
     },
     "goldens": null
   },
-  "changelog": "Follows `app-bar` 0.3.0: the back button is a lone chevron in a circle, written actions are pills, and the raised bar a translucent background with a shadow. The API does not change."
+  "changelog": "`extendBody`: the content passes under a floating or translucent bottom bar, and always ends above it."
 }

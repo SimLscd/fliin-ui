@@ -1,10 +1,10 @@
 {
   "name": "tab-bar",
   "type": "registry:component",
-  "version": "0.2.3",
-  "changelog": "The chosen tab's icon in `selected`, the selection color; its label stays `onSurface`.",
+  "version": "0.3.0",
+  "changelog": "Shapes and settings: a floating bar detached from the edges (`floating`, corners from `shape.button`), a translucent blurred background (`translucent`), labels on every tab, on the chosen tab only or on none (`labels`), an indicator as a pill under the icon, a capsule behind the tab or none (`indicator`), and an icon of its own for the chosen tab (`FlBottomTab.selectedIcon`). The default rendering does not change.",
   "title": "Tab bar",
-  "description": "Switches between the main sections of an app from the bottom of the screen: three to five tabs with icon, label and badge, and a selection that springs from tab to tab.",
+  "description": "Switches between the main sections of an app from the bottom of the screen: three to five tabs with icon, label and badge, on a docked, translucent or floating bar.",
   "flutter": ">=3.47.0 <4.0.0",
   "dependencies": {},
   "registryDependencies": [
@@ -20,18 +20,23 @@
   "l10n": {},
   "snippets": {},
   "verify": {
-    "entry": "ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, spacing: {prefix}Scope.of(context).space.xl, children: [for (final (count, index) in [(3, 0), (5, 4)]) {prefix}BottomTabBar(index: index, onSelected: (_) {}, tabs: [for (final (fr, ar) in [('Home', 'الرئيسية'), ('Messages', 'الرسائل'), ('Alerts', 'التنبيهات'), ('Profile', 'الملف'), ('Settings', 'الإعدادات')].take(count)) {prefix}BottomTab(label: (variant.dir == TextDirection.rtl ? ar : fr), badge: fr == 'Messages' ? Semantics(label: (variant.dir == TextDirection.rtl ? 'غير مقروءة' : 'Unread'), child: SizedBox.square(dimension: 10, child: DecoratedBox(decoration: ShapeDecoration(color: {prefix}Scope.of(context).colors.dangerFill, shape: const CircleBorder())))) : null, icon: Builder(builder: (context) => SizedBox.square(dimension: 18, child: DecoratedBox(decoration: ShapeDecoration(color: IconTheme.of(context).color, shape: const CircleBorder())))))])]))",
+    "entry": "Builder(builder: (context) { final theme = {prefix}Scope.of(context); final rtl = variant.dir == TextDirection.rtl; Widget glyph(ShapeBorder shape) => Builder(builder: (context) => SizedBox.square(dimension: 18, child: DecoratedBox(decoration: ShapeDecoration(color: IconTheme.of(context).color, shape: shape)))); List<{prefix}BottomTab> tabs(int count, {bool badge = false, bool filled = false}) => [for (final (i, (en, ar)) in [('Home', 'الرئيسية'), ('Messages', 'الرسائل'), ('Alerts', 'التنبيهات'), ('Profile', 'الملف'), ('Settings', 'الإعدادات')].take(count).indexed) {prefix}BottomTab(label: rtl ? ar : en, icon: glyph(const CircleBorder()), selectedIcon: filled ? glyph(const RoundedRectangleBorder()) : null, badge: badge && i == 1 ? Semantics(label: rtl ? 'غير مقروءة' : 'Unread', child: SizedBox.square(dimension: 10, child: DecoratedBox(decoration: ShapeDecoration(color: theme.colors.dangerFill, shape: const CircleBorder())))) : null)]; Widget over(Widget bar) => SizedBox(height: 120, child: Stack(children: [Positioned.fill(child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [for (final color in [theme.colors.accentSoft, theme.colors.successSoft, theme.colors.dangerSoft]) Expanded(child: ColoredBox(color: color))])), PositionedDirectional(start: 0, end: 0, bottom: 0, child: bar)])); return ColoredBox(color: theme.colors.surface, child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, spacing: theme.space.lg, children: [{prefix}BottomTabBar(index: 0, onSelected: (_) {}, tabs: tabs(3)), {prefix}BottomTabBar(index: 4, onSelected: (_) {}, tabs: tabs(5, badge: true)), {prefix}BottomTabBar(index: 1, onSelected: (_) {}, tabs: tabs(4, filled: true)), {prefix}BottomTabBar(index: 2, onSelected: (_) {}, labels: {prefix}BottomTabLabels.selected, tabs: tabs(4)), over({prefix}BottomTabBar(index: 1, onSelected: (_) {}, translucent: true, tabs: tabs(4))), over({prefix}BottomTabBar(index: 0, onSelected: (_) {}, floating: true, translucent: true, indicator: {prefix}BottomTabIndicator.capsule, tabs: tabs(4, badge: true, filled: true))), {prefix}BottomTabBar(index: 3, onSelected: (_) {}, floating: true, labels: {prefix}BottomTabLabels.never, tabs: tabs(4))])); })",
     "imports": [
       "@components/tab_bar/fl_tab_bar.dart",
       "@core/fliin.dart"
     ],
     "states": [
       "selected",
-      "badge"
+      "badge",
+      "selected-icon",
+      "selected-label",
+      "translucent",
+      "floating",
+      "icons-only"
     ],
     "canvas": {
       "width": 390,
-      "height": 240
+      "height": 760
     }
   },
   "categories": [
@@ -49,7 +54,12 @@
     ],
     "states": [
       "selected",
-      "badge"
+      "badge",
+      "selected-icon",
+      "selected-label",
+      "translucent",
+      "floating",
+      "icons-only"
     ],
     "semanticsRoles": [
       "tabBar",
@@ -61,14 +71,18 @@
         "ajouter des onglets illustrés tout en bas",
         "signaler des messages non lus sur un onglet",
         "basculer de l'accueil au profil",
-        "poser les rubriques principales à portée du pouce"
+        "poser les rubriques principales à portée du pouce",
+        "faire flotter la navigation du bas au-dessus du contenu",
+        "masquer les libellés des onglets du bas"
       ],
       "en": [
         "switch between the main sections of the app",
         "add icon tabs with labels for the main sections",
         "show unread messages on a tab",
         "switch from home to profile in one tap",
-        "keep the main sections within thumb reach"
+        "keep the main sections within thumb reach",
+        "make the bottom navigation float above the content",
+        "hide the labels of the bottom navigation tabs"
       ]
     },
     "notFor": [
@@ -78,7 +92,7 @@
     ],
     "fr": {
       "title": "Navigation du bas",
-      "description": "Permet de passer d'une rubrique à l'autre depuis le bas : trois à cinq onglets illustrés et nommés, une pastille de compte et une sélection qui glisse.",
+      "description": "Permet de passer d'une rubrique à l'autre depuis le bas : trois à cinq onglets illustrés et nommés, une pastille de compte et une sélection qui glisse, sur une barre pleine, translucide ou flottante.",
       "notFor": [
         "vues d'un même écran : utiliser des onglets (tabs)",
         "actions d'un écran : utiliser la barre du haut (app-bar)",

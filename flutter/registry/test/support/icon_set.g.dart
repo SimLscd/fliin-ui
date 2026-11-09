@@ -289,6 +289,11 @@ final List<IconCase> iconSet = [
       Rect.fromLTRB(5.351, 1.4997, 16, 11.812),
     ],
   ),
+  (
+    name: 'arrow-right-from-square',
+    icon: FlIcons.arrowRightFromSquare,
+    contours: [Rect.fromLTRB(4, 4.7688, 14.9993, 11.2686), Rect.fromLTRB(1, 1, 9.5, 15)],
+  ),
 ];
 
 /// Each set, by its name in the preset, in code order.
@@ -492,6 +497,11 @@ final Map<String, List<IconCase>> iconSets = {
         Rect.fromLTRB(2, 2, 22, 22),
       ],
     ),
+    (
+      name: 'arrow-right-from-square',
+      icon: lucide.FlIcons.arrowRightFromSquare,
+      contours: [Rect.fromLTRB(16, 7, 21, 17), Rect.fromLTRB(9, 12, 21, 12), Rect.fromLTRB(3, 3, 9, 21)],
+    ),
   ],
   'tabler': [
     (
@@ -684,6 +694,11 @@ final Map<String, List<IconCase>> iconSets = {
         Rect.fromLTRB(2, 7.415, 18, 18.004),
         Rect.fromLTRB(3, 3, 21, 21),
       ],
+    ),
+    (
+      name: 'arrow-right-from-square',
+      icon: tabler.FlIcons.arrowRightFromSquare,
+      contours: [Rect.fromLTRB(3, 4, 14, 20), Rect.fromLTRB(9, 9, 21, 12), Rect.fromLTRB(18, 12, 21, 15)],
     ),
   ],
   'phosphor': [
@@ -978,6 +993,11 @@ final Map<String, List<IconCase>> iconSets = {
         Rect.fromLTRB(24, 101.46, 180.06, 200),
         Rect.fromLTRB(104.6297, 40.0306, 248, 188.9563),
       ],
+    ),
+    (
+      name: 'arrow-right-from-square',
+      icon: phosphor.FlIcons.arrowRightFromSquare,
+      contours: [Rect.fromLTRB(40, 32, 120, 224), Rect.fromLTRB(104, 79.9956, 232.0063, 176.0044)],
     ),
   ],
 };

@@ -21,9 +21,12 @@ final _tabs = [
 
 /// La barre sous l'onglet que garde la scène, qui le change au toucher.
 class _Held extends StatefulWidget {
-  const _Held({this.initial = 0});
+  const _Held({this.initial = 0, this.labels = FlBottomTabLabels.always, this.floating = false, this.tabs});
 
   final int initial;
+  final FlBottomTabLabels labels;
+  final bool floating;
+  final List<FlBottomTab>? tabs;
 
   @override
   State<_Held> createState() => _HeldState();
@@ -33,8 +36,13 @@ class _HeldState extends State<_Held> {
   late int index = widget.initial;
 
   @override
-  Widget build(BuildContext context) =>
-      FlBottomTabBar(tabs: _tabs, index: index, onSelected: (i) => setState(() => index = i));
+  Widget build(BuildContext context) => FlBottomTabBar(
+    tabs: widget.tabs ?? _tabs,
+    index: index,
+    labels: widget.labels,
+    floating: widget.floating,
+    onSelected: (i) => setState(() => index = i),
+  );
 }
 
 Widget _app(Widget child, {double bottom = 0, double scale = 1, bool reduced = false}) => MediaQuery(
@@ -167,5 +175,75 @@ void main() {
     final tabs = tester.getRect(find.descendant(of: find.byType(FlBottomTabBar), matching: find.byType(Row)).first);
     final side = FlTokens.defaults.space.sm;
     expect((tabs.left, tabs.right), (47 + side, 844 - 47 - side));
+  });
+
+  testWidgets('devrait lire chaque libellé sans en afficher aucun quand labels vaut never', (tester) async {
+    final semantics = tester.ensureSemantics();
+    await tester.pumpWidget(_app(const _Held(labels: FlBottomTabLabels.never)));
+    expect(find.byType(Text), findsNothing);
+    for (final label in ['Accueil', 'Messages\n3 non lus', 'Profil']) {
+      expect(find.bySemanticsLabel(label), findsOneWidget);
+    }
+    await tester.pumpWidget(_app(const _Held()));
+    final labelled = tester.getSize(find.byType(FlBottomTabBar)).height;
+    await tester.pumpWidget(_app(const _Held(labels: FlBottomTabLabels.never)));
+    expect(tester.getSize(find.byType(FlBottomTabBar)).height, lessThan(labelled));
+    semantics.dispose();
+  });
+
+  testWidgets(
+    'devrait ne montrer que le libellé de l’onglet choisi, sans changer de hauteur, quand labels vaut selected',
+    (tester) async {
+      await tester.pumpWidget(_app(const _Held()));
+      final labelled = tester.getSize(find.byType(FlBottomTabBar)).height;
+      await tester.pumpWidget(_app(const _Held(labels: FlBottomTabLabels.selected)));
+      expect(tester.getSize(find.byType(FlBottomTabBar)).height, labelled);
+      Set<String> shown() => tester
+          .widgetList<Text>(find.byType(Text))
+          .where((text) => text.data != null)
+          .map((text) => text.data!)
+          // Le libellé fantôme qui garde la hauteur n'est pas peint.
+          .where((data) => find.text(data).hitTestable().evaluate().isNotEmpty)
+          .toSet();
+      expect(shown(), {'Accueil'});
+      await tester.tap(find.bySemanticsLabel('Profil'));
+      await tester.pumpAndSettle();
+      expect(shown(), {'Profil'});
+      expect(tester.getSize(find.byType(FlBottomTabBar)).height, labelled);
+    },
+  );
+
+  testWidgets('devrait fondre l’icône de l’onglet choisi dans selectedIcon', (tester) async {
+    const outline = Key('outline');
+    const filled = Key('filled');
+    final tabs = [
+      for (final label in _labels)
+        FlBottomTab(
+          icon: SizedBox.square(key: label == 'Profil' ? outline : null, dimension: 24),
+          selectedIcon: label == 'Profil' ? const SizedBox.square(key: filled, dimension: 24) : null,
+          label: label,
+        ),
+    ];
+    double opacity(Key key) =>
+        tester.widget<Opacity>(find.ancestor(of: find.byKey(key), matching: find.byType(Opacity)).first).opacity;
+    await tester.pumpWidget(_app(_Held(tabs: tabs)));
+    expect((opacity(outline), opacity(filled)), (1.0, 0.0));
+    await tester.tap(find.text('Profil'));
+    await tester.pumpAndSettle();
+    expect((opacity(outline), opacity(filled)), (0.0, 1.0));
+  });
+
+  testWidgets('devrait détacher la barre flottante des bords et la poser au-dessus de l’indicateur d’accueil', (
+    tester,
+  ) async {
+    await tester.pumpWidget(_app(const _Held(floating: true), bottom: 34));
+    final space = FlTokens.defaults.space;
+    final bar = tester.getRect(find.byType(FlBottomTabBar));
+    final tabs = tester.getRect(find.descendant(of: find.byType(FlBottomTabBar), matching: find.byType(Row)).first);
+    final shape = tabs.inflate(space.xs);
+    // Trois onglets plafonnés à 96 chacun : la capsule reste au centre.
+    expect(shape.width, 3 * 96 + 2 * space.xs);
+    expect(shape.center.dx, bar.center.dx);
+    expect(bar.bottom - shape.bottom, 34 - space.sm);
   });
 }

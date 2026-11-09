@@ -421,4 +421,31 @@ void main() {
       expect(tester.state(find.byType(Scrollable)), same(scrollable), reason: 'refresh: $refresh');
     }
   });
+
+  testWidgets('devrait faire passer le contenu sous la barre avec extendBody et le finir au-dessus d’elle', (
+    tester,
+  ) async {
+    final controller = ScrollController();
+    final floating = FlBottomTabBar(
+      index: 0,
+      floating: true,
+      translucent: true,
+      onSelected: (_) {},
+      tabs: _tabBar.tabs,
+    );
+    await _pumpPhone(tester, FlPage(controller: controller, extendBody: true, tabBar: floating, slivers: _rows()));
+    final bar = tester.getRect(find.byType(FlBottomTabBar));
+    expect(tester.getRect(find.byType(CustomScrollView)).bottom, _phone.height);
+    controller.jumpTo(controller.position.maxScrollExtent);
+    await tester.pump();
+    expect(tester.getRect(find.byKey(const ValueKey(29))).bottom, bar.top);
+  });
+
+  testWidgets('devrait garder le contenu au-dessus du clavier avec extendBody', (tester) async {
+    tester.view.physicalSize = _phone;
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.reset);
+    await tester.pumpWidget(_phoneApp(FlPage(extendBody: true, tabBar: _tabBar, slivers: _rows()), keyboard: 300));
+    expect(tester.getRect(find.byType(CustomScrollView)).bottom, _phone.height - 300);
+  });
 }

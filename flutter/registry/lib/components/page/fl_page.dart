@@ -55,11 +55,23 @@ enum _Gesture { reveal, overlay }
 /// With [refresh], pulling the top of the content reloads the page, through
 /// the platform's gesture, and the `FlSpinner` spins until it is done.
 ///
+/// With [extendBody], the content runs under the [tabBar] to the bottom of
+/// the page, where a floating or translucent bar lets it show; the slivers
+/// still end above the bar.
+///
 /// Transitions, back navigation and Android's predictive back are left to
 /// the app's router: the page sets up none of them.
 class FlPage extends StatefulWidget {
   /// A page of [slivers].
-  const FlPage({super.key, this.appBar, this.tabBar, this.refresh, this.controller, required this.slivers});
+  const FlPage({
+    super.key,
+    this.appBar,
+    this.tabBar,
+    this.extendBody = false,
+    this.refresh,
+    this.controller,
+    required this.slivers,
+  });
 
   /// The top bar, pinned at the head of the scroll; when null, the content
   /// starts below the safe area.
@@ -68,6 +80,11 @@ class FlPage extends StatefulWidget {
   /// The bottom navigation, usually an `FlBottomTabBar`, which carries the
   /// bottom safe area; when null, the content keeps it as padding.
   final Widget? tabBar;
+
+  /// True: the content passes under [tabBar], which must draw its own
+  /// background over it (a floating or translucent `FlBottomTabBar`);
+  /// false: the content stops at the bar.
+  final bool extendBody;
 
   /// "Pull to refresh"; when null, the top of the content reloads nothing.
   final FlPageRefresh? refresh;
@@ -251,7 +268,15 @@ class _FlPageState extends State<FlPage> with SingleTickerProviderStateMixin {
             // The bottom inset stays readable by the slivers, so that an
             // empty state can derive its room: `SliverSafeArea` removed it.
             SliverSafeArea(top: false, bottom: false, sliver: SliverMainAxisGroup(slivers: widget.slivers)),
-            SliverPadding(padding: EdgeInsets.only(bottom: media.padding.bottom)),
+            // Under the bar, its height, which only the body's own
+            // `MediaQuery` knows.
+            if (widget.extendBody && tabBar != null)
+              Builder(
+                builder: (context) =>
+                    SliverPadding(padding: EdgeInsets.only(bottom: MediaQuery.paddingOf(context).bottom)),
+              )
+            else
+              SliverPadding(padding: EdgeInsets.only(bottom: media.padding.bottom)),
           ],
         ),
       ),
@@ -270,16 +295,29 @@ class _FlPageState extends State<FlPage> with SingleTickerProviderStateMixin {
     return ColoredBox(
       color: theme.colors.surface,
       child: CustomMultiChildLayout(
-        delegate: _PageLayout(keyboard: media.viewInsets.bottom),
+        delegate: _PageLayout(keyboard: media.viewInsets.bottom, extendBody: widget.extendBody),
         children: [
           LayoutId(
             id: _Slot.body,
-            child: MediaQuery(
-              data: media
-                  .removeViewInsets(removeBottom: true)
-                  .removePadding(removeBottom: tabBar != null)
-                  .removeViewPadding(removeBottom: tabBar != null),
-              child: body,
+            // The room under the bar only comes with the body's constraints,
+            // once the bar is measured.
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                final room = constraints is _BodyConstraints ? constraints.room : 0.0;
+                final data = media
+                    .removeViewInsets(removeBottom: true)
+                    .removePadding(removeBottom: tabBar != null)
+                    .removeViewPadding(removeBottom: tabBar != null);
+                return MediaQuery(
+                  data: room == 0
+                      ? data
+                      : data.copyWith(
+                          padding: data.padding.copyWith(bottom: room),
+                          viewPadding: data.viewPadding.copyWith(bottom: room),
+                        ),
+                  child: body,
+                );
+              },
             ),
           ),
           if (tabBar != null) LayoutId(id: _Slot.tabBar, child: tabBar),
@@ -292,11 +330,13 @@ class _FlPageState extends State<FlPage> with SingleTickerProviderStateMixin {
 enum _Slot { body, tabBar }
 
 /// The tab bar at the bottom, at its own height; the content above it, or
-/// above the keyboard when it covers the bar.
+/// above the keyboard when it covers the bar. With [extendBody], the content
+/// goes down to the bottom, the bar's height as its room.
 class _PageLayout extends MultiChildLayoutDelegate {
-  _PageLayout({required this.keyboard});
+  _PageLayout({required this.keyboard, required this.extendBody});
 
   final double keyboard;
+  final bool extendBody;
 
   @override
   void performLayout(Size size) {
@@ -305,13 +345,30 @@ class _PageLayout extends MultiChildLayoutDelegate {
       bar = layoutChild(_Slot.tabBar, BoxConstraints.tightFor(width: size.width)).height;
       positionChild(_Slot.tabBar, Offset(0, size.height - bar));
     }
-    final height = math.max(0.0, size.height - math.max(bar, keyboard));
-    layoutChild(_Slot.body, BoxConstraints.tightFor(width: size.width, height: height));
+    final under = extendBody && keyboard < bar;
+    final height = math.max(0.0, size.height - (under ? 0 : math.max(bar, keyboard)));
+    layoutChild(_Slot.body, _BodyConstraints(width: size.width, height: height, room: under ? bar : 0));
     positionChild(_Slot.body, Offset.zero);
   }
 
   @override
-  bool shouldRelayout(_PageLayout oldDelegate) => keyboard != oldDelegate.keyboard;
+  bool shouldRelayout(_PageLayout oldDelegate) =>
+      keyboard != oldDelegate.keyboard || extendBody != oldDelegate.extendBody;
+}
+
+/// The body's tight size, and the [room] the bar takes at its bottom: a
+/// change of either builds the body again, as `Scaffold` does for its own.
+class _BodyConstraints extends BoxConstraints {
+  const _BodyConstraints({required double width, required double height, required this.room})
+    : super(minWidth: width, maxWidth: width, minHeight: height, maxHeight: height);
+
+  final double room;
+
+  @override
+  bool operator ==(Object other) => other is _BodyConstraints && super == other && room == other.room;
+
+  @override
+  int get hashCode => Object.hash(super.hashCode, room);
 }
 
 /// The refresh `FlSpinner`: centered in the revealed space on iOS, in a

@@ -21,7 +21,7 @@ itemEnglish = {
   'icons': (
     title: 'Icons',
     description:
-        'Gives 44 mobile icons as Flutter paths, from Gravity UI, Lucide, '
+        'Gives 47 mobile icons as Flutter paths, from Gravity UI, Lucide, '
         'Tabler or Phosphor as the preset says: arrows, chevrons, search, '
         'cart, heart, play. Directional ones flip right to left.',
     notFor: [
@@ -1146,8 +1146,8 @@ itemEnglish = {
     title: 'Tab bar',
     description:
         'Switches between the main sections of an app from the bottom of the '
-        'screen: three to five tabs with icon, label and badge, and a '
-        'selection that springs from tab to tab.',
+        'screen: three to five tabs with icon, label and badge, on a docked, '
+        'translucent or floating bar.',
     notFor: [
       'views of the same screen: use tabs (tabs)',
       'a screen\'s actions: use the app bar (app-bar)',

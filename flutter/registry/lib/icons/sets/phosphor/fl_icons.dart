@@ -1360,4 +1360,36 @@ abstract final class FlIcons {
       ..close(),
     viewBox: 256,
   );
+
+  /// `arrow-right-from-square`: `assets/regular/sign-out`, flipped in RTL.
+  static final FlIconData arrowRightFromSquare = FlIconData(
+    Path()
+      ..moveTo(120, 216)
+      ..arcToPoint(const Offset(112, 224), radius: const Radius.circular(8))
+      ..lineTo(48, 224)
+      ..arcToPoint(const Offset(40, 216), radius: const Radius.circular(8))
+      ..lineTo(40, 40)
+      ..arcToPoint(const Offset(48, 32), radius: const Radius.circular(8))
+      ..lineTo(112, 32)
+      ..arcToPoint(const Offset(112, 48), radius: const Radius.circular(8))
+      ..lineTo(56, 48)
+      ..lineTo(56, 208)
+      ..lineTo(112, 208)
+      ..arcToPoint(const Offset(120, 216), radius: const Radius.circular(8))
+      ..close()
+      ..moveTo(229.66, 122.34)
+      ..lineTo(189.66, 82.34)
+      ..arcToPoint(const Offset(178.34, 93.66), radius: const Radius.circular(8), clockwise: false)
+      ..lineTo(204.69, 120)
+      ..lineTo(112, 120)
+      ..arcToPoint(const Offset(112, 136), radius: const Radius.circular(8), clockwise: false)
+      ..lineTo(204.69, 136)
+      ..lineTo(178.34, 162.34)
+      ..arcToPoint(const Offset(189.66, 173.66), radius: const Radius.circular(8), clockwise: false)
+      ..lineTo(229.66, 133.66)
+      ..arcToPoint(const Offset(229.66, 122.34), radius: const Radius.circular(8), clockwise: false)
+      ..close(),
+    viewBox: 256,
+    mirrorInRtl: true,
+  );
 }

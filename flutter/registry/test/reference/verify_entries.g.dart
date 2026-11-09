@@ -2939,7 +2939,7 @@ final Map<String, FlReferenceEntry> verifyEntries = {
     ),
   ),
   'drawer': (
-    version: '0.2.2',
+    version: '0.3.0',
     canvas: const Size(390, 640),
     platformCanvas: const {},
     settle: const Duration(milliseconds: 400),
@@ -2967,31 +2967,58 @@ final Map<String, FlReferenceEntry> verifyEntries = {
                 closeLabel: (variant.dir == TextDirection.rtl
                     ? 'إغلاق'
                     : 'Close'),
-                actions: [
-                  FlButton(
-                    label: (variant.dir == TextDirection.rtl
-                        ? 'تسجيل الخروج'
-                        : 'Sign out'),
-                    size: FlButtonSize.sm,
-                    onPressed: () => Navigator.pop(context),
-                  ),
-                ],
+                footer: FlDrawerItem(
+                  label: (variant.dir == TextDirection.rtl
+                      ? 'تسجيل الخروج'
+                      : 'Sign out'),
+                  icon: FlIcons.arrowRightFromSquare,
+                  danger: true,
+                  onPressed: () => Navigator.pop(context),
+                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   spacing: FlScope.of(context).space.lg,
                   children: [
-                    for (final (fr, ar) in const [
-                      ('Home', 'الرئيسية'),
-                      ('Orders', 'الطلبات'),
-                      ('Messages', 'الرسائل'),
-                      ('Settings', 'الإعدادات'),
-                    ])
-                      Text(
-                        variant.dir == TextDirection.rtl ? ar : fr,
-                        style: TextStyle(
-                          color: FlScope.of(context).colors.onSurface,
+                    FlDrawerSection(
+                      children: [
+                        FlDrawerItem(
+                          label: (variant.dir == TextDirection.rtl
+                              ? 'الرئيسية'
+                              : 'Home'),
+                          icon: FlIcons.house,
+                          selected: true,
+                          onPressed: () {},
                         ),
-                      ),
+                        FlDrawerItem(
+                          label: (variant.dir == TextDirection.rtl
+                              ? 'الطلبات'
+                              : 'Orders'),
+                          icon: FlIcons.shoppingCart,
+                          onPressed: () {},
+                        ),
+                        FlDrawerItem(
+                          label: (variant.dir == TextDirection.rtl
+                              ? 'الرسائل'
+                              : 'Messages'),
+                          icon: FlIcons.envelope,
+                          onPressed: () {},
+                        ),
+                      ],
+                    ),
+                    FlDrawerSection(
+                      title: (variant.dir == TextDirection.rtl
+                          ? 'الحساب'
+                          : 'Account'),
+                      children: [
+                        FlDrawerItem(
+                          label: (variant.dir == TextDirection.rtl
+                              ? 'الإعدادات'
+                              : 'Settings'),
+                          icon: FlIcons.gear,
+                          onPressed: () {},
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ),
@@ -3208,7 +3235,7 @@ final Map<String, FlReferenceEntry> verifyEntries = {
     ),
   ),
   'icons': (
-    version: '0.2.0',
+    version: '0.2.1',
     canvas: const Size(390, 600),
     platformCanvas: const {},
     settle: null,
@@ -3970,7 +3997,7 @@ final Map<String, FlReferenceEntry> verifyEntries = {
     ),
   ),
   'page': (
-    version: '0.2.3',
+    version: '0.2.4',
     canvas: const Size(780, 844),
     platformCanvas: const {},
     settle: null,
@@ -5781,68 +5808,141 @@ final Map<String, FlReferenceEntry> verifyEntries = {
     ),
   ),
   'tab-bar': (
-    version: '0.2.3',
-    canvas: const Size(390, 240),
+    version: '0.3.0',
+    canvas: const Size(390, 760),
     platformCanvas: const {},
     settle: null,
     entry: (context, variant) => FlScope(
       brightness: variant.brightness,
       platform: variant.platform,
       child: Builder(
-        builder: (context) => ColoredBox(
-          color: FlScope.of(context).colors.surface,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            spacing: FlScope.of(context).space.xl,
-            children: [
-              for (final (count, index) in [(3, 0), (5, 4)])
-                FlBottomTabBar(
-                  index: index,
-                  onSelected: (_) {},
-                  tabs: [
-                    for (final (fr, ar) in [
-                      ('Home', 'الرئيسية'),
-                      ('Messages', 'الرسائل'),
-                      ('Alerts', 'التنبيهات'),
-                      ('Profile', 'الملف'),
-                      ('Settings', 'الإعدادات'),
-                    ].take(count))
-                      FlBottomTab(
-                        label: (variant.dir == TextDirection.rtl ? ar : fr),
-                        badge: fr == 'Messages'
-                            ? Semantics(
-                                label: (variant.dir == TextDirection.rtl
-                                    ? 'غير مقروءة'
-                                    : 'Unread'),
-                                child: SizedBox.square(
-                                  dimension: 10,
-                                  child: DecoratedBox(
-                                    decoration: ShapeDecoration(
-                                      color: FlScope.of(context)
-                                          .colors
-                                          .dangerFill,
-                                      shape: const CircleBorder(),
-                                    ),
-                                  ),
-                                ),
-                              )
-                            : null,
-                        icon: Builder(
-                          builder: (context) => SizedBox.square(
-                            dimension: 18,
+        builder: (context) => Builder(
+          builder: (context) {
+            final theme = FlScope.of(context);
+            final rtl = variant.dir == TextDirection.rtl;
+            Widget glyph(ShapeBorder shape) => Builder(
+              builder: (context) => SizedBox.square(
+                dimension: 18,
+                child: DecoratedBox(
+                  decoration: ShapeDecoration(
+                    color: IconTheme.of(context).color,
+                    shape: shape,
+                  ),
+                ),
+              ),
+            );
+            List<FlBottomTab> tabs(
+              int count, {
+              bool badge = false,
+              bool filled = false,
+            }) => [
+              for (final (i, (en, ar)) in [
+                ('Home', 'الرئيسية'),
+                ('Messages', 'الرسائل'),
+                ('Alerts', 'التنبيهات'),
+                ('Profile', 'الملف'),
+                ('Settings', 'الإعدادات'),
+              ].take(count).indexed)
+                FlBottomTab(
+                  label: rtl ? ar : en,
+                  icon: glyph(const CircleBorder()),
+                  selectedIcon: filled
+                      ? glyph(const RoundedRectangleBorder())
+                      : null,
+                  badge: badge && i == 1
+                      ? Semantics(
+                          label: rtl ? 'غير مقروءة' : 'Unread',
+                          child: SizedBox.square(
+                            dimension: 10,
                             child: DecoratedBox(
                               decoration: ShapeDecoration(
-                                color: IconTheme.of(context).color,
+                                color: theme.colors.dangerFill,
                                 shape: const CircleBorder(),
                               ),
                             ),
                           ),
-                        ),
-                      ),
-                  ],
+                        )
+                      : null,
                 ),
-            ],
-          ),
+            ];
+            Widget over(Widget bar) => SizedBox(
+              height: 120,
+              child: Stack(
+                children: [
+                  Positioned.fill(
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        for (final color in [
+                          theme.colors.accentSoft,
+                          theme.colors.successSoft,
+                          theme.colors.dangerSoft,
+                        ])
+                          Expanded(child: ColoredBox(color: color)),
+                      ],
+                    ),
+                  ),
+                  PositionedDirectional(
+                    start: 0,
+                    end: 0,
+                    bottom: 0,
+                    child: bar,
+                  ),
+                ],
+              ),
+            );
+            return ColoredBox(
+              color: theme.colors.surface,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                spacing: theme.space.lg,
+                children: [
+                  FlBottomTabBar(index: 0, onSelected: (_) {}, tabs: tabs(3)),
+                  FlBottomTabBar(
+                    index: 4,
+                    onSelected: (_) {},
+                    tabs: tabs(5, badge: true),
+                  ),
+                  FlBottomTabBar(
+                    index: 1,
+                    onSelected: (_) {},
+                    tabs: tabs(4, filled: true),
+                  ),
+                  FlBottomTabBar(
+                    index: 2,
+                    onSelected: (_) {},
+                    labels: FlBottomTabLabels.selected,
+                    tabs: tabs(4),
+                  ),
+                  over(
+                    FlBottomTabBar(
+                      index: 1,
+                      onSelected: (_) {},
+                      translucent: true,
+                      tabs: tabs(4),
+                    ),
+                  ),
+                  over(
+                    FlBottomTabBar(
+                      index: 0,
+                      onSelected: (_) {},
+                      floating: true,
+                      translucent: true,
+                      indicator: FlBottomTabIndicator.capsule,
+                      tabs: tabs(4, badge: true, filled: true),
+                    ),
+                  ),
+                  FlBottomTabBar(
+                    index: 3,
+                    onSelected: (_) {},
+                    floating: true,
+                    labels: FlBottomTabLabels.never,
+                    tabs: tabs(4),
+                  ),
+                ],
+              ),
+            );
+          },
         ),
       ),
     ),

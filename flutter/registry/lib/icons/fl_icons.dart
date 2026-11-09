@@ -1274,4 +1274,43 @@ abstract final class FlIcons {
       ..arcToPoint(const Offset(10.55, 4.6), radius: const Radius.circular(3.25))
       ..fillType = PathFillType.evenOdd,
   );
+
+  /// `arrow-right-from-square`, flipped in RTL.
+  static final FlIconData arrowRightFromSquare = FlIconData(
+    Path()
+      ..moveTo(14.78, 7.47)
+      ..arcToPoint(const Offset(14.78, 8.53), radius: const Radius.circular(0.75))
+      ..lineTo(12.28, 11.03)
+      ..arcToPoint(const Offset(11.22, 9.97), radius: const Radius.circular(0.75), largeArc: true)
+      ..lineTo(12.44, 8.75)
+      ..lineTo(4.75, 8.75)
+      ..arcToPoint(const Offset(4.75, 7.25), radius: const Radius.circular(0.75))
+      ..lineTo(12.44, 7.25)
+      ..lineTo(11.22, 6.03)
+      ..arcToPoint(const Offset(12.28, 4.97), radius: const Radius.circular(0.75))
+      ..close()
+      ..moveTo(9.5, 4.25)
+      ..arcToPoint(const Offset(8, 4.25), radius: const Radius.circular(0.75))
+      ..lineTo(8, 4)
+      ..arcToPoint(const Offset(6.5, 2.5), radius: const Radius.circular(1.5), clockwise: false)
+      ..lineTo(4, 2.5)
+      ..arcToPoint(const Offset(2.5, 4), radius: const Radius.circular(1.5), clockwise: false)
+      ..lineTo(2.5, 12)
+      ..arcToPoint(const Offset(4, 13.5), radius: const Radius.circular(1.5), clockwise: false)
+      ..lineTo(6.5, 13.5)
+      ..arcToPoint(const Offset(8, 12), radius: const Radius.circular(1.5), clockwise: false)
+      ..lineTo(8, 11.75)
+      ..arcToPoint(const Offset(9.5, 11.75), radius: const Radius.circular(0.75))
+      ..lineTo(9.5, 12)
+      ..arcToPoint(const Offset(6.5, 15), radius: const Radius.circular(3))
+      ..lineTo(4, 15)
+      ..arcToPoint(const Offset(1, 12), radius: const Radius.circular(3))
+      ..lineTo(1, 4)
+      ..arcToPoint(const Offset(4, 1), radius: const Radius.circular(3))
+      ..lineTo(6.5, 1)
+      ..arcToPoint(const Offset(9.5, 4), radius: const Radius.circular(3))
+      ..close()
+      ..fillType = PathFillType.evenOdd,
+    mirrorInRtl: true,
+  );
 }

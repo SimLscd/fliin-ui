@@ -12,7 +12,7 @@ import 'support/keyboard_highlight.dart';
 import 'support/runs.dart';
 import 'support/showcase.dart';
 
-/// Les 46 icônes d'un jeu à la taille par défaut, puis les directionnelles,
+/// Les 47 icônes d'un jeu à la taille par défaut, puis les directionnelles,
 /// la lecture et le cœur plein à la taille et à la couleur d'un `IconTheme` :
 /// la planche de `icons_verify_test.dart`, pour chaque autre jeu du
 /// préréglage (ADR 0016 §3.8). Gravity UI, le défaut, reste dans celui-là.
@@ -58,9 +58,9 @@ void main() {
     );
   }
 
-  test('devrait donner à chaque jeu les 46 icônes du contrat, dans le même ordre', () {
+  test('devrait donner à chaque jeu les 47 icônes du contrat, dans le même ordre', () {
     final names = [for (final icon in iconSet) icon.name];
-    expect(names, hasLength(46));
+    expect(names, hasLength(47));
     expect(iconSets.keys, ['fliin', 'lucide', 'tabler', 'phosphor']);
     for (final MapEntry(key: set, value: icons) in iconSets.entries) {
       expect([for (final icon in icons) icon.name], names, reason: set);
@@ -74,7 +74,7 @@ void main() {
           for (final icon in icons)
             if (icon.icon.mirrorInRtl) icon.name,
         ],
-        ['arrow-left', 'arrow-right', 'chevron-left', 'chevron-right', 'paper-plane'],
+        ['arrow-left', 'arrow-right', 'chevron-left', 'chevron-right', 'paper-plane', 'arrow-right-from-square'],
         reason: set,
       );
     }

@@ -179,19 +179,39 @@ class _Slide extends StatelessWidget {
 /// faces the page rounded at `shape.radiusSheet`, full height, 320 wide (384
 /// on a screen of 640 and more), never more than 85 % of the screen.
 /// `space.xl` padding above and below, 20 at the sides, plus the safe area.
-/// [title] at the top, in medium-weight `textLg`; [child] below, in
-/// `textBase`, in a scrolling area; [actions] at the bottom, aligned to the
-/// start. A close button at the end of the title's line with [closeLabel].
+/// [title] at the top, in medium-weight `textLg`, or [header] in its place;
+/// [child] below, in `textBase`, in a scrolling area, usually
+/// [FlDrawerSection]s of [FlDrawerItem]s; [footer] and [actions] at the
+/// bottom, the footer full width below a separator, the actions aligned to
+/// the start. A close button at the end of the title's line with
+/// [closeLabel].
 ///
 /// It announces itself as a dialog named by [title], which carries and
 /// names its route. It sits in a [FlDrawerRoute], through [showFlDrawer].
 class FlDrawer extends StatefulWidget {
   /// A [title] panel.
-  const FlDrawer({super.key, required this.title, required this.child, this.actions = const [], this.closeLabel});
+  const FlDrawer({
+    super.key,
+    required this.title,
+    required this.child,
+    this.header,
+    this.footer,
+    this.actions = const [],
+    this.closeLabel,
+  });
 
   /// The title (`Drawer.Heading`), which also names the panel for the
-  /// screen reader.
+  /// screen reader, shown unless [header] replaces it.
   final String title;
+
+  /// Shown in place of [title] on the first line (an avatar and the account's
+  /// name, a logo), which keeps naming the panel for the screen reader; the
+  /// close button stays at its end.
+  final Widget? header;
+
+  /// The bottom of the panel, full width below a separator: the account, a
+  /// sign-out [FlDrawerItem]. It stays in view while [child] scrolls.
+  final Widget? footer;
 
   /// The content (`Drawer.Body`): navigation links, settings, filters. It
   /// scrolls when it overflows.
@@ -333,13 +353,15 @@ class _FlDrawerState extends State<FlDrawer> {
                         child: Align(
                           alignment: AlignmentDirectional.centerStart,
                           widthFactor: 1,
-                          child: ExcludeSemantics(
-                            child: Text(
-                              widget.title,
-                              style: title,
-                              strutStyle: scale.strut(FlTextRole.textLg, inheritedFamily: inherited, heading: true),
-                            ),
-                          ),
+                          child:
+                              widget.header ??
+                              ExcludeSemantics(
+                                child: Text(
+                                  widget.title,
+                                  style: title,
+                                  strutStyle: scale.strut(FlTextRole.textLg, inheritedFamily: inherited, heading: true),
+                                ),
+                              ),
                         ),
                       ),
                     ),
@@ -348,19 +370,38 @@ class _FlDrawerState extends State<FlDrawer> {
                 ),
               ),
             ),
-            if (widget.actions.isNotEmpty)
+            if (widget.footer != null || widget.actions.isNotEmpty)
               ConstrainedBox(
                 constraints: BoxConstraints(maxHeight: constraints.maxHeight / 2),
                 child: scrollbar(
                   _footer,
                   Padding(
-                    padding: EdgeInsetsDirectional.only(top: gap),
-                    child: OverflowBar(
-                      alignment: MainAxisAlignment.start,
-                      overflowAlignment: OverflowBarAlignment.start,
-                      spacing: theme.space.sm,
-                      overflowSpacing: theme.space.sm,
-                      children: widget.actions,
+                    padding: EdgeInsetsDirectional.only(top: widget.footer == null ? gap : theme.space.md),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      spacing: gap,
+                      children: [
+                        if (widget.footer case final footer?)
+                          DecoratedBox(
+                            decoration: BoxDecoration(
+                              border: BorderDirectional(
+                                top: BorderSide(color: colors.separator, width: 1 / media.devicePixelRatio),
+                              ),
+                            ),
+                            child: Padding(
+                              padding: EdgeInsetsDirectional.only(top: theme.space.md),
+                              child: DefaultTextStyle.merge(style: body, child: footer),
+                            ),
+                          ),
+                        if (widget.actions.isNotEmpty)
+                          OverflowBar(
+                            alignment: MainAxisAlignment.start,
+                            overflowAlignment: OverflowBarAlignment.start,
+                            spacing: theme.space.sm,
+                            overflowSpacing: theme.space.sm,
+                            children: widget.actions,
+                          ),
+                      ],
                     ),
                   ),
                 ),
@@ -432,6 +473,171 @@ class _FlDrawerState extends State<FlDrawer> {
                 child: semantics,
               ),
       ),
+    );
+  }
+}
+
+/// A destination in a [FlDrawer]: [icon], [label] and [trailing] (a count,
+/// a `FlBadge`) on one line aligned to the start, as tall as the touch
+/// target at least, `space.md` inside, rounded at `shape.radiusControl`.
+/// [selected], the current page, sits on `accentSoft`; [danger] (signing
+/// out) is in `danger`. Hovered, it takes `surfacePressed`; pressed, a
+/// [FlPressHighlight] of `surfacePressed` (`accentSoftPressed` when
+/// selected) fades in. It does not shrink, being as wide as the panel.
+///
+/// The screen reader reads [label], then [trailing], and announces
+/// [selected].
+class FlDrawerItem extends StatelessWidget {
+  /// A destination named [label].
+  const FlDrawerItem({
+    super.key,
+    required this.label,
+    required this.onPressed,
+    this.icon,
+    this.trailing,
+    this.selected = false,
+    this.danger = false,
+  });
+
+  /// The name of the destination.
+  final String label;
+
+  /// Called on tap, click and keyboard activation; null disables the item.
+  final VoidCallback? onPressed;
+
+  /// The icon at the start, at the size of the text (up to
+  /// `size.iconMaxScale`), muted unless [selected] or [danger].
+  final FlIconData? icon;
+
+  /// At the end of the line: a count, a `FlBadge`, a chevron.
+  final Widget? trailing;
+
+  /// The current page.
+  final bool selected;
+
+  /// An action that ends something (signing out), in `danger`.
+  final bool danger;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = FlScope.of(context);
+    final colors = theme.colors;
+    final scale = theme.typography;
+    final family = DefaultTextStyle.of(context).style.fontFamily;
+    final enabled = onPressed != null;
+    final base = scale.style(FlTextRole.textBase).size;
+    final iconSize = MediaQuery.textScalerOf(context).clamp(maxScaleFactor: theme.size.iconMaxScale).scale(base);
+    final ink = !enabled
+        ? colors.onDisabled
+        : selected
+        ? colors.onAccentSoft
+        : danger
+        ? colors.danger
+        : colors.onSurface;
+    final iconInk = selected || danger || !enabled ? ink : colors.onSurfaceMuted;
+    final radius = BorderRadius.circular(theme.shape.radiusControl);
+    final icon = this.icon;
+    final trailing = this.trailing;
+    Widget line(Color? fill) => DecoratedBox(
+      decoration: BoxDecoration(color: fill, borderRadius: radius),
+      child: Stack(
+        children: [
+          // The press fades in and out like every other control's, instead
+          // of swapping the fill at once.
+          Positioned.fill(
+            child: ClipRRect(
+              borderRadius: radius,
+              child: FlPressHighlight(color: selected ? colors.accentSoftPressed : colors.surfacePressed),
+            ),
+          ),
+          ConstrainedBox(
+            constraints: BoxConstraints(minHeight: theme.hitTarget),
+            child: Padding(
+              padding: EdgeInsetsDirectional.symmetric(horizontal: theme.space.md, vertical: theme.space.sm),
+              child: Row(
+                spacing: theme.space.md,
+                children: [
+                  if (icon != null) FlIcon(icon, size: iconSize, color: iconInk),
+                  Expanded(
+                    child: Text(
+                      label,
+                      style: scale
+                          .resolve(FlTextRole.textBase)
+                          .copyWith(
+                            color: ink,
+                            height: kTextHeightNone,
+                            fontWeight: selected ? theme.tokens.typography.weight.medium : null,
+                          ),
+                      strutStyle: scale.strut(FlTextRole.textBase, inheritedFamily: family),
+                    ),
+                  ),
+                  ?trailing,
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+    return FlPressable(
+      onPressed: onPressed,
+      borderRadius: radius,
+      scaleOnPress: false,
+      focusRing: FlFocusRingPlacement.inside,
+      selected: selected,
+      builder: (context, states) => line(
+        selected
+            ? colors.accentSoft
+            : states.contains(WidgetState.hovered)
+            ? colors.surfacePressed
+            : null,
+      ),
+    );
+  }
+}
+
+/// A group of [FlDrawerItem]s under an optional [title], in muted
+/// medium-weight `textSm` aligned with the items' text, announced as a
+/// heading. Items sit 2 apart.
+class FlDrawerSection extends StatelessWidget {
+  /// A group of [children].
+  const FlDrawerSection({super.key, this.title, required this.children});
+
+  /// The group's name ("Workspace"); none when null.
+  final String? title;
+
+  /// Usually [FlDrawerItem]s.
+  final List<Widget> children;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = FlScope.of(context);
+    final scale = theme.typography;
+    final title = this.title;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      spacing: theme.space.xs / 2,
+      children: [
+        if (title != null)
+          Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(theme.space.md, 0, theme.space.md, theme.space.xs),
+            child: Semantics(
+              header: true,
+              child: Text(
+                title,
+                style: _style(
+                  scale,
+                  FlTextRole.textSm,
+                ).copyWith(color: theme.colors.onSurfaceMuted, fontWeight: theme.tokens.typography.weight.medium),
+                strutStyle: scale.strut(
+                  FlTextRole.textSm,
+                  inheritedFamily: DefaultTextStyle.of(context).style.fontFamily,
+                ),
+              ),
+            ),
+          ),
+        ...children,
+      ],
     );
   }
 }

@@ -809,4 +809,27 @@ abstract final class FlIcons {
     viewBox: 24,
     stroke: FlIconStroke(width: 2, cap: StrokeCap.round, join: StrokeJoin.round),
   );
+
+  /// `arrow-right-from-square`: `icons/outline/logout`, flipped in RTL.
+  static final FlIconData arrowRightFromSquare = FlIconData(
+    Path()
+      ..moveTo(14, 8)
+      ..lineTo(14, 6)
+      ..arcToPoint(const Offset(12, 4), radius: const Radius.circular(2), clockwise: false)
+      ..lineTo(5, 4)
+      ..arcToPoint(const Offset(3, 6), radius: const Radius.circular(2), clockwise: false)
+      ..lineTo(3, 18)
+      ..arcToPoint(const Offset(5, 20), radius: const Radius.circular(2), clockwise: false)
+      ..lineTo(12, 20)
+      ..arcToPoint(const Offset(14, 18), radius: const Radius.circular(2), clockwise: false)
+      ..lineTo(14, 16)
+      ..moveTo(9, 12)
+      ..lineTo(21, 12)
+      ..lineTo(18, 9)
+      ..moveTo(18, 15)
+      ..lineTo(21, 12),
+    viewBox: 24,
+    mirrorInRtl: true,
+    stroke: FlIconStroke(width: 2, cap: StrokeCap.round, join: StrokeJoin.round),
+  );
 }
