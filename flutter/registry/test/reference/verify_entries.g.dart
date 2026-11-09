@@ -2547,7 +2547,7 @@ final Map<String, FlReferenceEntry> verifyEntries = {
     ),
   ),
   'core': (
-    version: '0.2.5',
+    version: '0.2.6',
     canvas: null,
     platformCanvas: const {},
     settle: null,
@@ -5157,7 +5157,7 @@ final Map<String, FlReferenceEntry> verifyEntries = {
     ),
   ),
   'sheet': (
-    version: '0.2.3',
+    version: '0.2.4',
     canvas: null,
     platformCanvas: const {},
     settle: null,

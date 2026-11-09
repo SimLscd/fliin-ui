@@ -203,4 +203,32 @@ void main() {
     await tester.pumpWidget(FlScope(platform: TargetPlatform.macOS, child: child));
     expect(theme.density, FlDensity.comfortable);
   });
+
+  testWidgets('devrait retirer le soulignement du style de texte d’erreur que MaterialApp pose hors d’un Material', (
+    tester,
+  ) async {
+    late TextStyle style;
+    await tester.pumpWidget(
+      Directionality(
+        textDirection: TextDirection.ltr,
+        // Le style d'erreur de MaterialApp : souligné deux fois en jaune.
+        child: DefaultTextStyle(
+          style: const TextStyle(
+            decoration: TextDecoration.underline,
+            decorationStyle: TextDecorationStyle.double,
+            decorationColor: Color(0xFFFFFF00),
+          ),
+          child: FlScope(
+            child: Builder(
+              builder: (context) {
+                style = DefaultTextStyle.of(context).style;
+                return const SizedBox();
+              },
+            ),
+          ),
+        ),
+      ),
+    );
+    expect(style.decoration, TextDecoration.none);
+  });
 }

@@ -1,5 +1,6 @@
 // Modified from the BottomSheet of HeroUI Native 1.0.10, Copyright 2025 NextUI
 // Inc., licensed under Apache 2.0: https://www.apache.org/licenses/LICENSE-2.0
+import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:flutter/foundation.dart' show listEquals;
@@ -150,7 +151,8 @@ class FlSheet extends StatefulWidget {
 /// Pushes a modal [FlSheet] in a route, with [builder]'s content (none when
 /// null), and returns the value passed to `Navigator.pop(context, value)`,
 /// once the sheet is out. The barrier, Escape, dragging down and system back
-/// close it without a value, with the same exit.
+/// close it without a value, with the same exit, unless a `PopScope` in the
+/// content refuses: the sheet then stays at its stop.
 Future<T?> showFlSheet<T>(
   BuildContext context, {
   required String label,
@@ -353,15 +355,26 @@ class _FlSheetState extends State<FlSheet> with TickerProviderStateMixin {
     super.dispose();
   }
 
-  /// In a route, closing removes the route and the exit follows its removal
-  /// ([_routeStatus]); on its own, the sheet exits then calls `onDismiss`.
+  /// In a route, closing asks the route to leave and the exit follows its
+  /// removal ([_routeStatus]); a `PopScope` in the content that refuses
+  /// (a form that would lose its input) keeps the sheet, which returns to
+  /// its stop. On its own, the sheet exits then calls `onDismiss`.
   void _close({double? velocity}) {
     if (!_dismissible) {
       return;
     }
     if (widget._routed) {
       _exitVelocity = velocity;
-      Navigator.of(context).pop();
+      // `maybePop` answers true for a refusal too: a route that leaves has
+      // already started its exit ([_routeStatus]), one that stays has not.
+      unawaited(
+        Navigator.of(context).maybePop().then((_) {
+          if (mounted && !_closing) {
+            _exitVelocity = null;
+            _settle(_rest);
+          }
+        }),
+      );
       return;
     }
     _leave(velocity).then((reached) {

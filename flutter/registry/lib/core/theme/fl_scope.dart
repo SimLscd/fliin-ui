@@ -196,7 +196,13 @@ class _FlScopeState extends State<FlScope> with WidgetsBindingObserver {
               .clamp(maxScaleFactor: theme.size.iconMaxScale)
               .scale(theme.size.indicatorIcon),
         ),
-        child: widget.child,
+        // Outside a `Material`, `MaterialApp` gives text its error style,
+        // underlined twice in yellow: a screen placed as `home` or pushed in
+        // a `MaterialPageRoute` would be underlined from end to end.
+        child: DefaultTextStyle.merge(
+          style: const TextStyle(decoration: TextDecoration.none),
+          child: widget.child,
+        ),
       ),
     );
     // The root scope listens to the app's scrolling: `EditableText` hides its

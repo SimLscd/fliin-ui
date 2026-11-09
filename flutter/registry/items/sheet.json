@@ -1,7 +1,7 @@
 {
   "name": "sheet",
   "type": "registry:component",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "title": "Bottom sheet",
   "description": "Opens a panel from the bottom of the screen for a short task, dragged or closed. Spring snap points, icon, title, text, actions, close button, scrim, trapped focus and Escape.",
   "flutter": ">=3.47.0 <4.0.0",
@@ -78,5 +78,5 @@
     },
     "goldens": null
   },
-  "changelog": "`icon` (and `iconTone`) above the title, in a disc, with the header then centered, and `actions`, the bottom buttons stacked full width under the content. `child` and the `builder` of `showFlSheet` become optional. With `fitContent`, the header scrolls with the content and counts in the height: it is no longer cut in half."
+  "changelog": "A sheet opened by `showFlSheet` asks its route before it closes (`Navigator.maybePop`): a `PopScope` in the content can keep it open, to confirm before losing a form, and the sheet springs back to its stop. Without a `PopScope`, nothing changes."
 }

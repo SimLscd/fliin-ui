@@ -961,9 +961,9 @@ itemEnglish = {
   'agenda': (
     title: 'Agenda',
     description:
-        'Shows a week one day at a time: seven days with the busy ones '
-        'marked, then the chosen day’s events in cards, all-day ones first '
-        'and the current one marked.',
+        'Shows a month with a dot per event under each day, zooms into a '
+        'day and out to the year, opens an event to edit or delete it, and '
+        'creates events with place or video call, guests and files.',
     notFor: [
       'a month grid to pick a date: use the calendar (calendar)',
       'things to do, to check off: use the task list (tasks)',

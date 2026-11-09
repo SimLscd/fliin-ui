@@ -293,6 +293,61 @@ void main() {
     expect(await result, isNull);
   });
 
+  testWidgets(
+    'devrait rester à son arrêt quand une PopScope du contenu refuse la fermeture, puis partir quand elle accepte',
+    (tester) async {
+      final key = GlobalKey<NavigatorState>();
+      await tester.pumpWidget(
+        WidgetsApp(
+          color: const Color(0xFF000000),
+          navigatorKey: key,
+          onGenerateRoute: (settings) => PageRouteBuilder<void>(
+            settings: settings,
+            pageBuilder: (context, _, _) => FlScope(platform: TargetPlatform.android, child: const SizedBox.expand()),
+          ),
+        ),
+      );
+      var canPop = false;
+      var refused = 0;
+      final result = showFlSheet<String>(
+        key.currentContext!,
+        label: 'Partager',
+        barrierLabel: 'Fermer la feuille',
+        snaps: const [0.5],
+        builder: (context) => StatefulBuilder(
+          builder: (context, setState) => PopScope<Object?>(
+            canPop: canPop,
+            onPopInvokedWithResult: (didPop, _) {
+              if (!didPop) refused++;
+            },
+            child: const _Content(),
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+      expect(_top(tester), _height / 2);
+
+      // La barrière, au-dessus de la feuille.
+      await tester.tapAt(const Offset(10, 10));
+      await tester.pumpAndSettle();
+      await tester.sendKeyEvent(LogicalKeyboardKey.escape);
+      await tester.pumpAndSettle();
+      await tester.drag(find.text('Premier'), const Offset(0, 300));
+      await tester.pumpAndSettle();
+      expect(refused, 3, reason: 'la barrière, Échap et le geste vers le bas demandent tous à la route');
+      expect(find.byType(FlSheet), findsOne);
+      expect(_top(tester), _height / 2, reason: 'la feuille retourne à son arrêt');
+
+      canPop = true;
+      (tester.element(find.byType(StatefulBuilder)) as StatefulElement).markNeedsBuild();
+      await tester.pump();
+      await tester.sendKeyEvent(LogicalKeyboardKey.escape);
+      await tester.pumpAndSettle();
+      expect(find.byType(FlSheet), findsNothing);
+      expect(await result, isNull);
+    },
+  );
+
   testWidgets('devrait laisser le retour système à la page, qui part avec la feuille, quand onDismiss est nul', (
     tester,
   ) async {

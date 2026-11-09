@@ -171,7 +171,7 @@ final router = GoRouter(routes: [accountSettingsRoute]);
     expect(analyze.exitCode, 0, reason: '${analyze.stdout}');
   });
 
-  test('devrait jouer les extraits navigator et bloc collés tels quels : le Cubit émet au passage à la semaine suivante, l’accueil vide la pile, la présentation ouvre la connexion (ADR 0015 §35)', skip: withoutPro, () async {
+  test('devrait jouer les extraits navigator et bloc collés tels quels : le Cubit émet au passage au mois suivant, l’accueil vide la pile, la présentation ouvre la connexion (ADR 0015 §35)', skip: withoutPro, () async {
     final app = await createFlutterProject('run_app');
     final sdk = await FlutterSdk.locate(Platform.environment);
     final pub = await Process.run(sdk.flutter, [
@@ -229,18 +229,18 @@ Widget _app(Route<void> Function() open) => WidgetsApp(
 );
 
 void main() {
-  testWidgets('BlocBuilder voit le passage à la semaine suivante', (tester) async {
+  testWidgets('BlocBuilder voit le passage au mois suivant', (tester) async {
     final handle = tester.ensureSemantics();
-    await tester.pumpWidget(_app(() => agendaRoute(eventPage: (_) => const SizedBox())));
+    await tester.pumpWidget(_app(() => agendaRoute()));
     await tester.tap(find.text('open'));
     await tester.pumpAndSettle();
     final cubit = probe.value = BlocProvider.of<AgendaCubit>(tester.element(find.byType(AgendaScreen)));
     await tester.pump();
     final day = cubit.controller.day;
     expect(find.text('day ${day.toIso8601String()}'), findsOneWidget);
-    await tester.tap(find.bySemanticsLabel('Next week'));
+    await tester.fling(find.byType(PageView), const Offset(-300, 0), 1000);
     await tester.pumpAndSettle();
-    expect(find.text('day ${DateTime(day.year, day.month, day.day + 7).toIso8601String()}'), findsOneWidget);
+    expect(find.text('day ${DateTime(day.year, day.month + 1).toIso8601String()}'), findsOneWidget);
     probe.value = null;
     handle.dispose();
   });
