@@ -1785,41 +1785,116 @@ ${[
     final components = model.components
         .where((item) => !item.isPro && item.name != 'icons')
         .length;
+    final counts = {'blocks': '$blocks', 'screens': '$screens'};
     String code(String text) => '<code>${_e(text)}</code>';
     String sentence(Copy copy, [Map<String, String> html = const {}]) =>
         _withHtml(copy, html);
+    String price(num amount) => t.fill(Copy.planPrice, {
+      'amount': amount is int ? '$amount' : amount.toStringAsFixed(2),
+    });
     final mit = '<a href="${root}license/">${_e(t(Copy.mitLicense))}</a>';
     final license =
         '<a href="${root}pro/license/">${_e(t(Copy.proLicense))}</a>';
+    final cheapest = plans.map((plan) => plan.price).reduce(math.min);
+    // The middle column, the plan for one developer: no "most popular",
+    // which nothing measures.
+    final featured = plans.where((plan) => plan.seats == 1).firstOrNull;
+    String name(ProPlan plan) => switch (plan.kind) {
+      ProPlanKind.solo => t(Copy.planSolo),
+      ProPlanKind.team => t(Copy.planTeam),
+    };
+    String features(List<(String, String)> lines) =>
+        '<ul class="price-features">${[for (final (icon, html) in lines) '<li>${_icon(icon)}<span>$html</span></li>'].join()}</ul>';
+    String plus(String plan) =>
+        '<p class="price-plus">${_e(t.fill(Copy.planPlus, {'plan': plan}))}</p>';
+    final free = '''<article class="price-col" aria-labelledby="plan-free">
+<div class="price-head"><h3 id="plan-free">${_e(t(Copy.planFree))}</h3></div>
+<p class="plan-seats">${_e(t(Copy.planFreeFor))}</p>
+<p class="plan-price"><span class="plan-amount">${_e(price(0))}</span></p>
+<p class="plan-terms"><span>${_withHtml(Copy.planFreeTerm, {'mit': mit})}</span></p>
+${features([
+      ('terminal', _e(t(Copy.planFreeTools))),
+      ('components', _e(t.fill(Copy.planFreeComponents, {'components': '$components'}))),
+      ('palette', _e(t(Copy.planFreeTheme))),
+      ('check', _e(t(Copy.planFreeVerify))),
+      ('merge', _e(t(Copy.planFreeUpdate))),
+    ])}
+<a class="tact large price-cta" href="$root$guidePath">${_e(t(Copy.planFreeCta))}</a>
+</article>''';
     String plan(ProPlan plan) {
-      final (name, seats) = switch (plan.kind) {
-        ProPlanKind.solo => (t(Copy.planSolo), t(Copy.planSoloSeats)),
-        ProPlanKind.team => (
-          t(Copy.planTeam),
-          t.fill(Copy.planTeamSeats, {'seats': '${plan.seats}'}),
-        ),
+      final seats = switch (plan.kind) {
+        ProPlanKind.solo => t(Copy.planSoloSeats),
+        ProPlanKind.team => t.fill(Copy.planTeamSeats, {'seats': '${plan.seats}'}),
       };
-      String price(int amount) =>
-          _e(t.fill(Copy.planPrice, {'amount': '$amount'}));
+      final lead = identical(plan, featured);
       final buy = plan.checkout.isEmpty
           ? '<button type="button" class="tact large plan-buy" disabled>${_e(t(Copy.planSoon))}</button>'
-          : '<a class="tact accent large plan-buy" href="${_e(plan.checkout)}" rel="noopener">${_e(t.fill(Copy.planBuy, {'plan': name}))}</a>';
+          : '<a class="tact${lead ? ' invert' : ''} large plan-buy" href="${_e(plan.checkout)}" rel="noopener">${_e(t.fill(Copy.planBuy, {'plan': name(plan)}))}</a>';
       final id = 'plan-${plan.kind.name}';
-      return '''<article class="plan tile" aria-labelledby="$id">
-<h3 id="$id">${_e(name)}</h3>
+      final launch = plan.regular > plan.price;
+      final off = ((plan.regular - plan.price) * 100 / plan.regular).round();
+      final lines = switch (plan.kind) {
+        ProPlanKind.solo => [
+          ('blocks', _e(t.fill(Copy.planBlocks, counts))),
+          ('phone', _e(t.fill(Copy.planScreens, counts))),
+          ('code', _e(t(Copy.planControllers))),
+          ('book', _e(t(Copy.planStrings))),
+          ('sparkle', _e(t(Copy.planNew))),
+          ('link', _e(t(Copy.planApps))),
+        ],
+        ProPlanKind.team => [
+          ('users', _e(t.fill(Copy.planTeamSeatsShort, {'seats': '${plan.seats}'}))),
+          ('check', _e(t(Copy.planTeamOthers))),
+          ('redo', _e(t(Copy.planTeamMove))),
+        ],
+      };
+      final base = switch (plan.kind) {
+        ProPlanKind.solo => t(Copy.planFree),
+        ProPlanKind.team => t(Copy.planSolo),
+      };
+      return '''<article class="plan price-col${lead ? ' featured' : ''}" aria-labelledby="$id">
+${lead ? '<div class="price-glow" aria-hidden="true"></div>\n' : ''}<div class="price-head"><h3 id="$id">${_e(name(plan))}</h3>${launch ? '<span class="price-badge">${_e(t.fill(Copy.planOff, {'percent': '$off'}))}</span>' : ''}</div>
 <p class="plan-seats">${_e(seats)}</p>
-<p class="plan-price"><span class="plan-amount">${price(plan.price)}</span>${plan.regular > plan.price ? ' <del><span class="visually-hidden">${_e(t(Copy.planRegular))} </span>${price(plan.regular)}</del>' : ''}</p>
-<p class="plan-terms">${plan.regular > plan.price ? '<span class="plan-launch">${_e(t(Copy.planLaunch))}</span>' : ''}<span>${_e(t(Copy.planOnce))}</span></p>
-<ul class="plan-features">${[for (final feature in [Copy.planItems, Copy.planUpdates, Copy.planProducts]) '<li>${_icon('check')}<span>${_e(t(feature))}</span></li>'].join()}</ul>
+<p class="plan-price"><span class="plan-amount">${_e(price(plan.price))}</span>${launch ? ' <del><span class="visually-hidden">${_e(t(Copy.planRegular))} </span>${_e(price(plan.regular))}</del>' : ''}</p>
+<p class="plan-terms"><span>${_e(t(Copy.planOnce))}</span>${plan.seats > 1 ? '<span>${_e(t.fill(Copy.planPerSeat, {'price': price(plan.price / plan.seats)}))}</span>' : ''}</p>
+${plus(base)}
+${features(lines)}
 $buy
 </article>''';
     }
 
+    // Three columns of phones, each list twice so that a column scrolls
+    // without a seam.
+    String wall() {
+      const columns = 3;
+      String phone(String name, {required bool copy}) {
+        final item = _byName(name);
+        // A lazy image inside the tilted wall is never seen as near the
+        // viewport, so it would never load.
+        final thumb = _screenThumb(root, item).replaceFirst(' loading="lazy"', '');
+        return copy
+            ? '<li aria-hidden="true"><span class="wall-phone">${thumb.replaceFirst(RegExp(r'alt="[^"]*"'), 'alt=""')}</span></li>'
+            : '<li><a class="wall-phone" href="$root${item.path}" aria-label="${_e(item.english.title)}">$thumb</a></li>';
+      }
+
+      return '<div class="screen-wall"><div class="wall-tilt">${[
+        for (var c = 0; c < columns; c++)
+          '<ul class="wall-col" style="--c:$c">${[
+            for (final copy in [false, true])
+              for (final (i, name) in proGallery.indexed)
+                if (i % columns == c) phone(name, copy: copy),
+          ].join()}</ul>',
+      ].join()}</div></div>';
+    }
+
     String question(Copy q, Copy a, [Map<String, String> html = const {}]) =>
         '<details><summary><span>${_e(t(q))}</span>${_icon('chevron')}</summary><p>${sentence(a, html)}</p></details>';
-    String section(String id, Copy title, String html) =>
-        '<section class="landing-section" id="$id" aria-labelledby="$id-title">\n<h2 id="$id-title">${_e(t(title))}</h2>\n$html\n</section>';
+    String section(String id, String head, String body) =>
+        '<section class="section" id="$id" aria-labelledby="$id-title">\n$head\n$body\n</section>';
+    String plainHead(String id, Copy title) =>
+        '<div class="section-head split-head"><h2 id="$id-title">${_e(t(title))}</h2></div>';
     final team = plans.where((plan) => plan.kind == ProPlanKind.team);
+    final sold = plans.where((plan) => plan.checkout.isNotEmpty).toList();
     return _page(
       root: root,
       path: 'pro/',
@@ -1833,33 +1908,38 @@ $buy
         prompt: null,
         command: null,
         intro:
-            '''<header class="landing-head">
-<span class="tag-accent">${_e(t(Copy.proTitle))}</span>
+            '''<header class="pro-hero">
+<div class="pro-hero-text">
+<p class="pro-lockup">$_mark${_e(t(Copy.proTitle))}</p>
 <h1>${_e(t(Copy.homeProTitle))}</h1>
-<p class="lead">${_e(t.fill(Copy.proLead, {'blocks': '$blocks', 'screens': '$screens'}))}</p>
-<div class="hero-actions">
-<a class="tact accent large" href="#plans">${_e(t(Copy.proSeePlans))}</a>
-<a class="tact large" href="${root}screens/">${_e(t(Copy.proBrowseScreens))}</a>
+<p class="lead">${_e(t.fill(Copy.proLead, counts))}</p>
+<div class="hero-actions" data-buy-hide>
+<a class="tact accent pill" href="#plans">${_e(t.fill(Copy.proGetFrom, {'price': price(cheapest)}))}${_icon('arrow')}</a>
+<a class="tact pill" href="${root}screens/">${_e(t(Copy.proBrowseScreens))}</a>
 </div>
+<ul class="pro-perks">${[for (final perk in [Copy.proPerkOnce, Copy.proPerkLifetime, Copy.proPerkApps]) '<li>${_icon('check')}${_e(t(perk))}</li>'].join()}</ul>
+</div>
+${wall()}
 </header>
-<ul class="tiles phones">${[for (final (i, name) in proGallery.indexed) _card(root, _byName(name), _screenThumb(root, _byName(name)), index: i)].join('\n')}</ul>
-${section('contents', Copy.proContentsTitle, '''<p>${_e(t.fill(Copy.proContents, {'blocks': '$blocks', 'screens': '$screens'}))}</p>
-<p>${_e(t(Copy.proScreenComes))}</p>
-<ul>${[Copy.proScreenController, Copy.proScreenStates, Copy.proScreenStrings, Copy.proScreenSnippets, Copy.proScreenVerified].map((copy) => '<li>${sentence(copy, {'add': code('fliin add')})}</li>').join()}</ul>
-<p>${_withHtml(Copy.proFree, {'components': '$components', 'mit': mit})}</p>''')}
-${section('plans', Copy.proPlansTitle, '''<p>${_e(t(Copy.proPlansLead))}</p>
-<div class="plans">
+${section('plans', _sectionHead('plans', _mark, Copy.proPlansEyebrow, Copy.proPlansTitle, Copy.proPlansTail, _e(t(Copy.proPlansLead))), '''<div class="price-grid" data-buy-hide>
+$free
 ${plans.map(plan).join('\n')}
 </div>
-<p class="plan-note">${_e(t(Copy.proTaxes))}</p>''')}
-${section('how', Copy.proHowTitle, '''<ol class="steps">
+<ul class="plan-trust">${[for (final (icon, copy) in [('check', Copy.proTrustTaxes), ('lock', Copy.proTrustPolar), ('sparkle', Copy.proTrustKey)]) '<li>${_icon(icon)}${_e(t(copy))}</li>'].join()}</ul>''')}
+${section('contents', _sectionHead('contents', _icon('phone'), Copy.proScreensEyebrow, Copy.proScreensTitle, Copy.proScreensTail, _e(t.fill(Copy.proContents, counts))), _features([
+              ('code', Copy.proFeatureController, _e(t(Copy.proFeatureControllerBody))),
+              ('list', Copy.proFeatureStates, _e(t(Copy.proFeatureStatesBody))),
+              ('book', Copy.proFeatureStrings, _e(t(Copy.proFeatureStringsBody))),
+              ('merge', Copy.proFeatureSnippets, _withCode(Copy.proFeatureSnippetsBody, {'add': 'fliin add'})),
+            ]))}
+${section('how', plainHead('how', Copy.proHowTitle), '''<ol class="steps">
 <li>${_e(t(Copy.proHowBuy))}</li>
 <li>${_e(t(Copy.proHowKey))}</li>
 <li>${sentence(Copy.proHowLogin, {'login': code('fliin login')})}</li>
 <li>${sentence(Copy.proHowAdd, {'add': code('fliin add')})}</li>
 </ol>
 ${_command('fliin login\nfliin add ${proGallery.first}')}''')}
-${section('faq', Copy.proFaqTitle, '''<div class="faq">
+${section('faq', plainHead('faq', Copy.proFaqTitle), '''<div class="faq">
 ${[
               question(Copy.faqLifetime, Copy.faqLifetimeAnswer),
               if (team.isNotEmpty) question(Copy.faqTeam, Copy.faqTeamAnswer, {'seats': '${team.first.seats}'}),
@@ -1871,7 +1951,16 @@ ${[
               question(Copy.faqPublic, Copy.faqPublicAnswer),
             ].join('\n')}
 </div>
-<p class="faq-terms">${sentence(Copy.proTerms, {'license': license})}</p>''')}''',
+<p class="faq-terms">${sentence(Copy.proTerms, {'license': license})}</p>''')}
+<section class="closing" aria-labelledby="closing-title" data-buy-hide>
+<h2 id="closing-title">${_e(t(Copy.proClosingTitle))} <span>${_e(t(Copy.proClosingTail))}</span></h2>
+<p class="closing-note">${_e(t.fill(Copy.proClosingNote, {'price': price(cheapest)}))}</p>
+<div class="closing-actions">${sold.isEmpty ? '<a class="tact accent pill" href="#plans">${_e(t.fill(Copy.proGetFrom, {'price': price(cheapest)}))}</a>' : [for (final plan in sold) '<a class="tact pill${identical(plan, sold.first) ? ' accent' : ''}" href="${_e(plan.checkout)}" rel="noopener">${_e(t.fill(Copy.planBuy, {'plan': name(plan)}))}</a>'].join()}<a class="tact pill" href="${root}screens/">${_e(t(Copy.proBrowseScreens))}</a></div>
+</section>
+<aside class="buy-bar capsule" aria-labelledby="buy-bar-title" data-buy-bar hidden>
+<p><span class="buy-bar-name" id="buy-bar-title">$_mark${_e(t(Copy.proTitle))}</span><span class="buy-bar-price">${_e(t.fill(Copy.proBarPrice, {'price': price(cheapest)}))}</span></p>
+<a class="tact accent small pill" href="#plans">${_e(t(Copy.proBarCta))}</a>
+</aside>''',
         sections: const [],
         outro: '',
       ),
@@ -2007,6 +2096,7 @@ const _icons = {
   'lock': '<rect x="3.5" y="7" width="9" height="6.5" rx="1.5"/><path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2"/>',
   'link': '<path d="M6.5 9.5l3-3M7 4.5l1-1a2.8 2.8 0 0 1 4 4l-1 1M9 11.5l-1 1a2.8 2.8 0 0 1-4-4l1-1"/>',
   'undo': '<path d="M3.5 6.5h6.5a3.5 3.5 0 0 1 0 7H6M6 3.5l-3 3 3 3"/>',
+  'users': '<circle cx="6" cy="5.5" r="2.5"/><path d="M1.5 13.5a4.5 4.5 0 0 1 9 0M10.5 3.2a2.5 2.5 0 0 1 0 4.6M12 9.3a4.5 4.5 0 0 1 2.5 4.2"/>',
 };
 
 String _icon(String name, [String? classes]) =>

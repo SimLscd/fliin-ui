@@ -219,41 +219,61 @@ enum Copy {
     'on the free components, themed by the same tokens and checked on the '
     'same 16 variants.',
   ),
-  proSeePlans('See the plans'),
+  proGetFrom('Get Fliin Pro from {price}'),
   proBrowseScreens('Browse the screens'),
-  proContentsTitle('What is in it'),
-  proContents(
-    '{blocks} blocks: sections such as a sign-in form, a profile card or an '
-    'order summary, to place in a screen of your own. {screens} screens: '
-    'whole pages such as account settings, checkout or a chat, ready to wire '
-    'to your backend.',
-  ),
-  proScreenComes('Each screen comes with:'),
-  proScreenController(
-    'a controller, a ChangeNotifier from widgets.dart, with no state package '
-    'required, and sample data to replace with your backend;',
-  ),
-  proScreenStates(
-    'its states, such as loading, error, empty or offline, each shown in the '
-    'reference renders;',
-  ),
-  proScreenStrings('every label in English, French and Arabic;'),
-  proScreenSnippets(
-    'routing snippets for go_router and Navigator, and state snippets for '
-    'Provider, Riverpod, Bloc or plain widgets, which {add} prints for your '
-    'app;',
-  ),
-  proScreenVerified(
-    '16 variants checked: iOS and Android, light and dark, text at 1.0× and '
-    '2.0×, left to right and right to left.',
-  ),
-  proFree(
-    'The CLI, the core, the {components} components, the icons, the theme '
-    'builder and the MCP server stay free, under the {mit}.',
-  ),
-  proPlansTitle('Plans'),
+  proPerkOnce('One-time payment'),
+  proPerkLifetime('Lifetime license'),
+  proPerkApps('Unlimited apps'),
+  proPlansEyebrow('Pricing'),
+  proPlansTitle('Pay once.'),
+  proPlansTail('Keep it for life.'),
   proPlansLead(
-    'Pay once, keep the license for life. Launch prices for the first weeks.',
+    'Launch prices for the first weeks. Both plans include every Pro block '
+    'and screen, with new ones and updates as they ship.',
+  ),
+  planFree('Free'),
+  planFreeFor('The components and the tools.'),
+  planFreeTerm('forever, under the {mit}'),
+  planFreeCta('Start free'),
+  planFreeTools('The CLI and the MCP server'),
+  planFreeComponents('{components} components and the icons'),
+  planFreeTheme('The theme builder'),
+  planFreeVerify('Checked on 16 variants'),
+  planFreeUpdate('Updates that keep your edits'),
+  planPlus('Everything in {plan}, plus:'),
+  planBlocks('{blocks} blocks'),
+  planScreens('{screens} whole screens'),
+  planControllers('Controllers and sample data'),
+  planStrings('Labels in English, French and Arabic'),
+  planNew('New items and updates included'),
+  planApps('Unlimited apps, for clients too'),
+  planTeamSeatsShort('Up to {seats} developers'),
+  planTeamOthers('QA and designers need no seat'),
+  planTeamMove('A seat moves when someone leaves'),
+  proScreensEyebrow('In every screen'),
+  proScreensTitle('More than a layout.'),
+  proScreensTail('Ready to wire.'),
+  proContents(
+    '{blocks} blocks to place in a screen of your own, and {screens} whole '
+    'screens to wire to your backend. Each screen comes with:',
+  ),
+  proFeatureController('A controller'),
+  proFeatureControllerBody(
+    'A ChangeNotifier from widgets.dart, no state package required, and '
+    'sample data to swap for your backend.',
+  ),
+  proFeatureStates('Every state'),
+  proFeatureStatesBody(
+    'Loading, error, empty or offline, each shown in the reference renders.',
+  ),
+  proFeatureStrings('Three languages'),
+  proFeatureStringsBody(
+    'Every label in English, French and Arabic, right to left included.',
+  ),
+  proFeatureSnippets('Your router, your state'),
+  proFeatureSnippetsBody(
+    'Snippets for go_router or Navigator, and Provider, Riverpod, Bloc or '
+    'plain widgets, which {add} prints for your app.',
   ),
   planSolo('Solo'),
   planSoloSeats('One developer.'),
@@ -263,17 +283,14 @@ enum Copy {
   ),
   planPrice('\${amount}'),
   planRegular('Regular price'),
-  planLaunch('Launch price'),
+  planOff('Launch −{percent}%'),
+  planPerSeat('{price} per developer'),
   planOnce('One-time payment, taxes included'),
-  planItems('Every Pro block and screen'),
-  planUpdates('New items and updates for as long as Fliin Pro is offered'),
-  planProducts('Unlimited apps, for you or for your clients'),
   planBuy('Buy {plan}'),
   planSoon('Coming soon'),
-  proTaxes(
-    'Prices are in US dollars, taxes included. Polar, our reseller, '
-    'handles the payment, the taxes and the invoice.',
-  ),
+  proTrustTaxes('Prices in US dollars, taxes included'),
+  proTrustPolar('Payment and invoice by Polar, our reseller'),
+  proTrustKey('Your license key right after payment'),
   proHowTitle('How it works'),
   proHowBuy('Buy a plan on Polar.'),
   proHowKey('Polar gives you a license key.'),
@@ -332,6 +349,11 @@ enum Copy {
     'app is fine.',
   ),
   proTerms('The full terms are in the {license}.'),
+  proClosingTitle('Never start a screen'),
+  proClosingTail('from scratch again.'),
+  proClosingNote('From {price}. One-time payment, taxes included.'),
+  proBarPrice('from {price}, one-time payment'),
+  proBarCta('See the plans'),
   routingTitle('Routing'),
   routingBody(
     '{add} prints the route for the router it finds in your pubspec, a file '

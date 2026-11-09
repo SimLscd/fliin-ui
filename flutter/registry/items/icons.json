@@ -1,9 +1,9 @@
 {
   "name": "icons",
   "type": "registry:icon",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "title": "Icons",
-  "description": "Gives 47 mobile icons as Flutter paths, from Gravity UI, Lucide, Tabler or Phosphor as the preset says: arrows, chevrons, search, cart, heart, play. Directional ones flip right to left.",
+  "description": "Gives 58 mobile icons as Flutter paths, from Gravity UI, Lucide, Tabler or Phosphor as the preset says: arrows, chevrons, search, cart, heart, play. Directional ones flip right to left.",
   "flutter": ">=3.47.0 <4.0.0",
   "dependencies": {},
   "registryDependencies": [
@@ -28,7 +28,7 @@
     }
   ],
   "l10n": {},
-  "changelog": "One more icon in all four sets, arrow-right-from-square (leave: sign out), flipped right to left, for the foot of the drawer. The other 46 do not change.",
+  "changelog": "Eleven more icons in all four sets, for a rental's listing: wifi, utensils, car, washing-machine, snowflake, flame, laptop, tv, waves, key and medal. Gravity UI has no glyph for some of them and lends its nearest: a broadcast signal for wifi, a cup for utensils, a T-shirt for the washing machine, a display for the laptop, a droplet for the waves. The other 47 do not change.",
   "snippets": {},
   "verify": {
     "entry": "ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: Padding(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: Column(crossAxisAlignment: CrossAxisAlignment.start, spacing: {prefix}Scope.of(context).space.xl, children: [Wrap(spacing: {prefix}Scope.of(context).space.lg, runSpacing: {prefix}Scope.of(context).space.lg, children: [for (final icon in [{prefix}Icons.arrowLeft, {prefix}Icons.chevronRight, {prefix}Icons.xmark, {prefix}Icons.bars, {prefix}Icons.house, {prefix}Icons.magnifier, {prefix}Icons.gear, {prefix}Icons.plus, {prefix}Icons.check, {prefix}Icons.trashBin, {prefix}Icons.arrowUpFromSquare, {prefix}Icons.heart, {prefix}Icons.heartFill, {prefix}Icons.starFill, {prefix}Icons.circleInfo, {prefix}Icons.triangleExclamation, {prefix}Icons.bell, {prefix}Icons.person, {prefix}Icons.lock, {prefix}Icons.calendar, {prefix}Icons.shoppingCart, {prefix}Icons.comment, {prefix}Icons.playFill, {prefix}Icons.pauseFill]) {prefix}Icon(icon)]), IconTheme(data: IconThemeData(size: {prefix}Scope.of(context).size.buttonIconLg, color: {prefix}Scope.of(context).colors.accent), child: Row(spacing: {prefix}Scope.of(context).space.lg, children: [{prefix}Icon({prefix}Icons.arrowLeft), {prefix}Icon({prefix}Icons.chevronRight), {prefix}Icon({prefix}Icons.paperPlane), {prefix}Icon({prefix}Icons.playFill), {prefix}Icon({prefix}Icons.heartFill)]))])))",
@@ -82,7 +82,7 @@
     ],
     "fr": {
       "title": "Icônes",
-      "description": "Fournit 47 icônes, tracés Flutter : Gravity UI, Lucide, Tabler ou Phosphor selon le préréglage. Flèches, chevrons, recherche, panier, cœur, lecture, retournées en RTL.",
+      "description": "Fournit 58 icônes, tracés Flutter : Gravity UI, Lucide, Tabler ou Phosphor selon le préréglage. Flèches, chevrons, recherche, panier, cœur, lecture, retournées en RTL.",
       "notFor": [
         "croix de fermeture cliquable : utiliser un bouton de fermeture (close-button)",
         "menu qui sort du bord, ouvert par l'icône à trois traits : utiliser un tiroir (drawer)"

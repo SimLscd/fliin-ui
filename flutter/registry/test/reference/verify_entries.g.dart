@@ -3235,7 +3235,7 @@ final Map<String, FlReferenceEntry> verifyEntries = {
     ),
   ),
   'icons': (
-    version: '0.2.1',
+    version: '0.2.2',
     canvas: const Size(390, 600),
     platformCanvas: const {},
     settle: null,

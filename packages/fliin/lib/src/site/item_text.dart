@@ -21,7 +21,7 @@ itemEnglish = {
   'icons': (
     title: 'Icons',
     description:
-        'Gives 47 mobile icons as Flutter paths, from Gravity UI, Lucide, '
+        'Gives 58 mobile icons as Flutter paths, from Gravity UI, Lucide, '
         'Tabler or Phosphor as the preset says: arrows, chevrons, search, '
         'cart, heart, play. Directional ones flip right to left.',
     notFor: [
@@ -791,9 +791,9 @@ itemEnglish = {
   'booking': (
     title: 'Stay booking',
     description:
-        'Books a stay in a holiday rental: check-in and check-out around '
-        'nights already taken, adults and children, an optional arrival '
-        'time, and the price details that follow the choice.',
+        'Shows a holiday rental’s listing with photos, host, amenities and '
+        'reviews, then books a stay around nights already taken, with guests '
+        'and a price that follows the choice.',
     notFor: [
       'paying for a cart: use the checkout screen (checkout)',
       'a period in a form without prices or availability: use the date range '

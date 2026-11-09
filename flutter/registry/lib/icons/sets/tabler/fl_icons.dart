@@ -832,4 +832,266 @@ abstract final class FlIcons {
     mirrorInRtl: true,
     stroke: FlIconStroke(width: 2, cap: StrokeCap.round, join: StrokeJoin.round),
   );
+
+  /// `wifi`.
+  static final FlIconData wifi = FlIconData(
+    Path()
+      ..moveTo(12, 18)
+      ..lineTo(12.01, 18)
+      ..moveTo(9.172, 15.172)
+      ..arcToPoint(const Offset(14.828, 15.172), radius: const Radius.circular(4))
+      ..moveTo(6.343, 12.343)
+      ..arcToPoint(const Offset(17.657, 12.343), radius: const Radius.circular(8))
+      ..moveTo(3.515, 9.515)
+      ..cubicTo(8.201, 4.828, 15.799, 4.828, 20.515, 9.515),
+    viewBox: 24,
+    stroke: FlIconStroke(width: 2, cap: StrokeCap.round, join: StrokeJoin.round),
+  );
+
+  /// `utensils`: `icons/outline/tools-kitchen-2`.
+  static final FlIconData utensils = FlIconData(
+    Path()
+      ..moveTo(19, 3)
+      ..lineTo(19, 15)
+      ..lineTo(14, 15)
+      ..cubicTo(13.977, 11.319, 14.184, 7.594, 19, 3)
+      ..moveTo(19, 15)
+      ..lineTo(19, 21)
+      ..lineTo(18, 21)
+      ..lineTo(18, 18)
+      ..moveTo(8, 4)
+      ..lineTo(8, 21)
+      ..moveTo(5, 4)
+      ..lineTo(5, 7)
+      ..arcToPoint(const Offset(11, 7), radius: const Radius.circular(3), largeArc: true, clockwise: false)
+      ..lineTo(11, 4),
+    viewBox: 24,
+    stroke: FlIconStroke(width: 2, cap: StrokeCap.round, join: StrokeJoin.round),
+  );
+
+  /// `car`.
+  static final FlIconData car = FlIconData(
+    Path()
+      ..moveTo(5, 17)
+      ..arcToPoint(const Offset(9, 17), radius: const Radius.circular(2), largeArc: true, clockwise: false)
+      ..arcToPoint(const Offset(5, 17), radius: const Radius.circular(2), largeArc: true, clockwise: false)
+      ..moveTo(15, 17)
+      ..arcToPoint(const Offset(19, 17), radius: const Radius.circular(2), largeArc: true, clockwise: false)
+      ..arcToPoint(const Offset(15, 17), radius: const Radius.circular(2), largeArc: true, clockwise: false)
+      ..moveTo(5, 17)
+      ..lineTo(3, 17)
+      ..lineTo(3, 11)
+      ..lineTo(5, 6)
+      ..lineTo(14, 6)
+      ..lineTo(18, 11)
+      ..lineTo(19, 11)
+      ..arcToPoint(const Offset(21, 13), radius: const Radius.circular(2))
+      ..lineTo(21, 17)
+      ..lineTo(19, 17)
+      ..moveTo(15, 17)
+      ..lineTo(9, 17)
+      ..moveTo(3, 11)
+      ..lineTo(18, 11)
+      ..moveTo(12, 11)
+      ..lineTo(12, 6),
+    viewBox: 24,
+    stroke: FlIconStroke(width: 2, cap: StrokeCap.round, join: StrokeJoin.round),
+  );
+
+  /// `washing-machine`: `icons/outline/wash-machine`.
+  static final FlIconData washingMachine = FlIconData(
+    Path()
+      ..moveTo(5, 5)
+      ..arcToPoint(const Offset(7, 3), radius: const Radius.circular(2))
+      ..lineTo(17, 3)
+      ..arcToPoint(const Offset(19, 5), radius: const Radius.circular(2))
+      ..lineTo(19, 19)
+      ..arcToPoint(const Offset(17, 21), radius: const Radius.circular(2))
+      ..lineTo(7, 21)
+      ..arcToPoint(const Offset(5, 19), radius: const Radius.circular(2))
+      ..lineTo(5, 5)
+      ..moveTo(8, 14)
+      ..arcToPoint(const Offset(16, 14), radius: const Radius.circular(4), largeArc: true, clockwise: false)
+      ..arcToPoint(const Offset(8, 14), radius: const Radius.circular(4), largeArc: true, clockwise: false)
+      ..moveTo(8, 6)
+      ..lineTo(8.01, 6)
+      ..moveTo(11, 6)
+      ..lineTo(11.01, 6)
+      ..moveTo(14, 6)
+      ..lineTo(16, 6)
+      ..moveTo(8, 14)
+      ..cubicTo(9.333, 13.333, 10.667, 13.333, 12, 14)
+      ..cubicTo(13.333, 14.667, 14.667, 14.667, 16, 14),
+    viewBox: 24,
+    stroke: FlIconStroke(width: 2, cap: StrokeCap.round, join: StrokeJoin.round),
+  );
+
+  /// `snowflake`.
+  static final FlIconData snowflake = FlIconData(
+    Path()
+      ..moveTo(10, 4)
+      ..lineTo(12, 5)
+      ..lineTo(14, 4)
+      ..moveTo(12, 2)
+      ..lineTo(12, 8.5)
+      ..lineTo(15, 10.22)
+      ..moveTo(17.928, 6.268)
+      ..lineTo(18.062, 8.5)
+      ..lineTo(19.928, 9.732)
+      ..moveTo(20.66, 7)
+      ..lineTo(15.031, 10.25)
+      ..lineTo(15.041, 13.708)
+      ..moveTo(19.928, 14.268)
+      ..lineTo(18.062, 15.5)
+      ..lineTo(17.928, 17.732)
+      ..moveTo(20.66, 17)
+      ..lineTo(15.031, 13.75)
+      ..lineTo(12.041, 15.488)
+      ..moveTo(14, 20)
+      ..lineTo(12, 19)
+      ..lineTo(10, 20)
+      ..moveTo(12, 22)
+      ..lineTo(12, 15.5)
+      ..lineTo(9, 13.78)
+      ..moveTo(6.072, 17.732)
+      ..lineTo(5.938, 15.5)
+      ..lineTo(4.072, 14.268)
+      ..moveTo(3.34, 17)
+      ..lineTo(8.969, 13.75)
+      ..lineTo(8.959, 10.292)
+      ..moveTo(4.072, 9.732)
+      ..lineTo(5.938, 8.5)
+      ..lineTo(6.072, 6.268)
+      ..moveTo(3.34, 7)
+      ..lineTo(8.969, 10.25)
+      ..lineTo(11.959, 8.512),
+    viewBox: 24,
+    stroke: FlIconStroke(width: 2, cap: StrokeCap.round, join: StrokeJoin.round),
+  );
+
+  /// `flame`.
+  static final FlIconData flame = FlIconData(
+    Path()
+      ..moveTo(12, 10.941)
+      ..cubicTo(14.333, 7.633, 12.167, 3.118, 11, 2)
+      ..cubicTo(11, 5.395, 8.765, 7.299, 7.333, 8.706)
+      ..cubicTo(5.903, 10.114, 5, 12, 5, 14.294)
+      ..cubicTo(5, 17.998, 8.134, 21, 12, 21)
+      ..cubicTo(15.866, 21, 19, 17.998, 19, 14.294)
+      ..cubicTo(19, 12.582, 17.768, 9.891, 16.667, 8.706)
+      ..cubicTo(14.583, 12.059, 13.41, 12.059, 12, 10.941),
+    viewBox: 24,
+    stroke: FlIconStroke(width: 2, cap: StrokeCap.round, join: StrokeJoin.round),
+  );
+
+  /// `laptop`: `icons/outline/device-laptop`.
+  static final FlIconData laptop = FlIconData(
+    Path()
+      ..moveTo(3, 19)
+      ..lineTo(21, 19)
+      ..moveTo(5, 7)
+      ..arcToPoint(const Offset(6, 6), radius: const Radius.circular(1))
+      ..lineTo(18, 6)
+      ..arcToPoint(const Offset(19, 7), radius: const Radius.circular(1))
+      ..lineTo(19, 15)
+      ..arcToPoint(const Offset(18, 16), radius: const Radius.circular(1))
+      ..lineTo(6, 16)
+      ..arcToPoint(const Offset(5, 15), radius: const Radius.circular(1))
+      ..lineTo(5, 7),
+    viewBox: 24,
+    stroke: FlIconStroke(width: 2, cap: StrokeCap.round, join: StrokeJoin.round),
+  );
+
+  /// `tv`: `icons/outline/device-tv`.
+  static final FlIconData tv = FlIconData(
+    Path()
+      ..moveTo(3, 9)
+      ..arcToPoint(const Offset(5, 7), radius: const Radius.circular(2))
+      ..lineTo(19, 7)
+      ..arcToPoint(const Offset(21, 9), radius: const Radius.circular(2))
+      ..lineTo(21, 18)
+      ..arcToPoint(const Offset(19, 20), radius: const Radius.circular(2))
+      ..lineTo(5, 20)
+      ..arcToPoint(const Offset(3, 18), radius: const Radius.circular(2))
+      ..lineTo(3, 9)
+      ..moveTo(16, 3)
+      ..lineTo(12, 7)
+      ..lineTo(8, 3),
+    viewBox: 24,
+    stroke: FlIconStroke(width: 2, cap: StrokeCap.round, join: StrokeJoin.round),
+  );
+
+  /// `waves`: `icons/outline/ripple`.
+  static final FlIconData waves = FlIconData(
+    Path()
+      ..moveTo(3, 7)
+      ..cubicTo(6, 5, 9, 5, 12, 7)
+      ..cubicTo(15, 9, 18, 9, 21, 7)
+      ..moveTo(3, 17)
+      ..cubicTo(6, 15, 9, 15, 12, 17)
+      ..cubicTo(15, 19, 18, 19, 21, 17)
+      ..moveTo(3, 12)
+      ..cubicTo(6, 10, 9, 10, 12, 12)
+      ..cubicTo(15, 14, 18, 14, 21, 12),
+    viewBox: 24,
+    stroke: FlIconStroke(width: 2, cap: StrokeCap.round, join: StrokeJoin.round),
+  );
+
+  /// `key`.
+  static final FlIconData key = FlIconData(
+    Path()
+      ..moveTo(16.555, 3.843)
+      ..lineTo(20.157, 7.445)
+      ..arcToPoint(const Offset(20.157, 11.514), radius: const Radius.circular(2.877))
+      ..lineTo(17.514, 14.157)
+      ..arcToPoint(const Offset(13.445, 14.157), radius: const Radius.circular(2.877))
+      ..lineTo(13.144, 13.856)
+      ..lineTo(6.586, 20.414)
+      ..arcToPoint(const Offset(5.347, 20.992), radius: const Radius.circular(2))
+      ..lineTo(5.172, 21)
+      ..lineTo(4, 21)
+      ..arcToPoint(const Offset(3.007, 20.117), radius: const Radius.circular(1))
+      ..lineTo(3, 20)
+      ..lineTo(3, 18.828)
+      ..arcToPoint(const Offset(3.467, 17.544), radius: const Radius.circular(2))
+      ..lineTo(3.586, 17.414)
+      ..lineTo(4, 17)
+      ..lineTo(6, 17)
+      ..lineTo(6, 15)
+      ..lineTo(8, 15)
+      ..lineTo(8, 13)
+      ..lineTo(10.144, 10.856)
+      ..lineTo(9.843, 10.555)
+      ..arcToPoint(const Offset(9.843, 6.486), radius: const Radius.circular(2.877))
+      ..lineTo(12.486, 3.843)
+      ..arcToPoint(const Offset(16.555, 3.843), radius: const Radius.circular(2.877))
+      ..moveTo(15, 9)
+      ..lineTo(15.01, 9),
+    viewBox: 24,
+    stroke: FlIconStroke(width: 2, cap: StrokeCap.round, join: StrokeJoin.round),
+  );
+
+  /// `medal`.
+  static final FlIconData medal = FlIconData(
+    Path()
+      ..moveTo(12, 4)
+      ..lineTo(12, 7)
+      ..moveTo(8, 4)
+      ..lineTo(8, 10)
+      ..moveTo(16, 4)
+      ..lineTo(16, 10)
+      ..moveTo(12, 18.5)
+      ..lineTo(9, 20)
+      ..lineTo(9.5, 16.5)
+      ..lineTo(7.5, 14.5)
+      ..lineTo(10.5, 14)
+      ..lineTo(12, 11)
+      ..lineTo(13.5, 14)
+      ..lineTo(16.5, 14.5)
+      ..lineTo(14.5, 16.5)
+      ..lineTo(15, 20)
+      ..lineTo(12, 18.5),
+    viewBox: 24,
+    stroke: FlIconStroke(width: 2, cap: StrokeCap.round, join: StrokeJoin.round),
+  );
 }
