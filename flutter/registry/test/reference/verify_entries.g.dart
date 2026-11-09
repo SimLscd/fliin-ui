@@ -2547,7 +2547,7 @@ final Map<String, FlReferenceEntry> verifyEntries = {
     ),
   ),
   'core': (
-    version: '0.2.6',
+    version: '0.2.7',
     canvas: null,
     platformCanvas: const {},
     settle: null,
@@ -6136,7 +6136,7 @@ final Map<String, FlReferenceEntry> verifyEntries = {
     ),
   ),
   'tag-group': (
-    version: '0.2.3',
+    version: '0.2.4',
     canvas: const Size(390, 340),
     platformCanvas: const {},
     settle: null,

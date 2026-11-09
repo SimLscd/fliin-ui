@@ -413,6 +413,36 @@
           "foreground": "link",
           "background": "surfaceOverlay",
           "kind": "text"
+        },
+        {
+          "foreground": "onSurface",
+          "background": "control",
+          "kind": "text"
+        },
+        {
+          "foreground": "onSurfaceMuted",
+          "background": "control",
+          "kind": "text"
+        },
+        {
+          "foreground": "selected",
+          "background": "control",
+          "kind": "ui"
+        },
+        {
+          "foreground": "accent",
+          "background": "control",
+          "kind": "ui"
+        },
+        {
+          "foreground": "focusRing",
+          "background": "control",
+          "kind": "ui"
+        },
+        {
+          "foreground": "link",
+          "background": "control",
+          "kind": "text"
         }
       ],
       "dev.fliin.contrastExceptions": []
@@ -636,8 +666,8 @@
         "$description": "Screen background, Izydesk `page`."
       },
       "surfaceRaised": {
-        "$value": "{color.neutral.36}",
-        "$description": "Card, list group, Izydesk `surface`."
+        "$value": "{color.neutral.0}",
+        "$description": "Card, list group: white lifted by the `surface` shadow in light mode, Izydesk `surface` in dark mode."
       },
       "surfaceOverlay": {
         "$value": "{color.neutral.0}",
@@ -3914,15 +3944,15 @@
               "unit": "px"
             },
             "offsetY": {
-              "value": 2.0,
+              "value": 0.0,
               "unit": "px"
             },
             "blur": {
-              "value": 4.0,
+              "value": 0.0,
               "unit": "px"
             },
             "spread": {
-              "value": 0.0,
+              "value": 1.0,
               "unit": "px"
             }
           },
@@ -3942,11 +3972,11 @@
               "unit": "px"
             },
             "offsetY": {
-              "value": 1.0,
+              "value": 2.0,
               "unit": "px"
             },
             "blur": {
-              "value": 2.0,
+              "value": 8.0,
               "unit": "px"
             },
             "spread": {
@@ -3962,7 +3992,7 @@
                 0.0,
                 0.0
               ],
-              "alpha": 0.06,
+              "alpha": 0.04,
               "hex": "#000000"
             },
             "offsetX": {
@@ -3970,11 +4000,11 @@
               "unit": "px"
             },
             "offsetY": {
-              "value": 0.0,
+              "value": 8.0,
               "unit": "px"
             },
             "blur": {
-              "value": 1.0,
+              "value": 24.0,
               "unit": "px"
             },
             "spread": {

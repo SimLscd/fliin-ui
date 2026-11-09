@@ -5,7 +5,7 @@ import 'package:fliin_ui/core/tokens/tokens.g.dart';
 final FlTokens presetSquare = FlTokens(
   light: const FlColorTokens(
     surface: Color(0xFFFFFFFF),
-    surfaceRaised: Color(0xFFF3F3F3),
+    surfaceRaised: Color(0xFFFFFFFF),
     surfaceOverlay: Color(0xFFFFFFFF),
     surfacePressed: Color(0xFFE8E8E8),
     surfaceSecondary: Color(0xFFE8E8E8),
@@ -789,7 +789,7 @@ final FlTokens presetSquare = FlTokens(
 final FlTokens presetRound = FlTokens(
   light: const FlColorTokens(
     surface: Color(0xFFFFFFFF),
-    surfaceRaised: Color(0xFFF5F1F6),
+    surfaceRaised: Color(0xFFFFFFFF),
     surfaceOverlay: Color(0xFFFFFFFF),
     surfacePressed: Color(0xFFEBE6ED),
     surfaceSecondary: Color(0xFFEBE6ED),
@@ -932,22 +932,22 @@ final FlTokens presetRound = FlTokens(
       surface: [
         FlShadowLayer(
           color: Color(0x0A000000),
-          offset: Offset(0, 2),
-          blur: 4,
-          spread: 0,
-          inset: false,
-        ),
-        FlShadowLayer(
-          color: Color(0x0F000000),
-          offset: Offset(0, 1),
-          blur: 2,
-          spread: 0,
-          inset: false,
-        ),
-        FlShadowLayer(
-          color: Color(0x0F000000),
           offset: Offset(0, 0),
-          blur: 1,
+          blur: 0,
+          spread: 1,
+          inset: false,
+        ),
+        FlShadowLayer(
+          color: Color(0x0F000000),
+          offset: Offset(0, 2),
+          blur: 8,
+          spread: 0,
+          inset: false,
+        ),
+        FlShadowLayer(
+          color: Color(0x0A000000),
+          offset: Offset(0, 8),
+          blur: 24,
           spread: 0,
           inset: false,
         ),
@@ -1657,7 +1657,7 @@ final FlTokens presetRound = FlTokens(
 final FlTokens presetSerif = FlTokens(
   light: const FlColorTokens(
     surface: Color(0xFFFFFFFF),
-    surfaceRaised: Color(0xFFF5F2EF),
+    surfaceRaised: Color(0xFFFFFFFF),
     surfaceOverlay: Color(0xFFFFFFFF),
     surfacePressed: Color(0xFFEBE7E2),
     surfaceSecondary: Color(0xFFEBE7E2),
@@ -1800,22 +1800,22 @@ final FlTokens presetSerif = FlTokens(
       surface: [
         FlShadowLayer(
           color: Color(0x0A000000),
-          offset: Offset(0, 2),
-          blur: 4,
-          spread: 0,
-          inset: false,
-        ),
-        FlShadowLayer(
-          color: Color(0x0F000000),
-          offset: Offset(0, 1),
-          blur: 2,
-          spread: 0,
-          inset: false,
-        ),
-        FlShadowLayer(
-          color: Color(0x0F000000),
           offset: Offset(0, 0),
-          blur: 1,
+          blur: 0,
+          spread: 1,
+          inset: false,
+        ),
+        FlShadowLayer(
+          color: Color(0x0F000000),
+          offset: Offset(0, 2),
+          blur: 8,
+          spread: 0,
+          inset: false,
+        ),
+        FlShadowLayer(
+          color: Color(0x0A000000),
+          offset: Offset(0, 8),
+          blur: 24,
           spread: 0,
           inset: false,
         ),
@@ -2527,7 +2527,7 @@ final FlTokens presetSerif = FlTokens(
 final FlTokens presetEditorial = FlTokens(
   light: const FlColorTokens(
     surface: Color(0xFFFFFFFF),
-    surfaceRaised: Color(0xFFF4F3EF),
+    surfaceRaised: Color(0xFFFFFFFF),
     surfaceOverlay: Color(0xFFFFFFFF),
     surfacePressed: Color(0xFFE9E8E2),
     surfaceSecondary: Color(0xFFE9E8E2),
@@ -2670,22 +2670,22 @@ final FlTokens presetEditorial = FlTokens(
       surface: [
         FlShadowLayer(
           color: Color(0x0A000000),
-          offset: Offset(0, 2),
-          blur: 4,
-          spread: 0,
-          inset: false,
-        ),
-        FlShadowLayer(
-          color: Color(0x0F000000),
-          offset: Offset(0, 1),
-          blur: 2,
-          spread: 0,
-          inset: false,
-        ),
-        FlShadowLayer(
-          color: Color(0x0F000000),
           offset: Offset(0, 0),
-          blur: 1,
+          blur: 0,
+          spread: 1,
+          inset: false,
+        ),
+        FlShadowLayer(
+          color: Color(0x0F000000),
+          offset: Offset(0, 2),
+          blur: 8,
+          spread: 0,
+          inset: false,
+        ),
+        FlShadowLayer(
+          color: Color(0x0A000000),
+          offset: Offset(0, 8),
+          blur: 24,
           spread: 0,
           inset: false,
         ),
@@ -3397,7 +3397,7 @@ final FlTokens presetEditorial = FlTokens(
 final FlTokens presetOutlined = FlTokens(
   light: const FlColorTokens(
     surface: Color(0xFFFFFFFF),
-    surfaceRaised: Color(0xFFF5F2EF),
+    surfaceRaised: Color(0xFFFFFFFF),
     surfaceOverlay: Color(0xFFFFFFFF),
     surfacePressed: Color(0xFFEBE7E2),
     surfaceSecondary: Color(0xFFEBE7E2),
@@ -4251,7 +4251,7 @@ final FlTokens presetOutlined = FlTokens(
 final FlTokens presetLarge = FlTokens(
   light: const FlColorTokens(
     surface: Color(0xFFFFFFFF),
-    surfaceRaised: Color(0xFFEFF3FA),
+    surfaceRaised: Color(0xFFFFFFFF),
     surfaceOverlay: Color(0xFFF6F6FF),
     surfacePressed: Color(0xFFE2E8F2),
     surfaceSecondary: Color(0xFFE2E8F2),
@@ -4394,22 +4394,22 @@ final FlTokens presetLarge = FlTokens(
       surface: [
         FlShadowLayer(
           color: Color(0x0A000000),
-          offset: Offset(0, 2),
-          blur: 4,
-          spread: 0,
-          inset: false,
-        ),
-        FlShadowLayer(
-          color: Color(0x0F000000),
-          offset: Offset(0, 1),
-          blur: 2,
-          spread: 0,
-          inset: false,
-        ),
-        FlShadowLayer(
-          color: Color(0x0F000000),
           offset: Offset(0, 0),
-          blur: 1,
+          blur: 0,
+          spread: 1,
+          inset: false,
+        ),
+        FlShadowLayer(
+          color: Color(0x0F000000),
+          offset: Offset(0, 2),
+          blur: 8,
+          spread: 0,
+          inset: false,
+        ),
+        FlShadowLayer(
+          color: Color(0x0A000000),
+          offset: Offset(0, 8),
+          blur: 24,
           spread: 0,
           inset: false,
         ),

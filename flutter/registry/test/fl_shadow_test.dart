@@ -45,15 +45,18 @@ void main() {
     expect(find.byType(CustomPaint), findsNothing);
   });
 
-  test('devrait poser les trois couches très douces de HeroUI v3 sous surface et field en clair, aucune en sombre, et les trois de --overlay-shadow sous ce qui flotte', () {
+  test('devrait cerner et lever les cartes blanches sous surface, garder les trois couches de HeroUI v3 sous field en clair, aucune en sombre, et les trois de --overlay-shadow sous ce qui flotte', () {
     final shadow = FlTokens.defaults.shadow;
-    for (final soft in [shadow.light.surface, shadow.light.field]) {
-      expect(soft.map((l) => (l.offset.dy, l.blur, (l.color.a * 100).round())), [
-        (2.0, 4.0, 4),
-        (1.0, 2.0, 6),
-        (0.0, 1.0, 6),
-      ]);
-    }
+    expect(shadow.light.surface.map((l) => (l.offset.dy, l.blur, l.spread, (l.color.a * 100).round())), [
+      (0.0, 0.0, 1.0, 4),
+      (2.0, 8.0, 0.0, 6),
+      (8.0, 24.0, 0.0, 4),
+    ]);
+    expect(shadow.light.field.map((l) => (l.offset.dy, l.blur, (l.color.a * 100).round())), [
+      (2.0, 4.0, 4),
+      (1.0, 2.0, 6),
+      (0.0, 1.0, 6),
+    ]);
     expect(shadow.dark.surface.every((l) => l.color.a == 0), isTrue);
     expect(shadow.dark.field.every((l) => l.color.a == 0), isTrue);
     final layers = FlTokens.defaults.shadow.light.overlay;

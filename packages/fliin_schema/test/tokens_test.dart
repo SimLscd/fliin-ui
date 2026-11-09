@@ -486,7 +486,7 @@ void main() {
       expect(fliin.light['surface'], 0xFFFFFFFF);
       expect(fliin.dark['surface'], 0xFF0F0F0D);
       expect(fliin.light['selected'], 0xFF2563EB);
-      expect(fliin.contrastPairs, hasLength(76));
+      expect(fliin.contrastPairs, hasLength(82));
       expect(fliin.contrastExceptions, isEmpty);
       expect(fliin.button, ButtonShape.pill);
       expect(fliin.springs['release']!.stiffness, 157.9);

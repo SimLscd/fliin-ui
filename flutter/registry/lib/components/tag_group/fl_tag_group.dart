@@ -11,8 +11,8 @@ enum FlTagGroupVariant {
   /// The `control` fill.
   primary,
 
-  /// The `surfaceRaised` fill, for a group placed on the page rather than on
-  /// a surface.
+  /// The `control` fill too, for a group placed on the page rather than on
+  /// a surface: cards are white, and a white tag would vanish on the page.
   surface,
 }
 
@@ -178,7 +178,7 @@ class FlTagGroup<T> extends StatelessWidget {
     final enabled = !disabled && !tag.disabled;
     final rest = switch (variant) {
       FlTagGroupVariant.primary => colors.control,
-      FlTagGroupVariant.surface => colors.surfaceRaised,
+      FlTagGroupVariant.surface => colors.control,
     };
     final (role, horizontal, vertical, spacing, radius) = switch (size) {
       // 4 above and below, not 2: Flutter's contrast rule looks 4 around the

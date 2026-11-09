@@ -992,6 +992,42 @@ final class FlColorTokens {
       over: [],
       kind: FlContrastKind.text,
     ),
+    (
+      foreground: FlColorRole.onSurface,
+      background: FlColorRole.control,
+      over: [],
+      kind: FlContrastKind.text,
+    ),
+    (
+      foreground: FlColorRole.onSurfaceMuted,
+      background: FlColorRole.control,
+      over: [],
+      kind: FlContrastKind.text,
+    ),
+    (
+      foreground: FlColorRole.selected,
+      background: FlColorRole.control,
+      over: [],
+      kind: FlContrastKind.ui,
+    ),
+    (
+      foreground: FlColorRole.accent,
+      background: FlColorRole.control,
+      over: [],
+      kind: FlContrastKind.ui,
+    ),
+    (
+      foreground: FlColorRole.focusRing,
+      background: FlColorRole.control,
+      over: [],
+      kind: FlContrastKind.ui,
+    ),
+    (
+      foreground: FlColorRole.link,
+      background: FlColorRole.control,
+      over: [],
+      kind: FlContrastKind.text,
+    ),
   ];
 }
 
@@ -1866,7 +1902,7 @@ final class FlTokens {
   static final FlTokens defaults = FlTokens(
     light: const FlColorTokens(
       surface: Color(0xFFFFFFFF),
-      surfaceRaised: Color(0xFFF4F3EF),
+      surfaceRaised: Color(0xFFFFFFFF),
       surfaceOverlay: Color(0xFFFFFFFF),
       surfacePressed: Color(0xFFE9E8E2),
       surfaceSecondary: Color(0xFFE9E8E2),
@@ -2009,22 +2045,22 @@ final class FlTokens {
         surface: [
           FlShadowLayer(
             color: Color(0x0A000000),
-            offset: Offset(0, 2),
-            blur: 4,
-            spread: 0,
-            inset: false,
-          ),
-          FlShadowLayer(
-            color: Color(0x0F000000),
-            offset: Offset(0, 1),
-            blur: 2,
-            spread: 0,
-            inset: false,
-          ),
-          FlShadowLayer(
-            color: Color(0x0F000000),
             offset: Offset(0, 0),
-            blur: 1,
+            blur: 0,
+            spread: 1,
+            inset: false,
+          ),
+          FlShadowLayer(
+            color: Color(0x0F000000),
+            offset: Offset(0, 2),
+            blur: 8,
+            spread: 0,
+            inset: false,
+          ),
+          FlShadowLayer(
+            color: Color(0x0A000000),
+            offset: Offset(0, 8),
+            blur: 24,
             spread: 0,
             inset: false,
           ),

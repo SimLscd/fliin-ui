@@ -164,7 +164,7 @@ void main() {
       );
       final tag = find.ancestor(of: find.text('Voyage'), matching: find.byType(DecoratedBox)).first;
       expect(tester.getSize(tag).height, height, reason: '$size');
-      expect(_fill(tester, 'Voyage'), _light.surfaceRaised);
+      expect(_fill(tester, 'Voyage'), _light.control);
       expect(tester.widget<Text>(find.text('Voyage')).style!.color, _light.onField);
     }
   });

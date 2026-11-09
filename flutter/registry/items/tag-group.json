@@ -1,7 +1,7 @@
 {
   "name": "tag-group",
   "type": "registry:component",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "title": "Tag group",
   "description": "Lets people pick tags among wrapping capsules, such as interests or filters, and remove them with their cross. Single or multiple selection, two backgrounds, three sizes.",
   "flutter": ">=3.47.0 <4.0.0",
@@ -92,5 +92,5 @@
     },
     "goldens": null
   },
-  "changelog": "An icon or small avatar before the label (`FlTag(leading:)`), in the text color and at the tag size (12, 14 or 16); `label`, `description` and `error` frame the group like a field, the label naming the list for the screen reader."
+  "changelog": "The `surface` variant takes `control`, like `primary`, now that `surfaceRaised` is white: a white tag would vanish on the page."
 }
