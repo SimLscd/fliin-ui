@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:ui' as ui;
 
 import 'package:fliin_harness/fliin_harness.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -424,6 +425,70 @@ void main() {
                 ),
                 const SizedBox(height: 1, child: ColoredBox(color: Color(0xFFD1D1D6))),
                 const Expanded(child: ColoredBox(color: bar)),
+              ],
+            ),
+          ),
+        );
+        final evaluation = await flTextContrastGuideline.evaluate(tester);
+        expect(evaluation.passed, isTrue, reason: evaluation.reason);
+        semantics.dispose();
+      },
+    );
+
+    testWidgets(
+      'devrait ignorer le libellé d’un bouton dont seule l’interligne passe le bord d’une page étendue sous sa barre',
+      (tester) async {
+        // Comme FlPage avec extendBody : la page va jusqu'au bas de l'écran, la
+        // barre est peinte par-dessus sans prendre le toucher, et seule la
+        // découpe approchée dit où elle commence. Le bouton commence à 88, son
+        // libellé à 92 sur une ligne de 40, l'encre vers 105 : au-dessus du
+        // bord à 100, il ne reste que l'aplat du bouton.
+        final semantics = tester.ensureSemantics();
+        tester.view.physicalSize = const Size(390, 200);
+        tester.view.devicePixelRatio = 1;
+        addTearDown(tester.view.reset);
+        await tester.pumpWidget(
+          Directionality(
+            textDirection: TextDirection.ltr,
+            child: Stack(
+              children: [
+                _PaintClipAbove(
+                  bottom: 100,
+                  child: ColoredBox(
+                    color: page,
+                    child: SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          const SizedBox(height: 88),
+                          Semantics(
+                            container: true,
+                            button: true,
+                            child: const ColoredBox(
+                              color: _ink,
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(vertical: 4),
+                                child: Text(
+                                  'Play',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(color: bar, fontSize: 14, height: 40 / 14),
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 200),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                const PositionedDirectional(
+                  top: 100,
+                  bottom: 0,
+                  start: 0,
+                  end: 0,
+                  child: IgnorePointer(child: ColoredBox(color: bar)),
+                ),
               ],
             ),
           ),
@@ -923,4 +988,24 @@ class _FadeFlow extends FlowDelegate {
 
   @override
   bool shouldRepaint(_FadeFlow old) => old.opacity != opacity;
+}
+
+/// La découpe de la page de FlPage : dite à la peinture approchée et à la
+/// sémantique, sans couper ni la peinture ni le toucher.
+class _PaintClipAbove extends SingleChildRenderObjectWidget {
+  const _PaintClipAbove({required this.bottom, super.child});
+
+  final double bottom;
+
+  @override
+  RenderObject createRenderObject(BuildContext context) => _RenderPaintClipAbove(bottom);
+}
+
+class _RenderPaintClipAbove extends RenderProxyBox {
+  _RenderPaintClipAbove(this.bottom);
+
+  final double bottom;
+
+  @override
+  Rect? describeApproximatePaintClip(RenderObject child) => Offset.zero & Size(size.width, bottom);
 }

@@ -1,7 +1,7 @@
 {
   "name": "app-bar",
   "type": "registry:component",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "title": "App bar",
   "description": "Shows where the user is and leads back: the screen title, a back chevron and up to three actions, with a large title that collapses into the bar on scroll.",
   "flutter": ">=3.47.0 <4.0.0",
@@ -94,5 +94,5 @@
     },
     "goldens": null
   },
-  "changelog": "`FlSliverAppBar.pinned: false`: the bar scrolls away with the content and never raises its background."
+  "changelog": "The status bar icons follow the bar's own color rather than the theme's mode: light icons over the accent of `FlAccentScope`, in light mode too. Rendering unchanged."
 }

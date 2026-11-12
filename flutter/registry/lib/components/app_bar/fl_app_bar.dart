@@ -104,6 +104,10 @@ const _raiseTravel = 12.0;
 const _glassBlur = 20.0;
 const _glassOpacity = 0.85;
 
+/// The relative luminance at which black and white text contrast equally
+/// (WCAG): below it, light status bar icons.
+const _equalContrastLuminance = 0.179;
+
 typedef _Scroll = ({double collapse, double raise, double? height});
 
 /// The top bar of a screen: a back chevron at the start, the [title], up to
@@ -349,10 +353,14 @@ class FlAppBar extends StatelessWidget {
             ),
           );
 
+    // The status bar icons that contrast more with the bar, rather than the
+    // theme's mode: light ones over the accent of `FlAccentScope`, in light
+    // mode too.
+    final dark = surface.computeLuminance() < _equalContrastLuminance;
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle(
-        statusBarBrightness: theme.brightness,
-        statusBarIconBrightness: theme.brightness == Brightness.light ? Brightness.dark : Brightness.light,
+        statusBarBrightness: dark ? Brightness.dark : Brightness.light,
+        statusBarIconBrightness: dark ? Brightness.light : Brightness.dark,
       ),
       child: raised,
     );

@@ -2,6 +2,7 @@ import 'package:fliin_ui/components/app_bar/fl_app_bar.dart';
 import 'package:fliin_ui/components/button/fl_button.dart';
 import 'package:fliin_ui/components/spinner/fl_spinner.dart';
 import 'package:fliin_ui/core/fliin.dart';
+import 'package:flutter/services.dart' show SystemUiOverlayStyle;
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -358,5 +359,16 @@ void main() {
     expect(avatar.left - bar.left, tokens.space.sm);
     expect(title.left - avatar.right, tokens.space.sm);
     expect(avatar.center.dy, closeTo(title.center.dy, 0.5));
+  });
+
+  testWidgets('devrait poser des icônes de statut claires sur l’accent, sombres sur la page claire', (tester) async {
+    Brightness icons() => tester
+        .widget<AnnotatedRegion<SystemUiOverlayStyle>>(find.byType(AnnotatedRegion<SystemUiOverlayStyle>))
+        .value
+        .statusBarIconBrightness!;
+    await tester.pumpWidget(_app(const FlAppBar(title: 'Now playing')));
+    expect(icons(), Brightness.dark);
+    await tester.pumpWidget(_app(const FlAccentScope(child: FlAppBar(title: 'Now playing'))));
+    expect(icons(), Brightness.light);
   });
 }

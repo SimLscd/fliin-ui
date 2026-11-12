@@ -1,8 +1,8 @@
 {
   "name": "tab-bar",
   "type": "registry:component",
-  "version": "0.3.0",
-  "changelog": "Shapes and settings: a floating bar detached from the edges (`floating`, corners from `shape.button`), a translucent blurred background (`translucent`), labels on every tab, on the chosen tab only or on none (`labels`), an indicator as a pill under the icon, a capsule behind the tab or none (`indicator`), and an icon of its own for the chosen tab (`FlBottomTab.selectedIcon`). The default rendering does not change.",
+  "version": "0.3.1",
+  "changelog": "Without labels (`labels: never`), the chosen icon sits in a capsule as tall as a touch target, 72 × 44 and fully rounded, instead of the 56 × 30 pill made to sit above a label.",
   "title": "Tab bar",
   "description": "Switches between the main sections of an app from the bottom of the screen: three to five tabs with icon, label and badge, on a docked, translucent or floating bar.",
   "flutter": ">=3.47.0 <4.0.0",

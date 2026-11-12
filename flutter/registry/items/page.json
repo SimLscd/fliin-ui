@@ -1,7 +1,7 @@
 {
   "name": "page",
   "type": "registry:component",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "title": "Page",
   "description": "Frames a whole mobile screen: safe areas, an app bar tied to scrolling, scrolling content, a tab bar, the keyboard and pull to refresh with each platform gesture.",
   "flutter": ">=3.47.0 <4.0.0",
@@ -87,5 +87,5 @@
     },
     "goldens": null
   },
-  "changelog": "`FlPageBar.translucent`: the bar's background lets the content passing under it show, blurred; give the page `extendBody` so the content runs under it, and the screen reader stops at the bar. `FlPage.pinAppBar: false`: the top bar leaves with the content, without a background, and a strip of glass keeps the status bar readable. With the keyboard open, nothing passes under the bottom bar. Nothing changes without these options. `FlPage.color` sets the page's color, `surface` by default: `background`, the theme's base, sets white cards apart without a shadow, and the bottom bar takes the page's color, without a rule. `FlPageBar.floating`: no band, blur nor divider, the action floats over the content, and `info` sits on a white card of its own."
+  "changelog": "A field in the content keeps its focus when `refresh` or `extendBody` changes, as when a search starts loading: the content keeps its widgets, and on the web its input stays where it was. The page is always one node for the screen reader, named only when it refreshes. Nothing else changes."
 }

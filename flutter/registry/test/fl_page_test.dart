@@ -423,6 +423,48 @@ void main() {
     }
   });
 
+  testWidgets(
+    'devrait garder le contenu et ses nœuds de sémantique quand le rafraîchissement et extendBody changent ensemble',
+    (tester) async {
+      // Le cas d'une recherche : en chargement, ni rafraîchissement ni contenu
+      // sous la barre. Sur le web, un nœud de sémantique déplacé ôte le focus
+      // au champ du navigateur.
+      final semantics = tester.ensureSemantics();
+      const target = ValueKey('cible');
+      Widget page({required bool shown}) => FlPage(
+        refresh: shown ? FlPageRefresh(label: 'Actualiser', onRefresh: () async {}) : null,
+        extendBody: shown,
+        tabBar: const SizedBox(height: 56),
+        slivers: [
+          SliverToBoxAdapter(
+            child: Semantics(
+              container: true,
+              label: 'cible',
+              child: const SizedBox(key: target, height: 56),
+            ),
+          ),
+        ],
+      );
+      List<int> ancestors() {
+        final ids = <int>[];
+        for (SemanticsNode? node = tester.getSemantics(find.byKey(target)); node != null; node = node.parent) {
+          ids.add(node.id);
+        }
+        return ids;
+      }
+
+      await _pumpPhone(tester, page(shown: true));
+      final element = tester.element(find.byKey(target));
+      final before = ancestors();
+      for (final shown in [false, true]) {
+        await tester.pumpWidget(_phoneApp(page(shown: shown)));
+        expect(tester.element(find.byKey(target)), same(element), reason: 'shown: $shown');
+        expect(ancestors(), before, reason: 'shown: $shown');
+      }
+      semantics.dispose();
+    },
+  );
+
   testWidgets('devrait faire passer le contenu sous la barre avec extendBody et le finir au-dessus d’elle', (
     tester,
   ) async {

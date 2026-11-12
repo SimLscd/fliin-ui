@@ -811,17 +811,17 @@ itemEnglish = {
   'mini-player': (
     title: 'Mini player',
     description:
-        'Keeps the song now playing at the bottom of a screen with its '
-        'artwork, title and artist, a play or pause button that acts in '
-        'place, and opens the player when tapped.',
+        'Keeps the song now playing at the bottom of a screen: artwork, '
+        'title and artist, a play or pause button that acts in place, and a '
+        'dock that sets it on the accent above the tab bar.',
     notFor: ['the whole player screen: use the music player (player)'],
   ),
   'player': (
     title: 'Music player',
     description:
-        'Plays a song from the app\'s audio player: artwork, title and artist, '
-        'a position slider read in minutes and seconds, play and pause, next '
-        'and previous, shuffle, repeat and favorite.',
+        'Plays a song from the app\'s audio player on the accent: artwork, '
+        'title and artist, a position slider read in minutes and seconds, '
+        'play and pause, next and previous, shuffle, repeat and favorite.',
     notFor: [
       'a list of tracks, albums or playlists: use the music library (library)',
       'setting a continuous value: use the slider (slider)',
@@ -830,12 +830,25 @@ itemEnglish = {
   'library': (
     title: 'Music library',
     description:
-        'Lists a listener\'s songs, albums as a grid of artwork and playlists '
-        'in tabs, searchable by title or artist, loaded page by page, with a '
-        'mini player for the song now playing.',
+        'Shows a listener\'s music: a search by title or artist, albums and '
+        'playlists as shelves of artwork, songs page by page, and the song now '
+        'playing on the accent at the bottom.',
     notFor: [
       'the player currently playing: use the music player (player)',
+      'one album or one playlist and its songs: use the album and playlist '
+          'screen (collection)',
       'a search in a product catalog: use the search screen (search)',
+    ],
+  ),
+  'collection': (
+    title: 'Album and playlist',
+    description:
+        'Shows an album or a playlist: its cover, title and artist, Play and '
+        'Shuffle, then its songs, numbered on an album, and the song now '
+        'playing on the accent at the bottom.',
+    notFor: [
+      'a listener\'s whole music: use the music library (library)',
+      'the song now playing: use the music player (player)',
     ],
   ),
   'tracking-steps': (

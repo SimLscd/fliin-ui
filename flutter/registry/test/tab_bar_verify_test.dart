@@ -176,4 +176,4 @@ Widget _over(BuildContext context, Widget bar) {
 }
 
 void main() =>
-    verifyItem(item: 'tab-bar', testFile: 'test/tab_bar_verify_test.dart', size: const Size(390, 900), showcase: _bars);
+    verifyItem(item: 'tab-bar', testFile: 'test/tab_bar_verify_test.dart', size: const Size(390, 940), showcase: _bars);

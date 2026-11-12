@@ -265,7 +265,7 @@ final Map<String, FlReferenceEntry> verifyEntries = {
     ),
   ),
   'app-bar': (
-    version: '0.3.2',
+    version: '0.3.3',
     canvas: const Size(390, 560),
     platformCanvas: const {},
     settle: null,
@@ -2547,7 +2547,7 @@ final Map<String, FlReferenceEntry> verifyEntries = {
     ),
   ),
   'core': (
-    version: '0.2.8',
+    version: '0.2.9',
     canvas: null,
     platformCanvas: const {},
     settle: null,
@@ -3598,7 +3598,7 @@ final Map<String, FlReferenceEntry> verifyEntries = {
     ),
   ),
   'list-row': (
-    version: '0.2.6',
+    version: '0.2.7',
     canvas: const Size(390, 460),
     platformCanvas: const {},
     settle: null,
@@ -3997,7 +3997,7 @@ final Map<String, FlReferenceEntry> verifyEntries = {
     ),
   ),
   'page': (
-    version: '0.2.5',
+    version: '0.2.6',
     canvas: const Size(780, 844),
     platformCanvas: const {},
     settle: null,
@@ -5808,7 +5808,7 @@ final Map<String, FlReferenceEntry> verifyEntries = {
     ),
   ),
   'tab-bar': (
-    version: '0.3.0',
+    version: '0.3.1',
     canvas: const Size(390, 760),
     platformCanvas: const {},
     settle: null,

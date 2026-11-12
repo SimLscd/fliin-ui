@@ -1,7 +1,7 @@
 {
   "name": "core",
   "type": "registry:core",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "title": "Core",
   "description": "Gives every component its tokens, light and dark themes, density, platform typography, reduced motion and an accessible pressable surface. No Material, no Cupertino.",
   "flutter": ">=3.47.0 <4.0.0",
@@ -27,6 +27,11 @@
       "path": "core/tokens/tokens.g.dart",
       "type": "registry:core",
       "target": "@core/tokens/tokens.g.dart"
+    },
+    {
+      "path": "core/theme/fl_accent_scope.dart",
+      "type": "registry:core",
+      "target": "@core/theme/fl_accent_scope.dart"
     },
     {
       "path": "core/theme/fl_density.dart",
@@ -132,6 +137,11 @@
       "path": "core/text/fl_text_context_menu.dart",
       "type": "registry:core",
       "target": "@core/text/fl_text_context_menu.dart"
+    },
+    {
+      "path": "core/text/fl_text_direction.dart",
+      "type": "registry:core",
+      "target": "@core/text/fl_text_direction.dart"
     }
   ],
   "l10n": {},
@@ -183,5 +193,5 @@
     },
     "goldens": null
   },
-  "changelog": "Errors in a lighter, softer red: `danger` becomes a crimson (#C82332 in light mode) in place of the brick, as light as reads at 4.5:1 on a pressed row, and `onDangerSoft` follows (#AB1E2B). New role `selectedSoft`: the theme's accent at 10% (18% in dark mode), the background of a chosen card among others; it follows a brand color. Run `fliin tokens` after the update. New role `background`, the theme's base under raised cards: Izydesk `surface` in light mode, `page` in dark mode, with two text pairs."
+  "changelog": "`FlAccentScope` places a subtree on the accent: the accent fills it, and the components under it read a palette derived from the theme's, in both modes. Surfaces become the accent; text, muted text and icons `onAccent`; controls, pills, borders, skeletons and the soft danger disc a tint of `onAccent`; the primary action and every selected state `onAccent` with accent content; separators vanish. It follows a preset or `fliin theme`. `flTextDirectionOf` gives the direction of a text's first strong character, so that a name cut by an ellipsis keeps it at its own end inside a screen of the other direction, and `flTextAlignOf` keeps that name on the screen's start side. Rendering unchanged elsewhere."
 }

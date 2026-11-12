@@ -280,7 +280,14 @@ class _FlPageState extends State<FlPage> with SingleTickerProviderStateMixin {
               ),
             // The bottom inset stays readable by the slivers, so that an
             // empty state can derive its room: `SliverSafeArea` removed it.
-            SliverSafeArea(top: false, bottom: false, sliver: SliverMainAxisGroup(slivers: widget.slivers)),
+            // Keyed: when the indicator or the end under the bar comes and
+            // goes, the content keeps its elements, and a field its focus.
+            SliverSafeArea(
+              key: const ValueKey(_Slot.body),
+              top: false,
+              bottom: false,
+              sliver: SliverMainAxisGroup(slivers: widget.slivers),
+            ),
             // Under the bar, its height, which only the body's own
             // `MediaQuery` knows.
             if (widget.extendBody && tabBar != null)
@@ -296,8 +303,10 @@ class _FlPageState extends State<FlPage> with SingleTickerProviderStateMixin {
     );
     // Always there, even without [refresh]: a tree that changed shape when
     // refresh became null recreated the scroll view, and focus got lost.
+    // Always a node too: on the web, a node that comes and goes moves the
+    // field's input in the page, which takes the focus away from it.
     body = Semantics(
-      container: refresh != null,
+      container: true,
       explicitChildNodes: true,
       label: refresh?.label,
       customSemanticsActions: refresh == null

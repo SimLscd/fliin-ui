@@ -102,8 +102,22 @@ class FlListRow extends StatelessWidget {
     this.autofocus = false,
     this.selected = false,
     this.danger = false,
+    this.emphasized = false,
+    this.titleLines,
+    this.subtitleLines,
     this.statesController,
   });
+
+  /// True: the title in medium weight, the name of a thing (a song, a
+  /// place) rather than a setting.
+  final bool emphasized;
+
+  /// The most lines the title takes, cut by an ellipsis at its own end
+  /// (`flTextDirectionOf`); null, as many as it needs.
+  final int? titleLines;
+
+  /// The most lines the subtitle takes, as [titleLines].
+  final int? subtitleLines;
 
   /// True: a destructive action ("Delete account"), its title in `danger`,
   /// Izydesk's `.row-danger`. No effect on a [selected] or disabled row.
@@ -220,12 +234,23 @@ class FlListRow extends StatelessWidget {
             children: [
               Text(
                 title,
-                style: body.copyWith(color: strong),
+                maxLines: titleLines,
+                overflow: titleLines == null ? null : TextOverflow.ellipsis,
+                textDirection: titleLines == null ? null : flTextDirectionOf(title),
+                textAlign: titleLines == null ? null : flTextAlignOf(title, Directionality.of(context)),
+                style: body.copyWith(
+                  color: strong,
+                  fontWeight: emphasized ? theme.tokens.typography.weight.medium : null,
+                ),
                 strutStyle: scale.strut(FlTextRole.textBase, inheritedFamily: family),
               ),
               if (subtitle != null)
                 Text(
                   subtitle,
+                  maxLines: subtitleLines,
+                  overflow: subtitleLines == null ? null : TextOverflow.ellipsis,
+                  textDirection: subtitleLines == null ? null : flTextDirectionOf(subtitle),
+                  textAlign: subtitleLines == null ? null : flTextAlignOf(subtitle, Directionality.of(context)),
                   style: scale.resolve(FlTextRole.textSm).copyWith(color: muted, height: kTextHeightNone),
                   strutStyle: scale.strut(FlTextRole.textSm, inheritedFamily: family),
                 ),

@@ -41,7 +41,8 @@ enum FlBottomTabLabels {
   /// icons sit in the middle of the bar.
   selected,
 
-  /// None: icons only, a shorter bar. The labels are still read.
+  /// None: icons only, the chosen one in a pill as tall as a touch target.
+  /// The labels are still read.
   never,
 }
 
@@ -63,6 +64,17 @@ const _iconSize = 22.0;
 /// The pill of the selected tab, around the icon: Izydesk's `.tab-pill`.
 const _pillWidth = 56.0;
 const _pillHeight = 30.0;
+
+/// The pill of a bar without labels: as tall as a touch target, and fully
+/// rounded, so that the chosen icon sits in a button-sized capsule instead
+/// of a thin band.
+const _iconPillWidth = 72.0;
+const _iconPillHeight = 44.0;
+
+/// The pill around the chosen icon, larger when no label follows it.
+Size _pillOf(FlBottomTabLabels labels) => labels == FlBottomTabLabels.never
+    ? const Size(_iconPillWidth, _iconPillHeight)
+    : const Size(_pillWidth, _pillHeight);
 
 /// The widest a tab of a floating bar gets: past it, on a tablet or a
 /// desktop, the bar stops growing and stays centered.
@@ -203,6 +215,8 @@ class _FlBottomTabBarState extends State<FlBottomTabBar> with TickerProviderStat
               rtl: rtl,
               indicator: widget.indicator,
               rising: widget.labels == FlBottomTabLabels.selected,
+              labels: widget.labels,
+              pill: _pillOf(widget.labels),
               geometry: geometry,
               color: colors.controlPressed,
             ),
@@ -429,13 +443,14 @@ class _Content extends StatelessWidget {
     final colors = theme.colors;
     final selectedIcon = tab.selectedIcon;
     final badge = tab.badge;
+    final pill = _pillOf(labels);
     final icon = Container(
-      height: _pillHeight,
-      width: _pillWidth,
+      height: pill.height,
+      width: pill.width,
       decoration: touched
           ? ShapeDecoration(
               color: colors.surfaceSecondary,
-              shape: FlContinuousBorder(radius: _capped(theme.shape.radiusCard, _pillHeight)),
+              shape: FlContinuousBorder(radius: _pillRadius(labels, theme.shape.radiusCard, pill.height)),
             )
           : null,
       child: Center(
@@ -565,6 +580,11 @@ class _Label extends StatelessWidget {
 /// [radius], a capsule at most on a side of [extent].
 double _capped(double radius, double extent) => radius < extent / 2 ? radius : extent / 2;
 
+/// The corners of the pill on a side of [extent]: a capsule around an icon
+/// alone, [radius] at most otherwise.
+double _pillRadius(FlBottomTabLabels labels, double radius, double extent) =>
+    labels == FlBottomTabLabels.never ? extent / 2 : _capped(radius, extent);
+
 /// The indicator under the tab that [position] designates, halfway between
 /// two tabs during the spring.
 class _IndicatorPainter extends CustomPainter {
@@ -575,6 +595,8 @@ class _IndicatorPainter extends CustomPainter {
     required this.rtl,
     required this.indicator,
     required this.rising,
+    required this.labels,
+    required this.pill,
     required this.geometry,
     required this.color,
   }) : super(repaint: Listenable.merge([position, fade]));
@@ -588,6 +610,12 @@ class _IndicatorPainter extends CustomPainter {
   /// Whether the chosen icon rises above its label ([FlBottomTabLabels.selected]),
   /// which the pill follows.
   final bool rising;
+
+  /// The labels, which set the pill's size and its corners.
+  final FlBottomTabLabels labels;
+
+  /// The size of the pill, which follows the labels.
+  final Size pill;
   final _Geometry geometry;
   final Color color;
 
@@ -608,11 +636,11 @@ class _IndicatorPainter extends CustomPainter {
       // A tab is as tall as its icon and the room of a label; an icon not
       // chosen sits halfway down that room. Between two tabs, the pill
       // passes between their heights.
-      final room = size.height - 2 * top - _pillHeight;
+      final room = size.height - 2 * top - pill.height;
       final f = position.value - position.value.floorToDouble();
       final drop = rising ? room * f * (1 - f) : 0.0;
-      rect = Rect.fromCenter(center: Offset(x, top + drop + _pillHeight / 2), width: _pillWidth, height: _pillHeight);
-      radius = _capped(geometry.radius, _pillHeight);
+      rect = Rect.fromCenter(center: Offset(x, top + drop + pill.height / 2), width: pill.width, height: pill.height);
+      radius = _pillRadius(labels, geometry.radius, pill.height);
     }
     canvas.drawPath(
       FlContinuousBorder.pathFor(rect, radius),
@@ -626,6 +654,8 @@ class _IndicatorPainter extends CustomPainter {
       rtl != oldDelegate.rtl ||
       indicator != oldDelegate.indicator ||
       rising != oldDelegate.rising ||
+      labels != oldDelegate.labels ||
+      pill != oldDelegate.pill ||
       geometry != oldDelegate.geometry ||
       color != oldDelegate.color;
 }

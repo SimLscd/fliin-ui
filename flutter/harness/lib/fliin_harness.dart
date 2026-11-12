@@ -686,7 +686,10 @@ class FlVisibleTextContrastGuideline extends AccessibilityGuideline {
     final ink = reach.intersect(clip) == reach ? null : await _inkBounds(tester, box);
     final whole = MatrixUtils.transformRect(global, ink ?? box.paintBounds);
     final visible = whole.intersect(clip);
-    final cut = visible != whole && visible.width > 0 && visible.height > 0;
+    // Only the leading or the margin of 4 passes the edge, not a stroke of
+    // the text: it is hidden, and the margin shows only what is behind it.
+    if (visible.width <= 0 || visible.height <= 0) return const Evaluation.pass();
+    final cut = visible != whole;
 
     final widget = element.widget;
     final inherited = DefaultTextStyle.of(element).style;

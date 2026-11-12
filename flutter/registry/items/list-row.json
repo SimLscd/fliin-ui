@@ -1,7 +1,7 @@
 {
   "name": "list-row",
   "type": "registry:component",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "title": "List row",
   "description": "Shows list or settings entries grouped on a surface between dividers, pressable by touch or keyboard, with prefix, title, subtitle, value and chevron.",
   "flutter": ">=3.47.0 <4.0.0",
@@ -84,5 +84,5 @@
     },
     "goldens": null
   },
-  "changelog": "`FlListGroup.separatorInset` starts each divider at the given point, instead of the inset computed for an `sm` avatar: `0` from edge to edge, or the start of the text for rows led by an icon. The default rendering does not change."
+  "changelog": "`emphasized` sets the title in medium weight: the name of a thing (a song, a place) rather than a setting. `titleLines` and `subtitleLines` cap the lines of the title and the subtitle, cut by an ellipsis at their own end in a screen of the other direction. Rendering unchanged otherwise."
 }

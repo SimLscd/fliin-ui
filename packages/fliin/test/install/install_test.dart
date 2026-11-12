@@ -38,7 +38,7 @@ void main() {
       final lock = readLockfile(fresh)!;
       expect(lock.dartStyle, dartStyleVersion);
       final core = lock.items[ItemRef('core')]!;
-      expect(core.files, hasLength(25), reason: 'core/ et lib/ui/fliin/LICENSE');
+      expect(core.files, hasLength(27), reason: 'core/ et lib/ui/fliin/LICENSE');
       for (final MapEntry(key: path, value: file) in core.files.entries) {
         expect(
           File(p.join(fresh.path, path)).existsSync(),
@@ -162,7 +162,7 @@ void main() {
       expect(File(p.join(halted.path, scope)).existsSync(), isTrue);
       expect(readLockfile(halted)!.toJson(), lock.toJson());
       expect(readFliinConfig(halted), isNotNull);
-      expect(jsonOf(run)['installed'], hasLength(25));
+      expect(jsonOf(run)['installed'], hasLength(27));
     });
 
     test(
@@ -651,7 +651,7 @@ void main() {
         expect(run.code, 0);
         final files = (jsonOf(run)['files']! as List<Object?>)
             .cast<Map<String, Object?>>();
-        expect(files, hasLength(27));
+        expect(files, hasLength(29));
         expect(files.map((f) => f['state']), everyElement('intact'));
         expect(jsonOf(run)['orphans'], isEmpty);
       },

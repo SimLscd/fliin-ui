@@ -16,6 +16,8 @@ export 'package:fliin_ui/core/shape/fl_continuous_border.dart';
 export 'package:fliin_ui/core/shape/fl_shadow.dart';
 export 'package:fliin_ui/core/text/fl_selection_controls.dart';
 export 'package:fliin_ui/core/text/fl_text_context_menu.dart';
+export 'package:fliin_ui/core/text/fl_text_direction.dart';
+export 'package:fliin_ui/core/theme/fl_accent_scope.dart';
 export 'package:fliin_ui/core/theme/fl_density.dart';
 export 'package:fliin_ui/core/theme/fl_scope.dart';
 export 'package:fliin_ui/core/theme/fl_typography.dart';
