@@ -182,7 +182,7 @@ class _FlDatePickerFieldState extends State<FlDatePickerField> {
           opacity: disabled ? theme.size.disabledOpacity : 1,
           child: FlInputFrame(
             variant: widget.variant,
-            outline: invalid ? colors.danger : null,
+            invalid: invalid,
             focused: widget.open,
             child: ConstrainedBox(
               constraints: BoxConstraints(minHeight: theme.controlHeight),

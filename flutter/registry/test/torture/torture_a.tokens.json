@@ -624,6 +624,9 @@
         "$value": "{color.neutral.36}",
         "$description": "Carte, groupe de liste, `surface` d'Izydesk."
       },
+      "background": {
+        "$value": "{color.neutral.36}"
+      },
       "surfaceOverlay": {
         "$value": "{color.neutral.0}",
         "$description": "Popover, menu, dialogue, feuille : `page` en clair, `surface` en sombre."
@@ -980,6 +983,15 @@
       "onSelected": {
         "$value": "{color.neutral.0}",
         "$description": "Texte et coche sur `selected`, `page`."
+      },
+      "selectedSoft": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": {
+            "$ref": "#/color/neutral/832/$value/components"
+          },
+          "alpha": 0.1
+        }
       }
     },
     "dark": {
@@ -988,6 +1000,9 @@
       },
       "surfaceRaised": {
         "$value": "{color.neutral.783}"
+      },
+      "background": {
+        "$value": "{color.neutral.832}"
       },
       "surfaceOverlay": {
         "$value": "{color.neutral.783}"
@@ -1287,6 +1302,15 @@
       },
       "onSelected": {
         "$value": "{color.neutral.832}"
+      },
+      "selectedSoft": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": {
+            "$ref": "#/color/neutral/31/$value/components"
+          },
+          "alpha": 0.18
+        }
       }
     }
   },

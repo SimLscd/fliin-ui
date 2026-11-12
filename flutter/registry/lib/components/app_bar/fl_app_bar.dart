@@ -360,22 +360,28 @@ class FlAppBar extends StatelessWidget {
 }
 
 /// A [FlAppBar] pinned at the top of a `CustomScrollView`, which follows its
-/// scroll: a large title shrinks, then the background appears. `FlPage`
-/// places it alone; a screen that holds its own scrollable puts it first.
+/// scroll: a large title shrinks, then the background appears. Not
+/// [pinned], it scrolls away with the content and never raises its
+/// background. `FlPage` places it alone; a screen that holds its own
+/// scrollable puts it first.
 class FlSliverAppBar extends StatelessWidget {
   /// The bar [appBar] at the top of the scroll.
-  const FlSliverAppBar({super.key, required this.appBar});
+  const FlSliverAppBar({super.key, required this.appBar, this.pinned = true});
 
   /// The bar to pin.
   final FlAppBar appBar;
+
+  /// False: the bar leaves with the content, as the start of the page.
+  final bool pinned;
 
   @override
   Widget build(BuildContext context) {
     final top = MediaQuery.paddingOf(context).top;
     return SliverPersistentHeader(
-      pinned: true,
+      pinned: pinned,
       delegate: _Delegate(
         appBar: appBar,
+        pinned: pinned,
         top: top,
         collapsed: top + FlAppBar.barHeight(context),
         rest: top + appBar.restHeight(context),
@@ -388,6 +394,7 @@ class FlSliverAppBar extends StatelessWidget {
 class _Delegate extends SliverPersistentHeaderDelegate {
   const _Delegate({
     required this.appBar,
+    required this.pinned,
     required this.top,
     required this.collapsed,
     required this.rest,
@@ -395,6 +402,7 @@ class _Delegate extends SliverPersistentHeaderDelegate {
   });
 
   final FlAppBar appBar;
+  final bool pinned;
   final double top;
   final double collapsed;
   final double rest;
@@ -414,7 +422,7 @@ class _Delegate extends SliverPersistentHeaderDelegate {
     return _AppBarScroll(
       scroll: (
         collapse: titleTravel == 0 ? 0 : (shrinkOffset / titleTravel).clamp(0.0, 1.0),
-        raise: ((shrinkOffset - travel) / _raiseTravel).clamp(0.0, 1.0),
+        raise: pinned ? ((shrinkOffset - travel) / _raiseTravel).clamp(0.0, 1.0) : 0,
         height: math.max(rest - shrinkOffset, collapsed) - top,
       ),
       child: appBar,
@@ -424,6 +432,7 @@ class _Delegate extends SliverPersistentHeaderDelegate {
   @override
   bool shouldRebuild(_Delegate oldDelegate) =>
       appBar != oldDelegate.appBar ||
+      pinned != oldDelegate.pinned ||
       top != oldDelegate.top ||
       collapsed != oldDelegate.collapsed ||
       rest != oldDelegate.rest ||

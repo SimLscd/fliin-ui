@@ -8,6 +8,9 @@ enum FlColorRole {
   /// Role `surface`: `color.light.surface` and `color.dark.surface`.
   surface,
 
+  /// Role `background`: `color.light.background` and `color.dark.background`.
+  background,
+
   /// Role `surfaceRaised`: `color.light.surfaceRaised` and `color.dark.surfaceRaised`.
   surfaceRaised,
 
@@ -185,6 +188,9 @@ enum FlColorRole {
   /// Role `onSelected`: `color.light.onSelected` and `color.dark.onSelected`.
   onSelected,
 
+  /// Role `selectedSoft`: `color.light.selectedSoft` and `color.dark.selectedSoft`.
+  selectedSoft,
+
   /// Role `link`: `color.light.link` and `color.dark.link`.
   link,
 }
@@ -223,6 +229,7 @@ final class FlColorTokens {
   /// One value per field; [FlTokens.defaults] holds the project's.
   const FlColorTokens({
     required this.surface,
+    required this.background,
     required this.surfaceRaised,
     required this.surfaceOverlay,
     required this.surfacePressed,
@@ -282,11 +289,15 @@ final class FlColorTokens {
     required this.scrim,
     required this.selected,
     required this.onSelected,
+    required this.selectedSoft,
     required this.link,
   });
 
   /// Role `surface`, token `color.<mode>.surface`.
   final Color surface;
+
+  /// Role `background`, token `color.<mode>.background`.
+  final Color background;
 
   /// Role `surfaceRaised`, token `color.<mode>.surfaceRaised`.
   final Color surfaceRaised;
@@ -465,12 +476,16 @@ final class FlColorTokens {
   /// Role `onSelected`, token `color.<mode>.onSelected`.
   final Color onSelected;
 
+  /// Role `selectedSoft`, token `color.<mode>.selectedSoft`.
+  final Color selectedSoft;
+
   /// Role `link`, token `color.<mode>.link`.
   final Color link;
 
   /// The color of [role] in this mode.
   Color operator [](FlColorRole role) => switch (role) {
     FlColorRole.surface => surface,
+    FlColorRole.background => background,
     FlColorRole.surfaceRaised => surfaceRaised,
     FlColorRole.surfaceOverlay => surfaceOverlay,
     FlColorRole.surfacePressed => surfacePressed,
@@ -530,6 +545,7 @@ final class FlColorTokens {
     FlColorRole.scrim => scrim,
     FlColorRole.selected => selected,
     FlColorRole.onSelected => onSelected,
+    FlColorRole.selectedSoft => selectedSoft,
     FlColorRole.link => link,
   };
 
@@ -1025,6 +1041,30 @@ final class FlColorTokens {
     (
       foreground: FlColorRole.link,
       background: FlColorRole.control,
+      over: [],
+      kind: FlContrastKind.text,
+    ),
+    (
+      foreground: FlColorRole.onSurface,
+      background: FlColorRole.selectedSoft,
+      over: [FlColorRole.surfaceRaised],
+      kind: FlContrastKind.text,
+    ),
+    (
+      foreground: FlColorRole.onSurfaceMuted,
+      background: FlColorRole.selectedSoft,
+      over: [FlColorRole.surfaceRaised],
+      kind: FlContrastKind.text,
+    ),
+    (
+      foreground: FlColorRole.onSurface,
+      background: FlColorRole.background,
+      over: [],
+      kind: FlContrastKind.text,
+    ),
+    (
+      foreground: FlColorRole.onSurfaceMuted,
+      background: FlColorRole.background,
       over: [],
       kind: FlContrastKind.text,
     ),
@@ -1902,6 +1942,7 @@ final class FlTokens {
   static final FlTokens defaults = FlTokens(
     light: const FlColorTokens(
       surface: Color(0xFFFFFFFF),
+      background: Color(0xFFF4F3EF),
       surfaceRaised: Color(0xFFFFFFFF),
       surfaceOverlay: Color(0xFFFFFFFF),
       surfacePressed: Color(0xFFE9E8E2),
@@ -1929,14 +1970,14 @@ final class FlTokens {
       focusRing: Color(0xFF1D4ED8),
       switchThumb: Color(0xFFFFFFFF),
       switchTrack: Color(0xFFE9E8E2),
-      danger: Color(0xFFC2321F),
-      dangerFill: Color(0xFFC2321F),
-      dangerPressed: Color(0xFFC2321F),
+      danger: Color(0xFFC82332),
+      dangerFill: Color(0xFFC82332),
+      dangerPressed: Color(0xFFC82332),
       onDanger: Color(0xFFFFFFFF),
-      dangerSoft: Color(0x1FC2321F),
-      dangerSoftPressed: Color(0x29C2321F),
-      onDangerSoft: Color(0xFFA52817),
-      dangerFaint: Color(0x14C2321F),
+      dangerSoft: Color(0x1FC82332),
+      dangerSoftPressed: Color(0x29C82332),
+      onDangerSoft: Color(0xFFAB1E2B),
+      dangerFaint: Color(0x14C82332),
       success: Color(0xFF17944E),
       onSuccess: Color(0xFF0F0F0D),
       successPressed: Color(0xFF17944E),
@@ -1961,10 +2002,12 @@ final class FlTokens {
       scrim: Color(0x590F0F0D),
       selected: Color(0xFF2563EB),
       onSelected: Color(0xFFFFFFFF),
+      selectedSoft: Color(0x1A2563EB),
       link: Color(0xFF1D4ED8),
     ),
     dark: const FlColorTokens(
       surface: Color(0xFF0F0F0D),
+      background: Color(0xFF0F0F0D),
       surfaceRaised: Color(0xFF1A1A17),
       surfaceOverlay: Color(0xFF1A1A17),
       surfacePressed: Color(0xFF26261F),
@@ -2024,6 +2067,7 @@ final class FlTokens {
       scrim: Color(0x8C000000),
       selected: Color(0xFF3B63F6),
       onSelected: Color(0xFFFFFFFF),
+      selectedSoft: Color(0x2E3B63F6),
       link: Color(0xFF7AA7FF),
     ),
     shape: const FlShapeTokens(
@@ -2129,14 +2173,14 @@ final class FlTokens {
         ],
         dangerGlow: [
           FlShadowLayer(
-            color: Color(0x33C2321F),
+            color: Color(0x33C82332),
             offset: Offset(0, 0),
             blur: 0,
             spread: 4,
             inset: false,
           ),
           FlShadowLayer(
-            color: Color(0x59C2321F),
+            color: Color(0x59C82332),
             offset: Offset(0, 6),
             blur: 20,
             spread: 0,

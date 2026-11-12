@@ -54,7 +54,7 @@ Finder _frame(String label) =>
 /// Le fond de l'entrée, que le contour entoure.
 Finder _box(String label) => find.descendant(of: _frame(label), matching: find.byType(DecoratedBox)).first;
 
-Color? _outline(WidgetTester tester, String label) => tester.widget<FlInputFrame>(_frame(label)).outline;
+bool _invalid(WidgetTester tester, String label) => tester.widget<FlInputFrame>(_frame(label)).invalid;
 
 bool _focused(WidgetTester tester, String label) => tester.widget<FlInputFrame>(_frame(label)).focused;
 
@@ -185,7 +185,7 @@ void main() {
       );
       expect(find.bySemanticsLabel('Trop court'), findsNothing);
       expect(find.text('8 caractères au moins'), findsNothing);
-      expect(_outline(tester, 'Mot de passe'), _colors.danger);
+      expect(_invalid(tester, 'Mot de passe'), isTrue);
       semantics.dispose();
     },
   );
@@ -227,7 +227,7 @@ void main() {
     expect(field.hint, '8 caractères au moins');
     expect(field.validationResult, SemanticsValidationResult.none);
     expect(find.bySemanticsLabel('8 caractères au moins'), findsNothing);
-    expect(_outline(tester, 'Mot de passe'), isNull);
+    expect(_invalid(tester, 'Mot de passe'), isFalse);
     semantics.dispose();
   });
 
@@ -294,7 +294,7 @@ void main() {
     expect(_focused(tester, 'Prénom'), isTrue);
     await tester.pump(FlTokens.defaults.motion.short3);
     expect(_frame('Prénom'), _paintsRing(_colors.focusRing));
-    expect(_outline(tester, 'Prénom'), isNull);
+    expect(_invalid(tester, 'Prénom'), isFalse);
 
     await tester.sendKeyEvent(LogicalKeyboardKey.tab);
     await tester.pump();
@@ -549,20 +549,18 @@ void main() {
   });
 
   testWidgets(
-    'devrait épaissir l’anneau danger à la taille de l’anneau de focus quand le champ invalide prend le focus',
+    'devrait garder le fond pastel de l’erreur et poser l’anneau de focus quand le champ invalide prend le focus',
     (tester) async {
       await tester.pumpWidget(_app(const FlTextField(label: 'Ville', error: 'Inconnue', autofocus: true)));
       await tester.pumpAndSettle();
       expect(_editable(tester, 'Ville').focusNode.hasFocus, isTrue);
-      expect(_outline(tester, 'Ville'), _colors.danger);
+      expect(_invalid(tester, 'Ville'), isTrue);
       expect(_focused(tester, 'Ville'), isTrue);
-      expect(_frame('Ville'), isNot(_paintsRing(_colors.focusRing)), reason: 'le danger remplace l’accent');
-      // L'anneau déborde du fond de size.focusRing.
-      final box = tester.getRect(_box('Ville'));
-      final ring = FlTokens.defaults.size.focusRing;
+      expect(_frame('Ville'), _paintsRing(_colors.focusRing));
       expect(
         _frame('Ville'),
-        _paintsRing(_colors.danger, inside: Offset(box.width / 2, -ring / 2), outside: Offset(box.width / 2, ring / 2)),
+        isNot(_paintsRing(_colors.danger)),
+        reason: 'l’erreur se dit par le fond, pas par un contour',
       );
     },
   );
@@ -684,12 +682,12 @@ void main() {
     double opacity() => _paintOpacity(tester, find.byType(EditableText));
 
     await tester.pumpWidget(_app(input()));
-    expect(frame().outline, _colors.danger);
+    expect(frame().invalid, isTrue);
     expect(opacity(), closeTo(FlTokens.defaults.size.disabledOpacity, 1 / 255));
     expect(tester.widget<EditableText>(find.byType(EditableText)).focusNode.canRequestFocus, isFalse);
 
     await tester.pumpWidget(_app(input(invalid: false, disabled: false)));
-    expect(frame().outline, isNull);
+    expect(frame().invalid, isFalse);
     expect(opacity(), 1);
     expect(tester.widget<EditableText>(find.byType(EditableText)).focusNode.canRequestFocus, isTrue);
   });
@@ -904,6 +902,21 @@ void main() {
       expect(dots(), findsNothing);
       expect(textColor(tester), _colors.onSurface);
     });
+  });
+
+  testWidgets('devrait garder l’anneau de focus pour le clavier seul, sans touchFocusRing', (tester) async {
+    await tester.pumpWidget(_app(const FlTextField(label: 'Code promo', touchFocusRing: false)));
+    bool ring() => tester.widget<FlInputFrame>(find.byType(FlInputFrame)).focused;
+    await tester.tap(find.byType(EditableText));
+    await tester.pump();
+    expect(FocusManager.instance.highlightMode, FocusHighlightMode.touch);
+    expect(tester.widget<EditableText>(find.byType(EditableText)).focusNode.hasFocus, isTrue);
+    expect(ring(), isFalse, reason: 'au toucher, le curseur seul');
+    // Une touche du clavier fait passer en mode clavier : l'anneau revient.
+    await tester.sendKeyEvent(LogicalKeyboardKey.shiftLeft);
+    await tester.pump();
+    expect(FocusManager.instance.highlightMode, FocusHighlightMode.traditional);
+    expect(ring(), isTrue);
   });
 }
 

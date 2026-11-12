@@ -312,7 +312,7 @@ void main() {
     expect(find.text('Du lundi au vendredi'), findsNothing);
     expect(find.text('Date passée'), findsOneWidget);
     final frame = tester.widget<FlInputFrame>(find.descendant(of: _trigger, matching: find.byType(FlInputFrame)));
-    expect(frame.outline, _tokens.light.danger);
+    expect(frame.invalid, isTrue);
   });
 
   testWidgets('devrait ne pas s’ouvrir désactivé, sans bouton qui efface', (tester) async {

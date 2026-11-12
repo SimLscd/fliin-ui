@@ -301,7 +301,8 @@ final class SitePages {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${_e(title)}</title>
 <meta name="description" content="${_e(t(Copy.metaDescription))}">
-${path == null ? '' : '<link rel="canonical" href="$base$path">\n'}<link rel="icon" type="image/png" sizes="32x32" href="${root}assets/brand/icon-32.png">
+${path == null ? '' : '<link rel="canonical" href="$base$path">\n'}<link rel="icon" href="${root}favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="${root}assets/brand/icon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="${root}assets/brand/icon-192.png">
 <link rel="apple-touch-icon" href="${root}assets/brand/apple-touch-icon.png">
 <link rel="preload" href="${root}assets/fonts/geist-400.woff2" as="font" type="font/woff2" crossorigin>

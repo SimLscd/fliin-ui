@@ -28,7 +28,8 @@ enum FlAlertStatus {
   danger,
 }
 
-/// An inline alert: on a shadowed surface, the status
+/// An inline alert: on a shadowed surface (an error on the pastel
+/// `dangerSoft`, flat), the status
 /// icon, a title in its color, a muted description and, at the end, an
 /// action. Under the text, [content] takes what a sentence cannot hold (a
 /// list of steps), and [action] a button below the text, where a phone has
@@ -90,9 +91,11 @@ class FlAlert extends StatelessWidget {
       FlAlertStatus.accent => colors.onAccentSoft,
       FlAlertStatus.success => colors.onSuccessSoft,
       FlAlertStatus.warning => colors.onWarningSoft,
-      // On `control`, `danger` holds 4.5:1, as in the canvas.
-      FlAlertStatus.danger => colors.danger,
+      FlAlertStatus.danger => colors.onDangerSoft,
     };
+    // An error lies on the pastel `dangerSoft`, flat, as an invalid field
+    // does: every error of the registry looks the same.
+    final danger = status == FlAlertStatus.danger;
     Text text(String data, FlTextRole role, Color color, {FontWeight? weight, bool? heading}) => Text(
       data,
       textAlign: TextAlign.start,
@@ -110,6 +113,8 @@ class FlAlert extends StatelessWidget {
       role: kIsWeb ? SemanticsRole.alert : null,
       liveRegion: !kIsWeb,
       child: FlSurface(
+        variant: danger ? FlSurfaceVariant.transparent : FlSurfaceVariant.primary,
+        color: danger ? Color.alphaBlend(colors.dangerSoft, colors.surfaceRaised) : null,
         padding: EdgeInsets.all(theme.space.lg),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,

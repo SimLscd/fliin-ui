@@ -1,4 +1,5 @@
 import 'package:fliin_ui/components/alert/fl_alert.dart';
+import 'package:fliin_ui/components/surface/fl_surface.dart';
 import 'package:fliin_ui/core/fliin.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
@@ -26,7 +27,7 @@ void main() {
         (FlAlertStatus.accent, light.onAccentSoft),
         (FlAlertStatus.success, light.onSuccessSoft),
         (FlAlertStatus.warning, light.onWarningSoft),
-        (FlAlertStatus.danger, light.danger),
+        (FlAlertStatus.danger, light.onDangerSoft),
       ]) {
         await tester.pumpWidget(
           _app(
@@ -148,5 +149,18 @@ void main() {
     expect(alert.flagsCollection.isHeader, isTrue);
     expect(tester.getSemantics(find.bySemanticsLabel('Voir')), isNot(same(alert)));
     handle.dispose();
+  });
+
+  testWidgets('devrait poser une erreur à plat sur le rouge pastel, les autres statuts sur une carte ombrée', (
+    tester,
+  ) async {
+    final light = FlTokens.defaults.light;
+    await tester.pumpWidget(_app(const FlAlert(title: 'Paiement refusé', status: FlAlertStatus.danger)));
+    final surface = find.descendant(of: find.byType(FlAlert), matching: find.byType(FlSurface));
+    expect(tester.widget<FlSurface>(surface).color, Color.alphaBlend(light.dangerSoft, light.surfaceRaised));
+    expect(tester.widget<FlSurface>(surface).variant, FlSurfaceVariant.transparent);
+    await tester.pumpWidget(_app(const FlAlert(title: 'Enregistré', status: FlAlertStatus.success)));
+    expect(tester.widget<FlSurface>(surface).color, isNull);
+    expect(tester.widget<FlSurface>(surface).variant, FlSurfaceVariant.primary);
   });
 }

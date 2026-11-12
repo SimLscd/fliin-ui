@@ -1,14 +1,14 @@
 {
   "name": "input-otp",
   "type": "registry:component",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "title": "One-time code",
   "description": "Takes a code received by text message or email: one box per digit, in groups, a single field for screen readers, paste and the code the system suggests.",
   "flutter": ">=3.47.0 <4.0.0",
   "dependencies": {},
   "registryDependencies": [
     "core@^0.2.3",
-    "text-field@^0.2.0"
+    "text-field@^0.2.6"
   ],
   "files": [
     {
@@ -89,5 +89,5 @@
     },
     "goldens": null
   },
-  "changelog": "A code that becomes invalid shakes once (`FlShake`), on top of its `danger` outline. New `success`: a `success` outline is drawn around each box, one after the other (`medium2` each, `short1` apart), at once under reduced motion. Resting rendering unchanged; adding `success` breaks nothing."
+  "changelog": "An invalid value lies on the pastel `dangerSoft`, without a red ring, as every invalid input of the registry (`text-field` 0.2.6)."
 }

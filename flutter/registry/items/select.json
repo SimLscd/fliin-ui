@@ -1,21 +1,21 @@
 {
   "name": "select",
   "type": "registry:component",
-  "version": "0.2.5",
-  "changelog": "`helper` and `error` under the trigger (the error rings the trigger in `danger` and is announced), `required` (visible label asterisk, announced), `variant` (`secondary` on a surface); `FlSelectOption.leading` (icon, flag, avatar) before the label in the list and, once chosen, in the trigger. New optional parameters, nothing breaks.",
+  "version": "0.2.6",
+  "changelog": "An invalid value lies on the pastel `dangerSoft`, without a red ring, as every invalid input of the registry (`text-field` 0.2.6).",
   "title": "Select",
   "description": "Offers one or several choices from a closed list, from a trigger that shows the current choice. A list as wide as the trigger, or a bottom sheet or a dialog.",
   "flutter": ">=3.47.0 <4.0.0",
   "dependencies": {},
   "registryDependencies": [
+    "close-button@^0.2.0",
     "core@^0.2.0",
+    "dialog@^0.2.0",
+    "field@^0.2.0",
     "icons@^0.2.0",
     "popover@^0.2.0",
     "sheet@^0.2.0",
-    "dialog@^0.2.0",
-    "close-button@^0.2.0",
-    "field@^0.2.0",
-    "text-field@^0.2.3"
+    "text-field@^0.2.6"
   ],
   "files": [
     {

@@ -331,13 +331,13 @@ void main() {
       tester.renderObject<RenderParagraph>(find.text('Pour la livraison')).text.style?.color,
       _tokens.light.onSurfaceMuted,
     );
-    expect(tester.widget<FlInputFrame>(frame).outline, isNull);
+    expect(tester.widget<FlInputFrame>(frame).invalid, isFalse);
     expect(tester.widget<FlLabel>(find.byType(FlLabel)).required, isTrue);
     await tester.pumpWidget(overlayApp(select(error: 'Choisissez un fruit')));
     await tester.pumpAndSettle();
     expect(find.text('Pour la livraison'), findsNothing);
     expect(find.text('Choisissez un fruit'), findsOneWidget);
-    expect(tester.widget<FlInputFrame>(frame).outline, _tokens.light.danger);
+    expect(tester.widget<FlInputFrame>(frame).invalid, isTrue);
   });
 
   testWidgets('devrait montrer le leading de l’option dans sa ligne et, choisie, dans le déclencheur', (tester) async {

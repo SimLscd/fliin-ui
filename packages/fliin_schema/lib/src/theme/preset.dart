@@ -38,7 +38,7 @@ enum PresetPrimary {
   red('#DC2626', shuffled: false),
   orange('#EA580C', shuffled: false),
   amber('#D97706', shuffled: false),
-  yellow('#CA8A04', shuffled: false),
+  yellow('#CA8A04'),
   lime('#65A30D'),
   green('#16A34A'),
   emerald('#059669'),

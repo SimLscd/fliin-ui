@@ -6,6 +6,7 @@ final FlTokens tortureA = FlTokens(
   light: const FlColorTokens(
     surface: Color(0xFFFFFFFF),
     surfaceRaised: Color(0xFFF4F3EF),
+    background: Color(0xFFF4F3EF),
     surfaceOverlay: Color(0xFFFFFFFF),
     surfacePressed: Color(0xFFE9E8E2),
     surfaceSecondary: Color(0xFFE9E8E2),
@@ -65,10 +66,12 @@ final FlTokens tortureA = FlTokens(
     selected: Color(0xFF0F0F0D),
     link: Color(0xFF0F0F0D),
     onSelected: Color(0xFFFFFFFF),
+    selectedSoft: Color(0x1A0F0F0D),
   ),
   dark: const FlColorTokens(
     surface: Color(0xFF0F0F0D),
     surfaceRaised: Color(0xFF1A1A17),
+    background: Color(0xFF0F0F0D),
     surfaceOverlay: Color(0xFF1A1A17),
     surfacePressed: Color(0xFF26261F),
     surfaceSecondary: Color(0xFF26261F),
@@ -128,6 +131,7 @@ final FlTokens tortureA = FlTokens(
     selected: Color(0xFFF5F5F0),
     link: Color(0xFFF5F5F0),
     onSelected: Color(0xFF0F0F0D),
+    selectedSoft: Color(0x2EF5F5F0),
   ),
   shape: const FlShapeTokens(
     radiusControl: 10,
@@ -874,6 +878,7 @@ final FlTokens tortureB = FlTokens(
   light: const FlColorTokens(
     surface: Color(0xFFFFFFFF),
     surfaceRaised: Color(0xFFF4F3EF),
+    background: Color(0xFFF4F3EF),
     surfaceOverlay: Color(0xFFFFFFFF),
     surfacePressed: Color(0xFFE9E8E2),
     surfaceSecondary: Color(0xFFE9E8E2),
@@ -933,10 +938,12 @@ final FlTokens tortureB = FlTokens(
     selected: Color(0xFF0F0F0D),
     link: Color(0xFF0F0F0D),
     onSelected: Color(0xFFFFFFFF),
+    selectedSoft: Color(0x1A0F0F0D),
   ),
   dark: const FlColorTokens(
     surface: Color(0xFF0F0F0D),
     surfaceRaised: Color(0xFF1A1A17),
+    background: Color(0xFF0F0F0D),
     surfaceOverlay: Color(0xFF1A1A17),
     surfacePressed: Color(0xFF26261F),
     surfaceSecondary: Color(0xFF26261F),
@@ -996,6 +1003,7 @@ final FlTokens tortureB = FlTokens(
     selected: Color(0xFFF5F5F0),
     link: Color(0xFFF5F5F0),
     onSelected: Color(0xFF0F0F0D),
+    selectedSoft: Color(0x2EF5F5F0),
   ),
   shape: const FlShapeTokens(
     radiusControl: 0,

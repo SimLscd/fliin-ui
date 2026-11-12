@@ -131,7 +131,7 @@ void main() {
     );
     await tester.pumpWidget(_app(field()));
     expect(tester.widget<EditableText>(find.byType(EditableText)).focusNode.canRequestFocus, isFalse);
-    expect(tester.widget<FlInputFrame>(find.byType(FlInputFrame)).outline, FlTokens.defaults.light.danger);
+    expect(tester.widget<FlInputFrame>(find.byType(FlInputFrame)).invalid, isTrue);
     await tester.pumpWidget(_app(field(disabled: false)));
     expect(tester.widget<EditableText>(find.byType(EditableText)).focusNode.canRequestFocus, isTrue);
   });

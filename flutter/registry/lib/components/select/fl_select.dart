@@ -429,7 +429,7 @@ class _Trigger<T> extends StatelessWidget {
           // Open, the trigger carries the focus ring, like a field being typed in.
           child: FlInputFrame(
             variant: select.variant,
-            outline: select.error == null ? null : colors.danger,
+            invalid: select.error != null,
             focused: open,
             hovered: states.contains(WidgetState.hovered),
             // Izydesk's `.input.select-trigger`: the control height, `textSm`.

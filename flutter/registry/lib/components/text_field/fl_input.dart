@@ -33,8 +33,10 @@ enum FlInputVariant {
 /// and no outline at rest. Under the pointer ([hovered]) a hairline in
 /// `border` appears, and a `secondary` fill darkens
 /// slightly; [focused] draws a `size.focusRing` ring in `focusRing` hugging
-/// the box, and [outline] a ring of [outlineWidth] in its color (`danger` for
-/// an invalid input), thickened to `size.focusRing` when [focused]. The
+/// the box, and [outline] a ring of [outlineWidth] in its color, thickened to
+/// `size.focusRing` when [focused]. [invalid] lays the input on the pastel
+/// `dangerSoft`, without shadow nor ring: every invalid input of the
+/// registry says it the same way. The
 /// rings paint outside the box, which keeps its
 /// size; the fill and the hairline fade in `motion.short3`, the ring shows
 /// at once. `FlInput` carries it, and
@@ -46,12 +48,18 @@ class FlInputFrame extends StatelessWidget {
     required this.variant,
     this.outline,
     this.outlineWidth = 1,
+    this.invalid = false,
     this.focused = false,
     this.hovered = false,
     this.pill = false,
     this.frameKey,
     required this.child,
   });
+
+  /// True: the value is refused. The fill turns to `dangerSoft` over the
+  /// usual one, opaque, and the shadow goes; the error itself is said in
+  /// words under the input.
+  final bool invalid;
 
   /// True: under the pointer, a `border` hairline appears inside the edge,
   /// unless the frame has focus or an [outline].
@@ -65,8 +73,8 @@ class FlInputFrame extends StatelessWidget {
   /// The background, and the shadow in `primary`.
   final FlInputVariant variant;
 
-  /// The color of a ring around the frame (`danger` for an invalid input);
-  /// when null, none.
+  /// The color of a ring around the frame; when null, none. An invalid
+  /// input takes [invalid] instead.
   final Color? outline;
 
   /// The width of the [outline] ring, in logical points, outside the box:
@@ -90,20 +98,22 @@ class FlInputFrame extends StatelessWidget {
     final motion = FlMotion.of(context);
     final outline = this.outline;
     final primary = variant == FlInputVariant.primary && !pill;
+    final shadowed = primary && !invalid;
     final ring = switch ((outline, focused)) {
       (final color?, _) => (color: color, width: focused ? math.max(outlineWidth, theme.size.focusRing) : outlineWidth),
       (null, true) => (color: colors.focusRing, width: theme.size.focusRing),
       (null, false) => (color: null, width: 0.0),
     };
-    final hover = hovered && !focused && outline == null;
-    final fill = primary
+    final hover = hovered && !focused && outline == null && !invalid;
+    final base = primary
         ? colors.field
         : hover
         ? Color.lerp(colors.control, colors.controlPressed, 0.5)!
         : colors.control;
+    final fill = invalid ? Color.alphaBlend(colors.dangerSoft, base) : base;
     final edge = primary && hover ? colors.border : colors.border.withValues(alpha: 0);
     Widget frame(double radius, {required bool capsule}) => FlShadow(
-      layers: primary ? theme.shadows.field : const [],
+      layers: shadowed ? theme.shadows.field : const [],
       // A box-shadow follows the circular corners, even under continuous ones
       // (see FlSurface).
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius)),
@@ -370,6 +380,7 @@ class FlInput extends StatefulWidget {
     this.onSubmitted,
     this.textAlign = TextAlign.start,
     this.compact = false,
+    this.touchFocusRing = true,
     this.statesController,
   }) : assert(maxLines >= 1, 'at least one line'),
        assert(rows == null || (multiline && rows >= 1), 'rows sets the height of a text area: set multiline'),
@@ -472,6 +483,11 @@ class FlInput extends StatefulWidget {
   /// and `space.md + space.xs / 2` at the ends: 40 high with the default
   /// tokens, Izydesk's `.composer .input`. [variant] no longer applies.
   final bool compact;
+
+  /// False: the focus ring shows only when focus moves by keyboard; under
+  /// touch, the caret alone says where the text goes, as in iOS's fields.
+  /// True by default: the ring follows focus however it came.
+  final bool touchFocusRing;
 
   /// The input's states, which the app can read or force (a hovered or
   /// focused preview). The input adds `hovered` under the pointer; a forced
@@ -586,6 +602,12 @@ class _FlInputState extends State<FlInput>
     super.initState();
     _adoptFocusNode();
     _states.addListener(_onFocusChange);
+    FocusManager.instance.addHighlightModeListener(_onHighlightMode);
+  }
+
+  /// Touch or keyboard: the ring may come or go.
+  void _onHighlightMode(FocusHighlightMode mode) {
+    if (!widget.touchFocusRing && mounted) setState(() {});
   }
 
   @override
@@ -640,6 +662,7 @@ class _FlInputState extends State<FlInput>
 
   @override
   void dispose() {
+    FocusManager.instance.removeHighlightModeListener(_onHighlightMode);
     _reveal.dispose();
     _releaseFocusNode(_focusNode, provided: widget.focusNode != null);
     _states.removeListener(_onFocusChange);
@@ -775,8 +798,10 @@ class _FlInputState extends State<FlInput>
             variant: widget.variant,
             pill: compact,
             frameKey: _frameKey,
-            outline: invalid ? colors.danger : null,
-            focused: focused,
+            invalid: invalid,
+            focused:
+                focused &&
+                (widget.touchFocusRing || FocusManager.instance.highlightMode == FocusHighlightMode.traditional),
             hovered: hovered,
             child: const SizedBox.expand(),
           ),

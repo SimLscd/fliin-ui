@@ -102,6 +102,9 @@ int writeSite({
       write('assets/brand/${p.basename(file.path)}', file.readAsBytesSync());
     }
   }
+  // At the root: Safari, search engines and many tools ask for
+  // `/favicon.ico` without reading the page.
+  write('favicon.ico', File(p.join(assets, 'brand', 'favicon.ico')).readAsBytesSync());
   final fonts = Directory(p.join(assets, 'fonts'));
   for (final file in fonts.listSync().whereType<File>()) {
     write('assets/fonts/${p.basename(file.path)}', file.readAsBytesSync());

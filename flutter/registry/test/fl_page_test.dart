@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:fliin_ui/components/app_bar/fl_app_bar.dart';
+import 'package:fliin_ui/components/button/fl_button.dart';
 import 'package:fliin_ui/components/page/fl_page.dart';
 import 'package:fliin_ui/components/spinner/fl_spinner.dart';
 import 'package:fliin_ui/components/tab_bar/fl_tab_bar.dart';
@@ -447,5 +448,55 @@ void main() {
     addTearDown(tester.view.reset);
     await tester.pumpWidget(_phoneApp(FlPage(extendBody: true, tabBar: _tabBar, slivers: _rows()), keyboard: 300));
     expect(tester.getRect(find.byType(CustomScrollView)).bottom, _phone.height - 300);
+  });
+
+  testWidgets('devrait arrêter le contenu au-dessus d’une barre d’action posée sur le clavier avec extendBody', (
+    tester,
+  ) async {
+    tester.view.physicalSize = _phone;
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.reset);
+    await tester.pumpWidget(
+      _phoneApp(
+        FlPage(
+          extendBody: true,
+          tabBar: FlPageBar(
+            translucent: true,
+            action: FlButton(label: 'Payer', onPressed: () {}),
+          ),
+          slivers: _rows(),
+        ),
+        keyboard: 300,
+      ),
+    );
+    final bar = tester.getRect(find.byType(FlButton));
+    expect(tester.getRect(find.byType(CustomScrollView)).bottom, lessThanOrEqualTo(bar.top));
+  });
+
+  testWidgets('devrait laisser partir la barre du haut avec le contenu sans pinAppBar, l’heure gardée lisible', (
+    tester,
+  ) async {
+    tester.view.physicalSize = _phone;
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.reset);
+    final controller = ScrollController();
+    addTearDown(controller.dispose);
+    await tester.pumpWidget(
+      _phoneApp(
+        FlPage(
+          controller: controller,
+          pinAppBar: false,
+          appBar: const FlAppBar(title: 'Panier'),
+          slivers: _rows(),
+        ),
+      ),
+    );
+    expect(tester.getRect(find.text('Panier')).top, greaterThan(_safe.top));
+    controller.jumpTo(400);
+    await tester.pump();
+    expect(find.text('Panier').hitTestable(), findsNothing, reason: 'la barre est partie avec le contenu');
+    // A strip of glass covers the status bar, its height and no more.
+    final strip = find.descendant(of: find.byType(FlPage), matching: find.byType(BackdropFilter));
+    expect(tester.getRect(strip).height, _safe.top);
   });
 }

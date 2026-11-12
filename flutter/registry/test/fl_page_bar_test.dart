@@ -163,4 +163,121 @@ void main() {
     expect(button.bottom, lessThanOrEqualTo(844 - _safe.bottom));
     expect(button.top, greaterThanOrEqualTo(bar.top));
   });
+
+  testWidgets('devrait laisser voir, flou, le contenu qui passe sous la barre translucide', (tester) async {
+    Widget page({required bool translucent}) => MediaQuery(
+      data: const MediaQueryData(size: Size(390, 844), padding: _safe, viewPadding: _safe),
+      child: Directionality(
+        textDirection: TextDirection.ltr,
+        child: FlScope(
+          platform: TargetPlatform.iOS,
+          child: FlPage(
+            extendBody: true,
+            tabBar: FlPageBar(
+              translucent: translucent,
+              action: FlButton(label: 'Payer', onPressed: () {}),
+            ),
+            slivers: const [SliverToBoxAdapter(child: SizedBox(height: 2000))],
+          ),
+        ),
+      ),
+    );
+    await tester.pumpWidget(page(translucent: false));
+    expect(find.byType(BackdropFilter), findsNothing);
+    await tester.pumpWidget(page(translucent: true));
+    expect(find.byType(BackdropFilter), findsOneWidget);
+    final background = tester.widget<ColoredBox>(
+      find.descendant(of: find.byType(BackdropFilter), matching: find.byType(ColoredBox)).first,
+    );
+    expect(background.color.a, lessThan(1));
+  });
+
+  testWidgets('devrait faire flotter l’action sans bande ni flou, et poser l’avis sur une carte blanche', (
+    tester,
+  ) async {
+    await tester.pumpWidget(
+      MediaQuery(
+        data: const MediaQueryData(size: Size(390, 844), padding: _safe, viewPadding: _safe),
+        child: Directionality(
+          textDirection: TextDirection.ltr,
+          child: FlScope(
+            platform: TargetPlatform.iOS,
+            brightness: Brightness.light,
+            child: FlPage(
+              extendBody: true,
+              tabBar: FlPageBar(
+                floating: true,
+                translucent: true,
+                info: const [FlText('Ajoutez une adresse pour continuer.')],
+                action: FlButton(label: 'Continuer', onPressed: () {}),
+              ),
+              slivers: const [SliverToBoxAdapter(child: SizedBox(height: 2000))],
+            ),
+          ),
+        ),
+      ),
+    );
+    final bar = find.byType(FlPageBar);
+    expect(find.descendant(of: bar, matching: find.byType(BackdropFilter)), findsNothing);
+    expect(
+      find
+          .descendant(of: bar, matching: find.byType(ColoredBox))
+          .evaluate()
+          .where((element) => element.findAncestorWidgetOfExactType<FlButton>() == null),
+      isEmpty,
+      reason: 'aucune bande sous l’action',
+    );
+    final card = tester.widget<DecoratedBox>(
+      find.ancestor(of: find.text('Ajoutez une adresse pour continuer.'), matching: find.byType(DecoratedBox)).last,
+    );
+    final colors = FlScope.of(tester.element(bar)).colors;
+    expect((card.decoration as ShapeDecoration).color, colors.surfaceRaised, reason: 'l’avis reste lisible');
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets(
+    'devrait arrêter le lecteur d’écran à la barre translucide : rogné à moitié dessous, caché tout dessous',
+    (tester) async {
+      final semantics = tester.ensureSemantics();
+      tester.view.physicalSize = const Size(390, 844);
+      tester.view.devicePixelRatio = 1;
+      addTearDown(tester.view.reset);
+      await tester.pumpWidget(
+        MediaQuery(
+          data: const MediaQueryData(size: Size(390, 844)),
+          child: Directionality(
+            textDirection: TextDirection.ltr,
+            child: FlScope(
+              platform: TargetPlatform.iOS,
+              child: FlPage(
+                extendBody: true,
+                tabBar: FlPageBar(
+                  translucent: true,
+                  action: FlButton(label: 'Payer', onPressed: () {}),
+                ),
+                slivers: [
+                  SliverList.list(
+                    children: [for (var i = 0; i < 30; i++) SizedBox(height: 40, child: FlText('Ligne $i'))],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      );
+      final bar = tester.getRect(find.byType(FlPageBar)).top;
+      var cut = 0;
+      for (var i = 0; i < 29 && find.text('Ligne ${i + 1}').evaluate().isNotEmpty; i++) {
+        final line = tester.getRect(find.text('Ligne $i'));
+        if (line.top >= bar || line.bottom <= bar) continue;
+        final node = tester.getSemantics(find.text('Ligne $i'));
+        expect(node.rect.height, closeTo(bar - line.top, 0.5), reason: 'la part visible seulement');
+        final under = tester.getSemantics(find.text('Ligne ${i + 1}'));
+        expect(under.flagsCollection.isHidden, isTrue);
+        cut++;
+      }
+      expect(cut, 1, reason: 'une ligne à cheval sur le bord de la barre');
+      semantics.dispose();
+    },
+  );
 }

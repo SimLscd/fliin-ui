@@ -671,7 +671,7 @@ class _FlSegmentedFieldState extends State<FlSegmentedField> with TextInputClien
               active: invalid,
               child: FlInputFrame(
                 variant: widget.variant,
-                outline: invalid ? colors.danger : null,
+                invalid: invalid,
                 focused: focused,
                 child: ConstrainedBox(
                   constraints: BoxConstraints(minHeight: theme.controlHeight),

@@ -1,20 +1,20 @@
 {
   "name": "date-picker",
   "type": "registry:component",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "title": "Date picker",
   "description": "Picks a date from a form field that opens the calendar, as a bottom sheet on phones and a popover on tablets, with the chosen date written out in full and a button to clear it.",
   "flutter": ">=3.47.0 <4.0.0",
   "dependencies": {},
   "registryDependencies": [
-    "core@^0.2.0",
-    "icons@^0.2.0",
-    "field@^0.2.0",
-    "text-field@^0.2.0",
     "button@^0.2.0",
+    "calendar@^0.2.5",
+    "core@^0.2.0",
+    "field@^0.2.0",
+    "icons@^0.2.0",
     "popover@^0.2.0",
     "sheet@^0.2.0",
-    "calendar@^0.2.5"
+    "text-field@^0.2.6"
   ],
   "files": [
     {
@@ -103,5 +103,5 @@
     },
     "goldens": null
   },
-  "changelog": "`format` writes the date the app's way (in full by default), `variant: FlInputVariant.secondary` fills the field on a card (`FlDatePickerField` carries it too), and `indicatorOf` passes its dots for planned days to the open calendar. `FlInputVariant` is re-exported. Requires `calendar` 0.2.5. Without them, the rendering does not change."
+  "changelog": "An invalid value lies on the pastel `dangerSoft`, without a red ring, as every invalid input of the registry (`text-field` 0.2.6)."
 }

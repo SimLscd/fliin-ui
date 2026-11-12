@@ -105,6 +105,7 @@ Map<String, Object?> withLiteralTints(Map<String, Object?> json) {
       'accentSoftPressed',
       'dangerSoft',
       'dangerSoftPressed',
+      'selectedSoft',
     ]) {
       (roles[role]! as Map)[r'$value'] = {
         'colorSpace': 'srgb',

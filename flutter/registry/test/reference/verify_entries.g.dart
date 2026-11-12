@@ -196,7 +196,7 @@ final Map<String, FlReferenceEntry> verifyEntries = {
     ),
   ),
   'alert': (
-    version: '0.2.4',
+    version: '0.2.5',
     canvas: const Size(390, 1100),
     platformCanvas: const {},
     settle: null,
@@ -265,7 +265,7 @@ final Map<String, FlReferenceEntry> verifyEntries = {
     ),
   ),
   'app-bar': (
-    version: '0.3.1',
+    version: '0.3.2',
     canvas: const Size(390, 560),
     platformCanvas: const {},
     settle: null,
@@ -2547,7 +2547,7 @@ final Map<String, FlReferenceEntry> verifyEntries = {
     ),
   ),
   'core': (
-    version: '0.2.7',
+    version: '0.2.8',
     canvas: null,
     platformCanvas: const {},
     settle: null,
@@ -2578,7 +2578,7 @@ final Map<String, FlReferenceEntry> verifyEntries = {
     ),
   ),
   'date-field': (
-    version: '0.2.4',
+    version: '0.2.5',
     canvas: const Size(390, 640),
     platformCanvas: const {},
     settle: null,
@@ -2660,7 +2660,7 @@ final Map<String, FlReferenceEntry> verifyEntries = {
     ),
   ),
   'date-picker': (
-    version: '0.2.3',
+    version: '0.2.4',
     canvas: const Size(390, 900),
     platformCanvas: const {},
     settle: const Duration(milliseconds: 400),
@@ -3393,7 +3393,7 @@ final Map<String, FlReferenceEntry> verifyEntries = {
     ),
   ),
   'input-otp': (
-    version: '0.2.5',
+    version: '0.2.6',
     canvas: const Size(390, 320),
     platformCanvas: const {},
     settle: const Duration(milliseconds: 300),
@@ -3997,7 +3997,7 @@ final Map<String, FlReferenceEntry> verifyEntries = {
     ),
   ),
   'page': (
-    version: '0.2.4',
+    version: '0.2.5',
     canvas: const Size(780, 844),
     platformCanvas: const {},
     settle: null,
@@ -5030,7 +5030,7 @@ final Map<String, FlReferenceEntry> verifyEntries = {
     ),
   ),
   'select': (
-    version: '0.2.5',
+    version: '0.2.6',
     canvas: const Size(390, 420),
     platformCanvas: const {},
     settle: const Duration(milliseconds: 400),
@@ -6189,7 +6189,7 @@ final Map<String, FlReferenceEntry> verifyEntries = {
     ),
   ),
   'text-field': (
-    version: '0.2.5',
+    version: '0.2.6',
     canvas: const Size(390, 800),
     platformCanvas: const {},
     settle: const Duration(milliseconds: 300),

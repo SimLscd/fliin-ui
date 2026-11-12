@@ -1,7 +1,7 @@
 {
   "name": "text-field",
   "type": "registry:component",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "title": "Text field",
   "description": "Takes a line or a paragraph of text: label, helper and announced error, required field, prefix, suffix, obscured input, text area and a cut, copy, paste toolbar.",
   "flutter": ">=3.47.0 <4.0.0",
@@ -106,5 +106,11 @@
     },
     "goldens": null
   },
-  "changelog": "A text area takes its height in lines (`rows`); `inputFormatters`, `maxLength` and `textCapitalization` pass to the field and the input, as on a Flutter `TextField`. `FlInputAffix.tight` puts an affix button `space.xs` from the edge, and `flInputAffixExtent` gives its height. Optional parameters: without them, rendering and API unchanged."
+  "changelog": "An invalid input lies on the pastel `dangerSoft`, without shadow nor red ring (`FlInputFrame.invalid`): every invalid input of the registry says it the same way, the error in words under it. `touchFocusRing: false`: the focus ring shows only when focus moves by keyboard; under touch, the caret alone says where the text goes, as in iOS's fields. `invalid` makes the field invalid without a text under it, the reason said elsewhere (a toast).",
+  "breaking": [
+    {
+      "kind": "semantic",
+      "description": "An invalid input no longer draws a `danger` ring: `FlInputFrame.invalid` lays it on `dangerSoft`. A frame you build with `outline: colors.danger` for an error should pass `invalid: true` instead."
+    }
+  ]
 }

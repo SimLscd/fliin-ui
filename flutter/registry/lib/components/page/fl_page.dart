@@ -1,5 +1,6 @@
 import 'dart:async' show unawaited;
 import 'dart:math' as math;
+import 'dart:ui' show ImageFilter;
 
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart' show HapticFeedback;
@@ -68,6 +69,8 @@ class FlPage extends StatefulWidget {
     this.appBar,
     this.tabBar,
     this.extendBody = false,
+    this.pinAppBar = true,
+    this.color,
     this.refresh,
     this.controller,
     required this.slivers,
@@ -80,6 +83,16 @@ class FlPage extends StatefulWidget {
   /// The bottom navigation, usually an `FlBottomTabBar`, which carries the
   /// bottom safe area; when null, the content keeps it as padding.
   final Widget? tabBar;
+
+  /// False: [appBar] scrolls away with the content, without the background
+  /// a pinned bar raises: the screen is all content once scrolled, as a
+  /// cart or a sheet-like page. True by default.
+  final bool pinAppBar;
+
+  /// The page's color; when null, `surface`. `background`, the theme's base,
+  /// sets white cards apart without a shadow, as a theme without shadows
+  /// needs.
+  final Color? color;
 
   /// True: the content passes under [tabBar], which must draw its own
   /// background over it (a floating or translucent `FlBottomTabBar`);
@@ -250,7 +263,7 @@ class _FlPageState extends State<FlPage> with SingleTickerProviderStateMixin {
           physics: physics,
           slivers: [
             if (appBar != null)
-              FlSliverAppBar(appBar: appBar)
+              FlSliverAppBar(appBar: appBar, pinned: widget.pinAppBar)
             else
               SliverPadding(padding: EdgeInsets.only(top: media.padding.top)),
             if (refresh != null)
@@ -292,8 +305,9 @@ class _FlPageState extends State<FlPage> with SingleTickerProviderStateMixin {
           : {CustomSemanticsAction(label: refresh.label): () => _start(gesture: false)},
       child: body,
     );
+    final color = widget.color ?? theme.colors.surface;
     return ColoredBox(
-      color: theme.colors.surface,
+      color: color,
       child: CustomMultiChildLayout(
         delegate: _PageLayout(keyboard: media.viewInsets.bottom, extendBody: widget.extendBody),
         children: [
@@ -315,19 +329,76 @@ class _FlPageState extends State<FlPage> with SingleTickerProviderStateMixin {
                           padding: data.padding.copyWith(bottom: room),
                           viewPadding: data.viewPadding.copyWith(bottom: room),
                         ),
-                  child: body,
+                  // What passes under the bar is seen blurred, not read: the
+                  // screen reader stops at the bar, as on iOS.
+                  child: _SemanticsClip(bottom: room, child: body),
                 );
               },
             ),
           ),
-          if (tabBar != null) LayoutId(id: _Slot.tabBar, child: tabBar),
+          if (tabBar != null)
+            LayoutId(
+              id: _Slot.tabBar,
+              child: _PageColor(color: widget.color, child: tabBar),
+            ),
+          // A bar that leaves with the content leaves the status bar over
+          // it: a strip of the bar's glass keeps the time and the battery
+          // readable, and shows nothing at rest, the page's own color.
+          if (appBar != null && !widget.pinAppBar)
+            LayoutId(
+              id: _Slot.statusBar,
+              child: ClipRect(
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(sigmaX: _glassBlur, sigmaY: _glassBlur),
+                  child: ColoredBox(
+                    color: color.withValues(alpha: color.a * _glassOpacity),
+                    child: SizedBox(height: media.padding.top),
+                  ),
+                ),
+              ),
+            ),
         ],
       ),
     );
   }
 }
 
-enum _Slot { body, tabBar }
+enum _Slot { body, tabBar, statusBar }
+
+/// Tells the semantics, not the painting, that [child] is cut [bottom] above
+/// its lower edge: a node partly under the bar keeps its visible part, a
+/// node wholly under it is hidden. The approximate paint clip is the one
+/// Flutter carries down through the scroll view; the semantics clip stops
+/// at the viewport.
+class _SemanticsClip extends SingleChildRenderObjectWidget {
+  const _SemanticsClip({required this.bottom, super.child});
+
+  final double bottom;
+
+  @override
+  _RenderSemanticsClip createRenderObject(BuildContext context) => _RenderSemanticsClip(bottom);
+
+  @override
+  void updateRenderObject(BuildContext context, _RenderSemanticsClip renderObject) {
+    renderObject.bottom = bottom;
+  }
+}
+
+class _RenderSemanticsClip extends RenderProxyBox {
+  _RenderSemanticsClip(this._bottom);
+
+  double _bottom;
+
+  set bottom(double value) {
+    if (value == _bottom) return;
+    _bottom = value;
+    markNeedsSemanticsUpdate();
+  }
+
+  @override
+  Rect? describeApproximatePaintClip(RenderObject child) =>
+      _bottom == 0 ? null : Offset.zero & Size(size.width, math.max(0, size.height - _bottom));
+}
 
 /// The tab bar at the bottom, at its own height; the content above it, or
 /// above the keyboard when it covers the bar. With [extendBody], the content
@@ -345,10 +416,16 @@ class _PageLayout extends MultiChildLayoutDelegate {
       bar = layoutChild(_Slot.tabBar, BoxConstraints.tightFor(width: size.width)).height;
       positionChild(_Slot.tabBar, Offset(0, size.height - bar));
     }
-    final under = extendBody && keyboard < bar;
+    // With the keyboard open, nothing passes under: a tab bar is covered by
+    // the keyboard, and a page bar sits on it, the focused field above.
+    final under = extendBody && keyboard == 0;
     final height = math.max(0.0, size.height - (under ? 0 : math.max(bar, keyboard)));
     layoutChild(_Slot.body, _BodyConstraints(width: size.width, height: height, room: under ? bar : 0));
     positionChild(_Slot.body, Offset.zero);
+    if (hasChild(_Slot.statusBar)) {
+      layoutChild(_Slot.statusBar, BoxConstraints.tightFor(width: size.width));
+      positionChild(_Slot.statusBar, Offset.zero);
+    }
   }
 
   @override
@@ -568,12 +645,21 @@ class _RenderRefresh extends RenderSliver with RenderObjectWithChildMixin<Render
   }) => false;
 }
 
+/// The blur behind a translucent page bar, and how opaque its background
+/// gets: those of the raised `FlAppBar` and the translucent tab bar.
+const _glassBlur = 20.0;
+const _glassOpacity = 0.85;
+
 /// The action bar at the bottom of a screen, to place in the `tabBar` slot of
 /// an [FlPage]: a divider, what the screen says next to the action ([info]: a
 /// notice, the billed amount), then the [action] ("Payer", "S'abonner"). The
 /// background is `surfaceRaised`, and the bottom safe area is kept. With
 /// [plain], neither background nor divider: the action seems to sit on the
-/// page, and the content stops above it.
+/// page, and the content stops above it. With [translucent], the background
+/// lets the content show through, blurred: give the page `extendBody` so the
+/// content passes under the bar. With [floating], no band at all: the action
+/// floats over the content, and [info] sits on a white card of its own, to
+/// stay readable over what passes under it; give the page `extendBody` too.
 ///
 /// It takes at most half of the screen's height, and with the keyboard open,
 /// half of the room above it. Beyond that (a much enlarged text, a long
@@ -587,7 +673,14 @@ class _RenderRefresh extends RenderSliver with RenderObjectWithChildMixin<Render
 /// scrolls through it.
 class FlPageBar extends StatelessWidget {
   /// The bar of the [action], below [info].
-  const FlPageBar({super.key, this.info = const [], this.action, this.plain = false});
+  const FlPageBar({
+    super.key,
+    this.info = const [],
+    this.action,
+    this.plain = false,
+    this.translucent = false,
+    this.floating = false,
+  });
 
   /// What is said above the action, top to bottom; when empty, the action
   /// alone.
@@ -600,6 +693,15 @@ class FlPageBar extends StatelessWidget {
 
   /// True: no background nor divider, on the page's color.
   final bool plain;
+
+  /// True: the `surfaceRaised` background lets what passes under it show,
+  /// blurred, as through iOS's bars. No effect with [plain].
+  final bool translucent;
+
+  /// True: neither background, blur nor divider; the action floats over the
+  /// content, and [info] sits on a white card. Takes precedence over [plain]
+  /// and [translucent].
+  final bool floating;
 
   @override
   Widget build(BuildContext context) {
@@ -615,65 +717,110 @@ class FlPageBar extends StatelessWidget {
     // The bottom safe area replaces the bar's last `space.md` instead of
     // adding to it, as in the canvas's frames.
     final bottom = math.max(MediaQuery.paddingOf(context).bottom, space.md);
-    final bar = ColoredBox(
-      color: plain ? colors.surface : colors.surfaceRaised,
-      child: ConstrainedBox(
-        constraints: BoxConstraints(maxHeight: (MediaQuery.sizeOf(context).height - keyboard) / 2),
-        child: SafeArea(
-          top: false,
-          bottom: false,
-          // The action keeps its height as long as it fits; taller than the
-          // whole bar (an extreme text size), it scrolls, its bottom on screen.
-          child: LayoutBuilder(
-            builder: (context, constraints) => Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                if (!plain) FlSeparator(thickness: line),
-                if (info.isNotEmpty)
-                  Flexible(
-                    child: FlScrollShadow(
-                      color: plain ? colors.surface : colors.surfaceRaised,
-                      size: space.xl,
-                      child: SingleChildScrollView(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                          space.lg,
-                          space.md,
-                          space.lg,
-                          action == null ? bottom : 0,
+    final glass = translucent && !plain && !floating;
+    // On a page of its own color, the bar is of that color, without a rule:
+    // a white band would cut the page's base.
+    final page = context.dependOnInheritedWidgetOfExactType<_PageColor>()?.color;
+    final background = page ?? (plain ? colors.surface : colors.surfaceRaised);
+    Widget bar = ConstrainedBox(
+      constraints: BoxConstraints(maxHeight: (MediaQuery.sizeOf(context).height - keyboard) / 2),
+      child: SafeArea(
+        top: false,
+        bottom: false,
+        // The action keeps its height as long as it fits; taller than the
+        // whole bar (an extreme text size), it scrolls, its bottom on screen.
+        child: LayoutBuilder(
+          builder: (context, constraints) => Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              if (!plain && !floating && page == null) FlSeparator(thickness: line),
+              if (info.isNotEmpty && floating)
+                Flexible(
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(space.lg, space.md, space.lg, action == null ? bottom : 0),
+                    child: FlShadow(
+                      layers: theme.shadows.surface,
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(theme.shape.radiusCard)),
+                      child: DecoratedBox(
+                        decoration: ShapeDecoration(
+                          color: colors.surfaceRaised,
+                          shape: FlContinuousBorder(radius: theme.shape.radiusCard),
                         ),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          // gap-2 of Izydesk's page bar.
-                          spacing: space.sm,
-                          children: info,
+                        child: FlScrollShadow(
+                          color: colors.surfaceRaised,
+                          size: space.xl,
+                          child: SingleChildScrollView(
+                            padding: EdgeInsetsDirectional.all(space.md),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              spacing: space.sm,
+                              children: info,
+                            ),
+                          ),
                         ),
                       ),
                     ),
                   ),
-                if (action case final action?)
-                  ConstrainedBox(
-                    constraints: BoxConstraints(maxHeight: constraints.maxHeight - (plain ? 0 : line)),
+                )
+              else if (info.isNotEmpty)
+                Flexible(
+                  child: FlScrollShadow(
+                    color: background,
+                    size: space.xl,
                     child: SingleChildScrollView(
-                      reverse: true,
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                          space.lg,
-                          info.isEmpty ? space.md : space.sm,
-                          space.lg,
-                          bottom,
-                        ),
-                        child: action,
+                      padding: EdgeInsetsDirectional.fromSTEB(
+                        space.lg,
+                        space.md,
+                        space.lg,
+                        action == null ? bottom : 0,
+                      ),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        // gap-2 of Izydesk's page bar.
+                        spacing: space.sm,
+                        children: info,
                       ),
                     ),
                   ),
-              ],
-            ),
+                ),
+              if (action case final action?)
+                ConstrainedBox(
+                  constraints: BoxConstraints(maxHeight: constraints.maxHeight - (plain || floating ? 0 : line)),
+                  child: SingleChildScrollView(
+                    reverse: true,
+                    child: Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(
+                        space.lg,
+                        info.isEmpty ? space.md : space.sm,
+                        space.lg,
+                        bottom,
+                      ),
+                      child: action,
+                    ),
+                  ),
+                ),
+            ],
           ),
         ),
       ),
     );
+    if (!floating) {
+      bar = ColoredBox(
+        color: glass ? background.withValues(alpha: background.a * _glassOpacity) : background,
+        child: bar,
+      );
+    }
+    if (glass) {
+      bar = ClipRect(
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: _glassBlur, sigmaY: _glassBlur),
+          child: bar,
+        ),
+      );
+    }
     return keyboard == 0
         ? bar
         : Padding(
@@ -681,4 +828,15 @@ class FlPageBar extends StatelessWidget {
             child: bar,
           );
   }
+}
+
+/// The color [FlPage.color] gives the page, for its bottom bar; null, the
+/// page keeps `surface`.
+class _PageColor extends InheritedWidget {
+  const _PageColor({required this.color, required super.child});
+
+  final Color? color;
+
+  @override
+  bool updateShouldNotify(_PageColor oldWidget) => oldWidget.color != color;
 }

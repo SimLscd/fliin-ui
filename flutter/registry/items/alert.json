@@ -1,7 +1,7 @@
 {
   "name": "alert",
   "type": "registry:component",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "title": "Inline alert",
   "description": "Reports information, success, a warning or an error in the page, with the status icon and color, a title, a description and an action.",
   "flutter": ">=3.47.0 <4.0.0",
@@ -94,5 +94,5 @@
     },
     "goldens": null
   },
-  "changelog": "Two optional slots under the text, for a narrow screen: `content` (a list of steps, a link, in muted `textSm`, 8 below the description) and `action` (a button 12 below the text, aligned with the title), next to `trailing`, which keeps the end of the line for a cross. Without them, the rendering does not change."
+  "changelog": "An error (`danger`) lies flat on the pastel `dangerSoft`, its title in `onDangerSoft`, as an invalid field does; the other statuses keep their shadowed card."
 }

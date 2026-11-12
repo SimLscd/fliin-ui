@@ -439,7 +439,7 @@ class _Slot extends StatelessWidget {
     );
     final slot = FlInputFrame(
       variant: variant,
-      outline: invalid ? colors.danger : null,
+      invalid: invalid,
       outlineWidth: theme.size.border,
       // The next slot carries the field's focus ring.
       focused: active,

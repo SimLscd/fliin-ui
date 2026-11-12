@@ -1,17 +1,17 @@
 {
   "name": "date-field",
   "type": "registry:component",
-  "version": "0.2.4",
-  "changelog": "`leading` puts an icon or a word before the segments, `showIcon: false` removes the calendar from the end, and `variant: FlInputVariant.secondary` fills the field placed on a card. `FlSegmentedField` carries them too, and re-exports `FlInputVariant`. Without them, the rendering does not change.",
+  "version": "0.2.5",
+  "changelog": "An invalid value lies on the pastel `dangerSoft`, without a red ring, as every invalid input of the registry (`text-field` 0.2.6).",
   "title": "Date field",
   "description": "Types a known date on the keyboard, day, month and year in the order of the language, each segment read out by name and value and adjustable by swipe.",
   "flutter": ">=3.47.0 <4.0.0",
   "dependencies": {},
   "registryDependencies": [
     "core@^0.2.3",
-    "icons@^0.2.0",
     "field@^0.2.0",
-    "text-field@^0.2.0"
+    "icons@^0.2.0",
+    "text-field@^0.2.6"
   ],
   "files": [
     {

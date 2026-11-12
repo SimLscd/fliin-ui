@@ -1,7 +1,7 @@
 {
   "name": "app-bar",
   "type": "registry:component",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "title": "App bar",
   "description": "Shows where the user is and leads back: the screen title, a back chevron and up to three actions, with a large title that collapses into the bar on scroll.",
   "flutter": ">=3.47.0 <4.0.0",
@@ -94,11 +94,5 @@
     },
     "goldens": null
   },
-  "changelog": "`FlAppBarBack.icon` replaces the chevron in the disc (a cross for a screen that closes); `FlAppBar.leading` puts an avatar or a brand at the start of a root screen, with no back button. A centered title too long to sit in the middle keeps the `space.sm` gap before the actions instead of touching them (“Edit profile” against “Save”). New optional parameters, nothing breaks.",
-  "breaking": [
-    {
-      "kind": "semantic",
-      "description": "The back button no longer writes its label, which the screen reader still reads. Remove `showLabel` and `filled` from `FlAppBarBack(`; replace `variant: FlAppBarVariant.large` with `titleSize: FlAppBarTitleSize.large` and `FlAppBarVariant.inline` with `FlAppBarTitleSize.medium`. The bare style of the back button and icons is set on the bar, `FlAppBar(filled: false)`. A bar with a large title and no back button no longer reserves a line above the title: a screen that placed content under `FlAppBar.barHeight` must read its height again."
-    }
-  ]
+  "changelog": "`FlSliverAppBar.pinned: false`: the bar scrolls away with the content and never raises its background."
 }

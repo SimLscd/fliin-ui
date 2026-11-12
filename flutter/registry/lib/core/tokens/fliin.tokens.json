@@ -443,6 +443,32 @@
           "foreground": "link",
           "background": "control",
           "kind": "text"
+        },
+        {
+          "foreground": "onSurface",
+          "background": "selectedSoft",
+          "over": [
+            "surfaceRaised"
+          ],
+          "kind": "text"
+        },
+        {
+          "foreground": "onSurfaceMuted",
+          "background": "selectedSoft",
+          "over": [
+            "surfaceRaised"
+          ],
+          "kind": "text"
+        },
+        {
+          "foreground": "onSurface",
+          "background": "background",
+          "kind": "text"
+        },
+        {
+          "foreground": "onSurfaceMuted",
+          "background": "background",
+          "kind": "text"
         }
       ],
       "dev.fliin.contrastExceptions": []
@@ -665,6 +691,10 @@
         "$value": "{color.neutral.0}",
         "$description": "Screen background, Izydesk `page`."
       },
+      "background": {
+        "$value": "{color.neutral.36}",
+        "$description": "Screen background under raised cards, the theme's base: Izydesk `surface` in light mode, so that a white card stands out without a shadow, `page` in dark mode, below `surfaceRaised`."
+      },
       "surfaceRaised": {
         "$value": "{color.neutral.0}",
         "$description": "Card, list group: white lifted by the `surface` shadow in light mode, Izydesk `surface` in dark mode."
@@ -777,37 +807,37 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.7608,
-            0.1961,
-            0.1216
+            0.7843,
+            0.1373,
+            0.1961
           ],
-          "hex": "#C2321F"
+          "hex": "#C82332"
         },
-        "$description": "Error and destructive action, `danger`."
+        "$description": "Error and destructive action: in light mode a crimson in place of Izydesk's brick `danger`, as light as reads at 4.5:1 on `surfacePressed`; `danger` in dark mode."
       },
       "dangerFill": {
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.7608,
-            0.1961,
-            0.1216
+            0.7843,
+            0.1373,
+            0.1961
           ],
-          "hex": "#C2321F"
+          "hex": "#C82332"
         },
-        "$description": "Background of a destructive button, `danger`."
+        "$description": "Background of a destructive button, the `danger` role."
       },
       "dangerPressed": {
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.7608,
-            0.1961,
-            0.1216
+            0.7843,
+            0.1373,
+            0.1961
           ],
-          "hex": "#C2321F"
+          "hex": "#C82332"
         },
-        "$description": "Pressed destructive button, `danger`."
+        "$description": "Pressed destructive button, the `danger` role."
       },
       "onDanger": {
         "$value": "{color.neutral.0}",
@@ -837,13 +867,13 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.6471,
-            0.1569,
-            0.0902
+            0.6706,
+            0.1176,
+            0.1686
           ],
-          "hex": "#A52817"
+          "hex": "#AB1E2B"
         },
-        "$description": "Danger text on a soft background: `danger` in dark mode; in light mode, darkened to 4.5:1 on `dangerSoftPressed`."
+        "$description": "Danger text on a soft background (an error alert, an invalid field): `danger` in dark mode; in light mode, darkened to 4.5:1 on `dangerSoftPressed`."
       },
       "dangerFaint": {
         "$value": {
@@ -1023,6 +1053,16 @@
         "$value": "{color.neutral.0}",
         "$description": "Text and check on `selected`, `on-accent`."
       },
+      "selectedSoft": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": {
+            "$ref": "#/color/accent/500/$value/components"
+          },
+          "alpha": 0.1
+        },
+        "$description": "Background of a chosen card among others (an address, a payment method): `selected` at 10%, the theme's accent, which follows a brand color."
+      },
       "link": {
         "$value": "{color.accent.600}",
         "$description": "Text written in accent on a surface (back and bar actions, link): the focus ring steps, Izydesk `focus` in light mode (6.7:1 on `surface`), `#7AA7FF` in dark mode, where `#3B63F6` only has 3.93:1 on `page`."
@@ -1030,6 +1070,9 @@
     },
     "dark": {
       "surface": {
+        "$value": "{color.neutral.832}"
+      },
+      "background": {
         "$value": "{color.neutral.832}"
       },
       "surfaceRaised": {
@@ -1333,6 +1376,15 @@
       },
       "onSelected": {
         "$value": "{color.neutral.0}"
+      },
+      "selectedSoft": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": {
+            "$ref": "#/color/accent/300/$value/components"
+          },
+          "alpha": 0.18
+        }
       },
       "link": {
         "$value": "{color.accent.100}"

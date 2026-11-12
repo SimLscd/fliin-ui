@@ -31,10 +31,8 @@ Future<void> _type(WidgetTester tester, String text) async {
   await tester.pump(FlTokens.defaults.motion.medium1);
 }
 
-FlColorTokens get _colors => FlTokens.defaults.light;
-
-List<Color?> _outlines(WidgetTester tester) => [
-  for (final frame in tester.widgetList<FlInputFrame>(find.byType(FlInputFrame))) frame.outline,
+List<bool> _invalid(WidgetTester tester) => [
+  for (final frame in tester.widgetList<FlInputFrame>(find.byType(FlInputFrame))) frame.invalid,
 ];
 
 List<bool> _focused(WidgetTester tester) => [
@@ -163,7 +161,7 @@ void main() {
     );
     await tester.pumpWidget(_app(otp()));
     expect(_editable(tester).focusNode.canRequestFocus, isFalse);
-    expect(_outlines(tester), everyElement(_colors.danger));
+    expect(_invalid(tester), everyElement(isTrue));
     await tester.pumpWidget(_app(otp(disabled: false)));
     expect(_editable(tester).focusNode.canRequestFocus, isTrue);
   });
@@ -197,11 +195,11 @@ void main() {
       final controller = TextEditingController(text: '12');
       addTearDown(controller.dispose);
       await tester.pumpWidget(_app(FlInputOtp(label: 'Code', groups: const [4], controller: controller)));
-      expect(_outlines(tester), [null, null, null, null]);
+      expect(_invalid(tester), [false, false, false, false]);
       expect(_focused(tester), [false, false, false, false]);
       await tester.tap(find.byType(FlInputOtp));
       await tester.pump();
-      expect(_outlines(tester), [null, null, null, null]);
+      expect(_invalid(tester), [false, false, false, false]);
       expect(_focused(tester), [false, false, true, false], reason: "l'anneau de focus du champ sur la case active");
       controller.text = '1234';
       await tester.pump();
@@ -209,7 +207,7 @@ void main() {
       await tester.pumpWidget(
         _app(FlInputOtp(label: 'Code', groups: const [4], controller: controller, invalid: true)),
       );
-      expect(_outlines(tester), List.filled(4, _colors.danger));
+      expect(_invalid(tester), List.filled(4, true));
       expect(_outlineWidths(tester), List.filled(4, FlTokens.defaults.size.border), reason: 'erreur : contour de 1');
     },
   );
@@ -310,7 +308,7 @@ void main() {
       expect(shake(tester), lessThan(-2));
       await tester.pumpAndSettle();
       expect(shake(tester), 0);
-      expect(_outlines(tester), everyElement(_colors.danger));
+      expect(_invalid(tester), everyElement(isTrue));
     });
 
     testWidgets('devrait rester immobile quand le code devient invalide sous mouvement réduit', (tester) async {

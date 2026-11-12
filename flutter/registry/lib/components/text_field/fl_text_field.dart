@@ -26,6 +26,7 @@ class FlTextField extends StatefulWidget {
     this.placeholder,
     this.helper,
     this.error,
+    this.invalid = false,
     this.prefix,
     this.suffix,
     this.variant = FlInputVariant.primary,
@@ -48,6 +49,7 @@ class FlTextField extends StatefulWidget {
     this.textDirection,
     this.showLabel,
     this.hideLabel,
+    this.touchFocusRing = true,
   }) : assert(showLabel == null || obscureText, 'showLabel reveals an obscured text: set obscureText'),
        assert(hideLabel == null || showLabel != null, 'hideLabel goes with showLabel');
 
@@ -74,6 +76,10 @@ class FlTextField extends StatefulWidget {
 
   /// Non-null: the field is invalid, and this text replaces [helper].
   final String? error;
+
+  /// True: the field is invalid without a text under it, the reason said
+  /// elsewhere (a toast). [error] makes it invalid too.
+  final bool invalid;
 
   /// A widget at the start of the input, before the text, most often an icon,
   /// in a `FlInputAffix`.
@@ -158,6 +164,10 @@ class FlTextField extends StatefulWidget {
   /// The button's word while the password shows; when null, [showLabel].
   final String? hideLabel;
 
+  /// False: the focus ring shows only when focus moves by keyboard; under
+  /// touch, the caret alone says where the text goes, as in iOS's fields.
+  final bool touchFocusRing;
+
   @override
   State<FlTextField> createState() => _FlTextFieldState();
 }
@@ -200,6 +210,7 @@ class _FlTextFieldState extends State<FlTextField> {
       focusNode: widget.focusNode,
       placeholder: widget.placeholder,
       variant: widget.variant,
+      touchFocusRing: widget.touchFocusRing,
       readOnly: widget.readOnly,
       multiline: widget.multiline,
       rows: widget.rows,
@@ -216,7 +227,7 @@ class _FlTextFieldState extends State<FlTextField> {
       onSubmitted: widget.onSubmitted,
     );
     return FlFieldScope(
-      invalid: error != null,
+      invalid: widget.invalid || error != null,
       disabled: !widget.enabled,
       required: widget.required,
       child: Column(
