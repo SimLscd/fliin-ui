@@ -1,8 +1,8 @@
 {
   "name": "menu",
   "type": "registry:component",
-  "version": "0.2.5",
-  "changelog": "`FlMenuOption.leading`, an icon before the title of a selectable option; with a description, the indicator, the icon and the shortcut stay on the title line instead of centering on both lines. New optional parameter, nothing breaks.",
+  "version": "0.2.6",
+  "changelog": "`FlMenu.grouped`: in the sheet presentation, the rows sit together on a card of the theme's base, as an action sheet. A row whose title wraps keeps its icon and its checkmark on the title's first line. Otherwise, rendering unchanged.",
   "title": "Action menu",
   "description": "Lets people pick an action from a list opened by a control, by touch or keyboard. Checked options, a submenu that unfolds in place, or a bottom sheet.",
   "flutter": ">=3.47.0 <4.0.0",

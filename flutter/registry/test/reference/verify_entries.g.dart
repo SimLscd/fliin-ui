@@ -265,7 +265,7 @@ final Map<String, FlReferenceEntry> verifyEntries = {
     ),
   ),
   'app-bar': (
-    version: '0.3.3',
+    version: '0.3.4',
     canvas: const Size(390, 560),
     platformCanvas: const {},
     settle: null,
@@ -2547,7 +2547,7 @@ final Map<String, FlReferenceEntry> verifyEntries = {
     ),
   ),
   'core': (
-    version: '0.2.9',
+    version: '0.2.10',
     canvas: null,
     platformCanvas: const {},
     settle: null,
@@ -3558,7 +3558,7 @@ final Map<String, FlReferenceEntry> verifyEntries = {
     ),
   ),
   'link-button': (
-    version: '0.2.4',
+    version: '0.2.5',
     canvas: const Size(390, 300),
     platformCanvas: const {},
     settle: null,
@@ -3654,7 +3654,7 @@ final Map<String, FlReferenceEntry> verifyEntries = {
     ),
   ),
   'menu': (
-    version: '0.2.5',
+    version: '0.2.6',
     canvas: const Size(390, 360),
     platformCanvas: const {},
     settle: const Duration(milliseconds: 400),
@@ -3950,7 +3950,7 @@ final Map<String, FlReferenceEntry> verifyEntries = {
     ),
   ),
   'page-indicator': (
-    version: '0.2.2',
+    version: '0.2.3',
     canvas: const Size(390, 300),
     platformCanvas: const {},
     settle: null,
@@ -3997,7 +3997,7 @@ final Map<String, FlReferenceEntry> verifyEntries = {
     ),
   ),
   'page': (
-    version: '0.2.6',
+    version: '0.2.7',
     canvas: const Size(780, 844),
     platformCanvas: const {},
     settle: null,
@@ -5184,7 +5184,7 @@ final Map<String, FlReferenceEntry> verifyEntries = {
     ),
   ),
   'sheet': (
-    version: '0.2.4',
+    version: '0.2.5',
     canvas: null,
     platformCanvas: const {},
     settle: null,

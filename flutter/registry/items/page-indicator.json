@@ -1,7 +1,7 @@
 {
   "name": "page-indicator",
   "type": "registry:component",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "title": "Page indicator",
   "description": "Shows the current page of an onboarding or a carousel as dots whose active one stretches into a pill, bound to a page view, and lets people change page by touch.",
   "flutter": ">=3.47.0 <4.0.0",
@@ -86,5 +86,5 @@
     },
     "goldens": null
   },
-  "changelog": "`color` and `inactiveColor` tint the current page and the others, for dots placed on a colored banner or a photo; without `inactiveColor`, the others take `color` at 40% (30% for `bars`). Default rendering unchanged."
+  "changelog": "`FlPageIndicatorVariant.circles`: small round dots, all the same size, the current page in `selected`, for a post's photos. Default rendering unchanged."
 }

@@ -133,6 +133,94 @@ void main() {
     expect(tester.getRect(find.byType(FlAppBar)).top, 0);
   });
 
+  testWidgets('devrait partir avec le contenu, revenir dès qu’on remonte, et se voiler hors du haut', (tester) async {
+    final controller = ScrollController();
+    addTearDown(controller.dispose);
+    final bar = _bar(titleSize: FlAppBarTitleSize.large);
+    await tester.pumpWidget(
+      _app(
+        SizedBox(
+          width: 390,
+          height: 600,
+          child: Stack(
+            children: [
+              Builder(
+                builder: (context) => CustomScrollView(
+                  controller: controller,
+                  slivers: [
+                    SliverPadding(padding: EdgeInsets.only(top: FlFloatingAppBar.restExtent(context, bar))),
+                    SliverList.list(
+                      children: [for (var i = 0; i < 40; i++) SizedBox(height: 48, child: Text('Ligne $i'))],
+                    ),
+                  ],
+                ),
+              ),
+              FlFloatingAppBar(appBar: bar, controller: controller),
+            ],
+          ),
+        ),
+      ),
+    );
+    final title = find.text('Réglages');
+    final top = tester.getRect(title).top;
+    final list = find.byType(Scrollable);
+    expect(_glass(tester), isNull, reason: 'au repos');
+    await tester.drag(list, const Offset(0, -20));
+    await tester.pump();
+    expect(tester.getRect(title).top, closeTo(top - 20, 0.5), reason: 'avec le contenu');
+    expect(_glass(tester), isNull, reason: 'rien ne passe encore dessous');
+    await tester.drag(list, const Offset(0, -300));
+    await tester.pump();
+    expect(title.hitTestable(), findsNothing, reason: 'partie');
+    await tester.drag(list, const Offset(0, 30));
+    await tester.pump();
+    expect(_glass(tester), tokens.light.surface.withValues(alpha: 0.85), reason: 'sur son verre');
+    await tester.drag(list, const Offset(0, 100));
+    await tester.pump();
+    expect(tester.getRect(title).top, top, reason: 'entière, loin du haut');
+    final pixels = controller.offset;
+    controller.jumpTo(pixels + 200);
+    await tester.pump();
+    expect(tester.getRect(title).top, top, reason: 'un saut ne la chasse pas');
+    controller.jumpTo(0);
+    await tester.pump();
+    expect(_glass(tester), isNull, reason: 'en haut, au repos');
+  });
+
+  testWidgets('devrait bâtir autour du titre, qui garde son rôle d’en-tête', (tester) async {
+    final semantics = tester.ensureSemantics();
+    var opened = 0;
+    await tester.pumpWidget(
+      _app(
+        SizedBox(
+          width: 390,
+          child: FlAppBar(
+            title: 'Pour vous',
+            titleSize: FlAppBarTitleSize.large,
+            titleBuilder: (context, title) => GestureDetector(
+              onTap: () => opened++,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  title,
+                  const SizedBox.square(key: Key('chevron'), dimension: 20),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+    expect(find.byKey(const Key('chevron')), findsOneWidget);
+    expect(
+      tester.getSemantics(find.text('Pour vous')),
+      matchesSemantics(label: 'Pour vous', isHeader: true, hasTapAction: true),
+    );
+    await tester.tap(find.text('Pour vous'));
+    expect(opened, 1);
+    semantics.dispose();
+  });
+
   testWidgets('devrait réduire le grand titre à la taille d’un titre moyen au défilement, puis se voiler', (
     tester,
   ) async {

@@ -238,6 +238,7 @@ class FlMenu extends StatefulWidget {
     this.label,
     this.barrierLabel,
     this.cancelLabel,
+    this.grouped = false,
   }) : assert(
          presentation == FlMenuPresentation.popover || (label != null && barrierLabel != null),
          'the sheet announces itself by its name and closes through its barrier, which must be named',
@@ -272,6 +273,11 @@ class FlMenu extends StatefulWidget {
   /// In the `sheet` presentation, the label of a full-width tertiary button
   /// under the rows that closes the sheet ("Annuler"); when null, none.
   final String? cancelLabel;
+
+  /// In the `sheet` presentation, true: the rows sit together on a card of
+  /// the theme's base (`background`), with the continuous corners of
+  /// `shape.radiusCard`, as an action sheet; false, on the sheet itself.
+  final bool grouped;
 
   @override
   State<FlMenu> createState() => _FlMenuState();
@@ -381,12 +387,21 @@ class _FlMenuState extends State<FlMenu> with TickerProviderStateMixin, WidgetsB
         _sheet = context;
         final theme = FlScope.of(context);
         final cancelLabel = widget.cancelLabel;
-        final entries = Semantics(
+        Widget entries = Semantics(
           container: true,
           explicitChildNodes: true,
           role: SemanticsRole.menu,
           child: _Entries(entries: widget.items, closeRoot: _closeRoot, sheet: true),
         );
+        if (widget.grouped) {
+          entries = DecoratedBox(
+            decoration: ShapeDecoration(
+              color: theme.colors.background,
+              shape: FlContinuousBorder(radius: theme.shape.radiusCard),
+            ),
+            child: Padding(padding: EdgeInsets.all(theme.space.xs), child: entries),
+          );
+        }
         // The canvas's action sheet ends `space.xl` above the screen edge:
         // the sheet's own margin, the safe area plus 12, is topped up to it.
         final rest = math.max(0.0, theme.space.xl - MediaQuery.viewPaddingOf(context).bottom - theme.space.xs * 3);
@@ -883,18 +898,17 @@ class _ItemRow extends StatelessWidget {
     final description = this.description;
     final leading = this.leading;
     final trailing = this.trailing;
-    // With a description, the indicator and the icon stay on the title's
-    // line, in a slot as high as that line.
+    // The indicator and the icon stay on the title's first line, in a slot
+    // as high as that line: with a description, or a title that wraps once
+    // enlarged, they do not drift to the middle of several lines.
     final titleLine = MediaQuery.textScalerOf(context).scale(theme.typography.style(FlTextRole.textBase).lineHeight);
-    Widget onTitle(Widget child) => description == null
-        ? child
-        : SizedBox(
-            height: titleLine,
-            child: Center(widthFactor: 1, child: child),
-          );
+    Widget onTitle(Widget child) => SizedBox(
+      height: titleLine,
+      child: Center(widthFactor: 1, child: child),
+    );
     final row = Row(
       spacing: theme.space.xs * 2.5,
-      crossAxisAlignment: description == null ? CrossAxisAlignment.center : CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (checked != null) onTitle(_Indicator(visible: checked, indicator: indicator)),
         if (leading != null)

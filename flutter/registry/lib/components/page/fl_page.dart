@@ -70,6 +70,7 @@ class FlPage extends StatefulWidget {
     this.tabBar,
     this.extendBody = false,
     this.pinAppBar = true,
+    this.floatAppBar = false,
     this.color,
     this.refresh,
     this.controller,
@@ -88,6 +89,12 @@ class FlPage extends StatefulWidget {
   /// a pinned bar raises: the screen is all content once scrolled, as a
   /// cart or a sheet-like page. True by default.
   final bool pinAppBar;
+
+  /// True: [appBar] leaves with the content, and comes back as soon as it
+  /// scrolls back down, on its glass over the content (`FlFloatingAppBar`):
+  /// a feed's bar, out of the way and a flick away. Its title stays at rest.
+  /// It wins over [pinAppBar].
+  final bool floatAppBar;
 
   /// The page's color; when null, `surface`. `background`, the theme's base,
   /// sets white cards apart without a shadow, as a theme without shadows
@@ -262,7 +269,9 @@ class _FlPageState extends State<FlPage> with SingleTickerProviderStateMixin {
           controller: _scroll,
           physics: physics,
           slivers: [
-            if (appBar != null)
+            if (appBar != null && widget.floatAppBar)
+              SliverPadding(padding: EdgeInsets.only(top: FlFloatingAppBar.restExtent(context, appBar)))
+            else if (appBar != null)
               FlSliverAppBar(appBar: appBar, pinned: widget.pinAppBar)
             else
               SliverPadding(padding: EdgeInsets.only(top: media.padding.top)),
@@ -353,7 +362,12 @@ class _FlPageState extends State<FlPage> with SingleTickerProviderStateMixin {
           // A bar that leaves with the content leaves the status bar over
           // it: a strip of the bar's glass keeps the time and the battery
           // readable, and shows nothing at rest, the page's own color.
-          if (appBar != null && !widget.pinAppBar)
+          if (appBar != null && widget.floatAppBar)
+            LayoutId(
+              id: _Slot.appBar,
+              child: FlFloatingAppBar(appBar: appBar, controller: _scroll),
+            )
+          else if (appBar != null && !widget.pinAppBar)
             LayoutId(
               id: _Slot.statusBar,
               child: ClipRect(
@@ -372,7 +386,7 @@ class _FlPageState extends State<FlPage> with SingleTickerProviderStateMixin {
   }
 }
 
-enum _Slot { body, tabBar, statusBar }
+enum _Slot { body, tabBar, statusBar, appBar }
 
 /// Tells the semantics, not the painting, that [child] is cut [bottom] above
 /// its lower edge: a node partly under the bar keeps its visible part, a
@@ -431,9 +445,10 @@ class _PageLayout extends MultiChildLayoutDelegate {
     final height = math.max(0.0, size.height - (under ? 0 : math.max(bar, keyboard)));
     layoutChild(_Slot.body, _BodyConstraints(width: size.width, height: height, room: under ? bar : 0));
     positionChild(_Slot.body, Offset.zero);
-    if (hasChild(_Slot.statusBar)) {
-      layoutChild(_Slot.statusBar, BoxConstraints.tightFor(width: size.width));
-      positionChild(_Slot.statusBar, Offset.zero);
+    for (final slot in [_Slot.statusBar, _Slot.appBar]) {
+      if (!hasChild(slot)) continue;
+      layoutChild(slot, BoxConstraints.tightFor(width: size.width));
+      positionChild(slot, Offset.zero);
     }
   }
 

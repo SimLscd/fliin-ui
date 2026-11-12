@@ -53,10 +53,15 @@ class FlSheet extends StatefulWidget {
     this.modal = true,
     this.animateIn = false,
     this.fitContent = false,
+    this.bleed = false,
   }) : _routed = false,
        assert(snaps.length > 0),
        assert(initialSnap >= 0 && initialSnap < snaps.length),
-       assert(onDismiss == null || !modal || barrierLabel != null, 'a barrier that closes must be named');
+       assert(onDismiss == null || !modal || barrierLabel != null, 'a barrier that closes must be named'),
+       assert(
+         !bleed || (title == null && description == null && icon == null && actions.length == 0 && !fitContent),
+         'a bleeding sheet has neither header, actions nor a fitted height',
+       );
 
   const FlSheet._routed({
     required this.label,
@@ -71,6 +76,7 @@ class FlSheet extends StatefulWidget {
     required this.initialSnap,
     required this.barrierLabel,
     required this.fitContent,
+    required this.bleed,
   }) : _routed = true,
        modal = true,
        animateIn = true,
@@ -140,6 +146,14 @@ class FlSheet extends StatefulWidget {
   /// the keyboard or orientation changes it; [snaps] is ignored.
   final bool fitContent;
 
+  /// True: the content runs edge to edge under the grabber, without the
+  /// sheet's margins nor its bottom safe area, which the content keeps
+  /// itself: a list with an input bar pinned to the bottom (a post's
+  /// comments). The keyboard is the sheet's: it rises to its tallest stop
+  /// above it, and the content sees neither the keyboard nor the safe area
+  /// the keyboard covers. Without a header nor [actions].
+  final bool bleed;
+
   /// In the [showFlSheet] route: closing means removing the route, and the
   /// exit follows the removal.
   final bool _routed;
@@ -167,7 +181,12 @@ Future<T?> showFlSheet<T>(
   List<double> snaps = const [1],
   int initialSnap = 0,
   bool fitContent = false,
+  bool bleed = false,
 }) async {
+  assert(
+    !bleed || (title == null && description == null && icon == null && actions.isEmpty && !fitContent),
+    'a bleeding sheet has neither header, actions nor a fitted height',
+  );
   final route = _FlSheetRoute<T>(
     label: label,
     sheetBarrierLabel: barrierLabel,
@@ -181,6 +200,7 @@ Future<T?> showFlSheet<T>(
     snaps: snaps,
     initialSnap: initialSnap,
     fitContent: fitContent,
+    bleed: bleed,
     exit: FlScope.of(context).motion.medium2,
   );
   final result = await Navigator.of(context).push(route);
@@ -214,6 +234,7 @@ class _FlSheetRoute<T> extends PopupRoute<T> {
     required this.snaps,
     required this.initialSnap,
     required this.fitContent,
+    required this.bleed,
     required this.exit,
   });
 
@@ -232,6 +253,7 @@ class _FlSheetRoute<T> extends PopupRoute<T> {
   final List<double> snaps;
   final int initialSnap;
   final bool fitContent;
+  final bool bleed;
 
   /// The time left for the exit before the route leaves: at least the
   /// settling of `spring.spatialSlow` (≈ 260 ms) and the reduced fade.
@@ -266,6 +288,7 @@ class _FlSheetRoute<T> extends PopupRoute<T> {
         snaps: snaps,
         initialSnap: initialSnap,
         fitContent: fitContent,
+        bleed: bleed,
         child: switch (builder) {
           final builder? => Builder(builder: builder),
           null => const SizedBox.shrink(),
@@ -492,6 +515,13 @@ class _FlSheetState extends State<FlSheet> with TickerProviderStateMixin {
     final theme = FlScope.of(context);
     final media = MediaQuery.of(context);
     final keyboard = media.viewInsets.bottom;
+    // Typing in a bleeding sheet (a reply under the comments): it rises to
+    // its tallest stop, so that the list keeps room above the input.
+    if (widget.bleed && keyboard > 0 && !_closing && _rest < _snaps.last) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted && !_closing && _rest < _snaps.last) _settle(_snaps.last);
+      });
+    }
     Widget sheet = _panel(theme, media);
     if (widget.modal) {
       sheet = FocusScope(node: _scope, child: sheet);
@@ -641,38 +671,54 @@ class _FlSheetState extends State<FlSheet> with TickerProviderStateMixin {
                     ),
                   ),
                 ),
-                Expanded(
-                  child: Padding(
-                    // pb-safe-offset-3: the safe area plus calc(var(--spacing) * 3).
-                    padding: EdgeInsetsDirectional.fromSTEB(
-                      padding,
-                      theme.space.md,
-                      padding,
-                      (media.viewInsets.bottom > 0 ? 0 : media.viewPadding.bottom) + theme.space.xs * 3,
+                if (widget.bleed)
+                  // The sheet already stands above the keyboard, and the
+                  // keyboard covers the home indicator: the content sees
+                  // neither, or it would make room for them a second time.
+                  Expanded(
+                    child: MediaQuery(
+                      data: media.viewInsets.bottom > 0
+                          ? media
+                                .removeViewInsets(removeBottom: true)
+                                .removePadding(removeBottom: true)
+                                .removeViewPadding(removeBottom: true)
+                          : media.removeViewInsets(removeBottom: true),
+                      child: widget.child,
                     ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Expanded(
-                          child: widget.fitContent
-                              ? _fittedBody(theme, heading, close, centered: centered)
-                              : _snappedBody(theme, heading, close),
-                        ),
-                        if (widget.actions.isNotEmpty)
-                          Padding(
-                            // With the header's `space.md`, `space.xl` from the
-                            // text to the buttons when there is no content.
-                            padding: EdgeInsetsDirectional.only(top: theme.space.xl - theme.space.md),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                              spacing: theme.space.md,
-                              children: widget.actions,
-                            ),
+                  )
+                else
+                  Expanded(
+                    child: Padding(
+                      // pb-safe-offset-3: the safe area plus calc(var(--spacing) * 3).
+                      padding: EdgeInsetsDirectional.fromSTEB(
+                        padding,
+                        theme.space.md,
+                        padding,
+                        (media.viewInsets.bottom > 0 ? 0 : media.viewPadding.bottom) + theme.space.xs * 3,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Expanded(
+                            child: widget.fitContent
+                                ? _fittedBody(theme, heading, close, centered: centered)
+                                : _snappedBody(theme, heading, close),
                           ),
-                      ],
+                          if (widget.actions.isNotEmpty)
+                            Padding(
+                              // With the header's `space.md`, `space.xl` from the
+                              // text to the buttons when there is no content.
+                              padding: EdgeInsetsDirectional.only(top: theme.space.xl - theme.space.md),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                spacing: theme.space.md,
+                                children: widget.actions,
+                              ),
+                            ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
               ],
             ),
           ),

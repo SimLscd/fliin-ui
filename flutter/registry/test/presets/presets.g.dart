@@ -924,7 +924,7 @@ final FlTokens presetRound = FlTokens(
   shape: const FlShapeTokens(
     radiusControl: 18,
     radiusCard: 30,
-    radiusSheet: 30,
+    radiusSheet: 42,
     radiusButton: 24,
     radiusButtonLarge: 32,
     radiusXs: 6,
@@ -1796,7 +1796,7 @@ final FlTokens presetSerif = FlTokens(
   shape: const FlShapeTokens(
     radiusControl: 6,
     radiusCard: 10,
-    radiusSheet: 10,
+    radiusSheet: 14,
     radiusButton: 12,
     radiusButtonLarge: 16,
     radiusXs: 2,
@@ -2670,7 +2670,7 @@ final FlTokens presetEditorial = FlTokens(
   shape: const FlShapeTokens(
     radiusControl: 12,
     radiusCard: 20,
-    radiusSheet: 20,
+    radiusSheet: 28,
     radiusButton: 24,
     radiusButtonLarge: 32,
     radiusXs: 4,
@@ -3544,7 +3544,7 @@ final FlTokens presetOutlined = FlTokens(
   shape: const FlShapeTokens(
     radiusControl: 6,
     radiusCard: 10,
-    radiusSheet: 10,
+    radiusSheet: 14,
     radiusButton: 12,
     radiusButtonLarge: 16,
     radiusXs: 2,
@@ -4402,7 +4402,7 @@ final FlTokens presetLarge = FlTokens(
   shape: const FlShapeTokens(
     radiusControl: 18,
     radiusCard: 30,
-    radiusSheet: 30,
+    radiusSheet: 42,
     radiusButton: 24,
     radiusButtonLarge: 32,
     radiusXs: 6,

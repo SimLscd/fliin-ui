@@ -59,6 +59,22 @@ void main() {
     expect(tester.renderObject(_dots), _rest(3, 1, light.selected, _dim(light.onSurfaceMuted)));
   });
 
+  testWidgets('devrait garder des cercles tous pareils avec circles, la page courante en selected', (tester) async {
+    await tester.pumpWidget(
+      _app(FlPageIndicator(count: 3, index: 1, pageLabel: _label, variant: FlPageIndicatorVariant.circles)),
+    );
+    expect(tester.getSize(_dots), const Size(3 * 6 + 2 * 4, 6));
+    var pattern = paints;
+    for (var i = 0; i < 3; i++) {
+      pattern = pattern
+        ..rrect(
+          rrect: RRect.fromLTRBR(i * 10.0, 0, i * 10.0 + 6, 6, const Radius.circular(3)),
+          color: i == 1 ? light.selected : _dim(light.onSurfaceMuted),
+        );
+    }
+    expect(tester.renderObject(_dots), pattern);
+  });
+
   testWidgets('devrait glisser la pilule vers la nouvelle page par le ressort, ou s’y poser en mouvement réduit', (
     tester,
   ) async {

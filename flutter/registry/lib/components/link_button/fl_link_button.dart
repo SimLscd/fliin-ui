@@ -33,7 +33,7 @@ enum FlLinkButtonTone {
 /// as a button: in a sentence, [accent] or [underline] underline it to set
 /// it apart from the text other than by its position (WCAG 1.4.1), and
 /// [link] announces it as a link. Without [underline], the underline shows
-/// under the pointer and on press. [leading] and
+/// under the pointer and on press; [plain] never shows it. [leading] and
 /// [trailing] take an icon at three quarters of the text size, in its color
 /// ("Learn more →", an external link).
 class FlLinkButton extends StatelessWidget {
@@ -45,6 +45,7 @@ class FlLinkButton extends StatelessWidget {
     this.size,
     this.accent = false,
     this.underline = false,
+    this.plain = false,
     this.link = false,
     this.tone = FlLinkButtonTone.normal,
     this.weight,
@@ -95,6 +96,11 @@ class FlLinkButton extends StatelessWidget {
 
   /// True: the label is underlined.
   final bool underline;
+
+  /// True: never underlined, not even under the pointer or pressed; it
+  /// fades on press like any link. A word that acts below a comment or a
+  /// message ("Reply", "Retry"), set apart by its place and its weight.
+  final bool plain;
 
   /// True: the screen reader announces it as a link, not as a button (the
   /// default).
@@ -158,7 +164,7 @@ class FlLinkButton extends StatelessWidget {
         final active = states.contains(WidgetState.hovered) || states.contains(WidgetState.pressed);
         // A link without an underline shows one under the pointer, in the
         // quieter `onSurfaceMuted`.
-        final lined = underlined || (active && !states.contains(WidgetState.disabled));
+        final lined = !plain && (underlined || (active && !states.contains(WidgetState.disabled)));
         final text = _Underlined(
           underline: lined
               ? _Underline(

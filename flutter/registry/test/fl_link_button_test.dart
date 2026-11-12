@@ -183,4 +183,21 @@ void main() {
     );
     expect(tester.renderObject(find.byType(FlLinkButton)), line());
   });
+
+  testWidgets('devrait ne jamais se souligner avec plain, ni au survol ni pressé', (tester) async {
+    PaintPattern line() => paints..something((method, arguments) => method == #drawRect);
+    for (final state in [WidgetState.hovered, WidgetState.pressed]) {
+      await tester.pumpWidget(
+        _app(
+          FlLinkButton(
+            label: 'Répondre',
+            plain: true,
+            statesController: WidgetStatesController({state}),
+            onPressed: () {},
+          ),
+        ),
+      );
+      expect(tester.renderObject(find.byType(FlLinkButton)), isNot(line()), reason: '$state');
+    }
+  });
 }

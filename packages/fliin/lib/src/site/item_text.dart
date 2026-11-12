@@ -1229,9 +1229,9 @@ itemEnglish = {
   'post-card': (
     title: 'Post card',
     description:
-        'Shows one post of a social feed: author, age, text, a gallery of one '
-        'to four photos, a like toggle, comments and share with short counts, '
-        'and the post menu. It reads as a single node.',
+        'Shows one post of a social feed: author and place, a carousel of up '
+        'to ten photos that open full screen, double tap to like, comments, '
+        'share, bookmark, who liked it and a caption.',
     notFor: [
       'a product with its price: use a result card (result-card)',
       'a message in a discussion: use a message bubble (message-bubble)',
@@ -1252,9 +1252,9 @@ itemEnglish = {
   'feed': (
     title: 'Social feed',
     description:
-        'Shows the posts of followed people with their photos, optimistic likes, '
-        'comments and share, hide or report with undo, older posts on scroll '
-        'and new posts on demand without moving the reading.',
+        'Shows stories that play full screen, then flat posts with a photo '
+        'carousel, optimistic likes and saves, hide or report with undo, new '
+        'posts on demand, and an optional For you feed.',
     notFor: [
       'a list of products with their prices: use the filtered search (search)',
       'the messages of a discussion: use the chat thread (chat)',

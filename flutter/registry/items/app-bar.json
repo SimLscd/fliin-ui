@@ -1,7 +1,7 @@
 {
   "name": "app-bar",
   "type": "registry:component",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "title": "App bar",
   "description": "Shows where the user is and leads back: the screen title, a back chevron and up to three actions, with a large title that collapses into the bar on scroll.",
   "flutter": ">=3.47.0 <4.0.0",
@@ -94,5 +94,5 @@
     },
     "goldens": null
   },
-  "changelog": "The status bar icons follow the bar's own color rather than the theme's mode: light icons over the accent of `FlAccentScope`, in light mode too. Rendering unchanged."
+  "changelog": "`FlAppBar.titleBuilder`: builds around the title, usually a menu anchored to it, for a title that switches what the screen shows. `FlFloatingAppBar`: a bar over a scroll view that leaves with the content and comes back as soon as it scrolls back the other way, on its glass over the content. Nothing changes without them."
 }

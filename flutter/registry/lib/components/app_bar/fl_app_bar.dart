@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 import 'dart:ui' show ImageFilter, lerpDouble;
 
+import 'package:flutter/rendering.dart' show ScrollDirection;
 import 'package:flutter/services.dart' show SystemUiOverlayStyle;
 import 'package:flutter/widgets.dart';
 import 'package:fliin_ui/components/button/fl_button.dart';
@@ -108,7 +109,9 @@ const _glassOpacity = 0.85;
 /// (WCAG): below it, light status bar icons.
 const _equalContrastLuminance = 0.179;
 
-typedef _Scroll = ({double collapse, double raise, double? height});
+/// How far the bar follows the scroll: its title shrunk, its glass raised,
+/// its height, and how much of its line has slid up under the status bar.
+typedef _Scroll = ({double collapse, double raise, double? height, double slide});
 
 /// The top bar of a screen: a back chevron at the start, the [title], up to
 /// three [actions] at the end, below the top safe area.
@@ -137,6 +140,7 @@ class FlAppBar extends StatelessWidget {
     this.subtitle,
     this.filled = true,
     this.leading,
+    this.titleBuilder,
   });
 
   /// The screen's title, announced as a header.
@@ -164,6 +168,13 @@ class FlAppBar extends StatelessWidget {
   /// mark. It brings its own semantics and touch target. Ignored with
   /// [back]; when null, nothing.
   final Widget? leading;
+
+  /// Builds around the title, which it receives as built: usually an
+  /// `FlMenu` anchored to the title followed by a chevron, on a root screen
+  /// whose title says what it shows and switches it ("For you", "Following").
+  /// The title keeps its role, its place and its shrink. When null, the
+  /// title alone.
+  final Widget Function(BuildContext context, Widget title)? titleBuilder;
 
   /// The height of a bar with a centered title, without the safe area.
   static double barHeight(BuildContext context) =>
@@ -207,7 +218,8 @@ class FlAppBar extends StatelessWidget {
     final theme = FlScope.of(context);
     final colors = theme.colors;
     final scroll =
-        context.dependOnInheritedWidgetOfExactType<_AppBarScroll>()?.scroll ?? (collapse: 0, raise: 0, height: null);
+        context.dependOnInheritedWidgetOfExactType<_AppBarScroll>()?.scroll ??
+        (collapse: 0, raise: 0, height: null, slide: 0);
     final height = scroll.height ?? restHeight(context);
     final disc = theme.size.controlCompact - theme.space.xs;
     final scaler = MediaQuery.textScalerOf(context).clamp(maxScaleFactor: theme.size.iconMaxScale);
@@ -257,6 +269,8 @@ class FlAppBar extends StatelessWidget {
             ),
           );
 
+    Widget titled(Widget title) => titleBuilder?.call(context, title) ?? title;
+
     final Widget middle;
     if (titleSize.atStart) {
       // The title is laid out at its rest size and scaled down: it keeps its
@@ -268,11 +282,11 @@ class FlAppBar extends StatelessWidget {
         child: Transform.scale(
           scale: lerpDouble(1, collapsed / rest, scroll.collapse)!,
           alignment: AlignmentDirectional.centerStart.resolve(Directionality.of(context)),
-          child: _Title(title: title, role: titleSize.role, scaler: scaler),
+          child: titled(_Title(title: title, role: titleSize.role, scaler: scaler)),
         ),
       );
     } else {
-      final titleText = _Title(title: title, role: titleSize.role, scaler: scaler);
+      final titleText = titled(_Title(title: title, role: titleSize.role, scaler: scaler));
       middle = switch (subtitle) {
         final subtitle? => Column(
           mainAxisSize: MainAxisSize.min,
@@ -322,7 +336,21 @@ class FlAppBar extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           SizedBox(height: MediaQuery.paddingOf(context).top),
-          SizedBox(height: height, child: bar),
+          if (scroll.slide == 0)
+            SizedBox(height: height, child: bar)
+          else
+            // The line slides up under the status bar, which stays.
+            ClipRect(
+              child: SizedBox(
+                height: math.max(0, height - scroll.slide),
+                child: OverflowBox(
+                  alignment: AlignmentDirectional.bottomCenter,
+                  minHeight: height,
+                  maxHeight: height,
+                  child: bar,
+                ),
+              ),
+            ),
         ],
       ),
     );
@@ -432,6 +460,7 @@ class _Delegate extends SliverPersistentHeaderDelegate {
         collapse: titleTravel == 0 ? 0 : (shrinkOffset / titleTravel).clamp(0.0, 1.0),
         raise: pinned ? ((shrinkOffset - travel) / _raiseTravel).clamp(0.0, 1.0) : 0,
         height: math.max(rest - shrinkOffset, collapsed) - top,
+        slide: 0,
       ),
       child: appBar,
     );
@@ -445,6 +474,95 @@ class _Delegate extends SliverPersistentHeaderDelegate {
       collapsed != oldDelegate.collapsed ||
       rest != oldDelegate.rest ||
       titleTravel != oldDelegate.titleTravel;
+}
+
+/// A [FlAppBar] over a scroll view, which leaves with the content as it
+/// scrolls and comes back as soon as it scrolls back the other way, wherever
+/// the reading is: a feed's bar, out of the way of the posts and a flick
+/// away. Its title stays at rest; its glass and shadow appear once the
+/// content passes under it, and the status bar keeps them while the line is
+/// gone. A jump of the scroll (`jumpTo`) only hides what the top of the
+/// content would.
+///
+/// It sits above the scroll view, at its top, and the scroll view keeps
+/// [restExtent] free at its start. `FlPage.floatAppBar` does both.
+class FlFloatingAppBar extends StatefulWidget {
+  /// [appBar] over the scroll of [controller].
+  const FlFloatingAppBar({super.key, required this.appBar, required this.controller});
+
+  /// The bar to float.
+  final FlAppBar appBar;
+
+  /// The scroll the bar follows.
+  final ScrollController controller;
+
+  /// The room at the start of the scroll view: the top safe area and the
+  /// bar at rest.
+  static double restExtent(BuildContext context, FlAppBar appBar) =>
+      MediaQuery.paddingOf(context).top + appBar.restHeight(context);
+
+  @override
+  State<FlFloatingAppBar> createState() => _FloatingAppBarState();
+}
+
+class _FloatingAppBarState extends State<FlFloatingAppBar> {
+  /// How much of the line has slid away, from 0 to its height.
+  double _slide = 0;
+  double _raise = 0;
+
+  /// Where the scroll was at the last event: the start of the next step.
+  double _pixels = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    widget.controller.addListener(_onScroll);
+    WidgetsBinding.instance.addPostFrameCallback((_) => _start());
+  }
+
+  void _start() {
+    final controller = widget.controller;
+    if (mounted && controller.hasClients) _pixels = controller.position.pixels;
+  }
+
+  @override
+  void didUpdateWidget(FlFloatingAppBar oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.controller == widget.controller) return;
+    oldWidget.controller.removeListener(_onScroll);
+    widget.controller.addListener(_onScroll);
+    _start();
+  }
+
+  @override
+  void dispose() {
+    widget.controller.removeListener(_onScroll);
+    super.dispose();
+  }
+
+  void _onScroll() {
+    final controller = widget.controller;
+    if (!controller.hasClients) return;
+    final position = controller.position;
+    final pixels = position.pixels;
+    final delta = pixels - _pixels;
+    _pixels = pixels;
+    final height = widget.appBar.restHeight(context);
+    // A finger or its fling moves the line; a jump only takes along what
+    // the top of the content carries.
+    var slide = position.userScrollDirection == ScrollDirection.idle ? _slide : _slide + delta;
+    slide = math.min(slide.clamp(0.0, height), math.max(0.0, pixels));
+    final raise = ((pixels - slide) / _raiseTravel).clamp(0.0, 1.0);
+    if (slide == _slide && raise == _raise) return;
+    setState(() {
+      _slide = slide;
+      _raise = raise;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) =>
+      _AppBarScroll(scroll: (collapse: 0, raise: _raise, height: null, slide: _slide), child: widget.appBar);
 }
 
 class _AppBarScroll extends InheritedWidget {

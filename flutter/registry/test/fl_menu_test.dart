@@ -405,6 +405,38 @@ void main() {
     expect(find.text('Copier'), findsNothing);
   });
 
+  testWidgets('devrait réunir les lignes de la feuille sur une carte de la base avec grouped', (tester) async {
+    Future<void> open({required bool grouped}) async {
+      await tester.pumpWidget(
+        overlayApp(
+          Center(
+            child: FlMenu(
+              presentation: FlMenuPresentation.sheet,
+              grouped: grouped,
+              label: 'Options',
+              barrierLabel: 'Fermer',
+              items: [FlMenuItem(label: 'Copier', onPressed: () {})],
+              builder: (context, controller) => FlButton(label: 'Options', onPressed: controller.open),
+            ),
+          ),
+        ),
+      );
+      await _openByTap(tester);
+    }
+
+    bool onBase() => find
+        .ancestor(of: find.text('Copier'), matching: find.byType(DecoratedBox))
+        .evaluate()
+        .map((e) => (e.widget as DecoratedBox).decoration)
+        .any((d) => d is ShapeDecoration && d.color == _tokens.light.background);
+    await open(grouped: true);
+    expect(onBase(), isTrue);
+    await tester.tap(find.text('Copier'));
+    await tester.pumpAndSettle();
+    await open(grouped: false);
+    expect(onBase(), isFalse, reason: 'sur la feuille elle-même par défaut');
+  });
+
   testWidgets('devrait déplier le sous-menu à la flèche gauche et le replier à la droite en RTL', (tester) async {
     await tester.pumpWidget(overlayApp(_menu([]), direction: TextDirection.rtl));
     await _key(tester, LogicalKeyboardKey.tab);

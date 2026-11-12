@@ -1,7 +1,7 @@
 {
   "name": "core",
   "type": "registry:core",
-  "version": "0.2.9",
+  "version": "0.2.10",
   "title": "Core",
   "description": "Gives every component its tokens, light and dark themes, density, platform typography, reduced motion and an accessible pressable surface. No Material, no Cupertino.",
   "flutter": ">=3.47.0 <4.0.0",
@@ -193,5 +193,5 @@
     },
     "goldens": null
   },
-  "changelog": "`FlAccentScope` places a subtree on the accent: the accent fills it, and the components under it read a palette derived from the theme's, in both modes. Surfaces become the accent; text, muted text and icons `onAccent`; controls, pills, borders, skeletons and the soft danger disc a tint of `onAccent`; the primary action and every selected state `onAccent` with accent content; separators vanish. It follows a preset or `fliin theme`. `flTextDirectionOf` gives the direction of a text's first strong character, so that a name cut by an ellipsis keeps it at its own end inside a screen of the other direction, and `flTextAlignOf` keeps that name on the screen's start side. Rendering unchanged elsewhere."
+  "changelog": "Rounder sheets: `shape.radius.sheet` goes from 20 to 28, above the cards they cover (sheets, drawers, the full-screen player). Run `fliin tokens` after the update."
 }

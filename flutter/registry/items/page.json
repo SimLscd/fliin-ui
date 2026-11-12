@@ -1,13 +1,13 @@
 {
   "name": "page",
   "type": "registry:component",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "title": "Page",
   "description": "Frames a whole mobile screen: safe areas, an app bar tied to scrolling, scrolling content, a tab bar, the keyboard and pull to refresh with each platform gesture.",
   "flutter": ">=3.47.0 <4.0.0",
   "dependencies": {},
   "registryDependencies": [
-    "app-bar@^0.3.2",
+    "app-bar@^0.3.4",
     "core@^0.2.0",
     "scroll-shadow@^0.2.0",
     "separator@^0.2.0",
@@ -87,5 +87,5 @@
     },
     "goldens": null
   },
-  "changelog": "A field in the content keeps its focus when `refresh` or `extendBody` changes, as when a search starts loading: the content keeps its widgets, and on the web its input stays where it was. The page is always one node for the screen reader, named only when it refreshes. Nothing else changes."
+  "changelog": "`FlPage.floatAppBar`: the top bar leaves with the content and comes back as soon as it scrolls back down, on its glass over the content (`FlFloatingAppBar`). Nothing changes without it."
 }

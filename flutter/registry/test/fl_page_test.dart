@@ -541,4 +541,40 @@ void main() {
     final strip = find.descendant(of: find.byType(FlPage), matching: find.byType(BackdropFilter));
     expect(tester.getRect(strip).height, _safe.top);
   });
+
+  testWidgets('devrait faire flotter la barre du haut avec floatAppBar : partie au défilement, revenue en remontant', (
+    tester,
+  ) async {
+    tester.view.physicalSize = _phone;
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.reset);
+    final controller = ScrollController();
+    addTearDown(controller.dispose);
+    await tester.pumpWidget(
+      _phoneApp(
+        FlPage(
+          controller: controller,
+          floatAppBar: true,
+          appBar: const FlAppBar(title: 'Fil', titleSize: FlAppBarTitleSize.large),
+          slivers: _rows(),
+        ),
+      ),
+    );
+    expect(find.byType(FlSliverAppBar), findsNothing);
+    final title = tester.getRect(find.text('Fil'));
+    expect(title.top, greaterThan(_safe.top));
+    expect(
+      tester.getRect(find.text('Ligne 0')).top,
+      greaterThanOrEqualTo(title.bottom),
+      reason: 'le contenu commence sous la barre',
+    );
+    final list = find.byType(Scrollable).first;
+    await tester.drag(list, const Offset(0, -400));
+    await tester.pump();
+    expect(find.text('Fil').hitTestable(), findsNothing);
+    await tester.drag(list, const Offset(0, 200));
+    await tester.pump();
+    expect(tester.getRect(find.text('Fil')).top, title.top, reason: 'revenue entière');
+    expect(controller.offset, greaterThan(0));
+  });
 }

@@ -11,11 +11,17 @@ enum FlPageIndicatorVariant {
   /// The header of Izydesk's onboarding: thin bars 6 high, 5 apart, the
   /// current page 40 long, all in `onSurface`, the others at 30 %.
   bars,
+
+  /// Small round dots of 6, 4 apart, all the same size: the current page in
+  /// `selected`, the others `onSurfaceMuted` at 40 %. Under a post's photos,
+  /// where a pill would weigh more than the photos' count needs.
+  circles,
 }
 
 /// The dots of a sequence of pages (onboarding, carousel): the current page
-/// stretches into a pill, the others stay dots ([variant]): solid capsules,
-/// gaps from the `spacing` scale.
+/// stretches into a pill, the others stay dots, or every dot stays round and
+/// the current one takes the color ([variant]): solid capsules, gaps from the
+/// `spacing` scale.
 ///
 /// Bound to a `PageController` ([FlPageIndicator.controller]), it follows the
 /// finger from one page to the next. On a given page ([FlPageIndicator]), the
@@ -196,9 +202,11 @@ class _FlPageIndicatorState extends State<FlPageIndicator> with SingleTickerProv
     final colors = theme.colors;
     final xs = theme.space.xs;
     final bars = widget.variant == FlPageIndicatorVariant.bars;
-    final metrics = bars
-        ? _Metrics(dot: xs * 1.5, pill: xs * 10, gap: xs * 1.25, count: widget.count)
-        : _Metrics(dot: xs * 2, pill: xs * 6, gap: xs * 2, count: widget.count);
+    final metrics = switch (widget.variant) {
+      FlPageIndicatorVariant.bars => _Metrics(dot: xs * 1.5, pill: xs * 10, gap: xs * 1.25, count: widget.count),
+      FlPageIndicatorVariant.dots => _Metrics(dot: xs * 2, pill: xs * 6, gap: xs * 2, count: widget.count),
+      FlPageIndicatorVariant.circles => _Metrics(dot: xs * 1.5, pill: xs * 1.5, gap: xs, count: widget.count),
+    };
     final rtl = Directionality.of(context) == TextDirection.rtl;
     final ios = theme.platform == TargetPlatform.iOS;
     final target = _target;

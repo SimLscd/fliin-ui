@@ -1,7 +1,7 @@
 {
   "name": "sheet",
   "type": "registry:component",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "title": "Bottom sheet",
   "description": "Opens a panel from the bottom of the screen for a short task, dragged or closed. Spring snap points, icon, title, text, actions, close button, scrim, trapped focus and Escape.",
   "flutter": ">=3.47.0 <4.0.0",
@@ -78,5 +78,5 @@
     },
     "goldens": null
   },
-  "changelog": "A sheet opened by `showFlSheet` asks its route before it closes (`Navigator.maybePop`): a `PopScope` in the content can keep it open, to confirm before losing a form, and the sheet springs back to its stop. Without a `PopScope`, nothing changes."
+  "changelog": "`bleed` (and `showFlSheet(bleed:)`): the content runs edge to edge under the grabber, without the sheet's margins nor its bottom safe area, which the content keeps itself: a list with an input bar pinned to the bottom. With the keyboard open, the sheet rises to its tallest stop and the content sees neither the keyboard nor the safe area it covers. Default rendering unchanged."
 }

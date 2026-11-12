@@ -2073,7 +2073,7 @@ final class FlTokens {
     shape: const FlShapeTokens(
       radiusControl: 12,
       radiusCard: 20,
-      radiusSheet: 20,
+      radiusSheet: 28,
       radiusButton: 24,
       radiusButtonLarge: 32,
       radiusXs: 4,

@@ -778,4 +778,60 @@ void main() {
     expect(panel.bottom - action.bottom, closeTo(space.xs * 3, 1e-9));
     expect(tester.takeException(), isNull);
   });
+
+  testWidgets('devrait poser le contenu bord à bord sous la poignée avec bleed, sans marges ni zone sûre du bas', (
+    tester,
+  ) async {
+    const key = Key('contenu');
+    Future<Rect> content({required bool bleed}) async {
+      await tester.pumpWidget(
+        _app(
+          FlSheet(
+            label: 'Commentaires',
+            bleed: bleed,
+            child: const SizedBox.expand(key: key),
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+      return tester.getRect(find.byKey(key));
+    }
+
+    final framed = await content(bleed: false);
+    final bled = await content(bleed: true);
+    expect(bled.left, 0, reason: 'sans la marge du côté');
+    expect(bled.right, 800);
+    expect(bled.bottom, _height, reason: 'jusqu’au bord du bas : le contenu garde sa zone sûre');
+    expect(bled.top, lessThan(framed.top), reason: 'juste sous la poignée');
+    expect(framed.left, greaterThan(0));
+  });
+
+  testWidgets(
+    'devrait monter au plus haut avec bleed quand le clavier s’ouvre, son contenu sans le clavier ni la zone sûre',
+    (tester) async {
+      const key = Key('contenu');
+      late MediaQueryData seen;
+      Widget sheet() => FlSheet(
+        label: 'Commentaires',
+        bleed: true,
+        snaps: const [0.5, 1],
+        child: Builder(
+          key: key,
+          builder: (context) {
+            seen = MediaQuery.of(context);
+            return const SizedBox.expand();
+          },
+        ),
+      );
+      await tester.pumpWidget(_app(sheet()));
+      await tester.pumpAndSettle();
+      final low = tester.getRect(find.byKey(key)).top;
+      await tester.pumpWidget(_app(sheet(), keyboard: const EdgeInsets.only(bottom: 300)));
+      await tester.pumpAndSettle();
+      expect(tester.getRect(find.byKey(key)).top, lessThan(low), reason: 'au plus haut, la liste garde de la place');
+      expect(tester.getRect(find.byKey(key)).bottom, _height - 300, reason: 'juste au-dessus du clavier');
+      expect(seen.viewInsets.bottom, 0, reason: 'le clavier n’est pas compté deux fois');
+      expect(seen.padding.bottom, 0, reason: 'le clavier couvre la zone sûre');
+    },
+  );
 }
