@@ -265,7 +265,7 @@ final Map<String, FlReferenceEntry> verifyEntries = {
     ),
   ),
   'app-bar': (
-    version: '0.3.5',
+    version: '0.3.6',
     canvas: const Size(390, 560),
     platformCanvas: const {},
     settle: null,
@@ -5808,7 +5808,7 @@ final Map<String, FlReferenceEntry> verifyEntries = {
     ),
   ),
   'tab-bar': (
-    version: '0.3.2',
+    version: '0.3.3',
     canvas: const Size(390, 950),
     platformCanvas: const {},
     settle: null,

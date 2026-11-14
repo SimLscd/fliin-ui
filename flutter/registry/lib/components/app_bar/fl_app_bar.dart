@@ -18,6 +18,11 @@ enum FlAppBarTitleSize {
   /// `headline`, centered in the bar: the usual detail screen.
   medium(FlTextRole.headline),
 
+  /// `headline`, at the start of the bar, beside the actions: a root screen
+  /// whose content carries the large figure under a quiet title (a greeting
+  /// above a balance). It keeps its size as the content scrolls under it.
+  mediumStart(FlTextRole.headline),
+
   /// `title1`, at the start of the bar, beside the actions: a root screen.
   /// It shrinks to [medium] as the content scrolls under it.
   large(FlTextRole.title1),
@@ -32,7 +37,7 @@ enum FlAppBarTitleSize {
   final FlTextRole role;
 
   /// True: the title sits at the start of the line, and shrinks on scroll.
-  bool get atStart => this == large || this == xlarge;
+  bool get atStart => this == mediumStart || this == large || this == xlarge;
 }
 
 /// The back button of a [FlAppBar]: a chevron alone, at the start of the bar.

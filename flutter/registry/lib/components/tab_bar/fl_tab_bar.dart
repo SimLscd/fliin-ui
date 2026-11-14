@@ -44,6 +44,11 @@ enum FlBottomTabLabels {
   /// None: icons only, the chosen one in a pill as tall as a touch target.
   /// The labels are still read.
   never,
+
+  /// The chosen tab only, its label unfolding beside its icon; the other
+  /// icons alone. The tabs are as tall as a touch target, like [never], and
+  /// suit a [FlBottomTabIndicator.capsule] behind the chosen one.
+  beside,
 }
 
 /// What marks the chosen tab of an [FlBottomTabBar], besides its colors.
@@ -72,9 +77,10 @@ const _iconPillWidth = 72.0;
 const _iconPillHeight = 44.0;
 
 /// The pill around the chosen icon, larger when no label follows it.
-Size _pillOf(FlBottomTabLabels labels) => labels == FlBottomTabLabels.never
-    ? const Size(_iconPillWidth, _iconPillHeight)
-    : const Size(_pillWidth, _pillHeight);
+Size _pillOf(FlBottomTabLabels labels) => switch (labels) {
+  FlBottomTabLabels.never || FlBottomTabLabels.beside => const Size(_iconPillWidth, _iconPillHeight),
+  FlBottomTabLabels.always || FlBottomTabLabels.selected => const Size(_pillWidth, _pillHeight),
+};
 
 /// The widest a tab of a floating bar gets: past it, on a tablet or a
 /// desktop, the bar stops growing and stays centered.
@@ -745,6 +751,34 @@ class _Content extends StatelessWidget {
     switch (labels) {
       case FlBottomTabLabels.never:
         return Center(heightFactor: 1, child: icon);
+      case FlBottomTabLabels.beside:
+        // The icon alone, then its label opening beside it, as wide as the
+        // tab allows: the label shrinks before it pushes the icon out.
+        return SizedBox(
+          height: pill.height,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              _Icon(tab: tab, t: t, color: Color.lerp(colors.onSurfaceMuted, colors.selected, t)!),
+              if (t > 0)
+                Flexible(
+                  child: ClipRect(
+                    child: Align(
+                      alignment: AlignmentDirectional.centerStart,
+                      widthFactor: t,
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.only(start: theme.space.sm),
+                        child: Opacity(
+                          opacity: t,
+                          child: _Label(tab.label, t: t),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+            ],
+          ),
+        );
       case FlBottomTabLabels.always:
         return Column(
           mainAxisSize: MainAxisSize.min,
@@ -879,7 +913,7 @@ double _capped(double radius, double extent) => radius < extent / 2 ? radius : e
 /// The corners of the pill on a side of [extent]: a capsule around an icon
 /// alone, [radius] at most otherwise.
 double _pillRadius(FlBottomTabLabels labels, double radius, double extent) =>
-    labels == FlBottomTabLabels.never ? extent / 2 : _capped(radius, extent);
+    labels == FlBottomTabLabels.never || labels == FlBottomTabLabels.beside ? extent / 2 : _capped(radius, extent);
 
 /// The indicator under the tab that [position] designates, halfway between
 /// two tabs during the spring.

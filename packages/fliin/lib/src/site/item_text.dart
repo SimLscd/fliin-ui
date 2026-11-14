@@ -1229,9 +1229,9 @@ itemEnglish = {
   'finance-dashboard': (
     title: 'Finance dashboard',
     description:
-        'Shows the balance that can be hidden, spending for the week, month or '
-        'year as a chart or a table, savings goals and the latest '
-        'transactions by day, with loading, empty, error and offline states.',
+        'Shows the balance that can be hidden and quick actions on a band in '
+        'the theme color, then the budget, spending as a chart or a table, '
+        'savings goals and the latest transactions.',
     notFor: [
       'a single key figure card: use a stat card (stat-card)',
       'a chart alone: use a chart (chart)',
@@ -1252,9 +1252,9 @@ itemEnglish = {
   'finance-plan': (
     title: 'Finance plan',
     description:
-        'Shows savings goals in a carousel with their expected pace and '
-        'monthly budgets as rings or bars, overruns flagged, and adds money to '
-        'a goal from a sheet, with loading, empty, error and offline states.',
+        'Shows the total saved on a band in the theme color, savings goals in '
+        'a carousel with their pace, monthly budgets as rings with overruns '
+        'flagged, and adds money to a goal from a sheet.',
     notFor: [
       'the balance and the latest transactions: use the finance dashboard '
           '(finance-dashboard)',

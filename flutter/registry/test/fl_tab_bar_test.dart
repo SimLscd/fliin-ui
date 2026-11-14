@@ -261,6 +261,34 @@ void main() {
     },
   );
 
+  testWidgets(
+    'devrait poser le libellé de l’onglet choisi à côté de son icône, les autres icônes seules, à la hauteur d’une barre sans libellés',
+    (tester) async {
+      await tester.pumpWidget(_app(const _Held(labels: FlBottomTabLabels.never, floating: true)));
+      final bare = tester.getSize(find.byType(FlBottomTabBar)).height;
+      await tester.pumpWidget(_app(const _Held(labels: FlBottomTabLabels.beside, floating: true)));
+      await tester.pumpAndSettle();
+      expect(tester.getSize(find.byType(FlBottomTabBar)).height, bare);
+      expect(find.text('Accueil'), findsOneWidget);
+      expect(find.text('Profil'), findsNothing);
+      // L'icône du premier onglet, celle de la scène.
+      final icon = tester.getRect(
+        find
+            .descendant(
+              of: find.byType(FlBottomTabBar),
+              matching: find.byWidgetPredicate((w) => w is SizedBox && w.width == 24 && w.height == 24),
+            )
+            .first,
+      );
+      expect(tester.getCenter(find.text('Accueil')).dy, closeTo(icon.center.dy, 2), reason: 'sur la ligne de l’icône');
+      expect(tester.getRect(find.text('Accueil')).left, greaterThan(icon.right), reason: 'après l’icône');
+      await tester.tap(find.bySemanticsLabel('Profil'));
+      await tester.pumpAndSettle();
+      expect(find.text('Profil'), findsOneWidget);
+      expect(find.text('Accueil'), findsNothing);
+    },
+  );
+
   testWidgets('devrait fondre l’icône de l’onglet choisi dans selectedIcon', (tester) async {
     const outline = Key('outline');
     const filled = Key('filled');

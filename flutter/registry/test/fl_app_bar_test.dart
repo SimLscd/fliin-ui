@@ -259,6 +259,33 @@ void main() {
     semantics.dispose();
   });
 
+  testWidgets(
+    'devrait poser un titre moyen au début de la barre, sans le réduire au défilement, quand titleSize vaut mediumStart',
+    (tester) async {
+      final controller = ScrollController();
+      await tester.pumpWidget(
+        _app(SizedBox(width: 390, child: _scrolling(_bar(titleSize: FlAppBarTitleSize.mediumStart), controller))),
+      );
+      final headline = tokens.typography.ios.style(FlTextRole.headline);
+      final title = find.text('Réglages');
+      expect(tester.widget<Text>(title).style!.fontSize, headline.size);
+      expect(tester.getRect(find.byType(FlAppBar)).height, FlAppBar.barHeight(tester.element(title)));
+      expect(tester.getRect(title).left, greaterThan(tester.getRect(find.bySemanticsLabel('Retour')).right));
+      expect(
+        tester.getRect(title).left - tester.getRect(find.bySemanticsLabel('Retour')).right,
+        lessThan(tokens.space.lg),
+        reason: 'au début, contre le retour, pas centré',
+      );
+      controller.jumpTo(headline.lineHeight);
+      await tester.pump();
+      final scale = tester
+          .widget<Transform>(find.ancestor(of: title, matching: find.byType(Transform)).first)
+          .transform
+          .entry(0, 0);
+      expect(scale, 1);
+    },
+  );
+
   testWidgets('devrait poser le grand titre sans retour à space.lg, à la hauteur des actions', (tester) async {
     await tester.pumpWidget(
       _app(

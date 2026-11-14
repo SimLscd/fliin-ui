@@ -1,8 +1,8 @@
 {
   "name": "tab-bar",
   "type": "registry:component",
-  "version": "0.3.2",
-  "changelog": "Adds `FlBottomTabBar.discs`: each tab is a disc of its own, spread across the bottom of the screen with no band under them. The discs are `surfaceRaised`, lifted by the `surface` shadow; the chosen one is larger and in the theme's primary color, `selected` with an `onSelected` icon. They sit 28 from the bottom edge, inside the safe area above the home indicator. Behind them, the content fades into the page's color. No label is shown; each disc is read by its label. The other forms do not change.",
+  "version": "0.3.3",
+  "changelog": "`FlBottomTabLabels.beside`: the chosen tab's label unfolds beside its icon and the other icons stay alone, in tabs as tall as a touch target; with `FlBottomTabIndicator.capsule`, the chosen tab sits in a capsule with its label, as on the Finance canvas.",
   "title": "Tab bar",
   "description": "Switches between the main sections of an app from the bottom of the screen: three to five tabs with icon, label and badge, on a docked, translucent or floating bar, or as separate discs.",
   "flutter": ">=3.47.0 <4.0.0",
