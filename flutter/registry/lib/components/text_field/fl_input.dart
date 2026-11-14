@@ -380,9 +380,11 @@ class FlInput extends StatefulWidget {
     this.onSubmitted,
     this.textAlign = TextAlign.start,
     this.compact = false,
+    this.pill = false,
     this.touchFocusRing = true,
     this.statesController,
   }) : assert(maxLines >= 1, 'at least one line'),
+       assert(!pill || !multiline, 'a text area is not a capsule: pill rejects multiline'),
        assert(rows == null || (multiline && rows >= 1), 'rows sets the height of a text area: set multiline'),
        assert(maxLength == null || maxLength > 0, 'maxLength counts at least one character'),
        assert(!compact || !multiline, 'a compact input grows with maxLines, it is not a text area'),
@@ -483,6 +485,13 @@ class FlInput extends StatefulWidget {
   /// and `space.md + space.xs / 2` at the ends: 40 high with the default
   /// tokens, Izydesk's `.composer .input`. [variant] no longer applies.
   final bool compact;
+
+  /// True: the frame of [compact], a capsule in `control` without shadow
+  /// that takes the button's shape (`shape.button`), at the field's usual
+  /// height and text, `space.xs` further from each end. A field that sits
+  /// next to a full-width button of the same height (an access form).
+  /// [variant] no longer applies.
+  final bool pill;
 
   /// False: the focus ring shows only when focus moves by keyboard; under
   /// touch, the caret alone says where the text goes, as in iOS's fields.
@@ -796,7 +805,7 @@ class _FlInputState extends State<FlInput>
         final box = _InputBox(
           background: FlInputFrame(
             variant: widget.variant,
-            pill: compact,
+            pill: compact || widget.pill,
             frameKey: _frameKey,
             invalid: invalid,
             focused:
@@ -819,8 +828,8 @@ class _FlInputState extends State<FlInput>
                   vertical: theme.space.sm + theme.space.xs / 2,
                 )
               : EdgeInsetsDirectional.only(
-                  start: prefix == null ? theme.space.md : 0,
-                  end: suffix == null ? theme.space.md : 0,
+                  start: (prefix == null ? theme.space.md : 0) + (widget.pill ? theme.space.xs : 0),
+                  end: (suffix == null ? theme.space.md : 0) + (widget.pill ? theme.space.xs : 0),
                   // A text area's first line sits where a single line would.
                   top: multiline ? (theme.controlHeight - lineHeight) / 2 : theme.space.xs,
                   bottom: multiline ? (theme.controlHeight - lineHeight) / 2 : theme.space.xs,

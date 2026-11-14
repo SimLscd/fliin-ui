@@ -246,7 +246,7 @@ void main() {
   });
 
   testWidgets('la présentation passée mène à l’accueil seul dans la pile', (tester) async {
-    await tester.pumpWidget(_app(() => onboardingRoute(homePage: (_) => const Text('home'))));
+    await tester.pumpWidget(_app(() => onboardingRoute(homePage: (_) => const Text('home'), newPasswordPage: (_) => const Text('new password'))));
     await tester.tap(find.text('open'));
     await tester.pumpAndSettle();
     await tester.tap(find.text('Skip'));
@@ -256,7 +256,7 @@ void main() {
   });
 
   testWidgets('la présentation ouvre la connexion par signInRoute', (tester) async {
-    await tester.pumpWidget(_app(() => onboardingRoute(homePage: (_) => const Text('home'))));
+    await tester.pumpWidget(_app(() => onboardingRoute(homePage: (_) => const Text('home'), newPasswordPage: (_) => const Text('new password'))));
     await tester.tap(find.text('open'));
     await tester.pumpAndSettle();
     await tester.tap(find.text('I already have an account'));

@@ -14,7 +14,8 @@ export 'package:fliin_ui/components/text_field/fl_input.dart';
 /// A text field: the `FlLabel` label, the [FlInput] input with
 /// its [prefix] and [suffix], then the `FlDescription` help text or the
 /// `FlFieldError` error, `flFieldGap` apart. The screen reader reads a
-/// single node: the label, the input, and the help text or error as a hint.
+/// single node: the label, the input, and the help text or error as a hint,
+/// whether or not the label shows ([labelVisible]).
 class FlTextField extends StatefulWidget {
   /// Creates a field named [label]. Without [controller] or [focusNode], the
   /// field creates and disposes of its own.
@@ -30,6 +31,8 @@ class FlTextField extends StatefulWidget {
     this.prefix,
     this.suffix,
     this.variant = FlInputVariant.primary,
+    this.pill = false,
+    this.labelVisible = true,
     this.enabled = true,
     this.readOnly = false,
     this.required = false,
@@ -53,8 +56,8 @@ class FlTextField extends StatefulWidget {
   }) : assert(showLabel == null || obscureText, 'showLabel reveals an obscured text: set obscureText'),
        assert(hideLabel == null || showLabel != null, 'hideLabel goes with showLabel');
 
-  /// The field's name, shown above the input and read by the screen
-  /// reader.
+  /// The field's name, shown above the input unless [labelVisible] is false,
+  /// and always read by the screen reader.
   final String label;
 
   /// The field's text and its selection. When null, the field creates its
@@ -90,6 +93,16 @@ class FlTextField extends StatefulWidget {
 
   /// The input's background: `primary` by default, `secondary` on a surface.
   final FlInputVariant variant;
+
+  /// True: the input is a capsule in `control`, without shadow, that takes
+  /// the button's shape (`FlInput.pill`). [variant] no longer applies.
+  final bool pill;
+
+  /// False: the label does not show, the screen reader still reads it. Give
+  /// a [placeholder] that says what to type ("Enter your email"), or a
+  /// [prefix] that shows it: once text is typed, nothing else names the
+  /// field on screen. True by default.
+  final bool labelVisible;
 
   /// False: the field is half opaque, read-only, with no focus or selection.
   /// True by default.
@@ -210,6 +223,7 @@ class _FlTextFieldState extends State<FlTextField> {
       focusNode: widget.focusNode,
       placeholder: widget.placeholder,
       variant: widget.variant,
+      pill: widget.pill,
       touchFocusRing: widget.touchFocusRing,
       readOnly: widget.readOnly,
       multiline: widget.multiline,
@@ -239,10 +253,11 @@ class _FlTextFieldState extends State<FlTextField> {
           // Tight around its text, like the error below: at full width, the
           // label of a compact field took the top of the input as its text
           // colour in the contrast check.
-          Align(
-            alignment: AlignmentDirectional.centerStart,
-            child: ExcludeSemantics(child: FlLabel(widget.label)),
-          ),
+          if (widget.labelVisible)
+            Align(
+              alignment: AlignmentDirectional.centerStart,
+              child: ExcludeSemantics(child: FlLabel(widget.label)),
+            ),
           // Always present: the input keeps its state when an affix appears.
           Directionality(
             textDirection: widget.textDirection ?? Directionality.of(context),

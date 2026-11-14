@@ -6197,7 +6197,7 @@ final Map<String, FlReferenceEntry> verifyEntries = {
     ),
   ),
   'text-field': (
-    version: '0.2.7',
+    version: '0.2.8',
     canvas: const Size(390, 800),
     platformCanvas: const {},
     settle: const Duration(milliseconds: 300),

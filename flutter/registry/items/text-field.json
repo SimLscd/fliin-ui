@@ -1,7 +1,7 @@
 {
   "name": "text-field",
   "type": "registry:component",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "title": "Text field",
   "description": "Takes a line or a paragraph of text: label, helper and announced error, required field, prefix, suffix, obscured input, text area and a cut, copy, paste toolbar.",
   "flutter": ">=3.47.0 <4.0.0",
@@ -106,11 +106,5 @@
     },
     "goldens": null
   },
-  "changelog": "No hover hairline when the theme's platform is iOS or Android (`FlTheme.hovers`): a phone app previewed with a mouse shows the field at rest.",
-  "breaking": [
-    {
-      "kind": "semantic",
-      "description": "An invalid input no longer draws a `danger` ring: `FlInputFrame.invalid` lays it on `dangerSoft`. A frame you build with `outline: colors.danger` for an error should pass `invalid: true` instead."
-    }
-  ]
+  "changelog": "Optional parameters `pill` (the input is a capsule in `control`, without shadow, in the button's shape, at the field's usual height and text) and `labelVisible` (false: the label no longer shows, the screen reader still reads it; the placeholder or the prefix then says what to type). Default rendering unchanged. Includes 0.2.7: no hover hairline when the theme's platform is a phone."
 }
