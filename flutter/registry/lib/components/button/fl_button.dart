@@ -103,6 +103,7 @@ class FlButton extends StatelessWidget {
     this.statesController,
     this.selected,
     this.fullWidth = false,
+    this.value,
   }) : icon = null,
        extent = null;
 
@@ -122,7 +123,8 @@ class FlButton extends StatelessWidget {
     this.selected,
   }) : leading = null,
        trailing = null,
-       fullWidth = false;
+       fullWidth = false,
+       value = null;
 
   /// The displayed text, read as is by the screen reader in place of the
   /// whole content of the button.
@@ -190,6 +192,12 @@ class FlButton extends StatelessWidget {
   /// it keeps its natural width. False by default: as wide as its content.
   /// A [FlButton.icon] stays square.
   final bool fullWidth;
+
+  /// A text at the end of the button, in the label's style ("€137.90"):
+  /// the label then moves to the start, [trailing] after it, and the
+  /// screen reader reads "label, value". Give it a bounded width (an action
+  /// bar, [fullWidth]). When null, the label alone, centered.
+  final String? value;
 
   _Metrics _metrics(FlTheme theme, FlButtonSize size) {
     final s = theme.size;
@@ -359,9 +367,28 @@ class FlButton extends StatelessWidget {
     final leading = this.leading;
     final trailing = this.trailing;
 
+    final value = this.value;
+    final textStyle = theme.typography.resolve(metrics.text).copyWith(color: paint.foreground);
+    final strut = theme.typography.strut(metrics.text, inheritedFamily: DefaultTextStyle.of(context).style.fontFamily);
     final Widget content;
     if (icon != null) {
       content = loading ? spinner : glyph(icon);
+    } else if (value != null) {
+      content = Row(
+        spacing: metrics.gap,
+        children: [
+          if (loading) spinner else if (leading != null) glyph(leading),
+          Expanded(
+            child: Text(label, style: textStyle, strutStyle: strut),
+          ),
+          if (trailing != null) glyph(trailing),
+          Text(
+            value,
+            style: textStyle.copyWith(fontFeatures: const [FontFeature.tabularFigures()]),
+            strutStyle: strut,
+          ),
+        ],
+      );
     } else {
       content = Row(
         mainAxisSize: MainAxisSize.min,
@@ -388,7 +415,7 @@ class FlButton extends StatelessWidget {
       onPressed: loading ? null : onPressed,
       statesController: statesController,
       selected: selected,
-      label: label,
+      label: value == null ? label : '$label, $value',
       borderRadius: radius,
       scaleOnPress: feedback._scales,
       overlay: feedback._overlay,

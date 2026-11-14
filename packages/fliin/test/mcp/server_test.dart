@@ -246,7 +246,7 @@ void main() {
           'FlButton.new: const new({super.key, required String label, '
               'required VoidCallback? onPressed, FlButtonVariant variant, '
               'FlButtonSize? size, bool loading, Widget? leading, Widget? trailing, '
-              'FlButtonFeedback feedback, WidgetStatesController? statesController, bool? selected, bool fullWidth})',
+              'FlButtonFeedback feedback, WidgetStatesController? statesController, bool? selected, bool fullWidth, String? value})',
         ]),
       );
       expect(

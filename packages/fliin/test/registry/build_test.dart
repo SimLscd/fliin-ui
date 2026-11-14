@@ -480,8 +480,8 @@ void breakingTests() {
     expect(manifest.breaking, [
       const ChangedSignature(
         'FlButton.new',
-        before: 'const new({super.key, required String label, required VoidCallback? onPressed, FlButtonVariant variant, FlButtonSize? size, bool loading, Widget? leading, Widget? trailing, FlButtonFeedback feedback, WidgetStatesController? statesController, bool? selected, bool fullWidth})',
-        after: 'const new({super.key, required String label, required VoidCallback? onPressed, required String tooltip, FlButtonVariant variant, FlButtonSize? size, Widget? leading, Widget? trailing, FlButtonFeedback feedback, WidgetStatesController? statesController, bool? selected, bool fullWidth})',
+        before: 'const new({super.key, required String label, required VoidCallback? onPressed, FlButtonVariant variant, FlButtonSize? size, bool loading, Widget? leading, Widget? trailing, FlButtonFeedback feedback, WidgetStatesController? statesController, bool? selected, bool fullWidth, String? value})',
+        after: 'const new({super.key, required String label, required VoidCallback? onPressed, required String tooltip, FlButtonVariant variant, FlButtonSize? size, Widget? leading, Widget? trailing, FlButtonFeedback feedback, WidgetStatesController? statesController, bool? selected, bool fullWidth, String? value})',
       ),
       const RequiredParameterAdded('FlButton.new', parameter: 'tooltip'),
       const SemanticBreak('Le chargement ne se règle plus.'),

@@ -1,7 +1,7 @@
 {
   "name": "button",
   "type": "registry:component",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "title": "Button",
   "description": "Triggers the main action of a screen or form. Primary, secondary or ghost, with loading, leading icon, visible keyboard focus and the platform tap target.",
   "flutter": ">=3.47.0 <4.0.0",
@@ -94,5 +94,5 @@
     },
     "goldens": null
   },
-  "changelog": "`fullWidth` stretches the button across the width it receives, content centered; under an unbounded width, it keeps its own width. Default rendering unchanged."
+  "changelog": "Optional parameter `value`: a text at the end of the button, in the label's style (“Pay … €137.90”); the label then moves to the start and the screen reader reads “label, value”. Give it a bounded width. Default rendering unchanged. Includes 0.2.5: `fullWidth`."
 }

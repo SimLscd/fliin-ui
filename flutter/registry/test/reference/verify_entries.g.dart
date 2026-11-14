@@ -1099,7 +1099,7 @@ final Map<String, FlReferenceEntry> verifyEntries = {
     ),
   ),
   'button': (
-    version: '0.2.5',
+    version: '0.2.6',
     canvas: const Size(390, 1200),
     platformCanvas: const {},
     settle: const Duration(milliseconds: 400),

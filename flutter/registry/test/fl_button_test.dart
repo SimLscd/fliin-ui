@@ -413,4 +413,38 @@ void main() {
     );
     expect(tester.getSize(find.byType(FlButton)).width, lessThan(300), reason: 'sans fullWidth, la largeur du contenu');
   });
+
+  testWidgets(
+    'devrait poser le libellé au début et la valeur au bout, et lire « libellé, valeur » quand value est donné',
+    (tester) async {
+      final semantics = tester.ensureSemantics();
+      await tester.pumpWidget(
+        _app(
+          SizedBox(
+            width: 300,
+            child: FlButton(label: 'Pay', value: '€137.90', fullWidth: true, onPressed: () {}),
+          ),
+        ),
+      );
+      final button = tester.getRect(find.byType(FlButton));
+      final label = tester.getRect(find.text('Pay'));
+      final value = tester.getRect(find.text('€137.90'));
+      expect(label.left - button.left, moreOrLessEquals(button.right - value.right, epsilon: 0.5));
+      expect(value.left, greaterThan(button.center.dx), reason: 'la valeur au bout');
+      expect(find.bySemanticsLabel('Pay, €137.90'), findsOneWidget);
+      await tester.pumpWidget(
+        _app(
+          Directionality(
+            textDirection: TextDirection.rtl,
+            child: SizedBox(
+              width: 300,
+              child: FlButton(label: 'Pay', value: '€137.90', fullWidth: true, onPressed: () {}),
+            ),
+          ),
+        ),
+      );
+      expect(tester.getRect(find.text('Pay')).left, greaterThan(tester.getRect(find.text('€137.90')).right));
+      semantics.dispose();
+    },
+  );
 }
