@@ -463,7 +463,8 @@ class _FlTabsState extends State<FlTabs> with TickerProviderStateMixin {
           enabled: enabled,
           mouseCursor: enabled ? SystemMouseCursors.click : MouseCursor.defer,
           actions: {ActivateIntent: CallbackAction<ActivateIntent>(onInvoke: (_) => choose())},
-          onShowHoverHighlight: (visible) => setState(() => _hovered = visible ? i : (_hovered == i ? null : _hovered)),
+          onShowHoverHighlight: (visible) =>
+              setState(() => _hovered = visible && theme.hovers ? i : (_hovered == i ? null : _hovered)),
           onShowFocusHighlight: (visible) => setState(() => _focused = visible ? i : (_focused == i ? null : _focused)),
           child: GestureDetector(
             behavior: HitTestBehavior.opaque,

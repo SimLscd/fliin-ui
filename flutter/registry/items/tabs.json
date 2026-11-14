@@ -1,13 +1,13 @@
 {
   "name": "tabs",
   "type": "registry:component",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "title": "Tabs",
   "description": "Moves between views at the same level of a screen. Segmented or underlined tabs with a spring indicator, disabled tabs, separators and arrow key navigation.",
   "flutter": ">=3.47.0 <4.0.0",
   "dependencies": {},
   "registryDependencies": [
-    "core@^0.2.0"
+    "core@^0.2.11"
   ],
   "files": [
     {
@@ -90,7 +90,7 @@
     },
     "goldens": null
   },
-  "changelog": "`icons` puts an icon before each label (one per tab, `null` for none), at `size.buttonIconSm` and in the label color, counted in the width that decides scrolling; `indicatorColor` and `selectedLabelColor` replace the colors of the thumb (or the underline) and of the chosen label. The default rendering does not change.",
+  "changelog": "No hover look on the tabs when the theme's platform is iOS or Android (`FlTheme.hovers`).",
   "breaking": [
     {
       "kind": "semantic",

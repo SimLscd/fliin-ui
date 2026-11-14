@@ -1,13 +1,13 @@
 {
   "name": "text-field",
   "type": "registry:component",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "title": "Text field",
   "description": "Takes a line or a paragraph of text: label, helper and announced error, required field, prefix, suffix, obscured input, text area and a cut, copy, paste toolbar.",
   "flutter": ">=3.47.0 <4.0.0",
   "dependencies": {},
   "registryDependencies": [
-    "core@^0.2.3",
+    "core@^0.2.11",
     "field@^0.2.0",
     "button@^0.2.0",
     "link-button@^0.2.0"
@@ -106,7 +106,7 @@
     },
     "goldens": null
   },
-  "changelog": "An invalid input lies on the pastel `dangerSoft`, without shadow nor red ring (`FlInputFrame.invalid`): every invalid input of the registry says it the same way, the error in words under it. `touchFocusRing: false`: the focus ring shows only when focus moves by keyboard; under touch, the caret alone says where the text goes, as in iOS's fields. `invalid` makes the field invalid without a text under it, the reason said elsewhere (a toast).",
+  "changelog": "No hover hairline when the theme's platform is iOS or Android (`FlTheme.hovers`): a phone app previewed with a mouse shows the field at rest.",
   "breaking": [
     {
       "kind": "semantic",

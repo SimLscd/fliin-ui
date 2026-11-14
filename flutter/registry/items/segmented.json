@@ -1,13 +1,13 @@
 {
   "name": "segmented",
   "type": "registry:component",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "title": "Segmented control",
   "description": "Picks one of two to five short options shown side by side, such as day, week or month, with a sliding selection and radio group semantics.",
   "flutter": ">=3.47.0 <4.0.0",
   "dependencies": {},
   "registryDependencies": [
-    "core@^0.2.0"
+    "core@^0.2.11"
   ],
   "files": [
     {
@@ -93,5 +93,5 @@
     },
     "goldens": null
   },
-  "changelog": "`FlSegmentedVariant.inverse`: the chosen segment in the theme's primary color (`selected`) without shadow, its label in `onSelected`; `trackColor` sets the track, `control` by default, `surfaceRaised` on a page whose base is `control`'s grey."
+  "changelog": "No hover look on the segments when the theme's platform is iOS or Android (`FlTheme.hovers`)."
 }

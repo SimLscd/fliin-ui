@@ -1194,7 +1194,7 @@ final Map<String, FlReferenceEntry> verifyEntries = {
     ),
   ),
   'calendar': (
-    version: '0.2.5',
+    version: '0.2.6',
     canvas: const Size(760, 1300),
     platformCanvas: const {},
     settle: null,
@@ -2547,7 +2547,7 @@ final Map<String, FlReferenceEntry> verifyEntries = {
     ),
   ),
   'core': (
-    version: '0.2.10',
+    version: '0.2.11',
     canvas: null,
     platformCanvas: const {},
     settle: null,
@@ -3803,7 +3803,7 @@ final Map<String, FlReferenceEntry> verifyEntries = {
     ),
   ),
   'number-field': (
-    version: '0.2.4',
+    version: '0.2.5',
     canvas: const Size(390, 1060),
     platformCanvas: const {},
     settle: const Duration(milliseconds: 300),
@@ -4899,7 +4899,7 @@ final Map<String, FlReferenceEntry> verifyEntries = {
     ),
   ),
   'segmented': (
-    version: '0.3.5',
+    version: '0.3.6',
     canvas: const Size(390, 640),
     platformCanvas: const {},
     settle: null,
@@ -6087,7 +6087,7 @@ final Map<String, FlReferenceEntry> verifyEntries = {
     ),
   ),
   'tabs': (
-    version: '0.3.3',
+    version: '0.3.4',
     canvas: const Size(390, 360),
     platformCanvas: const {},
     settle: null,
@@ -6197,7 +6197,7 @@ final Map<String, FlReferenceEntry> verifyEntries = {
     ),
   ),
   'text-field': (
-    version: '0.2.6',
+    version: '0.2.7',
     canvas: const Size(390, 800),
     platformCanvas: const {},
     settle: const Duration(milliseconds: 300),

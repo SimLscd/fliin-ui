@@ -1077,7 +1077,7 @@ class _FlCalendarViewState extends State<FlCalendarView> with TickerProviderStat
         onTap: selectable ? () => _press(day) : null,
         child: MouseRegion(
           cursor: selectable ? SystemMouseCursors.click : MouseCursor.defer,
-          onEnter: selectable ? (_) => setState(() => _hovered = day) : null,
+          onEnter: selectable && theme.hovers ? (_) => setState(() => _hovered = day) : null,
           onExit: (_) {
             if (_hovered != null && flSameDay(_hovered!, day)) {
               setState(() => _hovered = null);
@@ -1337,7 +1337,7 @@ class _ButtonState extends State<_Button> {
           enabled: enabled,
           mouseCursor: enabled ? SystemMouseCursors.click : MouseCursor.defer,
           actions: {ActivateIntent: CallbackAction<ActivateIntent>(onInvoke: (_) => onPressed?.call())},
-          onShowHoverHighlight: (visible) => setState(() => _hovered = visible),
+          onShowHoverHighlight: (visible) => setState(() => _hovered = visible && theme.hovers),
           onShowFocusHighlight: (visible) => setState(() => _focused = visible),
           child: GestureDetector(
             behavior: HitTestBehavior.opaque,

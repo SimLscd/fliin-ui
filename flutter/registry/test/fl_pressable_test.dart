@@ -1,13 +1,14 @@
 import 'package:fliin_ui/core/fliin.dart';
+import 'package:flutter/gestures.dart' show PointerDeviceKind;
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-Widget _app(Widget child) => WidgetsApp(
+Widget _app(Widget child, {TargetPlatform platform = TargetPlatform.android}) => WidgetsApp(
   color: const Color(0xFF000000),
   builder: (context, _) => FlScope(
     brightness: Brightness.light,
-    platform: TargetPlatform.android,
+    platform: platform,
     child: Center(child: child),
   ),
 );
@@ -203,4 +204,37 @@ void main() {
     expect(find.byType(FlPressHighlight), paintsNothing);
     await gesture.up();
   });
+
+  for (final (platform, hovers) in [
+    (TargetPlatform.macOS, true),
+    (TargetPlatform.iOS, false),
+    (TargetPlatform.android, false),
+  ]) {
+    testWidgets(
+      'devrait ${hovers ? 'passer' : 'ne pas passer'} en hovered sous la souris quand la plateforme est ${platform.name}',
+      (tester) async {
+        final seen = <Set<WidgetState>>[];
+        await tester.pumpWidget(
+          _app(
+            FlPressable(
+              onPressed: () {},
+              borderRadius: BorderRadius.zero,
+              builder: (context, states) {
+                seen.add({...states});
+                return const SizedBox(width: 20, height: 20);
+              },
+            ),
+            platform: platform,
+          ),
+        );
+        final mouse = await tester.createGesture(kind: PointerDeviceKind.mouse);
+        addTearDown(mouse.removePointer);
+        await mouse.addPointer(location: tester.getCenter(find.byType(FlPressable)));
+        await tester.pumpAndSettle();
+        expect(seen.last.contains(WidgetState.hovered), hovers);
+      },
+      // Un navigateur sur un Mac, comme sur le site : seule la plateforme du thème change.
+      variant: TargetPlatformVariant.only(TargetPlatform.macOS),
+    );
+  }
 }

@@ -226,7 +226,7 @@ class _FlPressableState extends State<FlPressable> with TickerProviderStateMixin
           mouseCursor: _enabled ? SystemMouseCursors.click : MouseCursor.defer,
           actions: {ActivateIntent: CallbackAction<ActivateIntent>(onInvoke: (_) => widget.onPressed?.call())},
           onShowFocusHighlight: (visible) => _states.update(WidgetState.focused, visible),
-          onShowHoverHighlight: (visible) => _states.update(WidgetState.hovered, visible),
+          onShowHoverHighlight: (visible) => _states.update(WidgetState.hovered, visible && theme.hovers),
           child: GestureDetector(
             behavior: HitTestBehavior.opaque,
             excludeFromSemantics: true,

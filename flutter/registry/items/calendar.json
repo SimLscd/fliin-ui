@@ -1,14 +1,14 @@
 {
   "name": "calendar",
   "type": "registry:component",
-  "version": "0.2.5",
-  "changelog": "`indicatorOf` puts a dot under the number of days that have something planned: in `onSurfaceMuted`, in `onSelected` on the chosen day, and the screen reader reads the rendered text after the date (“2 events”). Shared by `FlCalendarView`, so also by `range-calendar`. Without it, the rendering does not change.",
+  "version": "0.2.6",
+  "changelog": "No hover disc on the days and buttons when the theme's platform is iOS or Android (`FlTheme.hovers`).",
   "title": "Calendar",
   "description": "Picks one day from a month grid, for an appointment or a delivery: previous and next month, a quick year picker, unavailable and out-of-range days, each day read out in full.",
   "flutter": ">=3.47.0 <4.0.0",
   "dependencies": {},
   "registryDependencies": [
-    "core@^0.2.2",
+    "core@^0.2.11",
     "icons@^0.2.0"
   ],
   "files": [

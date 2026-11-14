@@ -84,6 +84,15 @@ final class FlTheme {
     TargetPlatform.macOS || TargetPlatform.windows || TargetPlatform.linux => size.hitTargetDesktop,
   };
 
+  /// Whether a control lights up under the pointer: on desktop, not on
+  /// [platform] iOS, Android or Fuchsia, where a finger never hovers and a
+  /// mouse only drives a preview of the phone app (an iPad's trackpad
+  /// included).
+  bool get hovers => switch (platform) {
+    TargetPlatform.iOS || TargetPlatform.android || TargetPlatform.fuchsia => false,
+    TargetPlatform.macOS || TargetPlatform.windows || TargetPlatform.linux => true,
+  };
+
   @override
   bool operator ==(Object other) =>
       other is FlTheme &&

@@ -171,6 +171,20 @@ void main() {
     }
   });
 
+  test('devrait réagir au survol sur bureau et jamais sur un téléphone', () {
+    for (final platform in TargetPlatform.values) {
+      final theme = FlTheme(
+        tokens: FlTokens.defaults,
+        brightness: Brightness.light,
+        platform: platform,
+        density: FlDensity.defaultFor(platform),
+        reduceMotion: false,
+      );
+      final desktop = {TargetPlatform.macOS, TargetPlatform.windows, TargetPlatform.linux}.contains(platform);
+      expect(theme.hovers, desktop, reason: platform.name);
+    }
+  });
+
   testWidgets('devrait donner 44/48/56 de hauteur de contrôle et 8/12/16 de padding de liste selon la densité', (
     tester,
   ) async {

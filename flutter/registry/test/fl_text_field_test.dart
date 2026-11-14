@@ -537,7 +537,7 @@ void main() {
   });
 
   testWidgets('devrait faire paraître un filet border sous le pointeur, puis le retirer', (tester) async {
-    await tester.pumpWidget(_app(const FlTextField(label: 'Ville')));
+    await tester.pumpWidget(_app(const FlTextField(label: 'Ville'), platform: TargetPlatform.macOS));
     final mouse = await tester.createGesture(kind: PointerDeviceKind.mouse);
     addTearDown(mouse.removePointer);
     await mouse.addPointer(location: tester.getCenter(find.byType(EditableText)));
@@ -547,6 +547,19 @@ void main() {
     await tester.pumpAndSettle();
     expect(_contour(tester, 'Ville'), BorderSide.none);
   });
+
+  for (final platform in [TargetPlatform.iOS, TargetPlatform.android]) {
+    testWidgets('devrait garder le champ sans filet sous la souris quand la plateforme est ${platform.name}', (
+      tester,
+    ) async {
+      await tester.pumpWidget(_app(const FlTextField(label: 'Ville'), platform: platform));
+      final mouse = await tester.createGesture(kind: PointerDeviceKind.mouse);
+      addTearDown(mouse.removePointer);
+      await mouse.addPointer(location: tester.getCenter(find.byType(EditableText)));
+      await tester.pumpAndSettle();
+      expect(_contour(tester, 'Ville'), BorderSide.none);
+    });
+  }
 
   testWidgets(
     'devrait garder le fond pastel de l’erreur et poser l’anneau de focus quand le champ invalide prend le focus',

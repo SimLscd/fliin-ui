@@ -564,7 +564,8 @@ void main() {
   testWidgets('devrait marquer aujourd\'hui d\'un disque selected doux et d\'un chiffre link, et le survoler', (
     tester,
   ) async {
-    await _pump(tester, const _Host());
+    await tester.pumpWidget(toggleApp(const _Host(), platform: TargetPlatform.macOS));
+    await tester.pumpAndSettle();
     final light = FlTokens.defaults.light;
     final style = tester.widget<Text>(find.text('24').first).style!;
     expect(style.color, light.link);
@@ -576,6 +577,17 @@ void main() {
     await mouse.moveTo(tester.getCenter(find.text('24')));
     await tester.pumpAndSettle();
     expect(_disc(tester, '24'), FlTokens.defaults.light.control);
+  });
+
+  testWidgets('devrait laisser le jour tel quel sous la souris quand la plateforme est un téléphone', (tester) async {
+    await _pump(tester, const _Host());
+    final light = FlTokens.defaults.light;
+    final mouse = await tester.createGesture(kind: PointerDeviceKind.mouse);
+    await mouse.addPointer(location: Offset.zero);
+    addTearDown(mouse.removePointer);
+    await mouse.moveTo(tester.getCenter(find.text('24')));
+    await tester.pumpAndSettle();
+    expect(_disc(tester, '24'), light.selected.withValues(alpha: light.selected.a * 0.15));
   });
 
   testWidgets('devrait reconstruire la grille au minuit suivant quand l\'app ne donne pas aujourd\'hui', (

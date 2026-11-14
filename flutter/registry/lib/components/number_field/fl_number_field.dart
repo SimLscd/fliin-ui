@@ -774,7 +774,7 @@ class _StepButtonState extends State<_StepButton> {
               ),
           },
           child: MouseRegion(
-            onEnter: (_) => setState(() => _hovered = true),
+            onEnter: (_) => setState(() => _hovered = theme.hovers),
             onExit: (_) => setState(() => _hovered = false),
             child: Opacity(
               opacity: enabled ? 1 : theme.size.disabledOpacity,

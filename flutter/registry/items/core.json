@@ -1,7 +1,7 @@
 {
   "name": "core",
   "type": "registry:core",
-  "version": "0.2.10",
+  "version": "0.2.11",
   "title": "Core",
   "description": "Gives every component its tokens, light and dark themes, density, platform typography, reduced motion and an accessible pressable surface. No Material, no Cupertino.",
   "flutter": ">=3.47.0 <4.0.0",
@@ -193,5 +193,5 @@
     },
     "goldens": null
   },
-  "changelog": "Rounder sheets: `shape.radius.sheet` goes from 20 to 28, above the cards they cover (sheets, drawers, the full-screen player). Run `fliin tokens` after the update."
+  "changelog": "`FlTheme.hovers`: a control lights up under the pointer only on desktop. With the theme's platform on iOS or Android, `FlPressable` no longer reports `WidgetState.hovered`, so a phone app previewed with a mouse (in a browser, on an iPad with a trackpad) shows no hover."
 }

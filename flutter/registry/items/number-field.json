@@ -1,13 +1,13 @@
 {
   "name": "number-field",
   "type": "registry:component",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "title": "Number field",
   "description": "Sets a quantity or a number of guests between two limits, typed or nudged with minus and plus buttons that repeat while held, read out as an adjustable value.",
   "flutter": ">=3.47.0 <4.0.0",
   "dependencies": {},
   "registryDependencies": [
-    "core@^0.2.0",
+    "core@^0.2.11",
     "icons@^0.2.0",
     "field@^0.2.0",
     "text-field@^0.2.0"
@@ -99,5 +99,5 @@
     },
     "goldens": null
   },
-  "changelog": "`FlDecimalFormat` ships: fixed decimals, prefix and suffix (`$99.99`, `1000 kg`), the language's separators (`1 234,50 €`), `FlDecimalFormat.percent()` for a value from 0 to 1, parsed with or without its symbol; `decrementIcon` and `incrementIcon` replace the minus and the plus."
+  "changelog": "No hover look on the steppers when the theme's platform is iOS or Android (`FlTheme.hovers`)."
 }

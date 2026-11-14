@@ -855,7 +855,7 @@ class _FlInputState extends State<FlInput>
             onFocus: disabled ? null : _focusNode.requestFocus,
             child: MouseRegion(
               cursor: disabled ? MouseCursor.defer : SystemMouseCursors.text,
-              onEnter: (_) => _states.update(WidgetState.hovered, true),
+              onEnter: (_) => _states.update(WidgetState.hovered, theme.hovers),
               onExit: (_) => _states.update(WidgetState.hovered, false),
               child: _gestures.buildGestureDetector(
                 behavior: HitTestBehavior.translucent,
