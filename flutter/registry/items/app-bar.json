@@ -1,7 +1,7 @@
 {
   "name": "app-bar",
   "type": "registry:component",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "title": "App bar",
   "description": "Shows where the user is and leads back: the screen title, a back chevron and up to three actions, with a large title that collapses into the bar on scroll.",
   "flutter": ">=3.47.0 <4.0.0",
@@ -94,5 +94,5 @@
     },
     "goldens": null
   },
-  "changelog": "`FlAppBar.titleBuilder`: builds around the title, usually a menu anchored to it, for a title that switches what the screen shows. `FlFloatingAppBar`: a bar over a scroll view that leaves with the content and comes back as soon as it scrolls back the other way, on its glass over the content. Nothing changes without them."
+  "changelog": "`FlAppBar.collapsedTitle`: once a title at the start has collapsed and the bar has raised its background, the title gives way to this text, centered, such as a balance whose card has scrolled away; the screen reader keeps the title. Nothing changes without it."
 }

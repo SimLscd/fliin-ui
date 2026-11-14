@@ -99,8 +99,10 @@ Widget _dot(BuildContext context, String label) => Semantics(
   ),
 );
 
-/// Trois barres : trois onglets sur le premier, quatre dont un pastillé sur
-/// le deuxième, cinq sur le dernier choisi.
+/// Les barres : trois onglets sur la première, quatre dont un pastillé sur
+/// la deuxième, cinq sur la troisième, le dernier choisi ; puis les libellés
+/// du seul choisi, la bande translucide, la capsule flottante, les icônes
+/// seules, et les disques fondus dans des bandes de couleur.
 Widget _bars(BuildContext context, {required bool rtl}) {
   FlBottomTab tab(_Glyph glyph, String fr, String ar, {Widget? badge}) =>
       FlBottomTab(icon: _Icon(glyph), selectedIcon: _Icon(glyph, filled: true), label: tr(rtl, fr, ar), badge: badge);
@@ -148,16 +150,22 @@ Widget _bars(BuildContext context, {required bool rtl}) {
           indicator: FlBottomTabIndicator.none,
           onSelected: (_) {},
         ),
+        _over(
+          context,
+          FlBottomTabBar.discs(tabs: [home, chat, bell, person, gear], index: 2, onSelected: (_) {}),
+          height: 170,
+        ),
       ],
     ),
   );
 }
 
-/// [bar] au bas de bandes de couleur, qu'une barre translucide laisse voir.
-Widget _over(BuildContext context, Widget bar) {
+/// [bar] au bas de bandes de couleur, qu'une barre translucide laisse voir
+/// et dans lesquelles les disques se fondent.
+Widget _over(BuildContext context, Widget bar, {double height = 120}) {
   final colors = FlScope.of(context).colors;
   return SizedBox(
-    height: 120,
+    height: height,
     child: Stack(
       children: [
         Positioned.fill(
@@ -175,5 +183,9 @@ Widget _over(BuildContext context, Widget bar) {
   );
 }
 
-void main() =>
-    verifyItem(item: 'tab-bar', testFile: 'test/tab_bar_verify_test.dart', size: const Size(390, 940), showcase: _bars);
+void main() => verifyItem(
+  item: 'tab-bar',
+  testFile: 'test/tab_bar_verify_test.dart',
+  size: const Size(390, 1150),
+  showcase: _bars,
+);

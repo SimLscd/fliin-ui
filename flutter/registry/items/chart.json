@@ -1,9 +1,9 @@
 {
   "name": "chart",
   "type": "registry:component",
-  "version": "0.2.4",
+  "version": "0.3.0",
   "title": "Chart",
-  "description": "Plots one or two series over time as bars or a line, shows the value of a point on touch, drag or arrow keys, reads a summary and every point to screen readers, and offers the same data as a table.",
+  "description": "Plots series over time as bars or a line with the value under the finger, splits a whole into shares as a bar, blocks, a ring or stacked bars, draws a trend line, and offers the same data as a table.",
   "flutter": ">=3.47.0 <4.0.0",
   "dependencies": {},
   "registryDependencies": [
@@ -14,6 +14,36 @@
       "path": "components/chart/fl_chart.dart",
       "type": "registry:component",
       "target": "@components/chart/fl_chart.dart"
+    },
+    {
+      "path": "components/chart/fl_category.dart",
+      "type": "registry:component",
+      "target": "@components/chart/fl_category.dart"
+    },
+    {
+      "path": "components/chart/fl_share_blocks.dart",
+      "type": "registry:component",
+      "target": "@components/chart/fl_share_blocks.dart"
+    },
+    {
+      "path": "components/chart/fl_share_bar.dart",
+      "type": "registry:component",
+      "target": "@components/chart/fl_share_bar.dart"
+    },
+    {
+      "path": "components/chart/fl_ring_chart.dart",
+      "type": "registry:component",
+      "target": "@components/chart/fl_ring_chart.dart"
+    },
+    {
+      "path": "components/chart/fl_stacked_bars.dart",
+      "type": "registry:component",
+      "target": "@components/chart/fl_stacked_bars.dart"
+    },
+    {
+      "path": "components/chart/fl_sparkline.dart",
+      "type": "registry:component",
+      "target": "@components/chart/fl_sparkline.dart"
     }
   ],
   "l10n": {},
@@ -71,7 +101,11 @@
         "montrer le montant d'une barre sous le doigt",
         "proposer deux séries côte à côte, comme ce mois et le précédent",
         "lire un résumé du tracé au lecteur d'écran",
-        "donner les mêmes chiffres sous forme de tableau"
+        "donner les mêmes chiffres sous forme de tableau",
+        "montrer la part de chaque catégorie dans les dépenses du mois en blocs",
+        "présenter les parts d'un tout en anneau, le total au centre",
+        "montrer chaque barre d'une période empilée par catégorie",
+        "montrer une petite courbe de tendance à côté d'un prix ou d'un total"
       ],
       "en": [
         "show spending per day of the week as bars",
@@ -79,7 +113,11 @@
         "show the amount of a bar under the finger",
         "offer two series side by side, like this month and the last",
         "give a spoken summary of the plot to screen readers",
-        "give the same numbers as a table"
+        "give the same numbers as a table",
+        "show how spending splits between categories as blocks",
+        "show the shares of a whole as a ring with the total in the middle",
+        "split each bar of a period by category",
+        "show a small trend line beside a price or a total"
       ]
     },
     "notFor": [
@@ -89,7 +127,7 @@
     ],
     "fr": {
       "title": "Graphique",
-      "description": "Indique l'évolution d'une ou deux séries dans le temps, en barres ou en ligne, avec la valeur d'un point au toucher, au glisser ou au clavier, un résumé lu et une version en tableau.",
+      "description": "Trace des séries dans le temps en barres ou en ligne, la valeur sous le doigt, partage un tout en blocs, en barre fine, en anneau ou en barres empilées, trace une mini-courbe, et donne les chiffres en tableau.",
       "notFor": [
         "avancement d'une tâche vers un but : utiliser un indicateur de progression (progress)",
         "un chiffre clé seul avec sa variation : utiliser une carte de chiffre (stat-card)",
@@ -98,5 +136,5 @@
     },
     "goldens": null
   },
-  "changelog": "New optional settings: `FlChartSeries.color` paints a series in an app color (category, brand), legend and muted bars included; `FlChart.line(area: true)` fills under the first line with a gradient; `FlChart.line(zeroBased: false)` fits the scale to the values instead of starting at zero (a balance moving between $1,500 and $1,700); `showTimeAxis: false` and `tooltip: false` give a compact curve without labels or tooltip, to place in a card. Default rendering unchanged."
+  "changelog": "New: charts of the shares of a whole, told apart by lightness alone rather than hue (`FlCategoryFill`: the theme's primary color, `selected`, then five lighter shades of it), with their legend (`FlCategoryLegend`, `FlCategoryDot`). `FlShareBar` draws the shares as a thin line of rounded pills, each as wide as its share; with `selected`, the chosen one in `selected` and the others in `selectedSoft`, as the list beside it says which; `remaining` ends it with what is left of a budget. `FlShareBlocks` draws them as blocks as wide as their share, a tap choosing one, with a dashed block for what is left; `FlRingChart` draws them as a ring with the total or the chosen share in its hole, the chosen slice in `selected` and the others in `selectedSoft`; `FlStackedBars` stacks each bar of a period by category; `FlSparkline` is a small line beside a figure. `FlChart.bar` takes `maxBarWidth`, for a few bars on a wide card, and `restColor`, for the bars a selection leaves aside; `tooltipLabel: false` writes the values alone in the tooltip, when the time axis already names the point. The tooltip's lines are centered."
 }

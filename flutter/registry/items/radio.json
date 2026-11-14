@@ -1,7 +1,7 @@
 {
   "name": "radio",
   "type": "registry:component",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "title": "Radio button",
   "description": "Lets people choose exactly one option among several. A group and options, labels included, on the Flutter RadioGroup: one Tab stop, arrows change the option.",
   "flutter": ">=3.47.0 <4.0.0",
@@ -69,7 +69,8 @@
         "select a single answer in a form",
         "add radio buttons",
         "offer mutually exclusive options",
-        "make a single choice among a few visible options"
+        "make a single choice among a few visible options",
+        "offer an exclusive choice in a form, such as a plan or a size"
       ]
     },
     "notFor": [
@@ -86,5 +87,5 @@
     },
     "goldens": null
   },
-  "changelog": "`FlRadioGroupItem.description` adds a line under the label (`textSm`, `onSurfaceMuted`), read as a hint; `FlRadioGroup.direction` lays the options side by side, at their width, on a line that wraps. Optional: default rendering unchanged."
+  "changelog": "Search only: a new intent, “offer an exclusive choice in a form, such as a plan or a size”, so that a query for an exclusive choice in a form keeps finding the radio group first as the registry grows. Code and rendering unchanged."
 }

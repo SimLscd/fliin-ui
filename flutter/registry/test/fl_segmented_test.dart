@@ -83,6 +83,48 @@ Rect _pill(WidgetTester tester) {
 }
 
 void main() {
+  testWidgets(
+    'devrait peindre le choix en couleur primaire sans ombre, texte onSelected, sur la piste demandée, en variante inverse',
+    (tester) async {
+      await tester.pumpWidget(
+        toggleApp(
+          SizedBox(
+            width: 360,
+            child: FlSegmented<_Period>(
+              value: _Period.week,
+              onChanged: (_) {},
+              variant: FlSegmentedVariant.inverse,
+              trackColor: _light.surfaceRaised,
+              segments: [for (final MapEntry(key: p, value: l) in _labels.entries) FlSegment(value: p, label: l)],
+            ),
+          ),
+        ),
+      );
+      final track = tester.widget<DecoratedBox>(
+        find.descendant(of: find.byType(FlSegmented<_Period>), matching: find.byType(DecoratedBox)).first,
+      );
+      expect((track.decoration as BoxDecoration).color, _light.surfaceRaised);
+      final fills = <int>[];
+      var blurred = 0;
+      expect(
+        _group,
+        paints..everything((method, arguments) {
+          final paint = arguments.isEmpty ? null : arguments.last;
+          if (method == #drawRRect && paint is Paint) {
+            if (paint.maskFilter != null) blurred++;
+            fills.add(paint.color.toARGB32());
+          }
+          return true;
+        }),
+      );
+      expect(fills, [_light.selected.toARGB32()]);
+      expect(blurred, 0, reason: 'pas d\'ombre sous un pouce en couleur primaire');
+      Color ink(String label) => tester.widget<Text>(find.text(label)).style!.color!;
+      expect(ink('Semaine'), _light.onSelected);
+      expect(ink('Jour'), _light.onSurfaceMuted);
+    },
+  );
+
   testWidgets('devrait se lire comme un groupe de boutons radio nommé, le segment choisi coché', (tester) async {
     final semantics = tester.ensureSemantics();
     await tester.pumpWidget(toggleApp(const _Host()));

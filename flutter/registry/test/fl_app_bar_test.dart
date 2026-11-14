@@ -459,4 +459,40 @@ void main() {
     await tester.pumpWidget(_app(const FlAccentScope(child: FlAppBar(title: 'Now playing'))));
     expect(icons(), Brightness.light);
   });
+
+  testWidgets('devrait céder le grand titre au titre replié, centré, une fois la barre voilée', (tester) async {
+    final controller = ScrollController();
+    addTearDown(controller.dispose);
+    final handle = tester.ensureSemantics();
+    await tester.pumpWidget(
+      _app(
+        SizedBox(
+          width: 390,
+          height: 600,
+          child: CustomScrollView(
+            controller: controller,
+            slivers: [
+              const FlSliverAppBar(
+                appBar: FlAppBar(title: 'Bonjour', titleSize: FlAppBarTitleSize.large, collapsedTitle: '56 475 €'),
+              ),
+              SliverList.list(children: [for (var i = 0; i < 40; i++) SizedBox(height: 48, child: Text('Ligne $i'))]),
+            ],
+          ),
+        ),
+      ),
+    );
+    expect(find.text('56 475 €'), findsNothing, reason: 'au repos');
+    controller.jumpTo(300);
+    await tester.pump();
+    final collapsed = find.text('56 475 €');
+    expect(collapsed, findsOneWidget);
+    expect(
+      tester.getCenter(collapsed).dx,
+      closeTo(tester.getCenter(find.byType(FlAppBar)).dx, 0.5),
+      reason: 'centré sur la barre',
+    );
+    expect(find.bySemanticsLabel('Bonjour'), findsOneWidget, reason: 'le lecteur garde le titre');
+    expect(find.bySemanticsLabel('56 475 €'), findsNothing);
+    handle.dispose();
+  });
 }

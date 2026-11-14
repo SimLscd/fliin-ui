@@ -265,7 +265,7 @@ final Map<String, FlReferenceEntry> verifyEntries = {
     ),
   ),
   'app-bar': (
-    version: '0.3.4',
+    version: '0.3.5',
     canvas: const Size(390, 560),
     platformCanvas: const {},
     settle: null,
@@ -1395,7 +1395,7 @@ final Map<String, FlReferenceEntry> verifyEntries = {
     ),
   ),
   'chart': (
-    version: '0.2.4',
+    version: '0.3.0',
     canvas: const Size(390, 1040),
     platformCanvas: const {},
     settle: const Duration(milliseconds: 400),
@@ -3235,7 +3235,7 @@ final Map<String, FlReferenceEntry> verifyEntries = {
     ),
   ),
   'icons': (
-    version: '0.2.2',
+    version: '0.2.3',
     canvas: const Size(390, 600),
     platformCanvas: const {},
     settle: null,
@@ -3997,7 +3997,7 @@ final Map<String, FlReferenceEntry> verifyEntries = {
     ),
   ),
   'page': (
-    version: '0.2.7',
+    version: '0.2.8',
     canvas: const Size(780, 844),
     platformCanvas: const {},
     settle: null,
@@ -4482,7 +4482,7 @@ final Map<String, FlReferenceEntry> verifyEntries = {
     ),
   ),
   'radio': (
-    version: '0.2.3',
+    version: '0.2.4',
     canvas: null,
     platformCanvas: const {},
     settle: null,
@@ -4899,7 +4899,7 @@ final Map<String, FlReferenceEntry> verifyEntries = {
     ),
   ),
   'segmented': (
-    version: '0.3.4',
+    version: '0.3.5',
     canvas: const Size(390, 640),
     platformCanvas: const {},
     settle: null,
@@ -5184,7 +5184,7 @@ final Map<String, FlReferenceEntry> verifyEntries = {
     ),
   ),
   'sheet': (
-    version: '0.2.5',
+    version: '0.2.6',
     canvas: null,
     platformCanvas: const {},
     settle: null,
@@ -5808,8 +5808,8 @@ final Map<String, FlReferenceEntry> verifyEntries = {
     ),
   ),
   'tab-bar': (
-    version: '0.3.1',
-    canvas: const Size(390, 760),
+    version: '0.3.2',
+    canvas: const Size(390, 950),
     platformCanvas: const {},
     settle: null,
     entry: (context, variant) => FlScope(
@@ -5865,8 +5865,8 @@ final Map<String, FlReferenceEntry> verifyEntries = {
                       : null,
                 ),
             ];
-            Widget over(Widget bar) => SizedBox(
-              height: 120,
+            Widget over(Widget bar, {double height = 120}) => SizedBox(
+              height: height,
               child: Stack(
                 children: [
                   Positioned.fill(
@@ -5938,6 +5938,14 @@ final Map<String, FlReferenceEntry> verifyEntries = {
                     floating: true,
                     labels: FlBottomTabLabels.never,
                     tabs: tabs(4),
+                  ),
+                  over(
+                    FlBottomTabBar.discs(
+                      index: 2,
+                      onSelected: (_) {},
+                      tabs: tabs(5, badge: true, filled: true),
+                    ),
+                    height: 170,
                   ),
                 ],
               ),

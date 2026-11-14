@@ -141,6 +141,7 @@ class FlAppBar extends StatelessWidget {
     this.filled = true,
     this.leading,
     this.titleBuilder,
+    this.collapsedTitle,
   });
 
   /// The screen's title, announced as a header.
@@ -175,6 +176,12 @@ class FlAppBar extends StatelessWidget {
   /// The title keeps its role, its place and its shrink. When null, the
   /// title alone.
   final Widget Function(BuildContext context, Widget title)? titleBuilder;
+
+  /// What a title at the start gives way to once the bar has collapsed and
+  /// raised its background: centered, in `headline`, as a home screen's
+  /// balance once its card has scrolled away. The screen reader keeps
+  /// [title], and reads this in the content. When null, the title stays.
+  final String? collapsedTitle;
 
   /// The height of a bar with a centered title, without the safe area.
   static double barHeight(BuildContext context) =>
@@ -277,13 +284,16 @@ class FlAppBar extends StatelessWidget {
       // line breaks and its ellipsis while it shrinks.
       final rest = theme.typography.resolve(titleSize.role, heading: true).fontSize!;
       final collapsed = theme.typography.resolve(FlTextRole.headline, heading: true).fontSize!;
+      final shrunk = Transform.scale(
+        scale: lerpDouble(1, collapsed / rest, scroll.collapse)!,
+        alignment: AlignmentDirectional.centerStart.resolve(Directionality.of(context)),
+        child: titled(_Title(title: title, role: titleSize.role, scaler: scaler)),
+      );
       middle = Align(
         alignment: AlignmentDirectional.centerStart,
-        child: Transform.scale(
-          scale: lerpDouble(1, collapsed / rest, scroll.collapse)!,
-          alignment: AlignmentDirectional.centerStart.resolve(Directionality.of(context)),
-          child: titled(_Title(title: title, role: titleSize.role, scaler: scaler)),
-        ),
+        child: collapsedTitle == null
+            ? shrunk
+            : Opacity(opacity: 1 - scroll.raise, alwaysIncludeSemantics: true, child: shrunk),
       );
     } else {
       final titleText = titled(_Title(title: title, role: titleSize.role, scaler: scaler));
@@ -328,6 +338,32 @@ class FlAppBar extends StatelessWidget {
       ),
     );
 
+    // Centered on the whole bar, clear of the buttons on either side.
+    final swap = collapsedTitle;
+    final buttons = math.max(actions.length, leading == null ? 0 : 1);
+    final line = swap == null || scroll.raise == 0
+        ? bar
+        : Stack(
+            children: [
+              bar,
+              Positioned.fill(
+                child: Padding(
+                  padding: EdgeInsetsDirectional.symmetric(
+                    horizontal: inset + buttons * (disc + theme.space.xs) + theme.space.sm,
+                  ),
+                  child: Center(
+                    child: ExcludeSemantics(
+                      child: Opacity(
+                        opacity: scroll.raise,
+                        child: _Title(title: swap, role: FlTextRole.headline, scaler: scaler),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          );
+
     final content = SafeArea(
       top: false,
       bottom: false,
@@ -337,7 +373,7 @@ class FlAppBar extends StatelessWidget {
         children: [
           SizedBox(height: MediaQuery.paddingOf(context).top),
           if (scroll.slide == 0)
-            SizedBox(height: height, child: bar)
+            SizedBox(height: height, child: line)
           else
             // The line slides up under the status bar, which stays.
             ClipRect(
@@ -347,7 +383,7 @@ class FlAppBar extends StatelessWidget {
                   alignment: AlignmentDirectional.bottomCenter,
                   minHeight: height,
                   maxHeight: height,
-                  child: bar,
+                  child: line,
                 ),
               ),
             ),

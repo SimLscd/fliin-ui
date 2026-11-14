@@ -192,6 +192,41 @@ void main() {
     expect(_bars(tester).map((r) => r.height), settled.map((r) => r.height));
   });
 
+  testWidgets('devrait borner la largeur des barres, centrées sur leur point, et teindre les autres de restColor', (
+    tester,
+  ) async {
+    const ink = Color(0xFF111111);
+    const rest = Color(0xFFE9E9E9);
+    await tester.pumpWidget(
+      _app(
+        FlChart.bar(
+          points: _days,
+          series: const [
+            FlChartSeries(label: 'Dépenses', values: [10, 20, 30, 84, 40], color: ink),
+          ],
+          formatValue: _euros,
+          semanticLabel: 'Dépenses de la semaine',
+          highlight: 3,
+          maxBarWidth: 24,
+          restColor: rest,
+        ),
+        width: 600,
+      ),
+    );
+    await tester.pumpAndSettle();
+    final bars = _bars(tester);
+    expect(bars.map((r) => r.width), everyElement(24));
+    // 600 split into five slots of 120: each bar sits in the middle of its own.
+    expect(bars.map((r) => r.center.dx), [for (var i = 0; i < 5; i++) closeTo(60 + i * 120, 0.01)]);
+    final colors = [
+      for (final call in _painted(tester))
+        if (call.memberName == #drawRRect) (call.positionalArguments[1] as Paint).color.toARGB32(),
+    ];
+    expect(colors, [
+      for (final c in [rest, rest, rest, ink, rest]) c.toARGB32(),
+    ]);
+  });
+
   testWidgets('devrait sauter des libellés de l\'axe du temps à 2,0 plutôt que de les chevaucher', (tester) async {
     final month = [for (var d = 1; d <= 30; d++) FlChartPoint('$d', semanticLabel: '$d octobre')];
     final values = FlChartSeries(label: 'Dépenses', values: [for (var d = 1; d <= 30; d++) d.toDouble()]);
@@ -491,9 +526,32 @@ void main() {
     expect(measured, before);
   });
 
+  testWidgets('devrait écrire la valeur seule dans la bulle avec tooltipLabel faux, centrée', (tester) async {
+    await tester.pumpWidget(
+      _app(
+        FlChart.bar(
+          points: _days,
+          series: [_spent],
+          formatValue: _euros,
+          semanticLabel: 'Dépenses de la semaine',
+          initialSelection: 3,
+          tooltipLabel: false,
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+    final bubble = find.textContaining('84 €', findRichText: true);
+    expect(bubble, findsOneWidget);
+    final text = tester.widget<RichText>(bubble);
+    expect(text.text.toPlainText(), '84 €', reason: 'sans « jeudi » dessous');
+    expect(text.textAlign, TextAlign.center);
+  });
+
   FlChart sparkline({bool area = true, bool zeroBased = false}) => FlChart.line(
     points: _days,
-    series: const [FlChartSeries(label: 'Solde', values: [1500, 1550, 1520, 1610, 1700])],
+    series: const [
+      FlChartSeries(label: 'Solde', values: [1500, 1550, 1520, 1610, 1700]),
+    ],
     formatValue: _euros,
     semanticLabel: 'Solde',
     plotHeight: 48,
@@ -551,7 +609,9 @@ void main() {
       _app(
         FlChart.bar(
           points: _days,
-          series: const [FlChartSeries(label: 'Sommeil', values: [7, 6, 8, 7, 9], color: color)],
+          series: const [
+            FlChartSeries(label: 'Sommeil', values: [7, 6, 8, 7, 9], color: color),
+          ],
           formatValue: _euros,
           semanticLabel: 'Sommeil',
         ),

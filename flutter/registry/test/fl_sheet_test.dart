@@ -834,4 +834,39 @@ void main() {
       expect(seen.padding.bottom, 0, reason: 'le clavier couvre la zone sûre');
     },
   );
+
+  testWidgets('devrait centrer le titre et la description avec centerTitle, sans icône', (tester) async {
+    await tester.pumpWidget(
+      _app(
+        FlSheet(label: 'Objectif', title: 'Nouvel objectif', description: 'Pour le voyage', centerTitle: true),
+      ),
+    );
+    await tester.pumpAndSettle();
+    expect(tester.widget<Text>(find.text('Nouvel objectif')).textAlign, TextAlign.center);
+    expect(tester.widget<Text>(find.text('Pour le voyage')).textAlign, TextAlign.center);
+  });
+
+  testWidgets('devrait reprendre la hauteur de son contenu avec fitContent une fois le clavier fermé', (tester) async {
+    final keyboard = ValueNotifier(EdgeInsets.zero);
+    addTearDown(keyboard.dispose);
+    final sheet = FlSheet(
+      label: 'Objectif',
+      fitContent: true,
+      child: SizedBox(key: const ValueKey('contenu'), height: _height * 0.6),
+    );
+    await tester.pumpWidget(
+      ValueListenableBuilder<EdgeInsets>(
+        valueListenable: keyboard,
+        builder: (context, insets, _) => _app(sheet, keyboard: insets),
+      ),
+    );
+    await tester.pumpAndSettle();
+    final rest = _top(tester);
+    keyboard.value = const EdgeInsets.only(bottom: _height * 0.5);
+    await tester.pumpAndSettle();
+    expect(_top(tester), lessThan(rest), reason: 'au-dessus du clavier, aussi haute qu’elle peut');
+    keyboard.value = EdgeInsets.zero;
+    await tester.pumpAndSettle();
+    expect(_top(tester), closeTo(rest, 0.5));
+  });
 }

@@ -53,8 +53,8 @@ import 'package:fliin_ui/core/icon/fl_icon.dart';
 /// The icons of Lucide 1.65.0, to use with [FlIcon]:
 /// `FlIcon(FlIcons.heart)`. The names are Fliin's, the same in every
 /// set (`heart-fill` → [heartFill]); each one names the file that draws
-/// it. The arrows, the left and right chevrons and the paper plane flip
-/// in RTL.
+/// it. The horizontal and diagonal arrows, the left and right chevrons and
+/// the paper plane flip in RTL.
 abstract final class FlIcons {
   /// `arrow-left`, flipped in RTL.
   static final FlIconData arrowLeft = FlIconData(
@@ -1003,6 +1003,328 @@ abstract final class FlIcons {
       ..moveTo(12, 18)
       ..lineTo(12, 16)
       ..lineTo(11.5, 16),
+    viewBox: 24,
+    stroke: FlIconStroke(width: 2, cap: StrokeCap.round, join: StrokeJoin.round),
+  );
+
+  /// `arrow-up`.
+  static final FlIconData arrowUp = FlIconData(
+    Path()
+      ..moveTo(5, 12)
+      ..lineTo(12, 5)
+      ..lineTo(19, 12)
+      ..moveTo(12, 19)
+      ..lineTo(12, 5),
+    viewBox: 24,
+    stroke: FlIconStroke(width: 2, cap: StrokeCap.round, join: StrokeJoin.round),
+  );
+
+  /// `arrow-down`.
+  static final FlIconData arrowDown = FlIconData(
+    Path()
+      ..moveTo(12, 5)
+      ..lineTo(12, 19)
+      ..moveTo(19, 12)
+      ..lineTo(12, 19)
+      ..lineTo(5, 12),
+    viewBox: 24,
+    stroke: FlIconStroke(width: 2, cap: StrokeCap.round, join: StrokeJoin.round),
+  );
+
+  /// `arrow-up-right`, flipped in RTL.
+  static final FlIconData arrowUpRight = FlIconData(
+    Path()
+      ..moveTo(7, 7)
+      ..lineTo(17, 7)
+      ..lineTo(17, 17)
+      ..moveTo(7, 17)
+      ..lineTo(17, 7),
+    viewBox: 24,
+    mirrorInRtl: true,
+    stroke: FlIconStroke(width: 2, cap: StrokeCap.round, join: StrokeJoin.round),
+  );
+
+  /// `arrow-down-left`, flipped in RTL.
+  static final FlIconData arrowDownLeft = FlIconData(
+    Path()
+      ..moveTo(17, 7)
+      ..lineTo(7, 17)
+      ..moveTo(17, 17)
+      ..lineTo(7, 17)
+      ..lineTo(7, 7),
+    viewBox: 24,
+    mirrorInRtl: true,
+    stroke: FlIconStroke(width: 2, cap: StrokeCap.round, join: StrokeJoin.round),
+  );
+
+  /// `arrow-up-arrow-down`: `icons/arrow-up-down`.
+  static final FlIconData arrowUpArrowDown = FlIconData(
+    Path()
+      ..moveTo(21, 16)
+      ..lineTo(17, 20)
+      ..lineTo(13, 16)
+      ..moveTo(17, 20)
+      ..lineTo(17, 4)
+      ..moveTo(3, 8)
+      ..lineTo(7, 4)
+      ..lineTo(11, 8)
+      ..moveTo(7, 4)
+      ..lineTo(7, 20),
+    viewBox: 24,
+    stroke: FlIconStroke(width: 2, cap: StrokeCap.round, join: StrokeJoin.round),
+  );
+
+  /// `chart-column`.
+  static final FlIconData chartColumn = FlIconData(
+    Path()
+      ..moveTo(3, 3)
+      ..lineTo(3, 19)
+      ..arcToPoint(const Offset(5, 21), radius: const Radius.circular(2), clockwise: false)
+      ..lineTo(21, 21)
+      ..moveTo(18, 17)
+      ..lineTo(18, 9)
+      ..moveTo(13, 17)
+      ..lineTo(13, 5)
+      ..moveTo(8, 17)
+      ..lineTo(8, 14),
+    viewBox: 24,
+    stroke: FlIconStroke(width: 2, cap: StrokeCap.round, join: StrokeJoin.round),
+  );
+
+  /// `chart-line`.
+  static final FlIconData chartLine = FlIconData(
+    Path()
+      ..moveTo(3, 3)
+      ..lineTo(3, 19)
+      ..arcToPoint(const Offset(5, 21), radius: const Radius.circular(2), clockwise: false)
+      ..lineTo(21, 21)
+      ..moveTo(19, 9)
+      ..lineTo(14, 14)
+      ..lineTo(10, 10)
+      ..lineTo(7, 13),
+    viewBox: 24,
+    stroke: FlIconStroke(width: 2, cap: StrokeCap.round, join: StrokeJoin.round),
+  );
+
+  /// `chart-column-stacked`.
+  static final FlIconData chartColumnStacked = FlIconData(
+    Path()
+      ..moveTo(11, 13)
+      ..lineTo(7, 13)
+      ..moveTo(19, 9)
+      ..lineTo(15, 9)
+      ..moveTo(3, 3)
+      ..lineTo(3, 19)
+      ..arcToPoint(const Offset(5, 21), radius: const Radius.circular(2), clockwise: false)
+      ..lineTo(21, 21)
+      ..addRRect(RRect.fromLTRBXY(15, 5, 19, 17, 1, 1))
+      ..addRRect(RRect.fromLTRBXY(7, 8, 11, 17, 1, 1)),
+    viewBox: 24,
+    stroke: FlIconStroke(width: 2, cap: StrokeCap.round, join: StrokeJoin.round),
+  );
+
+  /// `chart-donut`: `icons/chart-pie`.
+  static final FlIconData chartDonut = FlIconData(
+    Path()
+      ..moveTo(21, 12)
+      ..cubicTo(21.552, 12, 22.005, 11.551, 21.95, 11.002)
+      ..arcToPoint(const Offset(12.997, 2.051), radius: const Radius.circular(10), clockwise: false)
+      ..cubicTo(12.447, 1.996, 11.999, 2.449, 11.999, 3.001)
+      ..lineTo(11.999, 11.001)
+      ..arcToPoint(const Offset(12.999, 12.001), radius: const Radius.circular(1), clockwise: false)
+      ..close()
+      ..moveTo(21.21, 15.89)
+      ..arcToPoint(const Offset(8, 2.83), radius: const Radius.circular(10), largeArc: true),
+    viewBox: 24,
+    stroke: FlIconStroke(width: 2, cap: StrokeCap.round, join: StrokeJoin.round),
+  );
+
+  /// `table`.
+  static final FlIconData table = FlIconData(
+    Path()
+      ..moveTo(12, 3)
+      ..lineTo(12, 21)
+      ..addRRect(RRect.fromLTRBXY(3, 3, 21, 21, 2, 2))
+      ..moveTo(3, 9)
+      ..lineTo(21, 9)
+      ..moveTo(3, 15)
+      ..lineTo(21, 15),
+    viewBox: 24,
+    stroke: FlIconStroke(width: 2, cap: StrokeCap.round, join: StrokeJoin.round),
+  );
+
+  /// `qr-code`.
+  static final FlIconData qrCode = FlIconData(
+    Path()
+      ..addRRect(RRect.fromLTRBXY(3, 3, 8, 8, 1, 1))
+      ..addRRect(RRect.fromLTRBXY(16, 3, 21, 8, 1, 1))
+      ..addRRect(RRect.fromLTRBXY(3, 16, 8, 21, 1, 1))
+      ..moveTo(21, 16)
+      ..lineTo(18, 16)
+      ..arcToPoint(const Offset(16, 18), radius: const Radius.circular(2), clockwise: false)
+      ..lineTo(16, 21)
+      ..moveTo(21, 21)
+      ..lineTo(21, 21.01)
+      ..moveTo(12, 7)
+      ..lineTo(12, 10)
+      ..arcToPoint(const Offset(10, 12), radius: const Radius.circular(2))
+      ..lineTo(7, 12)
+      ..moveTo(3, 12)
+      ..lineTo(3.01, 12)
+      ..moveTo(12, 3)
+      ..lineTo(12.01, 3)
+      ..moveTo(12, 16)
+      ..lineTo(12, 16.01)
+      ..moveTo(16, 12)
+      ..lineTo(17, 12)
+      ..moveTo(21, 12)
+      ..lineTo(21, 12.01)
+      ..moveTo(12, 21)
+      ..lineTo(12, 20),
+    viewBox: 24,
+    stroke: FlIconStroke(width: 2, cap: StrokeCap.round, join: StrokeJoin.round),
+  );
+
+  /// `wallet`.
+  static final FlIconData wallet = FlIconData(
+    Path()
+      ..moveTo(19, 7)
+      ..lineTo(19, 4)
+      ..arcToPoint(const Offset(18, 3), radius: const Radius.circular(1), clockwise: false)
+      ..lineTo(5, 3)
+      ..arcToPoint(const Offset(5, 7), radius: const Radius.circular(2), clockwise: false)
+      ..lineTo(20, 7)
+      ..arcToPoint(const Offset(21, 8), radius: const Radius.circular(1))
+      ..lineTo(21, 12)
+      ..lineTo(18, 12)
+      ..arcToPoint(const Offset(18, 16), radius: const Radius.circular(2), clockwise: false)
+      ..lineTo(21, 16)
+      ..arcToPoint(const Offset(22, 15), radius: const Radius.circular(1), clockwise: false)
+      ..lineTo(22, 13)
+      ..arcToPoint(const Offset(21, 12), radius: const Radius.circular(1), clockwise: false)
+      ..moveTo(3, 5)
+      ..lineTo(3, 19)
+      ..arcToPoint(const Offset(5, 21), radius: const Radius.circular(2), clockwise: false)
+      ..lineTo(20, 21)
+      ..arcToPoint(const Offset(21, 20), radius: const Radius.circular(1), clockwise: false)
+      ..lineTo(21, 16),
+    viewBox: 24,
+    stroke: FlIconStroke(width: 2, cap: StrokeCap.round, join: StrokeJoin.round),
+  );
+
+  /// `credit-card`.
+  static final FlIconData creditCard = FlIconData(
+    Path()
+      ..addRRect(RRect.fromLTRBXY(2, 5, 22, 19, 2, 2))
+      ..moveTo(2, 10)
+      ..lineTo(22, 10)
+      ..moveTo(6, 14)
+      ..lineTo(8, 14),
+    viewBox: 24,
+    stroke: FlIconStroke(width: 2, cap: StrokeCap.round, join: StrokeJoin.round),
+  );
+
+  /// `shield`.
+  static final FlIconData shield = FlIconData(
+    Path()
+      ..moveTo(20, 13)
+      ..cubicTo(20, 18, 16.5, 20.5, 12.34, 21.95)
+      ..arcToPoint(const Offset(11.67, 21.94), radius: const Radius.circular(1))
+      ..cubicTo(7.5, 20.5, 4, 18, 4, 13)
+      ..lineTo(4, 6)
+      ..arcToPoint(const Offset(5, 5), radius: const Radius.circular(1))
+      ..cubicTo(7, 5, 9.5, 3.8, 11.24, 2.28)
+      ..arcToPoint(const Offset(12.76, 2.28), radius: const Radius.circular(1.17))
+      ..cubicTo(14.51, 3.81, 17, 5, 19, 5)
+      ..arcToPoint(const Offset(20, 6), radius: const Radius.circular(1))
+      ..close(),
+    viewBox: 24,
+    stroke: FlIconStroke(width: 2, cap: StrokeCap.round, join: StrokeJoin.round),
+  );
+
+  /// `airplane`: `icons/plane`.
+  static final FlIconData airplane = FlIconData(
+    Path()
+      ..moveTo(17.8, 19.2)
+      ..lineTo(16, 11)
+      ..lineTo(19.5, 7.5)
+      ..cubicTo(21, 6, 21.5, 4, 21, 3)
+      ..cubicTo(20, 2.5, 18, 3, 16.5, 4.5)
+      ..lineTo(13, 8)
+      ..lineTo(4.8, 6.2)
+      ..cubicTo(4.3, 6.1, 3.9, 6.3, 3.7, 6.7)
+      ..lineTo(3.4, 7.2)
+      ..cubicTo(3.2, 7.7, 3.3, 8.2, 3.7, 8.5)
+      ..lineTo(9, 12)
+      ..lineTo(7, 15)
+      ..lineTo(4, 15)
+      ..lineTo(3, 16)
+      ..lineTo(6, 18)
+      ..lineTo(8, 21)
+      ..lineTo(9, 20)
+      ..lineTo(9, 17)
+      ..lineTo(12, 15)
+      ..lineTo(15.5, 20.3)
+      ..cubicTo(15.8, 20.7, 16.3, 20.8, 16.8, 20.6)
+      ..lineTo(17.3, 20.4)
+      ..cubicTo(17.7, 20.1, 17.9, 19.7, 17.8, 19.2)
+      ..close(),
+    viewBox: 24,
+    stroke: FlIconStroke(width: 2, cap: StrokeCap.round, join: StrokeJoin.round),
+  );
+
+  /// `briefcase`.
+  static final FlIconData briefcase = FlIconData(
+    Path()
+      ..moveTo(16, 20)
+      ..lineTo(16, 4)
+      ..arcToPoint(const Offset(14, 2), radius: const Radius.circular(2), clockwise: false)
+      ..lineTo(10, 2)
+      ..arcToPoint(const Offset(8, 4), radius: const Radius.circular(2), clockwise: false)
+      ..lineTo(8, 20)
+      ..addRRect(RRect.fromLTRBXY(2, 6, 22, 20, 2, 2)),
+    viewBox: 24,
+    stroke: FlIconStroke(width: 2, cap: StrokeCap.round, join: StrokeJoin.round),
+  );
+
+  /// `ticket`.
+  static final FlIconData ticket = FlIconData(
+    Path()
+      ..moveTo(2, 9)
+      ..arcToPoint(const Offset(2, 15), radius: const Radius.circular(3))
+      ..lineTo(2, 17)
+      ..arcToPoint(const Offset(4, 19), radius: const Radius.circular(2), clockwise: false)
+      ..lineTo(20, 19)
+      ..arcToPoint(const Offset(22, 17), radius: const Radius.circular(2), clockwise: false)
+      ..lineTo(22, 15)
+      ..arcToPoint(const Offset(22, 9), radius: const Radius.circular(3))
+      ..lineTo(22, 7)
+      ..arcToPoint(const Offset(20, 5), radius: const Radius.circular(2), clockwise: false)
+      ..lineTo(4, 5)
+      ..arcToPoint(const Offset(2, 7), radius: const Radius.circular(2), clockwise: false)
+      ..close()
+      ..moveTo(13, 5)
+      ..lineTo(13, 7)
+      ..moveTo(13, 17)
+      ..lineTo(13, 19)
+      ..moveTo(13, 11)
+      ..lineTo(13, 13),
+    viewBox: 24,
+    stroke: FlIconStroke(width: 2, cap: StrokeCap.round, join: StrokeJoin.round),
+  );
+
+  /// `coins`.
+  static final FlIconData coins = FlIconData(
+    Path()
+      ..moveTo(13.744, 17.736)
+      ..arcToPoint(const Offset(6.264, 10.256), radius: const Radius.circular(6), largeArc: true)
+      ..moveTo(15, 6)
+      ..lineTo(16, 6)
+      ..lineTo(16, 10)
+      ..moveTo(6.134, 14.768)
+      ..lineTo(7, 14.268)
+      ..lineTo(9, 17.732)
+      ..addOval(const Rect.fromLTRB(10, 2, 22, 14)),
     viewBox: 24,
     stroke: FlIconStroke(width: 2, cap: StrokeCap.round, join: StrokeJoin.round),
   );

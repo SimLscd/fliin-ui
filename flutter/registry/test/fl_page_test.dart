@@ -577,4 +577,57 @@ void main() {
     expect(tester.getRect(find.text('Fil')).top, title.top, reason: 'revenue entière');
     expect(controller.offset, greaterThan(0));
   });
+
+  testWidgets('devrait cacher la barre du bas en descendant, la ramener en remontant et au bout de la page', (
+    tester,
+  ) async {
+    await _pumpPhone(tester, FlPage(tabBar: _tabBar, extendBody: true, hideTabBarOnScroll: true, slivers: _rows(40)));
+    Offset slide() => tester
+        .widget<AnimatedSlide>(find.ancestor(of: find.byWidget(_tabBar), matching: find.byType(AnimatedSlide)))
+        .offset;
+    final page = find.byType(Scrollable).first;
+    expect(slide(), Offset.zero);
+    await tester.drag(page, const Offset(0, -300));
+    await tester.pumpAndSettle();
+    expect(slide(), const Offset(0, 1), reason: 'en descendant');
+    await tester.drag(page, const Offset(0, 60));
+    await tester.pumpAndSettle();
+    expect(slide(), Offset.zero, reason: 'dès qu’on remonte');
+    await tester.drag(page, const Offset(0, -200));
+    await tester.pumpAndSettle();
+    await tester.fling(page, const Offset(0, -4000), 6000);
+    await tester.pumpAndSettle();
+    expect(slide(), Offset.zero, reason: 'au bout de la page, même par l’élan');
+  });
+
+  testWidgets('devrait garder la barre du bas pour un lecteur d’écran', (tester) async {
+    tester.view.physicalSize = _phone;
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.reset);
+    tester.platformDispatcher.accessibilityFeaturesTestValue = const FakeAccessibilityFeatures(
+      accessibleNavigation: true,
+    );
+    addTearDown(tester.platformDispatcher.clearAccessibilityFeaturesTestValue);
+    await tester.pumpWidget(
+      MediaQuery(
+        data: const MediaQueryData(size: _phone, accessibleNavigation: true),
+        child: Directionality(
+          textDirection: TextDirection.ltr,
+          child: FlScope(
+            brightness: Brightness.light,
+            platform: TargetPlatform.iOS,
+            child: FlPage(tabBar: _tabBar, extendBody: true, hideTabBarOnScroll: true, slivers: _rows(40)),
+          ),
+        ),
+      ),
+    );
+    await tester.drag(find.byType(Scrollable).first, const Offset(0, -300));
+    await tester.pumpAndSettle();
+    expect(
+      tester
+          .widget<AnimatedSlide>(find.ancestor(of: find.byWidget(_tabBar), matching: find.byType(AnimatedSlide)))
+          .offset,
+      Offset.zero,
+    );
+  });
 }

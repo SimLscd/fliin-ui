@@ -21,7 +21,7 @@ itemEnglish = {
   'icons': (
     title: 'Icons',
     description:
-        'Gives 58 mobile icons as Flutter paths, from Gravity UI, Lucide, '
+        'Gives 76 mobile icons as Flutter paths, from Gravity UI, Lucide, '
         'Tabler or Phosphor as the preset says: arrows, chevrons, search, '
         'cart, heart, play. Directional ones flip right to left.',
     notFor: [
@@ -1215,6 +1215,17 @@ itemEnglish = {
       'an item in a cart: use a result card (result-card)',
     ],
   ),
+  'crypto-swap': (
+    title: 'Crypto swap',
+    description:
+        'Lets the user swap one crypto for another: the amount sent and '
+        'received, a button that flips them, the rate and its countdown, fees '
+        'and slippage, then a confirmation sheet and a sent state.',
+    notFor: [
+      'a bank transfer between people: use a checkout (checkout)',
+      "a chart of an asset's price: use a chart (chart)",
+    ],
+  ),
   'finance-dashboard': (
     title: 'Finance dashboard',
     description:
@@ -1223,6 +1234,54 @@ itemEnglish = {
         'transactions by day, with loading, empty, error and offline states.',
     notFor: [
       'a single key figure card: use a stat card (stat-card)',
+      'a chart alone: use a chart (chart)',
+    ],
+  ),
+  'crypto-asset': (
+    title: 'Crypto asset',
+    description:
+        'Shows one crypto asset: its price and change, a chart from a day to '
+        'all time, a price alert, the position held, market statistics, the '
+        'latest transactions, and Sell and Buy at the bottom.',
+    notFor: [
+      'a single transaction in a list: use a transaction row '
+          '(transaction-row)',
+      'a chart alone: use a chart (chart)',
+    ],
+  ),
+  'finance-plan': (
+    title: 'Finance plan',
+    description:
+        'Shows savings goals in a carousel with their expected pace and '
+        'monthly budgets as rings or bars, overruns flagged, and adds money to '
+        'a goal from a sheet, with loading, empty, error and offline states.',
+    notFor: [
+      'the balance and the latest transactions: use the finance dashboard '
+          '(finance-dashboard)',
+      'a single progress bar: use a progress indicator (progress)',
+    ],
+  ),
+  'finance-report': (
+    title: 'Finance report',
+    description:
+        "Shows a month's expenses or income by category as tiles, a ring or "
+        'a table, one row per category with its share and its change from '
+        'last month, and a month stepper.',
+    notFor: [
+      'a home with the balance, budget and latest transactions: use the '
+          'finance dashboard (finance-dashboard)',
+      'a chart alone: use a chart (chart)',
+    ],
+  ),
+  'crypto-wallet': (
+    title: 'Crypto wallet',
+    description:
+        'Shows a crypto wallet: the total that can be hidden and its change, '
+        'its value over a day to all time, Send, Receive, Swap and Buy, the '
+        'allocation, the top movers and the assets held or watched.',
+    notFor: [
+      'a bank account\'s balance, budget and spending: use the finance '
+          'dashboard (finance-dashboard)',
       'a chart alone: use a chart (chart)',
     ],
   ),

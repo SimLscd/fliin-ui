@@ -1,7 +1,7 @@
 {
   "name": "sheet",
   "type": "registry:component",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "title": "Bottom sheet",
   "description": "Opens a panel from the bottom of the screen for a short task, dragged or closed. Spring snap points, icon, title, text, actions, close button, scrim, trapped focus and Escape.",
   "flutter": ">=3.47.0 <4.0.0",
@@ -78,5 +78,5 @@
     },
     "goldens": null
   },
-  "changelog": "`bleed` (and `showFlSheet(bleed:)`): the content runs edge to edge under the grabber, without the sheet's margins nor its bottom safe area, which the content keeps itself: a list with an input bar pinned to the bottom. With the keyboard open, the sheet rises to its tallest stop and the content sees neither the keyboard nor the safe area it covers. Default rendering unchanged."
+  "changelog": "`centerTitle` (and `showFlSheet(centerTitle:)`) centers the title and the description without an icon, as an iOS form's title. A sheet fitted to its content (`fitContent`) shrinks back to it once the keyboard closes, instead of keeping the height it took above the keyboard."
 }

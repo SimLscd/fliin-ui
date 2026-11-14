@@ -69,6 +69,7 @@ class FlPage extends StatefulWidget {
     this.appBar,
     this.tabBar,
     this.extendBody = false,
+    this.hideTabBarOnScroll = false,
     this.pinAppBar = true,
     this.floatAppBar = false,
     this.color,
@@ -106,6 +107,11 @@ class FlPage extends StatefulWidget {
   /// false: the content stops at the bar.
   final bool extendBody;
 
+  /// True: [tabBar] slides away as the content scrolls down, and comes back
+  /// as soon as it scrolls up, or at either end, as Safari's bar. It stays
+  /// put for a screen reader, which reaches the bar by moving to it.
+  final bool hideTabBarOnScroll;
+
   /// "Pull to refresh"; when null, the top of the content reloads nothing.
   final FlPageRefresh? refresh;
 
@@ -123,6 +129,7 @@ class _FlPageState extends State<FlPage> with SingleTickerProviderStateMixin {
   late final AnimationController _pull = AnimationController.unbounded(vsync: this);
   _Phase _phase = _Phase.idle;
   bool _dragging = false;
+  bool _barHidden = false;
   ScrollController? _own;
 
   ScrollController get _scroll => widget.controller ?? (_own ??= ScrollController());
@@ -201,7 +208,30 @@ class _FlPageState extends State<FlPage> with SingleTickerProviderStateMixin {
     }
   }
 
+  /// Hides the tab bar on a scroll down by the user, shows it on a scroll up
+  /// or at an end, reached by a drag or by momentum; a scroll the code
+  /// drives elsewhere leaves it as it is.
+  void _followBar(ScrollNotification notification) {
+    if (!widget.hideTabBarOnScroll || notification.depth != 0 || notification.metrics.axis != Axis.vertical) {
+      return;
+    }
+    if (notification is! ScrollUpdateNotification) return;
+    final metrics = notification.metrics;
+    final atEnd = metrics.pixels <= metrics.minScrollExtent || metrics.pixels >= metrics.maxScrollExtent;
+    final delta = notification.scrollDelta ?? 0;
+    final bool hidden;
+    if (atEnd) {
+      hidden = false;
+    } else if (notification.dragDetails != null && delta != 0) {
+      hidden = delta > 0;
+    } else {
+      return;
+    }
+    if (hidden != _barHidden) setState(() => _barHidden = hidden);
+  }
+
   bool _onScroll(ScrollNotification notification) {
+    _followBar(notification);
     if (widget.refresh == null || notification.depth != 0 || notification.metrics.axis != Axis.vertical) {
       return false;
     }
@@ -357,7 +387,17 @@ class _FlPageState extends State<FlPage> with SingleTickerProviderStateMixin {
           if (tabBar != null)
             LayoutId(
               id: _Slot.tabBar,
-              child: _PageColor(color: widget.color, child: tabBar),
+              child: _PageColor(
+                color: widget.color,
+                child: widget.hideTabBarOnScroll
+                    ? AnimatedSlide(
+                        offset: Offset(0, _barHidden && !media.accessibleNavigation ? 1 : 0),
+                        duration: FlMotion.of(context).reduced ? Duration.zero : theme.motion.medium2,
+                        curve: theme.motion.standard,
+                        child: tabBar,
+                      )
+                    : tabBar,
+              ),
             ),
           // A bar that leaves with the content leaves the status bar over
           // it: a strip of the bar's glass keeps the time and the battery

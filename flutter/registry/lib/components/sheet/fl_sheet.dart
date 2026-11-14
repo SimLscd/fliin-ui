@@ -45,6 +45,7 @@ class FlSheet extends StatefulWidget {
     this.closeLabel,
     this.icon,
     this.iconTone = FlSheetIconTone.neutral,
+    this.centerTitle = false,
     this.actions = const [],
     this.snaps = const [1],
     this.initialSnap = 0,
@@ -71,6 +72,7 @@ class FlSheet extends StatefulWidget {
     required this.closeLabel,
     required this.icon,
     required this.iconTone,
+    required this.centerTitle,
     required this.actions,
     required this.snaps,
     required this.initialSnap,
@@ -109,6 +111,10 @@ class FlSheet extends StatefulWidget {
 
   /// The disc's colors: neutral by default.
   final FlSheetIconTone iconTone;
+
+  /// True: the title and the description are centered, as an iOS form's
+  /// navigation title, without an [icon] too. False by default.
+  final bool centerTitle;
 
   /// The bottom buttons, stacked at full width, `space.md` apart, fixed below
   /// the content, which scrolls above them. Empty by default.
@@ -177,6 +183,7 @@ Future<T?> showFlSheet<T>(
   String? closeLabel,
   Widget? icon,
   FlSheetIconTone iconTone = FlSheetIconTone.neutral,
+  bool centerTitle = false,
   List<Widget> actions = const [],
   List<double> snaps = const [1],
   int initialSnap = 0,
@@ -196,6 +203,7 @@ Future<T?> showFlSheet<T>(
     closeLabel: closeLabel,
     icon: icon,
     iconTone: iconTone,
+    centerTitle: centerTitle,
     actions: actions,
     snaps: snaps,
     initialSnap: initialSnap,
@@ -230,6 +238,7 @@ class _FlSheetRoute<T> extends PopupRoute<T> {
     required this.closeLabel,
     required this.icon,
     required this.iconTone,
+    required this.centerTitle,
     required this.actions,
     required this.snaps,
     required this.initialSnap,
@@ -249,6 +258,7 @@ class _FlSheetRoute<T> extends PopupRoute<T> {
   final String? closeLabel;
   final Widget? icon;
   final FlSheetIconTone iconTone;
+  final bool centerTitle;
   final List<Widget> actions;
   final List<double> snaps;
   final int initialSnap;
@@ -283,6 +293,7 @@ class _FlSheetRoute<T> extends PopupRoute<T> {
         closeLabel: closeLabel,
         icon: icon,
         iconTone: iconTone,
+        centerTitle: centerTitle,
         actions: actions,
         barrierLabel: sheetBarrierLabel,
         snaps: snaps,
@@ -601,7 +612,7 @@ class _FlSheetState extends State<FlSheet> with TickerProviderStateMixin {
           );
     final colors = theme.colors;
     final icon = widget.icon;
-    final centered = icon != null;
+    final centered = icon != null || widget.centerTitle;
     final align = centered ? TextAlign.center : null;
     final heading = title == null && description == null && icon == null
         ? null
@@ -930,27 +941,44 @@ class _FitContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) => LayoutBuilder(
     builder: (context, box) => SingleChildScrollView(
-      child: _Measured(onHeight: (height) => onMeasured(height, box.maxHeight), child: child),
+      child: _Measured(
+        slot: box.maxHeight,
+        onHeight: (height) => onMeasured(height, box.maxHeight),
+        child: child,
+      ),
     ),
   );
 }
 
+/// Reports its child's height at each layout, and again when the [slot]
+/// around it changes while the child does not: once the keyboard closes,
+/// a fitted sheet shrinks back to its content.
 class _Measured extends SingleChildRenderObjectWidget {
-  const _Measured({required this.onHeight, super.child});
+  const _Measured({required this.slot, required this.onHeight, super.child});
 
+  final double slot;
   final ValueChanged<double> onHeight;
 
   @override
-  RenderObject createRenderObject(BuildContext context) => _RenderMeasured(onHeight);
+  RenderObject createRenderObject(BuildContext context) => _RenderMeasured(onHeight, slot);
 
   @override
-  void updateRenderObject(BuildContext context, _RenderMeasured renderObject) => renderObject.onHeight = onHeight;
+  void updateRenderObject(BuildContext context, _RenderMeasured renderObject) => renderObject
+    ..onHeight = onHeight
+    ..slot = slot;
 }
 
 class _RenderMeasured extends RenderProxyBox {
-  _RenderMeasured(this.onHeight);
+  _RenderMeasured(this.onHeight, this._slot);
 
   ValueChanged<double> onHeight;
+
+  double _slot;
+  set slot(double value) {
+    if (value == _slot) return;
+    _slot = value;
+    markNeedsLayout();
+  }
 
   @override
   void performLayout() {

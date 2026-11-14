@@ -49,6 +49,16 @@ enum FlSegmentedSize {
   lg,
 }
 
+/// How the chosen segment of an [FlSegmented] stands out.
+enum FlSegmentedVariant {
+  /// A `segment` thumb lifted by the `field` shadow, `onSegment` text.
+  standard,
+
+  /// A `selected` thumb without shadow, `onSelected` text: the choice in
+  /// the theme's primary color, on a quiet track.
+  inverse,
+}
+
 /// A segment of an [FlSegmented]: the [value] it picks, its displayed and
 /// read [label], and an optional [icon] before it.
 final class FlSegment<T> {
@@ -110,6 +120,8 @@ class FlSegmented<T> extends StatefulWidget {
     this.enabled = true,
     this.expand = true,
     this.semanticLabel,
+    this.variant = FlSegmentedVariant.standard,
+    this.trackColor,
   }) : assert(segments.length >= 2 && segments.length <= 5, 'two to five segments');
 
   /// The segments, in reading order.
@@ -136,6 +148,13 @@ class FlSegmented<T> extends StatefulWidget {
 
   /// The group name for the screen reader ("Period").
   final String? semanticLabel;
+
+  /// The chosen segment's look; `standard` by default.
+  final FlSegmentedVariant variant;
+
+  /// The track's color; when null, `control`. On a page whose base is
+  /// `control`'s grey, `surfaceRaised` keeps the track visible.
+  final Color? trackColor;
 
   @override
   State<FlSegmented<T>> createState() => _FlSegmentedState<T>();
@@ -258,10 +277,19 @@ class _FlSegmentedState<T> extends State<FlSegmented<T>> with SingleTickerProvid
     final forward = Directionality.of(context) == TextDirection.ltr ? 1 : -1;
     final segments = widget.segments;
     final look = _Look.of(context, theme, widget.size);
-    Color ink(int i) => i == selected ? colors.onSegment : colors.onSurfaceMuted;
+    final inverse = widget.variant == FlSegmentedVariant.inverse;
+    final thumb = inverse ? colors.selected : colors.segment;
+    Color ink(int i) => i != selected
+        ? colors.onSurfaceMuted
+        : inverse
+        ? colors.onSelected
+        : colors.onSegment;
     final radius = _innerRadius(theme);
     final group = DecoratedBox(
-      decoration: BoxDecoration(color: colors.control, borderRadius: BorderRadius.circular(theme.shape.radiusButton)),
+      decoration: BoxDecoration(
+        color: widget.trackColor ?? colors.control,
+        borderRadius: BorderRadius.circular(theme.shape.radiusButton),
+      ),
       child: Padding(
         padding: const EdgeInsets.all(_inset),
         child: LayoutBuilder(
@@ -275,13 +303,14 @@ class _FlSegmentedState<T> extends State<FlSegmented<T>> with SingleTickerProvid
                 spans: _spans,
                 radius: radius,
                 hover: colors.controlPressed,
-                fill: colors.segment,
-                // The three layers of `field`.
-                shadows: theme.shadows.field,
+                fill: thumb,
+                // The three layers of `field`; an inverse thumb stands out
+                // by its ink alone.
+                shadows: inverse ? const [] : theme.shadows.field,
                 // Pressed, the thumb takes the press highlight of a surface.
                 fillPressed: Color.alphaBlend(
                   colors.pressHighlight.withValues(alpha: theme.size.pressHighlightOpacity),
-                  colors.segment,
+                  thumb,
                 ),
                 highlighted: _highlighted,
                 disabled: {

@@ -34,4 +34,4 @@ Widget _icons(BuildContext context, {required bool rtl}) {
 }
 
 void main() =>
-    verifyItem(item: 'icons', testFile: 'test/icons_verify_test.dart', size: const Size(390, 600), showcase: _icons);
+    verifyItem(item: 'icons', testFile: 'test/icons_verify_test.dart', size: const Size(390, 700), showcase: _icons);

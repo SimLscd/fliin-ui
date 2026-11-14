@@ -118,6 +118,9 @@ class FlChart extends StatefulWidget {
     this.showValueAxis = false,
     this.showTimeAxis = true,
     this.tooltip = true,
+    this.tooltipLabel = true,
+    this.maxBarWidth,
+    this.restColor,
   }) : type = FlChartType.bar,
        area = false,
        zeroBased = true,
@@ -139,9 +142,12 @@ class FlChart extends StatefulWidget {
     this.showValueAxis = false,
     this.showTimeAxis = true,
     this.tooltip = true,
+    this.tooltipLabel = true,
     this.area = false,
     this.zeroBased = true,
   }) : type = FlChartType.line,
+       maxBarWidth = null,
+       restColor = null,
        assert(series.length == 1 || series.length == 2, 'one or two series');
 
   /// Bars or line, set by the constructor.
@@ -198,6 +204,18 @@ class FlChart extends StatefulWidget {
   /// keeps no room above the plot for one: a sparkline whose figure is
   /// written next to it. The screen reader still reads each point.
   final bool tooltip;
+
+  /// False: the tooltip writes the values alone, without the point's label
+  /// under them, when the time axis already names the point.
+  final bool tooltipLabel;
+
+  /// The widest a bar grows, for a few points on a wide card; when null,
+  /// the bars fill their slots but for the gaps.
+  final double? maxBarWidth;
+
+  /// The bars that a selection or [highlight] leaves aside, on a lone
+  /// series; when null, the series' color faded, or `accentSoft`.
+  final Color? restColor;
 
   /// True: the first line fills the space under it, fading toward the
   /// bottom of the plot (an area chart). Bars never do.
@@ -702,8 +720,9 @@ class _ChartPainter extends CustomPainter {
     final l = layout;
     final k = chart.series.length;
     final inner = gap * 0.75;
-    final group = math.max(0.0, l.slot - (k == 1 ? gap * 2.5 : gap * 3.5));
-    final width = (group - inner * (k - 1)) / k;
+    final room = math.max(0.0, l.slot - (k == 1 ? gap * 2.5 : gap * 3.5));
+    final width = math.min((room - inner * (k - 1)) / k, chart.maxBarWidth ?? double.infinity);
+    final group = width * k + inner * (k - 1);
     for (var i = 0; i < l.count; i++) {
       for (var s = 0; s < k; s++) {
         final offset = -group / 2 + s * (width + inner);
@@ -726,7 +745,7 @@ class _ChartPainter extends CustomPainter {
         final own = chart.series[s].color;
         final color = s == 0
             ? (k == 1 && selected != null && selected != i
-                  ? (own == null ? dim : own.withValues(alpha: own.a * _comparisonBarAlpha))
+                  ? (chart.restColor ?? (own == null ? dim : own.withValues(alpha: own.a * _comparisonBarAlpha)))
                   : own ?? lead)
             : (own ?? muted).withValues(alpha: (own ?? muted).a * _comparisonBarAlpha);
         canvas.drawRRect(shape, Paint()..color = color);
@@ -882,10 +901,11 @@ TextSpan _bubbleSpan(FlChart chart, int index, TextStyle style, FlTheme theme) {
               '${chart.series.length == 1 ? _written(s, index, chart.formatValue) : '${s.label} ${_written(s, index, chart.formatValue)}'}',
           style: value,
         ),
-      TextSpan(
-        text: '\n${chart.points[index]._spoken}',
-        style: style.merge(scale.resolve(FlTextRole.textXs)).copyWith(color: theme.colors.onSurfaceMuted),
-      ),
+      if (chart.tooltipLabel)
+        TextSpan(
+          text: '\n${chart.points[index]._spoken}',
+          style: style.merge(scale.resolve(FlTextRole.textXs)).copyWith(color: theme.colors.onSurfaceMuted),
+        ),
     ],
   );
 }
@@ -941,7 +961,7 @@ class _Bubble extends StatelessWidget {
             padding: EdgeInsetsDirectional.symmetric(horizontal: theme.space.xs * 2.5, vertical: theme.space.xs * 1.5),
             // A single text: a lone line would carry the point node's label,
             // and the contrast measurement would take it for it.
-            child: Text.rich(_bubbleSpan(chart, index, style, theme), strutStyle: strut),
+            child: Text.rich(_bubbleSpan(chart, index, style, theme), strutStyle: strut, textAlign: TextAlign.center),
           ),
         ),
       ),

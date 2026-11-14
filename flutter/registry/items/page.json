@@ -1,7 +1,7 @@
 {
   "name": "page",
   "type": "registry:component",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "title": "Page",
   "description": "Frames a whole mobile screen: safe areas, an app bar tied to scrolling, scrolling content, a tab bar, the keyboard and pull to refresh with each platform gesture.",
   "flutter": ">=3.47.0 <4.0.0",
@@ -87,5 +87,5 @@
     },
     "goldens": null
   },
-  "changelog": "`FlPage.floatAppBar`: the top bar leaves with the content and comes back as soon as it scrolls back down, on its glass over the content (`FlFloatingAppBar`). Nothing changes without it."
+  "changelog": "`FlPage.hideTabBarOnScroll`: the tab bar slides away as the content scrolls down and comes back as soon as it scrolls up or reaches an end, by a drag or by momentum; it stays put for a screen reader. Nothing changes without it."
 }
