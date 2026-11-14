@@ -505,6 +505,16 @@ final List<IconCase> iconSet = [
       Rect.fromLTRB(5.1749, 3.5, 10.784, 12.5),
     ],
   ),
+  (
+    name: 'handset',
+    icon: FlIcons.handset,
+    contours: [Rect.fromLTRB(1.2005, 1.2673, 14.7344, 14.8015), Rect.fromLTRB(2.8786, 2.9464, 13.0546, 13.121)],
+  ),
+  (
+    name: 'headset',
+    icon: FlIcons.headset,
+    contours: [Rect.fromLTRB(1, 1, 15, 15), Rect.fromLTRB(11.5, 10, 13.5, 13.5), Rect.fromLTRB(2.5, 10, 4.5, 13.5)],
+  ),
 ];
 
 /// Each set, by its name in the preset, in code order.
@@ -927,6 +937,17 @@ final Map<String, List<IconCase>> iconSets = {
         Rect.fromLTRB(10, 2, 22, 14),
       ],
     ),
+    (name: 'handset', icon: lucide.FlIcons.handset, contours: [Rect.fromLTRB(2, 2, 22, 22)]),
+    (
+      name: 'headset',
+      icon: lucide.FlIcons.headset,
+      contours: [
+        Rect.fromLTRB(3, 11, 8, 18),
+        Rect.fromLTRB(3, 2, 21, 11),
+        Rect.fromLTRB(16, 11, 21, 18),
+        Rect.fromLTRB(12, 16, 21, 22),
+      ],
+    ),
   ],
   'tabler': [
     (
@@ -1344,6 +1365,17 @@ final Map<String, List<IconCase>> iconSets = {
         Rect.fromLTRB(3, 3, 15, 9),
         Rect.fromLTRB(3, 6, 5, 18),
         Rect.fromLTRB(3, 11, 5, 13),
+      ],
+    ),
+    (name: 'handset', icon: tabler.FlIcons.handset, contours: [Rect.fromLTRB(3, 4, 20, 21)]),
+    (
+      name: 'headset',
+      icon: tabler.FlIcons.headset,
+      contours: [
+        Rect.fromLTRB(4, 3, 20, 14),
+        Rect.fromLTRB(12, 19, 18, 22),
+        Rect.fromLTRB(4, 12, 9, 19),
+        Rect.fromLTRB(15, 12, 20, 19),
       ],
     ),
   ],
@@ -1892,6 +1924,16 @@ final Map<String, List<IconCase>> iconSets = {
         Rect.fromLTRB(136, 174.4, 184, 200),
         Rect.fromLTRB(200, 157.93, 232, 194.87),
       ],
+    ),
+    (
+      name: 'handset',
+      icon: phosphor.FlIcons.handset,
+      contours: [Rect.fromLTRB(32, 24.0021, 231.9984, 224), Rect.fromLTRB(48, 40, 216, 208)],
+    ),
+    (
+      name: 'headset',
+      icon: phosphor.FlIcons.headset,
+      contours: [Rect.fromLTRB(24, 24, 232, 248), Rect.fromLTRB(40, 136, 72, 192), Rect.fromLTRB(184, 136, 216, 192)],
     ),
   ],
 };

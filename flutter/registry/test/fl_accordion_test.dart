@@ -468,4 +468,43 @@ void main() {
     await _tap(tester, 'Commande');
     expect(tester.widget<AnimatedCrossFade>(fade).crossFadeState, CrossFadeState.showSecond);
   });
+  testWidgets('devrait lever la section ouverte sur une carte, sans filets, le chevron dans un disque en cards', (
+    tester,
+  ) async {
+    await tester.pumpWidget(
+      _app(FlAccordion<String>(items: _items(), variant: FlAccordionVariant.cards, initialExpanded: const {'a'})),
+    );
+    await tester.pumpAndSettle();
+    expect(find.byType(FlSeparator), findsNothing);
+    final colors = tokens.light;
+    Color? disc(String title) {
+      final row = find.ancestor(of: find.text(title), matching: find.byType(Row)).last;
+      final box = tester.widget<DecoratedBox>(
+        find
+            .descendant(
+              of: row,
+              matching: find.byWidgetPredicate((w) => w is DecoratedBox && w.decoration is ShapeDecoration),
+            )
+            .last,
+      );
+      return (box.decoration as ShapeDecoration).color;
+    }
+
+    expect(disc('Commande'), colors.surfaceSecondary, reason: 'ouverte, sur la carte');
+    expect(disc('Paiement'), colors.surfaceRaised, reason: 'fermée, sur la page');
+    // La carte se fond sous la section, à côté d'elle dans le même Stack.
+    Finder section(String title) => find.ancestor(of: find.text(title), matching: find.byType(Stack)).first;
+    double opacity(String title) => tester
+        .widget<FadeTransition>(find.descendant(of: section(title), matching: find.byType(FadeTransition)).first)
+        .opacity
+        .value;
+    expect(opacity('Commande'), 1);
+    expect(opacity('Paiement'), 0, reason: 'la carte d’une section fermée est invisible');
+    final open = tester.getRect(section('Commande'));
+    expect(open.contains(tester.getCenter(find.text('Réponse A'))), isTrue, reason: 'la réponse est sur la carte');
+
+    await _tap(tester, 'Commande');
+    expect(opacity('Commande'), 0);
+    expect(disc('Commande'), colors.surfaceRaised);
+  });
 }

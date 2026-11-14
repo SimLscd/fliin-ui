@@ -15,6 +15,11 @@ enum FlAccordionVariant {
 
   /// On a shadowed surface with continuous corners, wider margins.
   surface,
+
+  /// Each section on its own, without rules: an open section lifts onto a
+  /// raised card, the closed ones stay on the page, and the chevron sits in
+  /// a disc, `surfaceRaised` on the page and `surfaceSecondary` on the card.
+  cards,
 }
 
 /// How many sections a [FlAccordion] opens at once.
@@ -155,6 +160,7 @@ class _FlAccordionState<T> extends State<FlAccordion<T>> {
   Widget build(BuildContext context) {
     final theme = FlScope.of(context);
     final surface = widget.variant == FlAccordionVariant.surface;
+    final cards = widget.variant == FlAccordionVariant.cards;
     final xs = theme.space.xs;
     final current = _current;
     final column = Column(
@@ -162,7 +168,7 @@ class _FlAccordionState<T> extends State<FlAccordion<T>> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         for (final (index, item) in widget.items.indexed) ...[
-          if (widget.separators && index > 0)
+          if (widget.separators && !cards && index > 0)
             Padding(
               // The surface's 12 of padding.
               padding: EdgeInsetsDirectional.symmetric(horizontal: surface ? xs * 3 : 0),
@@ -174,8 +180,9 @@ class _FlAccordionState<T> extends State<FlAccordion<T>> {
             expanded: current.contains(item.value),
             enabled: widget.enabled && item.enabled,
             // The canvas's `.acc-head`: 4 in, 16 on the surface (its 12 of
-            // padding, then 4).
-            inset: surface ? xs * 4 : xs,
+            // padding, then 4) and on a card.
+            inset: surface || cards ? xs * 4 : xs,
+            card: cards,
             onPressed: () => _toggle(item.value),
           ),
         ],
@@ -204,6 +211,7 @@ class _Section<T> extends StatefulWidget {
     required this.expanded,
     required this.enabled,
     required this.inset,
+    required this.card,
     required this.onPressed,
   });
 
@@ -211,6 +219,9 @@ class _Section<T> extends StatefulWidget {
   final bool expanded;
   final bool enabled;
   final double inset;
+
+  /// True: the section lifts onto a card when open, its chevron in a disc.
+  final bool card;
   final VoidCallback onPressed;
 
   @override
@@ -270,6 +281,11 @@ class _SectionState<T> extends State<_Section<T>> with TickerProviderStateMixin 
       style: scale.resolve(FlTextRole.textBase).copyWith(color: colors.onSurface),
       strutStyle: scale.strut(FlTextRole.textBase, inheritedFamily: family),
     );
+    final chevron = AnimatedBuilder(
+      animation: _turn,
+      builder: (context, child) => Transform.rotate(angle: -math.pi * _turn.value, child: child),
+      child: FlIcon(FlIcons.chevronDown),
+    );
     final indicator = switch ((item.indicator, item.expandedIndicator)) {
       (final closed?, final open?) => AnimatedCrossFade(
         firstChild: closed,
@@ -280,14 +296,15 @@ class _SectionState<T> extends State<_Section<T>> with TickerProviderStateMixin 
       (final closed, _) => closed,
     };
     final icons = IconThemeData(
-      color: colors.onSurfaceMuted,
+      color: widget.card ? colors.onSurface : colors.onSurfaceMuted,
       size: MediaQuery.textScalerOf(context)
           .clamp(maxScaleFactor: theme.size.iconMaxScale)
           .scale(theme.size.indicatorIcon),
     );
+    final radius = theme.shape.radiusCard;
     final trigger = FlPressable(
       onPressed: widget.enabled ? widget.onPressed : null,
-      borderRadius: BorderRadius.zero,
+      borderRadius: widget.card ? BorderRadius.circular(radius) : BorderRadius.zero,
       scaleOnPress: false,
       // The trigger tints under the pointer or the finger, a hair of the
       // text color over the whole header.
@@ -334,12 +351,7 @@ class _SectionState<T> extends State<_Section<T>> with TickerProviderStateMixin 
                       ],
                     ),
                   ),
-                  indicator ??
-                      AnimatedBuilder(
-                        animation: _turn,
-                        builder: (context, child) => Transform.rotate(angle: -math.pi * _turn.value, child: child),
-                        child: FlIcon(FlIcons.chevronDown),
-                      ),
+                  indicator ?? (widget.card ? _disc(theme, chevron) : chevron),
                 ],
               ),
             ),
@@ -364,7 +376,7 @@ class _SectionState<T> extends State<_Section<T>> with TickerProviderStateMixin 
     final curve = theme.motion.easeOut;
     final reduced = FlMotion.of(context).reduced;
     final opacity = CurvedAnimation(parent: _fade, curve: curve, reverseCurve: theme.motion.easeIn.flipped);
-    return Column(
+    final section = Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -392,6 +404,40 @@ class _SectionState<T> extends State<_Section<T>> with TickerProviderStateMixin 
           child: content,
         ),
       ],
+    );
+    if (!widget.card) return section;
+    // The card fades in under the section as it opens, and out as it closes.
+    return Stack(
+      children: [
+        Positioned.fill(
+          child: FadeTransition(
+            opacity: opacity,
+            child: FlSurface(padding: EdgeInsets.zero, radius: radius, child: const SizedBox.expand()),
+          ),
+        ),
+        section,
+      ],
+    );
+  }
+
+  /// [chevron] in a disc: `surfaceRaised` on the page, `surfaceSecondary` on
+  /// the open section's card.
+  Widget _disc(FlTheme theme, Widget chevron) {
+    final colors = theme.colors;
+    final side = theme.size.controlCompact - theme.space.sm;
+    return AnimatedBuilder(
+      animation: _fade,
+      builder: (context, child) => DecoratedBox(
+        decoration: ShapeDecoration(
+          color: Color.lerp(colors.surfaceRaised, colors.surfaceSecondary, _fade.value),
+          shape: const CircleBorder(),
+        ),
+        child: child,
+      ),
+      child: SizedBox.square(
+        dimension: side,
+        child: Center(child: chevron),
+      ),
     );
   }
 }

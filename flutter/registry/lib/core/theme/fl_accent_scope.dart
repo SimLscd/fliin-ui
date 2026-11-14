@@ -21,8 +21,11 @@ const _pressed = 0.12;
 /// strength; controls, pills, borders and skeletons a tint of `onAccent`
 /// over the accent; the primary action and every selected state `onAccent`
 /// with accent content; the soft danger disc a tint too, its icon
-/// `onAccent`. Separators vanish: on the accent, space separates. Fields,
-/// segments, scrims and the other status colors keep their values. The
+/// `onAccent`. Separators vanish: on the accent, space separates. A field
+/// is a tint too, its text and placeholder `onAccent`: typed text keeps AA
+/// only on a dark accent, so a screen gives a field the page's palette
+/// while it is used. Segments, scrims and the other status colors keep
+/// their values. The
 /// palette follows the theme a preset or `fliin theme` sets, and a scope
 /// inside another one changes nothing.
 ///
@@ -75,10 +78,18 @@ class FlAccentScope extends StatelessWidget {
       FlColorRole.surface ||
       FlColorRole.surfaceRaised ||
       FlColorRole.surfaceOverlay => accent,
-      FlColorRole.surfacePressed || FlColorRole.surfaceSecondary => tint,
+      FlColorRole.surfacePressed || FlColorRole.surfaceSecondary || FlColorRole.field => tint,
       FlColorRole.surfaceTertiary => strong,
-      FlColorRole.onSurface || FlColorRole.onSurfaceMuted || FlColorRole.link || FlColorRole.focusRing => on,
-      FlColorRole.border || FlColorRole.borderSecondary || FlColorRole.borderTertiary => strong,
+      FlColorRole.onSurface ||
+      FlColorRole.onSurfaceMuted ||
+      FlColorRole.link ||
+      FlColorRole.focusRing ||
+      FlColorRole.onField ||
+      FlColorRole.fieldPlaceholder => on,
+      FlColorRole.border ||
+      FlColorRole.borderSecondary ||
+      FlColorRole.borderTertiary ||
+      FlColorRole.fieldBorder => strong,
       FlColorRole.separator || FlColorRole.separatorSecondary || FlColorRole.separatorTertiary => accent,
       FlColorRole.accent || FlColorRole.selected => on,
       FlColorRole.accentPressed => Color.lerp(on, accent, _pressed)!,

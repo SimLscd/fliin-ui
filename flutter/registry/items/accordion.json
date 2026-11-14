@@ -1,7 +1,7 @@
 {
   "name": "accordion",
   "type": "registry:component",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "title": "Accordion",
   "description": "Groups sections that open one at a time or together from their header, with a spring height, a content fade and a turning chevron.",
   "flutter": ">=3.47.0 <4.0.0",
@@ -92,5 +92,5 @@
     },
     "goldens": null
   },
-  "changelog": "A section takes a `subtitle`, a muted `textSm` line under the title, and an `expandedIndicator` that crossfades in place of `indicator` (`short3`) when it opens: a minus after a plus. The default rendering does not change."
+  "changelog": "`FlAccordionVariant.cards` puts each section on its own, without rules: an open section lifts onto a raised card that fades in as it opens, the closed ones stay on the page, and the chevron sits in a disc, `surfaceRaised` on the page and `surfaceSecondary` on the card. The other variants do not change."
 }

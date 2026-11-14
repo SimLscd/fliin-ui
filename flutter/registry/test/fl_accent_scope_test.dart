@@ -38,6 +38,19 @@ void main() {
     });
   }
 
+  test('devrait teinter un champ sur l’accent, son texte et son placeholder en onAccent', () {
+    final tokens = FlTokens.defaults;
+    final derived = FlAccentScope.tokensOf(tokens);
+    for (final (mode, base, on) in [('clair', tokens.light, derived.light), ('sombre', tokens.dark, derived.dark)]) {
+      expect(on.field, on.surfaceSecondary, reason: mode);
+      expect(on.onField, base.onAccent, reason: mode);
+      expect(on.fieldPlaceholder, base.onAccent, reason: mode);
+      expect(on.fieldBorder, on.border, reason: mode);
+      // Une icône du champ, la loupe, reste un élément graphique lisible.
+      expect(_contrast(on.onField, on.field), greaterThanOrEqualTo(3), reason: mode);
+    }
+  });
+
   test('devrait rendre les mêmes jetons d’un appel à l’autre, et ne rien changer à des jetons déjà dérivés', () {
     final derived = FlAccentScope.tokensOf(FlTokens.defaults);
     expect(identical(FlAccentScope.tokensOf(FlTokens.defaults), derived), isTrue);

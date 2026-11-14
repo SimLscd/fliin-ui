@@ -1,7 +1,7 @@
 {
   "name": "core",
   "type": "registry:core",
-  "version": "0.2.11",
+  "version": "0.2.12",
   "title": "Core",
   "description": "Gives every component its tokens, light and dark themes, density, platform typography, reduced motion and an accessible pressable surface. No Material, no Cupertino.",
   "flutter": ">=3.47.0 <4.0.0",
@@ -193,5 +193,5 @@
     },
     "goldens": null
   },
-  "changelog": "`FlTheme.hovers`: a control lights up under the pointer only on desktop. With the theme's platform on iOS or Android, `FlPressable` no longer reports `WidgetState.hovered`, so a phone app previewed with a mouse (in a browser, on an iPad with a trackpad) shows no hover."
+  "changelog": "Under `FlAccentScope`, a field is a tint of the accent, its text and placeholder in `onAccent`, its border the stronger tint: a search pill on a band in the accent. Typed text in `onAccent` keeps AA only on a dark accent, so a screen gives the field the page's palette while it is used. Nothing else changes, and no shipped screen had a field on the accent."
 }

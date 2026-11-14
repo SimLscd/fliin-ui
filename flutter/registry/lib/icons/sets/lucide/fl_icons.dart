@@ -1328,4 +1328,59 @@ abstract final class FlIcons {
     viewBox: 24,
     stroke: FlIconStroke(width: 2, cap: StrokeCap.round, join: StrokeJoin.round),
   );
+
+  /// `handset`: `icons/phone`.
+  static final FlIconData handset = FlIconData(
+    Path()
+      ..moveTo(13.832, 16.568)
+      ..arcToPoint(const Offset(15.045, 16.265), radius: const Radius.circular(1), clockwise: false)
+      ..lineTo(15.4, 15.8)
+      ..arcToPoint(const Offset(17, 15), radius: const Radius.circular(2))
+      ..lineTo(20, 15)
+      ..arcToPoint(const Offset(22, 17), radius: const Radius.circular(2))
+      ..lineTo(22, 20)
+      ..arcToPoint(const Offset(20, 22), radius: const Radius.circular(2))
+      ..arcToPoint(const Offset(2, 4), radius: const Radius.circular(18))
+      ..arcToPoint(const Offset(4, 2), radius: const Radius.circular(2))
+      ..lineTo(7, 2)
+      ..arcToPoint(const Offset(9, 4), radius: const Radius.circular(2))
+      ..lineTo(9, 7)
+      ..arcToPoint(const Offset(8.2, 8.6), radius: const Radius.circular(2))
+      ..lineTo(7.732, 8.951)
+      ..arcToPoint(const Offset(7.44, 10.184), radius: const Radius.circular(1), clockwise: false)
+      ..arcToPoint(const Offset(13.832, 16.568), radius: const Radius.circular(14), clockwise: false),
+    viewBox: 24,
+    stroke: FlIconStroke(width: 2, cap: StrokeCap.round, join: StrokeJoin.round),
+  );
+
+  /// `headset`.
+  static final FlIconData headset = FlIconData(
+    Path()
+      ..moveTo(3, 11)
+      ..lineTo(6, 11)
+      ..arcToPoint(const Offset(8, 13), radius: const Radius.circular(2))
+      ..lineTo(8, 16)
+      ..arcToPoint(const Offset(6, 18), radius: const Radius.circular(2))
+      ..lineTo(5, 18)
+      ..arcToPoint(const Offset(3, 16), radius: const Radius.circular(2))
+      ..lineTo(3, 11)
+      ..close()
+      ..moveTo(3, 11)
+      ..arcToPoint(const Offset(21, 11), radius: const Radius.circular(9), largeArc: true)
+      ..moveTo(21, 11)
+      ..lineTo(21, 16)
+      ..arcToPoint(const Offset(19, 18), radius: const Radius.circular(2))
+      ..lineTo(18, 18)
+      ..arcToPoint(const Offset(16, 16), radius: const Radius.circular(2))
+      ..lineTo(16, 13)
+      ..arcToPoint(const Offset(18, 11), radius: const Radius.circular(2))
+      ..lineTo(21, 11)
+      ..close()
+      ..moveTo(21, 16)
+      ..lineTo(21, 18)
+      ..arcToPoint(const Offset(17, 22), radius: const Radius.circular(4))
+      ..lineTo(12, 22),
+    viewBox: 24,
+    stroke: FlIconStroke(width: 2, cap: StrokeCap.round, join: StrokeJoin.round),
+  );
 }

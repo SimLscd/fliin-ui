@@ -1494,4 +1494,53 @@ abstract final class FlIcons {
     viewBox: 24,
     stroke: FlIconStroke(width: 2, cap: StrokeCap.round, join: StrokeJoin.round),
   );
+
+  /// `handset`: `icons/outline/phone`.
+  static final FlIconData handset = FlIconData(
+    Path()
+      ..moveTo(5, 4)
+      ..lineTo(9, 4)
+      ..lineTo(11, 9)
+      ..lineTo(8.5, 10.5)
+      ..arcToPoint(const Offset(13.5, 15.5), radius: const Radius.circular(11), clockwise: false)
+      ..lineTo(15, 13)
+      ..lineTo(20, 15)
+      ..lineTo(20, 19)
+      ..arcToPoint(const Offset(18, 21), radius: const Radius.circular(2))
+      ..arcToPoint(const Offset(3, 6), radius: const Radius.circular(16))
+      ..arcToPoint(const Offset(5, 4), radius: const Radius.circular(2)),
+    viewBox: 24,
+    stroke: FlIconStroke(width: 2, cap: StrokeCap.round, join: StrokeJoin.round),
+  );
+
+  /// `headset`.
+  static final FlIconData headset = FlIconData(
+    Path()
+      ..moveTo(4, 14)
+      ..lineTo(4, 11)
+      ..arcToPoint(const Offset(20, 11), radius: const Radius.circular(8), largeArc: true)
+      ..lineTo(20, 14)
+      ..moveTo(18, 19)
+      ..cubicTo(18, 20.657, 15.314, 22, 12, 22)
+      ..moveTo(4, 14)
+      ..arcToPoint(const Offset(6, 12), radius: const Radius.circular(2))
+      ..lineTo(7, 12)
+      ..arcToPoint(const Offset(9, 14), radius: const Radius.circular(2))
+      ..lineTo(9, 17)
+      ..arcToPoint(const Offset(7, 19), radius: const Radius.circular(2))
+      ..lineTo(6, 19)
+      ..arcToPoint(const Offset(4, 17), radius: const Radius.circular(2))
+      ..lineTo(4, 14)
+      ..moveTo(15, 14)
+      ..arcToPoint(const Offset(17, 12), radius: const Radius.circular(2))
+      ..lineTo(18, 12)
+      ..arcToPoint(const Offset(20, 14), radius: const Radius.circular(2))
+      ..lineTo(20, 17)
+      ..arcToPoint(const Offset(18, 19), radius: const Radius.circular(2))
+      ..lineTo(17, 19)
+      ..arcToPoint(const Offset(15, 17), radius: const Radius.circular(2))
+      ..lineTo(15, 14),
+    viewBox: 24,
+    stroke: FlIconStroke(width: 2, cap: StrokeCap.round, join: StrokeJoin.round),
+  );
 }

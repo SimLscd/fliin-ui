@@ -902,9 +902,9 @@ itemEnglish = {
   'help-center': (
     title: 'Help center',
     description:
-        'Shows frequently asked questions by topic in accordions, searchable '
-        'without accents with the matching words in bold, a helpful or not '
-        'vote on each answer, and readable offline.',
+        'Shows a help center on an accent band: search, ways to reach the '
+        'team, support status, topics that open their questions, and FAQ '
+        'cards searchable offline with a vote on each answer.',
     notFor: [
       'a single collapsible topic in a screen: use an accordion (accordion)',
       'the request sent to support and its progress: use contact support '

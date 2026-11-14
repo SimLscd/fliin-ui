@@ -91,7 +91,7 @@ typedef FlReferenceEntry = ({
 /// Par nom d'élément.
 final Map<String, FlReferenceEntry> verifyEntries = {
   'accordion': (
-    version: '0.2.5',
+    version: '0.2.6',
     canvas: const Size(390, 1100),
     platformCanvas: const {},
     settle: const Duration(milliseconds: 600),
@@ -2547,7 +2547,7 @@ final Map<String, FlReferenceEntry> verifyEntries = {
     ),
   ),
   'core': (
-    version: '0.2.11',
+    version: '0.2.12',
     canvas: null,
     platformCanvas: const {},
     settle: null,
@@ -3235,7 +3235,7 @@ final Map<String, FlReferenceEntry> verifyEntries = {
     ),
   ),
   'icons': (
-    version: '0.2.3',
+    version: '0.2.4',
     canvas: const Size(390, 600),
     platformCanvas: const {},
     settle: null,
