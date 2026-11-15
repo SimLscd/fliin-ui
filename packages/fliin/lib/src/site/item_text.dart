@@ -757,11 +757,11 @@ itemEnglish = {
     ],
   ),
   'plans': (
-    title: 'Plans and subscription',
+    title: 'Paywall',
     description:
-        'Offers subscription plans with a monthly or yearly switch, plan '
-        'cards, the current plan, a free trial, in-app purchase through the '
-        'store, restore purchases and the terms.',
+        'Offers a subscription in a paywall: one plan in two period tiles '
+        'or several plans with a monthly or yearly switch, a free trial, '
+        'in-app purchase, restore purchases and the terms.',
     notFor: [
       'a single plan to pick in a list: use radio buttons (radio)',
       'a cart of items to pay for: use the checkout screen (checkout)',
