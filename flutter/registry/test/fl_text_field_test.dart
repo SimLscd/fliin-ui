@@ -101,6 +101,36 @@ EditableText _editable(WidgetTester tester, String label) => tester.widget<Edita
 );
 
 void main() {
+  testWidgets('devrait poser le texte seul, sans cadre ni hauteur de contrôle, quand l’entrée est nue (bare)', (
+    tester,
+  ) async {
+    await tester.pumpWidget(
+      _app(
+        const Column(
+          children: [
+            FlInput(label: 'Phone', bare: true),
+            FlInput(label: 'Name'),
+          ],
+        ),
+      ),
+    );
+    final bare = find.byWidgetPredicate((w) => w is FlInput && w.bare);
+    expect(find.descendant(of: bare, matching: find.byType(FlInputFrame)), findsNothing);
+    final theme = FlScope.of(tester.element(bare));
+    expect(tester.getSize(bare).height, lessThan(theme.controlHeight));
+    expect(
+      tester.getTopLeft(find.descendant(of: bare, matching: find.byType(EditableText))).dx,
+      tester.getTopLeft(bare).dx,
+      reason: 'aucune marge au début',
+    );
+    await tester.tap(bare);
+    await tester.pump();
+    expect(
+      tester.widget<EditableText>(find.descendant(of: bare, matching: find.byType(EditableText))).focusNode.hasFocus,
+      isTrue,
+    );
+  });
+
   setUpAll(loadTortureFonts);
 
   testWidgets(

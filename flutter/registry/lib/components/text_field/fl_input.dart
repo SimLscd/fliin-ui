@@ -381,9 +381,14 @@ class FlInput extends StatefulWidget {
     this.textAlign = TextAlign.start,
     this.compact = false,
     this.pill = false,
+    this.bare = false,
     this.touchFocusRing = true,
     this.statesController,
   }) : assert(maxLines >= 1, 'at least one line'),
+       assert(
+         !bare || (!multiline && !compact && !pill),
+         'a bare input has no frame to shape: no multiline, compact or pill',
+       ),
        assert(!pill || !multiline, 'a text area is not a capsule: pill rejects multiline'),
        assert(rows == null || (multiline && rows >= 1), 'rows sets the height of a text area: set multiline'),
        assert(maxLength == null || maxLength > 0, 'maxLength counts at least one character'),
@@ -492,6 +497,12 @@ class FlInput extends StatefulWidget {
   /// next to a full-width button of the same height (an access form).
   /// [variant] no longer applies.
   final bool pill;
+
+  /// True: the text alone, without frame, padding nor minimum height, for a
+  /// container that draws the field around it (a card holding the label
+  /// above the value). The container shows focus, hover and [invalid];
+  /// [variant] no longer applies.
+  final bool bare;
 
   /// False: the focus ring shows only when focus moves by keyboard; under
   /// touch, the caret alone says where the text goes, as in iOS's fields.
@@ -802,18 +813,21 @@ class _FlInputState extends State<FlInput>
         );
         // The background and the text fade together; the affixes separately,
         // or not at all.
+        final bare = widget.bare;
         final box = _InputBox(
-          background: FlInputFrame(
-            variant: widget.variant,
-            pill: compact || widget.pill,
-            frameKey: _frameKey,
-            invalid: invalid,
-            focused:
-                focused &&
-                (widget.touchFocusRing || FocusManager.instance.highlightMode == FocusHighlightMode.traditional),
-            hovered: hovered,
-            child: const SizedBox.expand(),
-          ),
+          background: bare
+              ? KeyedSubtree(key: _frameKey, child: const SizedBox.expand())
+              : FlInputFrame(
+                  variant: widget.variant,
+                  pill: compact || widget.pill,
+                  frameKey: _frameKey,
+                  invalid: invalid,
+                  focused:
+                      focused &&
+                      (widget.touchFocusRing || FocusManager.instance.highlightMode == FocusHighlightMode.traditional),
+                  hovered: hovered,
+                  child: const SizedBox.expand(),
+                ),
           prefix: prefix,
           line: multiline
               ? SizedBox.expand(child: line)
@@ -822,7 +836,9 @@ class _FlInputState extends State<FlInput>
                   child: line,
                 ),
           suffix: suffix,
-          padding: compact
+          padding: bare
+              ? EdgeInsetsDirectional.zero
+              : compact
               ? EdgeInsetsDirectional.symmetric(
                   horizontal: theme.space.md + theme.space.xs / 2,
                   vertical: theme.space.sm + theme.space.xs / 2,
@@ -847,7 +863,7 @@ class _FlInputState extends State<FlInput>
                 height: rows == null ? theme.controlHeight * 2 : theme.controlHeight + (rows - 1) * lineHeight,
                 child: box,
               )
-            : compact
+            : compact || bare
             ? box
             : ConstrainedBox(
                 constraints: BoxConstraints(minHeight: theme.controlHeight),

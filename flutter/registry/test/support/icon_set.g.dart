@@ -515,6 +515,34 @@ final List<IconCase> iconSet = [
     icon: FlIcons.headset,
     contours: [Rect.fromLTRB(1, 1, 15, 15), Rect.fromLTRB(11.5, 10, 13.5, 13.5), Rect.fromLTRB(2.5, 10, 4.5, 13.5)],
   ),
+  (
+    name: 'camera',
+    icon: FlIcons.camera,
+    contours: [
+      Rect.fromLTRB(2.5, 3, 13.5, 12.5),
+      Rect.fromLTRB(1, 1.5, 15, 14),
+      Rect.fromLTRB(6.499, 7, 9.499, 10),
+      Rect.fromLTRB(4.999, 5.5, 10.999, 11.5),
+    ],
+  ),
+  (
+    name: 'globe',
+    icon: FlIcons.globe,
+    contours: [
+      Rect.fromLTRB(6.043, 9.159, 9.957, 13.5),
+      Rect.fromLTRB(6.004, 2.5, 9.996, 7.75),
+      Rect.fromLTRB(10.638, 8.463, 13.481, 12.827),
+      Rect.fromLTRB(10.638, 3.173, 13.392, 7.424),
+      Rect.fromLTRB(2.608, 3.173, 5.362, 7.424),
+      Rect.fromLTRB(2.52, 8.463, 5.363, 12.827),
+      Rect.fromLTRB(1, 1, 15, 15),
+    ],
+  ),
+  (
+    name: 'moon',
+    icon: FlIcons.moon,
+    contours: [Rect.fromLTRB(2.985, 2.986, 13.5025, 13.5), Rect.fromLTRB(1, 1, 15.0011, 15.0011)],
+  ),
 ];
 
 /// Each set, by its name in the preset, in code order.
@@ -948,6 +976,17 @@ final Map<String, List<IconCase>> iconSets = {
         Rect.fromLTRB(12, 16, 21, 22),
       ],
     ),
+    (
+      name: 'camera',
+      icon: lucide.FlIcons.camera,
+      contours: [Rect.fromLTRB(2, 4, 22, 20), Rect.fromLTRB(9, 10, 15, 16)],
+    ),
+    (
+      name: 'globe',
+      icon: lucide.FlIcons.globe,
+      contours: [Rect.fromLTRB(2, 2, 22, 22), Rect.fromLTRB(8, 2, 16, 22), Rect.fromLTRB(2, 12, 22, 12)],
+    ),
+    (name: 'moon', icon: lucide.FlIcons.moon, contours: [Rect.fromLTRB(2.9982, 3.0133, 20.9857, 21.0007)]),
   ],
   'tabler': [
     (
@@ -1378,6 +1417,23 @@ final Map<String, List<IconCase>> iconSets = {
         Rect.fromLTRB(15, 12, 20, 19),
       ],
     ),
+    (
+      name: 'camera',
+      icon: tabler.FlIcons.camera,
+      contours: [Rect.fromLTRB(3, 4, 21, 20), Rect.fromLTRB(9, 10, 15, 16)],
+    ),
+    (
+      name: 'globe',
+      icon: tabler.FlIcons.globe,
+      contours: [
+        Rect.fromLTRB(3, 3, 21, 21),
+        Rect.fromLTRB(3.6, 9, 20.4, 9),
+        Rect.fromLTRB(3.6, 15, 20.4, 15),
+        Rect.fromLTRB(8.9222, 3, 11.5, 21),
+        Rect.fromLTRB(12.5, 3, 15.0778, 21),
+      ],
+    ),
+    (name: 'moon', icon: tabler.FlIcons.moon, contours: [Rect.fromLTRB(3.0037, 2.992, 20.313, 20.988)]),
   ],
   'phosphor': [
     (name: 'arrow-left', icon: phosphor.FlIcons.arrowLeft, contours: [Rect.fromLTRB(31.9937, 47.9956, 224, 208.0044)]),
@@ -1934,6 +1990,37 @@ final Map<String, List<IconCase>> iconSets = {
       name: 'headset',
       icon: phosphor.FlIcons.headset,
       contours: [Rect.fromLTRB(24, 24, 232, 248), Rect.fromLTRB(40, 136, 72, 192), Rect.fromLTRB(184, 136, 216, 192)],
+    ),
+    (
+      name: 'camera',
+      icon: phosphor.FlIcons.camera,
+      contours: [
+        Rect.fromLTRB(24, 32, 232, 216),
+        Rect.fromLTRB(40, 48, 216, 200),
+        Rect.fromLTRB(84.0133, 88, 172, 175.9867),
+        Rect.fromLTRB(100.0084, 104.0084, 156, 160),
+      ],
+    ),
+    (
+      name: 'globe',
+      icon: phosphor.FlIcons.globe,
+      contours: [
+        Rect.fromLTRB(24.0313, 24, 232, 231.9687),
+        Rect.fromLTRB(174.16, 104, 216, 152),
+        Rect.fromLTRB(102, 168, 154, 213),
+        Rect.fromLTRB(96.0401, 104, 160.0399, 152),
+        Rect.fromLTRB(40, 104, 81.84, 152),
+        Rect.fromLTRB(102, 43, 154, 88),
+        Rect.fromLTRB(148.41, 42.4, 206.37, 88),
+        Rect.fromLTRB(49.63, 42.4, 107.59, 88),
+        Rect.fromLTRB(49.63, 168, 107.59, 213.6),
+        Rect.fromLTRB(148.41, 168, 206.37, 213.6),
+      ],
+    ),
+    (
+      name: 'moon',
+      icon: phosphor.FlIcons.moon,
+      contours: [Rect.fromLTRB(31.9106, 20.0759, 235.8688, 224), Rect.fromLTRB(47.9729, 41.11, 214.92, 208.0313)],
     ),
   ],
 };

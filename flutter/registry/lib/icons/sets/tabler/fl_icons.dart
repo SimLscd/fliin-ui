@@ -1543,4 +1543,59 @@ abstract final class FlIcons {
     viewBox: 24,
     stroke: FlIconStroke(width: 2, cap: StrokeCap.round, join: StrokeJoin.round),
   );
+
+  /// `camera`.
+  static final FlIconData camera = FlIconData(
+    Path()
+      ..moveTo(5, 7)
+      ..lineTo(6, 7)
+      ..arcToPoint(const Offset(8, 5), radius: const Radius.circular(2), clockwise: false)
+      ..arcToPoint(const Offset(9, 4), radius: const Radius.circular(1))
+      ..lineTo(15, 4)
+      ..arcToPoint(const Offset(16, 5), radius: const Radius.circular(1))
+      ..arcToPoint(const Offset(18, 7), radius: const Radius.circular(2), clockwise: false)
+      ..lineTo(19, 7)
+      ..arcToPoint(const Offset(21, 9), radius: const Radius.circular(2))
+      ..lineTo(21, 18)
+      ..arcToPoint(const Offset(19, 20), radius: const Radius.circular(2))
+      ..lineTo(5, 20)
+      ..arcToPoint(const Offset(3, 18), radius: const Radius.circular(2))
+      ..lineTo(3, 9)
+      ..arcToPoint(const Offset(5, 7), radius: const Radius.circular(2))
+      ..moveTo(9, 13)
+      ..arcToPoint(const Offset(15, 13), radius: const Radius.circular(3), largeArc: true, clockwise: false)
+      ..arcToPoint(const Offset(9, 13), radius: const Radius.circular(3), clockwise: false),
+    viewBox: 24,
+    stroke: FlIconStroke(width: 2, cap: StrokeCap.round, join: StrokeJoin.round),
+  );
+
+  /// `globe`: `icons/outline/world`.
+  static final FlIconData globe = FlIconData(
+    Path()
+      ..moveTo(3, 12)
+      ..arcToPoint(const Offset(21, 12), radius: const Radius.circular(9), largeArc: true, clockwise: false)
+      ..arcToPoint(const Offset(3, 12), radius: const Radius.circular(9), clockwise: false)
+      ..moveTo(3.6, 9)
+      ..lineTo(20.4, 9)
+      ..moveTo(3.6, 15)
+      ..lineTo(20.4, 15)
+      ..moveTo(11.5, 3)
+      ..arcToPoint(const Offset(11.5, 21), radius: const Radius.circular(17), clockwise: false)
+      ..moveTo(12.5, 3)
+      ..arcToPoint(const Offset(12.5, 21), radius: const Radius.circular(17)),
+    viewBox: 24,
+    stroke: FlIconStroke(width: 2, cap: StrokeCap.round, join: StrokeJoin.round),
+  );
+
+  /// `moon`.
+  static final FlIconData moon = FlIconData(
+    Path()
+      ..moveTo(12, 3)
+      ..cubicTo(12.132, 3, 12.263, 3, 12.393, 3)
+      ..arcToPoint(const Offset(20.313, 15.446), radius: const Radius.circular(7.5), clockwise: false)
+      ..arcToPoint(const Offset(12, 2.992), radius: const Radius.circular(9), largeArc: true)
+      ..lineTo(12, 3),
+    viewBox: 24,
+    stroke: FlIconStroke(width: 2, cap: StrokeCap.round, join: StrokeJoin.round),
+  );
 }

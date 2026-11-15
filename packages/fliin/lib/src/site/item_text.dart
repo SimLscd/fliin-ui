@@ -21,7 +21,7 @@ itemEnglish = {
   'icons': (
     title: 'Icons',
     description:
-        'Gives 76 mobile icons as Flutter paths, from Gravity UI, Lucide, '
+        'Gives 81 mobile icons as Flutter paths, from Gravity UI, Lucide, '
         'Tabler or Phosphor as the preset says: arrows, chevrons, search, '
         'cart, heart, play. Directional ones flip right to left.',
     notFor: [
@@ -566,13 +566,14 @@ itemEnglish = {
   'edit-profile': (
     title: 'Edit profile',
     description:
-        'Lets people change the photo, name, username checked while typing '
-        'and bio of their profile, and asks before discarding unsaved '
-        'changes.',
+        'Lets people change the photo, name, phone and address of their '
+        'profile, shows the verified email and locked birth date, links the '
+        'preferences and account rows, and asks before discarding changes.',
     notFor: [
       'a single text field in a page: use a text field (text-field)',
       'account settings, security and deletion: use account settings '
           '(account-settings)',
+      'a public profile with posts and followers: use a profile (profile)',
     ],
   ),
   'notifications': (

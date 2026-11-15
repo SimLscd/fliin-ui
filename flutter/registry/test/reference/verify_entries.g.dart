@@ -3235,7 +3235,7 @@ final Map<String, FlReferenceEntry> verifyEntries = {
     ),
   ),
   'icons': (
-    version: '0.2.4',
+    version: '0.2.5',
     canvas: const Size(390, 600),
     platformCanvas: const {},
     settle: null,
@@ -6197,7 +6197,7 @@ final Map<String, FlReferenceEntry> verifyEntries = {
     ),
   ),
   'text-field': (
-    version: '0.2.8',
+    version: '0.2.9',
     canvas: const Size(390, 800),
     platformCanvas: const {},
     settle: const Duration(milliseconds: 300),

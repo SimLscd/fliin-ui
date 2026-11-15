@@ -1383,4 +1383,54 @@ abstract final class FlIcons {
     viewBox: 24,
     stroke: FlIconStroke(width: 2, cap: StrokeCap.round, join: StrokeJoin.round),
   );
+
+  /// `camera`.
+  static final FlIconData camera = FlIconData(
+    Path()
+      ..moveTo(13.997, 4)
+      ..arcToPoint(const Offset(15.757, 5.05), radius: const Radius.circular(2))
+      ..lineTo(16.243, 5.95)
+      ..arcToPoint(const Offset(18.003, 7), radius: const Radius.circular(2), clockwise: false)
+      ..lineTo(20, 7)
+      ..arcToPoint(const Offset(22, 9), radius: const Radius.circular(2))
+      ..lineTo(22, 18)
+      ..arcToPoint(const Offset(20, 20), radius: const Radius.circular(2))
+      ..lineTo(4, 20)
+      ..arcToPoint(const Offset(2, 18), radius: const Radius.circular(2))
+      ..lineTo(2, 9)
+      ..arcToPoint(const Offset(4, 7), radius: const Radius.circular(2))
+      ..lineTo(5.997, 7)
+      ..arcToPoint(const Offset(7.756, 5.952), radius: const Radius.circular(2), clockwise: false)
+      ..lineTo(8.245, 5.048)
+      ..arcToPoint(const Offset(10.004, 4), radius: const Radius.circular(2))
+      ..close()
+      ..addOval(const Rect.fromLTRB(9, 10, 15, 16)),
+    viewBox: 24,
+    stroke: FlIconStroke(width: 2, cap: StrokeCap.round, join: StrokeJoin.round),
+  );
+
+  /// `globe`.
+  static final FlIconData globe = FlIconData(
+    Path()
+      ..addOval(const Rect.fromLTRB(2, 2, 22, 22))
+      ..moveTo(12, 2)
+      ..arcToPoint(const Offset(12, 22), radius: const Radius.circular(14.5), clockwise: false)
+      ..arcToPoint(const Offset(12, 2), radius: const Radius.circular(14.5), clockwise: false)
+      ..moveTo(2, 12)
+      ..lineTo(22, 12),
+    viewBox: 24,
+    stroke: FlIconStroke(width: 2, cap: StrokeCap.round, join: StrokeJoin.round),
+  );
+
+  /// `moon`.
+  static final FlIconData moon = FlIconData(
+    Path()
+      ..moveTo(20.985, 12.486)
+      ..arcToPoint(const Offset(11.512, 3.014), radius: const Radius.circular(9), largeArc: true)
+      ..cubicTo(11.917, 2.992, 12.129, 3.474, 11.914, 3.817)
+      ..arcToPoint(const Offset(20.182, 12.085), radius: const Radius.circular(6), clockwise: false)
+      ..cubicTo(20.526, 11.87, 21.007, 12.081, 20.985, 12.486),
+    viewBox: 24,
+    stroke: FlIconStroke(width: 2, cap: StrokeCap.round, join: StrokeJoin.round),
+  );
 }
