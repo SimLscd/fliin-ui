@@ -171,7 +171,7 @@ final router = GoRouter(routes: [accountSettingsRoute]);
     expect(analyze.exitCode, 0, reason: '${analyze.stdout}');
   });
 
-  test('devrait jouer les extraits navigator et bloc collés tels quels : le Cubit émet au passage au mois suivant, l’accueil vide la pile, la présentation ouvre la connexion (ADR 0015 §35)', skip: withoutPro, () async {
+  test('devrait jouer les extraits navigator et bloc collés tels quels : le Cubit émet au passage au mois suivant, l’accueil vide la pile, la présentation mène au paywall (ADR 0015 §35)', skip: withoutPro, () async {
     final app = await createFlutterProject('run_app');
     final sdk = await FlutterSdk.locate(Platform.environment);
     final pub = await Process.run(sdk.flutter, [
@@ -179,11 +179,11 @@ final router = GoRouter(routes: [accountSettingsRoute]);
     ], workingDirectory: app.path);
     expect(pub.exitCode, 0, reason: '${pub.stderr}');
     expect((await _init(app)).exitCode, 0);
-    final added = await fliin(['-C', app.path, 'add', 'agenda', 'onboarding', 'sign-in', 'sign-up', 'forgot-password', 'verify-code']);
+    final added = await fliin(['-C', app.path, 'add', 'agenda', 'onboarding', 'plans', 'sign-in', 'sign-up', 'forgot-password', 'verify-code']);
     expect(added.exitCode, 0, reason: '${added.stderr}');
     final render = RenderConfig(root: 'lib/ui/fliin', prefix: 'Fl', package: 'run_app');
     for (final manifest in SourceRegistry.read(_source).manifests) {
-      if (!['agenda', 'onboarding', 'sign-in', 'sign-up', 'forgot-password', 'verify-code'].contains(manifest.name)) continue;
+      if (!['agenda', 'onboarding', 'plans', 'sign-in', 'sign-up', 'forgot-password', 'verify-code'].contains(manifest.name)) continue;
       final file = manifest.name.replaceAll('-', '_');
       File(p.join(app.path, 'lib', '${file}_page.dart')).writeAsStringSync(applyRewrites(manifest.snippets.state['bloc']!, render));
       File(p.join(app.path, 'lib', '${file}_route.dart')).writeAsStringSync(applyRewrites(manifest.snippets.route['navigator']!, render));
@@ -200,7 +200,7 @@ import 'package:run_app/onboarding_route.dart';
 import 'package:run_app/ui/fliin/core/fliin.dart';
 import 'package:run_app/ui/fliin/screens/agenda/agenda_controller.dart';
 import 'package:run_app/ui/fliin/screens/agenda/agenda_screen.dart';
-import 'package:run_app/ui/fliin/screens/sign_in/sign_in_screen.dart';
+import 'package:run_app/ui/fliin/screens/plans/plans_screen.dart';
 
 final probe = ValueNotifier<AgendaCubit?>(null);
 
@@ -245,23 +245,19 @@ void main() {
     handle.dispose();
   });
 
-  testWidgets('la présentation passée mène à l’accueil seul dans la pile', (tester) async {
-    await tester.pumpWidget(_app(() => onboardingRoute(homePage: (_) => const Text('home'), newPasswordPage: (_) => const Text('new password'))));
+  testWidgets('la présentation passée mène au paywall, fermé vers l’accueil seul dans la pile', (tester) async {
+    final handle = tester.ensureSemantics();
+    await tester.pumpWidget(_app(() => onboardingRoute(homePage: (_) => const Text('home'), termsPage: (_) => const Text('terms'), privacyPage: (_) => const Text('privacy'))));
     await tester.tap(find.text('open'));
     await tester.pumpAndSettle();
     await tester.tap(find.text('Skip'));
     await tester.pumpAndSettle();
+    expect(find.byType(PlansScreen), findsOneWidget);
+    await tester.tap(find.bySemanticsLabel('Close'));
+    await tester.pumpAndSettle();
     expect(find.text('home'), findsOneWidget);
     expect(Navigator.of(tester.element(find.text('home'))).canPop(), isFalse);
-  });
-
-  testWidgets('la présentation ouvre la connexion par signInRoute', (tester) async {
-    await tester.pumpWidget(_app(() => onboardingRoute(homePage: (_) => const Text('home'), newPasswordPage: (_) => const Text('new password'))));
-    await tester.tap(find.text('open'));
-    await tester.pumpAndSettle();
-    await tester.tap(find.text('I already have an account'));
-    await tester.pumpAndSettle();
-    expect(find.byType(SignInScreen), findsOneWidget);
+    handle.dispose();
   });
 }
 ''');

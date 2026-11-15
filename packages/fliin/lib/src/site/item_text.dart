@@ -701,9 +701,9 @@ itemEnglish = {
   'onboarding': (
     title: 'Onboarding',
     description:
-        'Introduces the service on first launch in two to five illustrated '
-        'pages that people swipe or skip, ending on a call to action and a '
-        'link for people who already have an account.',
+        'Introduces the service on first launch in two to five pages, each '
+        'with a photo, the dots, a title and a text, that people swipe or '
+        'skip, ending on a call to action.',
     notFor: [
       'the dots alone of a sequence of pages: use the page indicator '
           '(page-indicator)',
