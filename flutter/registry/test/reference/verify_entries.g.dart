@@ -33,6 +33,7 @@ import 'package:fliin_ui/components/date_picker/fl_date_picker.dart';
 import 'package:fliin_ui/components/date_range_picker/fl_date_range_picker.dart';
 import 'package:fliin_ui/components/dialog/fl_dialog.dart';
 import 'package:fliin_ui/components/drawer/fl_drawer.dart';
+import 'package:fliin_ui/components/fab/fl_fab.dart';
 import 'package:fliin_ui/components/field/fl_field.dart';
 import 'package:fliin_ui/components/fieldset/fl_fieldset.dart';
 import 'package:fliin_ui/components/input_group/fl_input_group.dart';
@@ -3024,6 +3025,234 @@ final Map<String, FlReferenceEntry> verifyEntries = {
               ),
             ),
           ],
+        ),
+      ),
+    ),
+  ),
+  'fab': (
+    version: '0.1.0',
+    canvas: const Size(390, 1040),
+    platformCanvas: const {},
+    settle: const Duration(milliseconds: 400),
+    entry: (context, variant) => FlScope(
+      brightness: variant.brightness,
+      platform: variant.platform,
+      child: Builder(
+        builder: (context) => ColoredBox(
+          color: FlScope.of(context).colors.surface,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Padding(
+                padding: EdgeInsetsDirectional.all(
+                  FlScope.of(context).space.lg,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  spacing: FlScope.of(context).space.lg,
+                  children: [
+                    Wrap(
+                      spacing: FlScope.of(context).space.lg,
+                      runSpacing: FlScope.of(context).space.lg,
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      children: [
+                        FlFab(
+                          label: (variant.dir == TextDirection.rtl
+                              ? 'إضافة'
+                              : 'Add'),
+                          icon: FlIcon(FlIcons.plus),
+                          onPressed: () {},
+                        ),
+                        FlFab(
+                          label: (variant.dir == TextDirection.rtl
+                              ? 'بحث'
+                              : 'Search'),
+                          icon: FlIcon(FlIcons.magnifier),
+                          variant: FlFabVariant.secondary,
+                          onPressed: () {},
+                        ),
+                        FlFab(
+                          label: (variant.dir == TextDirection.rtl
+                              ? 'العودة إلى الأعلى'
+                              : 'Back to top'),
+                          icon: FlIcon(FlIcons.arrowUp),
+                          variant: FlFabVariant.surface,
+                          onPressed: () {},
+                        ),
+                        FlFab(
+                          label: (variant.dir == TextDirection.rtl
+                              ? 'حذف'
+                              : 'Delete'),
+                          icon: FlIcon(FlIcons.trashBin),
+                          variant: FlFabVariant.danger,
+                          onPressed: () {},
+                        ),
+                      ],
+                    ),
+                    Wrap(
+                      spacing: FlScope.of(context).space.lg,
+                      runSpacing: FlScope.of(context).space.lg,
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      children: [
+                        for (final size in FlFabSize.values)
+                          FlFab(
+                            label: (variant.dir == TextDirection.rtl
+                                ? 'إضافة'
+                                : 'Add'),
+                            icon: FlIcon(FlIcons.plus),
+                            size: size,
+                            onPressed: () {},
+                          ),
+                      ],
+                    ),
+                    Wrap(
+                      spacing: FlScope.of(context).space.lg,
+                      runSpacing: FlScope.of(context).space.lg,
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      children: [
+                        FlFab(
+                          label: (variant.dir == TextDirection.rtl
+                              ? 'كتابة'
+                              : 'Write'),
+                          icon: FlIcon(FlIcons.pencil),
+                          extended: true,
+                          onPressed: () {},
+                        ),
+                        FlFab(
+                          label: (variant.dir == TextDirection.rtl
+                              ? 'إرسال'
+                              : 'Send'),
+                          icon: FlIcon(FlIcons.paperPlane),
+                          extended: true,
+                          variant: FlFabVariant.surface,
+                          size: FlFabSize.sm,
+                          onPressed: () {},
+                        ),
+                      ],
+                    ),
+                    Wrap(
+                      spacing: FlScope.of(context).space.lg,
+                      runSpacing: FlScope.of(context).space.lg,
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      children: [
+                        FlFab(
+                          label: (variant.dir == TextDirection.rtl
+                              ? 'إضافة'
+                              : 'Add'),
+                          icon: FlIcon(FlIcons.plus),
+                          onPressed: null,
+                        ),
+                        FlFab(
+                          label: (variant.dir == TextDirection.rtl
+                              ? 'كتابة'
+                              : 'Write'),
+                          icon: FlIcon(FlIcons.pencil),
+                          extended: true,
+                          onPressed: null,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: Stack(
+                  children: [
+                    FlFabGroup(
+                      label: (variant.dir == TextDirection.rtl
+                          ? 'إنشاء'
+                          : 'Create'),
+                      barrierLabel: (variant.dir == TextDirection.rtl
+                          ? 'إغلاق'
+                          : 'Close'),
+                      icon: FlIcon(FlIcons.plus),
+                      open: true,
+                      actions: [
+                        FlFabAction(
+                          label: (variant.dir == TextDirection.rtl
+                              ? 'حدث'
+                              : 'Event'),
+                          icon: FlIcon(FlIcons.calendar),
+                          onPressed: () {},
+                        ),
+                        FlFabAction(
+                          label: (variant.dir == TextDirection.rtl
+                              ? 'رسالة'
+                              : 'Message'),
+                          icon: FlIcon(FlIcons.envelope),
+                          onPressed: () {},
+                        ),
+                        FlFabAction(
+                          label: (variant.dir == TextDirection.rtl
+                              ? 'ملاحظة'
+                              : 'Note'),
+                          icon: FlIcon(FlIcons.pencil),
+                          onPressed: () {},
+                        ),
+                        FlFabAction(
+                          label: (variant.dir == TextDirection.rtl
+                              ? 'إفراغ المسودات'
+                              : 'Empty drafts'),
+                          icon: FlIcon(FlIcons.trashBin),
+                          destructive: true,
+                          onPressed: () {},
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: Stack(
+                  children: [
+                    FlFabGroup(
+                      label: (variant.dir == TextDirection.rtl
+                          ? 'إنشاء'
+                          : 'Create'),
+                      barrierLabel: (variant.dir == TextDirection.rtl
+                          ? 'إغلاق'
+                          : 'Close'),
+                      icon: FlIcon(FlIcons.plus),
+                      open: true,
+                      layout: FlFabLayout.menu,
+                      placement: FlFabPlacement.bottomStart,
+                      actions: [
+                        FlFabAction(
+                          label: (variant.dir == TextDirection.rtl
+                              ? 'حدث'
+                              : 'Event'),
+                          icon: FlIcon(FlIcons.calendar),
+                          onPressed: () {},
+                        ),
+                        FlFabAction(
+                          label: (variant.dir == TextDirection.rtl
+                              ? 'رسالة'
+                              : 'Message'),
+                          icon: FlIcon(FlIcons.envelope),
+                          onPressed: () {},
+                        ),
+                        FlFabAction(
+                          label: (variant.dir == TextDirection.rtl
+                              ? 'ملاحظة'
+                              : 'Note'),
+                          icon: FlIcon(FlIcons.pencil),
+                          onPressed: () {},
+                        ),
+                        FlFabAction(
+                          label: (variant.dir == TextDirection.rtl
+                              ? 'إفراغ المسودات'
+                              : 'Empty drafts'),
+                          icon: FlIcon(FlIcons.trashBin),
+                          destructive: true,
+                          onPressed: () {},
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     ),

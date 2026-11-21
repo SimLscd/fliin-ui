@@ -1,0 +1,99 @@
+{
+  "name": "fab",
+  "type": "registry:component",
+  "version": "0.1.0",
+  "title": "Floating action button",
+  "description": "Keeps one action over the content of a screen, in a corner: round, or extended with its label, and able to unfold a speed dial.",
+  "flutter": ">=3.47.0 <4.0.0",
+  "dependencies": {},
+  "registryDependencies": [
+    "core@^0.2.12",
+    "icons@^0.2.0"
+  ],
+  "files": [
+    {
+      "path": "components/fab/fl_fab.dart",
+      "type": "registry:component",
+      "target": "@components/fab/fl_fab.dart"
+    }
+  ],
+  "l10n": {},
+  "snippets": {},
+  "verify": {
+    "entry": "ColoredBox(color: {prefix}Scope.of(context).colors.surface, child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [Padding(padding: EdgeInsetsDirectional.all({prefix}Scope.of(context).space.lg), child: Column(crossAxisAlignment: CrossAxisAlignment.start, spacing: {prefix}Scope.of(context).space.lg, children: [Wrap(spacing: {prefix}Scope.of(context).space.lg, runSpacing: {prefix}Scope.of(context).space.lg, crossAxisAlignment: WrapCrossAlignment.center, children: [{prefix}Fab(label: (variant.dir == TextDirection.rtl ? 'إضافة' : 'Add'), icon: {prefix}Icon({prefix}Icons.plus), onPressed: () {}), {prefix}Fab(label: (variant.dir == TextDirection.rtl ? 'بحث' : 'Search'), icon: {prefix}Icon({prefix}Icons.magnifier), variant: {prefix}FabVariant.secondary, onPressed: () {}), {prefix}Fab(label: (variant.dir == TextDirection.rtl ? 'العودة إلى الأعلى' : 'Back to top'), icon: {prefix}Icon({prefix}Icons.arrowUp), variant: {prefix}FabVariant.surface, onPressed: () {}), {prefix}Fab(label: (variant.dir == TextDirection.rtl ? 'حذف' : 'Delete'), icon: {prefix}Icon({prefix}Icons.trashBin), variant: {prefix}FabVariant.danger, onPressed: () {})]), Wrap(spacing: {prefix}Scope.of(context).space.lg, runSpacing: {prefix}Scope.of(context).space.lg, crossAxisAlignment: WrapCrossAlignment.center, children: [for (final size in {prefix}FabSize.values) {prefix}Fab(label: (variant.dir == TextDirection.rtl ? 'إضافة' : 'Add'), icon: {prefix}Icon({prefix}Icons.plus), size: size, onPressed: () {})]), Wrap(spacing: {prefix}Scope.of(context).space.lg, runSpacing: {prefix}Scope.of(context).space.lg, crossAxisAlignment: WrapCrossAlignment.center, children: [{prefix}Fab(label: (variant.dir == TextDirection.rtl ? 'كتابة' : 'Write'), icon: {prefix}Icon({prefix}Icons.pencil), extended: true, onPressed: () {}), {prefix}Fab(label: (variant.dir == TextDirection.rtl ? 'إرسال' : 'Send'), icon: {prefix}Icon({prefix}Icons.paperPlane), extended: true, variant: {prefix}FabVariant.surface, size: {prefix}FabSize.sm, onPressed: () {})]), Wrap(spacing: {prefix}Scope.of(context).space.lg, runSpacing: {prefix}Scope.of(context).space.lg, crossAxisAlignment: WrapCrossAlignment.center, children: [{prefix}Fab(label: (variant.dir == TextDirection.rtl ? 'إضافة' : 'Add'), icon: {prefix}Icon({prefix}Icons.plus), onPressed: null), {prefix}Fab(label: (variant.dir == TextDirection.rtl ? 'كتابة' : 'Write'), icon: {prefix}Icon({prefix}Icons.pencil), extended: true, onPressed: null)])])), Expanded(child: Stack(children: [{prefix}FabGroup(label: (variant.dir == TextDirection.rtl ? 'إنشاء' : 'Create'), barrierLabel: (variant.dir == TextDirection.rtl ? 'إغلاق' : 'Close'), icon: {prefix}Icon({prefix}Icons.plus), open: true, actions: [{prefix}FabAction(label: (variant.dir == TextDirection.rtl ? 'حدث' : 'Event'), icon: {prefix}Icon({prefix}Icons.calendar), onPressed: () {}), {prefix}FabAction(label: (variant.dir == TextDirection.rtl ? 'رسالة' : 'Message'), icon: {prefix}Icon({prefix}Icons.envelope), onPressed: () {}), {prefix}FabAction(label: (variant.dir == TextDirection.rtl ? 'ملاحظة' : 'Note'), icon: {prefix}Icon({prefix}Icons.pencil), onPressed: () {}), {prefix}FabAction(label: (variant.dir == TextDirection.rtl ? 'إفراغ المسودات' : 'Empty drafts'), icon: {prefix}Icon({prefix}Icons.trashBin), destructive: true, onPressed: () {})])])), Expanded(child: Stack(children: [{prefix}FabGroup(label: (variant.dir == TextDirection.rtl ? 'إنشاء' : 'Create'), barrierLabel: (variant.dir == TextDirection.rtl ? 'إغلاق' : 'Close'), icon: {prefix}Icon({prefix}Icons.plus), open: true, layout: {prefix}FabLayout.menu, placement: {prefix}FabPlacement.bottomStart, actions: [{prefix}FabAction(label: (variant.dir == TextDirection.rtl ? 'حدث' : 'Event'), icon: {prefix}Icon({prefix}Icons.calendar), onPressed: () {}), {prefix}FabAction(label: (variant.dir == TextDirection.rtl ? 'رسالة' : 'Message'), icon: {prefix}Icon({prefix}Icons.envelope), onPressed: () {}), {prefix}FabAction(label: (variant.dir == TextDirection.rtl ? 'ملاحظة' : 'Note'), icon: {prefix}Icon({prefix}Icons.pencil), onPressed: () {}), {prefix}FabAction(label: (variant.dir == TextDirection.rtl ? 'إفراغ المسودات' : 'Empty drafts'), icon: {prefix}Icon({prefix}Icons.trashBin), destructive: true, onPressed: () {})])]))]))",
+    "imports": [
+      "@components/fab/fl_fab.dart",
+      "@core/fliin.dart",
+      "@icons/fl_icons.dart"
+    ],
+    "states": [
+      "enabled",
+      "extended",
+      "disabled",
+      "open",
+      "menu"
+    ],
+    "canvas": {
+      "width": 390,
+      "height": 1040
+    },
+    "settleMs": 400
+  },
+  "categories": [
+    "actions"
+  ],
+  "meta": {
+    "tier": "free",
+    "platforms": [
+      "ios",
+      "android",
+      "web",
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "states": [
+      "enabled",
+      "extended",
+      "disabled",
+      "open",
+      "menu"
+    ],
+    "semanticsRoles": [
+      "button",
+      "menuItem"
+    ],
+    "intents": {
+      "fr": [
+        "ajouter un bouton d'action flottant pour créer un élément",
+        "poser un fab dans un coin par-dessus le contenu",
+        "créer un nouveau message depuis un bouton rond en bas à droite",
+        "ouvrir des raccourcis de création depuis un bouton rond",
+        "afficher un fab étendu avec son libellé",
+        "masquer le libellé du fab au défilement"
+      ],
+      "en": [
+        "add a floating action button to create an item",
+        "keep a fab pinned in a corner over the content",
+        "create a new message from a round compose button",
+        "open a few creation shortcuts from a plus button",
+        "show an extended fab with its label",
+        "hide the fab label on scroll"
+      ]
+    },
+    "notFor": [
+      "an action in the flow of a form or a page: use a button (button)",
+      "several actions of equal weight in a bar: use a toolbar (toolbar)"
+    ],
+    "fr": {
+      "title": "Bouton d'action flottant",
+      "description": "Garde une action au-dessus du contenu d'un écran, dans un coin : ronde, ou étendue avec son libellé, et capable de déplier un cadran.",
+      "notFor": [
+        "une action dans le fil d'un formulaire ou d'une page : utiliser un bouton (button)",
+        "plusieurs actions de même poids dans une barre : utiliser une barre d'outils (toolbar)"
+      ]
+    },
+    "goldens": null
+  },
+  "changelog": "First version: `FlFab`, round or extended, in four variants and three sizes, parked in a bottom corner by `placement`; `FlFabGroup`, a trigger that opens `FlFabAction`s as a speed dial or a menu."
+}

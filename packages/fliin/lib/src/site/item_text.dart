@@ -1380,6 +1380,16 @@ itemEnglish = {
       'a one-off action: use a button (button)',
     ],
   ),
+  'fab': (
+    title: 'Floating action button',
+    description:
+        'Keeps one action over the content of a screen, in a corner: round, '
+        'or extended with its label, and able to unfold a speed dial.',
+    notFor: [
+      'an action in the flow of a form or a page: use a button (button)',
+      'several actions of equal weight in a bar: use a toolbar (toolbar)',
+    ],
+  ),
   'button-group': (
     title: 'Button group',
     description:
